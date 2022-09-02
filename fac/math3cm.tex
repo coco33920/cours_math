@@ -1,0 +1,180 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,hidelinks]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{changepage}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage[french]{babel}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{margin=1.8cm,head=14.5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+\definecolor{deepRed}{RGB}{133,1,1}
+\definecolor{shallowRed}{RGB}{255,127,127}
+\definecolor{lilac}{HTML}{c8a2c8}
+\definecolor{deepPurple}{HTML}{643a64}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt]{theorem}{Théorème}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowRed,linecolor=deepRed,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{prop}{Proposition}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=lilac,linecolor=deepPurple,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Définition}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ef}{EF}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue, linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt, innerleftmargin=10pt, innerrightmargin=10pt,]{st}{S}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,leftmargin=1pt,innertopmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ex}{}[section]
+
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{rmq}{Remarque}[section]
+
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{exe}{Exercice}[section]
+
+
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[everyline=true,linecolor=black,leftmargin=1pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\allowdisplaybreaks[1]
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Use a larger font size
+\usepackage[fontsize=14pt]{scrextend}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some colour to life
+\usepackage{microtype}  % Minature font tweaks
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mfc#1{\mathcal{#1}}
+
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\L{\mfc{L}^1(I,\bK)}
+\def\Li#1{\mfc{L}^{#1}(I,\bK)}
+\def\LI#1{\mfc{L}^1(#1,\bK)}
+\def\ib#1{\int_{a}^{b} #1}
+\def\ig#1{\int_{a}^{\infty} #1}
+\def\bK{\mbb{K}}
+\def\af{[a,\infty[}
+\def\ab{[a,b[}
+\def\abc{]a,b]}
+\def\abd{]a,b[}
+\def\x{$x \in \bR$}
+\def\z{$z \in \bC$}
+\def\n{$n \in \bN$}
+\def\is#1{\sum_{n=0}^\infty #1}
+\def\iss#1#2{\sum_{n=#1}^\infty #2}
+\def\se{\sum a_n z^n}
+\def\ser{\sum a_n t^n}
+\def\seq#1{\sum a_n z_{#1}^n}
+\def\seb#1{\sum #1_n z^n}
+\def\fn{\forall n \in \bN,}
+\def\born{l^{\infty}\left( \bC \right)}
+\def\fef{\textbf{FEF}}
+\def\ln{\lim_{n \to \infty}}
+\def\bO{\mfc{O}}
+% Sometimes helpful macros
+\newcommand{\func}[3]{#1\colon#2\to#3}
+\newcommand{\cvs}[2]{converge simplement sur $#1$ vers $#2$}
+\newcommand{\cvu}[2]{converge uniformément sur $#1$ vers $#2$}
+\newcommand{\ppl}[1]{par passage à la limite lorsque #1}
+\newcommand{\ppln}[1]{par passage à la limite lorsque $n \to \infty$}
+\newcommand{\de}[4]{\begin{cases}
+    #1 & \text{si } #2 \\
+    #3 & \text{si } #4
+\end{cases}}
+\newcommand{\deq}[3]{\begin{cases}
+    #1 & \text{si } #2 \\
+    #3 & \text{sinon}
+\end{cases}}
+\newcommand{\vfunc}[5]{
+  \begin{align*}
+    #1 \colon #2 &\to #3\\
+    #4 &\mapsto #5.
+  \end{align*}
+}
+\newcommand{\parenth}[1]{\left(#1\right)}
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Math3 CM}
+\author{Tapé par C. THOMAS}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+\end{document}

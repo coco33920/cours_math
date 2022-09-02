@@ -1,0 +1,2192 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,hidelinks]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{changepage}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage[french]{babel}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{margin=1.8cm,head=14.5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+\definecolor{deepRed}{RGB}{133,1,1}
+\definecolor{shallowRed}{RGB}{255,127,127}
+\definecolor{lilac}{HTML}{c8a2c8}
+\definecolor{deepPurple}{HTML}{643a64}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt]{theorem}{Théorème}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowRed,linecolor=deepRed,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{prop}{Proposition}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=lilac,linecolor=deepPurple,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Définition}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ef}{EF}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue, linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt, innerleftmargin=10pt, innerrightmargin=10pt,]{st}{S}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,leftmargin=1pt,innertopmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ex}{}[section]
+
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{rmq}{Remarque}[section]
+
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{exe}{Exercice}[section]
+
+
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[everyline=true,linecolor=black,leftmargin=1pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\allowdisplaybreaks[1]
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Use a larger font size
+\usepackage[fontsize=14pt]{scrextend}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some colour to life
+\usepackage{microtype}  % Minature font tweaks
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mfc#1{\mathcal{#1}}
+
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\L{\mfc{L}^1(I,\bK)}
+\def\Li#1{\mfc{L}^{#1}(I,\bK)}
+\def\LI#1{\mfc{L}^1(#1,\bK)}
+\def\ib#1{\int_{a}^{b} #1}
+\def\ig#1{\int_{a}^{\infty} #1}
+\def\bK{\mbb{K}}
+\def\af{[a,\infty[}
+\def\ab{[a,b[}
+\def\abc{]a,b]}
+\def\abd{]a,b[}
+\def\x{$x \in \bR$}
+\def\z{$z \in \bC$}
+\def\n{$n \in \bN$}
+\def\is#1{\sum_{n=0}^\infty #1}
+\def\iss#1#2{\sum_{n=#1}^\infty #2}
+\def\se{\sum a_n z^n}
+\def\ser{\sum a_n t^n}
+\def\seq#1{\sum a_n z_{#1}^n}
+\def\seb#1{\sum #1_n z^n}
+\def\fn{\forall n \in \bN,}
+\def\born{l^{\infty}\left( \bC \right)}
+\def\fef{\textbf{FEF}}
+\def\ln{\lim_{n \to \infty}}
+\def\bO{\mfc{O}}
+% Sometimes helpful macros
+\newcommand{\func}[3]{#1\colon#2\to#3}
+\newcommand{\cvs}[2]{converge simplement sur $#1$ vers $#2$}
+\newcommand{\cvu}[2]{converge uniformément sur $#1$ vers $#2$}
+\newcommand{\ppl}[1]{par passage à la limite lorsque #1}
+\newcommand{\ppln}[1]{par passage à la limite lorsque $n \to \infty$}
+\newcommand{\de}[4]{\begin{cases}
+    #1 & \text{si } #2 \\
+    #3 & \text{si } #4
+\end{cases}}
+\newcommand{\deq}[3]{\begin{cases}
+    #1 & \text{si } #2 \\
+    #3 & \text{sinon}
+\end{cases}}
+\newcommand{\vfunc}[5]{
+  \begin{align*}
+    #1 \colon #2 &\to #3\\
+    #4 &\mapsto #5.
+  \end{align*}
+}
+\newcommand{\parenth}[1]{\left(#1\right)}
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Cours de MP3 Mathématique}
+\author{G. ROUSSEL \\ ronéo de la classe \\ scanné par Maxime D. \\ tapé par Charlotte T.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+
+    \chapter{Convergence simple et convergence uniforme}
+    \section{Convergence simple d'une suite d'application}
+
+    Soit $(f_n) \in \bK^{D}$, $\bK = \bR$ ou $\bC$
+
+    \begin{definition}
+        On dit que $(f_n)$ \cvs{A}{f} si il existe $\func{f}{A}{\bK}$ telle que $\forall x \in A, \ln f_n(x) = f(x)$
+    \end{definition}
+    \begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}[]
+        Supposons que $(f_n)$ \cvs{A}{g} et $h$ avec $\func{g,h}{A}{\bK}$ 
+        Montrons que $g=h$
+        \begin{proof}
+        Soit $x \in A$ , $g(x) = \lim_{n \to \infty} f_n(x) = h(x)$ donc $g=h$
+        \end{proof}
+    \end{prop}
+\end{adjustwidth}
+    \begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}[]
+        Supposons que $(f_n)$ \cvs{A}{\func{f}{A}{\bK}}
+
+        \begin{enumerate}
+        \item Supposons que $\forall n \in \bN$ $(f_n)$ croît sur $A$.
+        Montrons que $f$ croît sur $A$
+        \begin{proof}
+        Soient $(x,y) \in A^2$ tels que $x < y$
+        $\forall n \in \bN,\space f_n(x) \leq f_n(y)$ (croissance de $f_n$)
+        Donc \ppln{} $f(x) \leq f(y)$
+        Donc $f$ croît sur $A$
+        \end{proof}
+
+        \item Supposons que $A$ soit un intervalle de $\bR$ et que $\forall n \in \bN$
+        Montrons que $f$ est convexe sur $A$
+        \begin{proof}
+        $f_n$ est convexe sur $A$
+        Soient $(x,y) \in A^2$ et $\lambda \in [0;1]$
+        $\forall n \in \bN,\space f_n((1-\lambda)x + \lambda y) \leq (1-\lambda)f_n(x) + \lambda f_n(y)$ 
+        Donc \ppln{} $f((1-\lambda)x + \lambda y) \leq (1-\lambda)f(x) + \lambda f(y)$
+        Or $(1-\lambda)x + \lambda y \in A$ car $A$ est un intervalle donc $f$ est convexe sur $A$
+        \end{proof}
+    \end{enumerate}
+    \end{prop}
+\end{adjustwidth}
+    \paragraph*{Exemples}
+    \begin{adjustwidth}{-2em}{-1em}
+    \begin{ex}
+    \begin{itemize}[label=$\cdot$]
+    \item Soit $\func{f_n}{[0;1]}{\bR}$ définie par $\forall x \in [0;1]  \colon \space f(x) = x^n$
+    \item Soit $x \in [0;1]$ ; $\lim_{n \to \infty} x^n =$ 
+    \end{itemize}
+    $\begin{cases}
+        0 & \text{si } x \in [0;1[ \\
+        1 & \text{si } x=1
+    \end{cases}$\
+    Donc $(f_n)$ \cvs{[0;1]}{\func{f}{[0;1]}{\bR}} définie
+    par $f(x) = \de{0}{x \in [0;1]}{1}{x=1}$
+\end{ex}
+\end{adjustwidth}
+    \begin{adjustwidth}{-2em}{-1em}
+    \begin{ex}
+     Soit $f_n(x) = \deq{n^2x}{|x| \leq \frac{1}{n}}{\frac{1}{x}}$
+     On a $(f_n)_{n \leq 1} \in \bR^{\bN^{*}}$ 
+    On a $(f_n)_{n \leq 1}$ \cvs{\bR}{\func{f}{\bR}{\bR}} 
+    définie par $f(x) = \deq{\frac{1}{x}}{x=0}{0}$
+    \begin{ef}
+        Soit $x \in \bR^{*}$, $\exists N \in \bN$, $\forall n \geq N$, $\frac{1}{n} < |x|$ cela car
+        $\lim_{n \to \infty} \frac{1}{n}$ et $|x| > 0$ 
+        $f_n(x) = \frac{1}{x}$ pour $n \leq N$ donc $\ln f_n(x) = \frac{1}{x}$
+        Pour $n \in \bN$, $f_n(0) = 0$ d'où $\ln f_n(0) = 0$
+        \textbf{FEF}
+    \end{ef}
+\end{ex}
+\end{adjustwidth}
+\begin{adjustwidth}{-2em}{-1em}
+\begin{ex}
+    Soit $\func{f_n}{\bC}{\bC}$ définie par $f_n(z) = z^n$
+    
+    
+    \begin{itemize}[label=$\circ$]
+    \item Soit \z si $|z| < 1$ alors $\ln f_n(z) = 0$
+    \item Si $|z| > 1$ alors la suite $(f_n(z))$ diverge dans $\bC$
+    \item Si $z \in \mbb{U} \setminus \{1\}$ alors la suite $(f_n(z))$ diverge dans $\bC$
+    \item Si $z=1$ alors $\ln f_n(z) = 1$
+    Donc $(f_n)$ \cvs{D'}{f} définie par $D' = D \cup \{1\}$ avec $\func{f}{D'}{\bC}$ et
+    $f(z) = \deq{0}{z \not= 1}{1}$
+    \end{itemize}
+\end{ex}
+\end{adjustwidth}
+\begin{adjustwidth}{-2em}{-1em}
+\begin{ex}
+
+    Soit $\func{f_n}{\bR^2}{\bR}$ définie par $f_n(x,y) = \sqrt[n]{x^2 + y^2}$ 
+    \begin{itemize}[label=$\circ$]
+    \item Pour $(x,y) \in \bR^2 \colon x^2 + y^2 \geq 0$  
+    \item Pour $n \geq 1\colon \sqrt[n]{x^2 + y^2} = \left(x^2 + y^2\right)^{\frac{1}{n}} = e^{\frac{1}{n}\log(x^2 + y^2)}$ pour $(x,y) \not= 0_{\bR^2}$
+    \item Pour $(x,y) = (0,0) \colon f(0,0) = 0$
+    
+    \item Soit $(x,y) \in \bR^2$, si $(x,y) \not= 0$ alors 
+    $\ln f_n(x,y) = \ln e^{\frac{1}{n}\log(x^2 + y^2)} = e^0 = 1$ 
+    et $\ln f_n(0,0) = 0$
+    
+    \item Donc $(f_n)_{n \geq 1}$ \cvs{\bR^2}{f} avec $\func{f}{\bR^2}{\bR}$ et $f(x,y) = \deq{1}{(x,y) \not= (0,0)}{0}$
+    \end{itemize}
+\end{ex}
+\end{adjustwidth}
+\section{Convergence uniforme d'une suite d'application}
+\begin{adjustwidth}{-2em}{-1em}
+\begin{prop}
+    \begin{align*}
+        (f_n) \text{ CVS sur A vers f} & \Leftrightarrow \ln f_n(x) = f(x)\\
+                                     & \Leftrightarrow \forall x \in A, \forall \varepsilon > 0,  \exists N \in \bN, \forall n \geq N, \left| f_n(x) - f(x) \right| \leq \varepsilon  \\
+                                     & \Leftrightarrow  \forall \varepsilon > 0, \forall x \in A, \exists N_{x} \in \bN, \forall n \geq N_{x}, \left| f_n(x) - f(x) \right| \leq \varepsilon \\
+                                    \end{align*}
+    Le $N_{x}$ dépend de $x$ le but est de changer l'ordre des quantificateur pour établir la définition de la convergence uniforme
+\end{prop}
+\end{adjustwidth}
+\begin{definition}
+        \begin{align*}
+        (f_n) \text{\cvu{A}{f}} &\Leftrightarrow \forall \varepsilon > 0, \exists N \in \bN, \forall n \geq N,   \\  
+                                & \forall x \in A, \left| f_n(x) - f(x) |\right| \leq \varepsilon \\
+    \end{align*}
+    \end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+\begin{prop}
+    \begin{enumerate}
+    \item Soient $B \subset A \subset D$, $\func{f_n}{D}{\bK}$, $\func{f}{A}{\bK}$, et $\func{\restr{f}{B}}{B}{\bK}$
+    Montrons que $(f_n)$ \cvu{B}{f}
+    \begin{proof}
+    Supposons que $(f_n)$ \cvu{A}{f}.
+    \begin{align*}
+        \forall \varepsilon > 0, \exists N \in \bN, &\forall x \in A, \left| f_n(x) - f(x) \right| \leq \varepsilon \\
+                                                    &\forall x \in B, \left| f_n(x) - f(x) \right| \leq \varepsilon \\
+        \end{align*}       
+    donc $(f_n)$ \cvu{B}{f}.
+    \end{proof}
+
+    \item Si $(f_n)$ \cvu{A}{f} alors $(f_n)$ \cvs{A}{f}
+    \begin{proof}
+        Conséquence de la définition
+    \end{proof}
+    
+    \item Supposons $(f_n)$ \cvu{A}{f}. 
+    \begin{align*}
+        (f_n) \text{ CVU sur A vers f} &\Leftrightarrow \forall \varepsilon > 0, \exists N \in \bN, \forall n \geq N, \forall x \in A, \\
+                                       &\left| f_n(x) - f(x) \right| \leq \varepsilon \\
+                                       &\Leftrightarrow \forall \varepsilon > 0, \exists N \in \bN, \forall n \geq N, \norm{f_n - f}^{A}_{\infty} \leq \varepsilon \\
+                                       &\Leftrightarrow \forall \varepsilon > 0, \exists N \in \bN, \forall n \geq N, \abs{\norm{f_n - f}^{A}_{\infty}} \leq \varepsilon \\
+                                       &\Leftrightarrow \ln\norm{f_n - f}^{A}_{\infty} = 0 \\
+    \end{align*}   
+
+    \item Supposons que $f_n$ \cvu{A}{g} et $h$ alors $f_n$ \cvs{A}{g} et $h$ puis $g=h$
+    \end{enumerate}
+\end{prop}
+\end{adjustwidth}
+\subsection{Convergence uniforme et transfert de la continuité}
+\begin{adjustwidth}{-2em}{-1em}
+\begin{theorem}
+    Soient $A \subset \bR$ et $a \in A$ 
+    \begin{enumerate}
+    \item Supposons $\restr{f}{A}$ est $C^0$ au point $a$ pour tout $n \in \bN$ 
+    et $(f_n)$ \cvu{A}{f}, montrons que $f$ est continue au point $a$
+    \begin{proof}
+    \begin{align*}
+        f \text{ } C^0 \text{ au point } a &\Leftrightarrow \lim_a f = f(a) \\
+                                &\Leftrightarrow \lim_a \restr{f}{A}(a) = f(a) \text{ car } f\colon A \to \bK \\
+                                &\Leftrightarrow \forall \varepsilon > 0, \exists \alpha > 0, \forall x \in A, \abs{x - a} \leq \alpha \Rightarrow \abs{f(x) - f(a)} \leq \varepsilon \\
+        \end{align*}   
+    Soient $\varepsilon > 0$ et $x \in A$ 
+    \begin{align*}
+        \abs{f(x) - f(a)} &= \abs{\parenth{f(x) - f_n(x)} + \parenth{f_n(x) - f_n(a) + \parenth{f_n(a) - f(a)}}} \\
+                          &\leq \abs{f(x) - f_n(x)} + \abs{f_n(x) - f_n(a)} + \abs{f_n(a) - f(a)} \\
+                          &\leq \norm{f_n - f}^{A}_{\infty} + \abs{f_n(x) - f_n(a)} + \norm{f_n - f}^{A}_{\infty} \\
+                        \intertext{et cela $\forall n \in \bN$}
+                        \end{align*}
+        $(f_n)$ \cvu{A}{f} donc $\ln \norm{f_n - f}^{A}_{\infty} = 0$
+        Donc, $\exists N \in \bN, \forall n \geq N, \norm{f_n - f}^{A}_{\infty} \leq \frac{\varepsilon}{12}$
+        Alors, $\abs{f(x) - f(a)} \leq 2 \norm{f_n - f}^{A}_{\infty} + \abs{f_N{x} - f_N(a)} \leq \frac{2\varepsilon}{12} + \abs{f_N(x) - f_N(a)}$
+        Or, $\restr{f_N}{A}$ est $C^0$ au point $a$ donc $\exists \alpha > 0, \forall x \in A, \abs{x -a} \leq \alpha \Rightarrow \abs{\restr{f_N}{A}(x) - \restr{f_N}{A}(a)} \leq \frac{\varepsilon}{12}$\newline
+        On suppose $\abs{x-a} \leq \alpha$
+        Alors $\abs{f(x) - f(a)} \leq \frac{2\epsilon}{12} + \abs{f_N(x) - f_N(a)} \leq \frac{2\varepsilon}{12} + \frac{\varepsilon}{12} \leq \varepsilon$
+        Enfin on a $\forall \varepsilon > 0, \exists \alpha > 0, \forall x \in A, \abs{x-a} \leq \alpha \Rightarrow \abs{f(x) - f(a)} \leq \varepsilon$
+        Donc $f$ est $C^0$ en $a$.
+                    \end{proof} 
+
+
+    
+    \item $f$ $C^0$ sur $A$ $\Leftrightarrow f$ $C^0$ en tout point de $A$ donc $2)$ est une conséquence de $1)$
+                        
+
+    \item \textbf{Corollaire}: on suppose que $A=I$ est un intervalle de $\bR$, et on suppose $\restr{f_n}{I}$ $C^0$ sur $I$ et $(f_n)$ CVU sur tout segment contenue dans I vers f\newline
+                \end{enumerate}
+    Alors $f$ est $C^0$ sur $I$ 
+    \begin{ef}
+        Soit $a \in I$, on considère $S_a \subset I$ un segment contenant a, alors pour tout $n \in \bN$, $\restr{f_n}{S_a}$ est $C^0$ sur $S_a$ \newline
+        D'autre part $(f_n)$ \cvu{S_a}{f}, $\restr{f_n}{S_a}$ est $C^0$ sur $S_a$, donc en $a$, puis $f$ est $C^0$ au point $a$ car $S_a$ est un voisinage de $a$.
+    \end{ef}
+\end{theorem}
+\end{adjustwidth}
+
+\subsection{Étude pratique de la CVU}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}        
+    Soit $\func{f_n}{D}{\bK}$ et $\func{f}{A}{\bK}$, on pose $\delta_n(x) = \abs{f_n(x) - f(x)}$
+    \begin{enumerate}
+    \item Supposons $\exists (\varepsilon_n) \in \left(\bR^{+}\right)^{\bN}, \forall x \in A, \abs{f_n(x) - f(x)} \leq \varepsilon_n$
+    Montrons que $(f_n)$ \cvu{A}{f}
+    \begin{proof}
+        Ainsi, $\forall n \in \bN, 0 \leq \norm{f_n - f}^{A}_{\infty} \leq \varepsilon_n$ par propriété des BS
+        Par encadrement, $\ln \norm{f_n - f}^{A}_{\infty} = 0$ donc $(f_n)$ \cvu{A}{f}.
+    \end{proof}
+
+    \item Supposons $\exists (a_n) \in A^{\bN},\left(\delta_n(a_n)\right)$ ne tende pas vers O alors $(f_n)$ ne converge pas uniformément sur $A$ vers $f$
+    \begin{proof}
+        Supposons $(f_n)$ CVU sur $A$ vers $f$, on a $\ln \norm{f_n - f}^{A}_{\infty} = 0$
+        donc, $0 \leq \delta_n(a_n) \leq \norm{f_n - f}^{A}_{\infty}$
+        donc par encadrement, $\ln \delta_n(a_n) = 0$ ce qui n'est pas 
+    \end{proof}
+\end{enumerate}    
+\end{prop}
+\end{adjustwidth}
+\paragraph*{Exemples}
+\begin{adjustwidth}{-2em}{-1em}   
+\begin{ex}
+    Soit $\func{f_n}{[0,1]}{\bR}$ définie par $f_n(x) = x^n$
+    on a montré que $(f_n)$ \cvs{[0,1]}{f} avec $\func{f}{[0,1]}{\bR}$ et $f(x) = \deq{0}{x \in [0,1[}{1}$
+    cependant $(f_n)$ ne converge pas uniformément sur $[0,1]$
+    \begin{ef}
+        Supposons $(f_n)$ \cvu{[0,1]}{f}, comme $\forall n \in \bN$, $f_n$ est $C^0$ sur $[0,1]$ il vient
+        que $f$ est $C^0$ sur $[0,1]$ ce qui n'est pas \fef
+    \end{ef}
+\end{ex}
+\end{adjustwidth}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{ex}
+    Soit $f_n(x) = \de{n^2x}{\abs{x} \leq \frac{1}{n}}{\frac{1}{x}}{\abs{x} > \frac{1}{n}}$*
+    On a $(f_n)$ CVS sur $[0,1]$ mais $(f_n)$ n'est pas CVU sur $[0,1]$ vers $f$
+    \begin{ef}
+        Supposons $(f_n)$ CVU sur $[0,1]$ vers $f$, alors
+        $\forall n \in \bN, f_n$ est $C^0$ sur $[0,1]$ donc \textit{(TC)} $f$ est $C^0$ 
+        sur $[0,1]$ ce qui n'est pas car $\lim_{0^{+}} f = \infty \not= f(0)$ \fef
+    \end{ef}
+    Cherchons une CVU sur $]0,1]$ on a $(f_n)_{n \geq 1}$ CVS sur $]0,1]$ vers $\restr{f}{]0,1]}$
+    \begin{align*}
+        \abs{f_n(\frac{1}{n^2}) - f(\frac{1}{n^2})} &\leq \norm{f_n - f}^{]0,1]}_{\infty} \\
+            \abs{1 - n^2} &\leq \norm{f_n - f}^{]0,1]}_{\infty} \\
+            n^2 - 1 &\leq \norm{f_n - f}^{]0,1]}_{\infty} \intertext{pour $n \geq 1$} \\ 
+        \end{align*}
+    Or $\norm{f_n - f}^{]0,1]}_{\infty}$ ne tends pas vers 0 car $\ln n^2 - 1 = \infty$
+    donc $(f_n)$ ne converge pas uniformément vers $f$ sur $]0,1]$
+    \end{ex}
+\end{adjustwidth}
+    \subsection{Convergence simple et uniforme d'une série d'application}
+    \paragraph{Introduction}
+    Soit $\func{f_n}{D}{\bK}$ et $S_n = \sum^n_{k=0}\colon D \to \bK$
+    On a $S_n \in \left(\bK^D\right)^{\bN}$
+    \begin{definition}
+        La suite d'application $(S_n)$ est notée $\sum f_n$ et est appelée série de terme générale $f_n$
+    \end{definition}
+
+
+\begin{adjustwidth}{-2em}{-1em}
+     \begin{prop}
+         Montrons que $\sum f_n$ CVS sur $A$ $\Leftrightarrow$ $\sum f_n(x)$ convergente
+         \begin{proof}
+             \begin{align*}
+                \sum f_n \text{ CVS sur} A &\Leftrightarrow (S_n) \text{C VS sur} A \\
+                                          &\Leftrightarrow \forall x \in A, \exists l \in \bK, \ln S_n(x) = l\\ 
+                                          &\Leftrightarrow \forall x \in A, \exists l \in \bK, \ln \sum^{n}_{k=0} f_k = l\\ 
+                                          &\Leftrightarrow \sum f_n(x) \text{ converge}\\ 
+                \end{align*}        
+         \end{proof}
+     \end{prop}
+\end{adjustwidth}
+\begin{definition}
+    On suppose $\sum f_n$ CVS sur $A$ 
+    \begin{enumerate}
+    \item On a la somme de la série est une application de $A$ dans $\bK$ définie par 
+    $\left(\sum^{\infty}_{k=0} f_k\right) (x) = \sum^{\infty}_{k=0} f_k(x)$ 
+
+    \item Et le reste de la série est une application de $A$ dans $\bK$ définie par 
+    $R_n(x) = \sum_{k=n+1}^{\infty} f_k(x)$
+    \end{enumerate}
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        Soit $\sum f_n$ CVS (resp CVU) sur $A$ alors $(f_n)$ CVS (resp CVU) sur $A$ vers $0_{\bK^{A}}$
+        \begin{proof}
+            \begin{itemize}[label=$\circ$]
+            \item On suppose $\sum f_n$ CVS sur $A$ alors $(S_n)$ CVS sur $A$ vers $S$ 
+            avec $\forall x \in A, S(x) = \sum_{k=0}^{\infty} f_k(x)$
+             Alors, $\forall x \in A, \sum f_k(x)$ CV donc $\ln f_n(x) = 0$
+            puis $(f_n)$ CVS sur $A$ vers $0$
+
+            \item On suppose $\sum f_n$ CVU sur $A$ alors $(S_n)$ CVU sur $A$ vers $S = \sum^{\infty}_{k=0} f_k$
+            \begin{align*}
+                \norm{f_n - 0_{\bK^{A}}}^{A}_{\infty} &= \norm{f_n}^{A}_{\infty} \\
+                                                      &= \norm{(S_n - S) + (S - S_{n-1})}^{A}_{\infty} \\
+                                                      &\leq \norm{S_n - S}^{A}_{\infty} + \norm{S - S_{n-1}}^{A}_{\infty} \\          
+            \end{align*}
+            Comme $(S_n)$ CVU sur $A$ vers $S$ on a par encadrement $\ln \norm{f_n}^{A}_{\infty} = 0$ puis $(f_n)$ CVU sur $A$ vers $0_{\bK^{A}}$
+        \end{itemize}
+        \end{proof}
+    \end{prop}
+    \begin{theorem}
+        On suppose $\sum f_n$ CVS sur $A$ on dispose donc de $S$ et $R_n$, 
+        montrons que $\sum f_n$ CVU sur $A \Leftrightarrow$ $(R_n)$ CVU sur $A$ vers $0_{\bK^{A}}$ 
+        \begin{ef}
+            \begin{align*}
+                \sum f_n \text{ CVU sur } A &\Leftrightarrow \sum f_n \text{ CVU sur } A \text{ vers } S \\
+                                            &\Leftrightarrow (S_n) \text{ CVU sur } A \text{ vers } S \\
+                                            &\Leftrightarrow \ln \norm{S_n - S}^{A}_{\infty} \\
+                                            &\Leftrightarrow \ln \norm{R_n}^{A}_{\infty} = 0 \\
+            \end{align*}
+            \paragraph*{Car} 
+            $S - S_n \colon A \to \bK$, soit $x \in A$,  $(S-Sn)(x) = S(x) - S_n(x) = \sum_{k=n+1}^{\infty} f_k(x) = R_n(x)$
+            donc $R_n = S - S_n$
+            donc $(R_n)$ CVU sur A vers $0_{\bK^{A}}$
+        \end{ef}
+    \end{theorem}
+    \begin{theorem}[Transfert de la continuité]
+        \begin{enumerate}
+        \item On suppose que $\forall n \in \bN$ $\restr{f_n}{A}$ est $C^0$ en $a \in A$ et $\sum f_n$ CVU sur $A$ alors $S$ est $C^0$ en $a$
+        
+        \item On suppose que pour tout $n \in \bN$ $\restr{f_n}{A}$ est $C^0$ sur $A$ et $\sum f_n$ CVU sur $A$ alors $S$ est $C^0$ sur $A$
+        
+        \item Soit $I$ un intervalle de $\bR$, on suppose que pour tout $n \in \bN$ $\restr{f_n}{I}$ est $C^0$ sur tous les segment contenus dans $I$ alors $S$ est $C^0$ sur $I$
+        \end{enumerate}
+
+        \begin{proof}
+            Directe par Théorème de Transfert pour les suites d'applications
+        \end{proof}
+          
+    \end{theorem}
+\end{adjustwidth}
+\section{Convergence absolue et convergence normale d'une suite d'application}
+\paragraph{Introduction} Soit $\func{f_n}{D}{\bK}$ 
+\begin{definition}
+    $\sum f_n$ converge absolument (CVA) en tout point de $A$ si $\forall x \in A, \sum \abs{f_n(x)}$ est convergente
+\end{definition}
+\begin{definition}
+    $\sum f_n$ converge normalement (CVN) sur $A$ si $\sum \norm{f_n}^{A}_{\infty}$ est convergente
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        \begin{enumerate}
+        \item On suppose $\sum f_n$ CVA en tout point de A, alors $\sum f_n$ CVS sur $A$
+        \begin{ef}
+            $\forall x \in A, \sum \abs{f_n(x)}$ CV alors 
+            $\forall x \in A \sum f_n(x)$ converge absolument donc converge 
+            puis $\sum f_n$ CVS sur $A$
+        \end{ef}
+        \item On suppose $\sum f_n$ CVN sur $A$, alors $\sum f_n$ CVS sur $A$ et CVA en tout point de $A$
+        \begin{ef}
+            $\forall x \in A, 0 \leq \abs{f_n(x)} \leq \norm{f_n}^A_{\infty}$
+            $\sum f_n$ CVN sur $A$ donc $\sum \abs{f_n(x)}$ CV donc $\sum f_n$ CV, et ce pour tout $x \in A$
+            donc $\sum f_n$ CVS sur $A$ 
+
+            On dispose de $R_n$; $\norm{R_n - 0} \leq \sum^{\infty}_{k=n+1} \norm{f_k}^{A}_{\infty}$
+            donc $(R_n)$ CVU sur $A$ vers $O$ donc $\sum f_n$ CVU sur A. \fef
+        \end{ef} 
+    \end{enumerate}
+    \end{prop}
+\end{adjustwidth}
+\section{Approximations polynomiales et en escalier}
+\paragraph{Définitions} Déjà vues
+ \begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+    Si $f \in M^0([a,b],\bK)$ alors $\exists (f_n)$ suite d'application en escalier CVU sur $[a,b]$ vers $f$
+    \begin{proof}
+        MPSI
+    \end{proof}
+\end{theorem}
+
+    \begin{theorem}[Théorème de Weierstrass]
+        Si $f \in C^0([a,b], \bK)$ alors $\exists (P_n)$ une suite de fonctions polynomiales CVS sur $[a,b]$ vers $f$
+        \begin{proof}
+            cf DL07
+        \end{proof}
+    \end{theorem}
+\end{adjustwidth}
+
+\chapter{Rayon de convergence d'une suite complexe}
+\begin{definition}
+    On note $l^{\infty} \left( \bC \right)$ l'ensemble des suites complexes bornées
+\end{definition}
+\begin{definition}
+    Soit $a = (a_n)$ une suite complexe on pose $I_a = \{ r \in \bR^{+} | (a_nr^n) \in \born \}$
+    Le rayon de convergence $R_a$ de la suite $a$ est l'élement de $[0, +\infty]$ définie par $R_a = \sup_{[0,+\infty]} I_a$
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        Soit $a = (a_n)$ une suite complexe et $r \in \bR^{+}$
+        \begin{enumerate}
+         \item Si $r < R_a$ alors la suite $(a_nr^n)$ est bornée et si $(a_nr^n)$ est bornée alors $r \leq R_a$ 
+         \item Si $r > R_a$ alors la suite $(a_nr^n)$ n'est pas bornée et si $(a_nr^n)$ n'est pas bornée alors $r \geq R_a$
+        \end{enumerate}
+        \begin{proof}
+            Déjà vue
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        \begin{enumerate}
+        \item Le rayon de convergence de la suite nulle est égal à $+\infty$ 
+        \item Le rayon de convergence d'une suite constante non nulle est égal à $1$
+        \end{enumerate}
+        \begin{proof}
+            Déjà vue
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        \begin{enumerate}
+        \item Si $(a_n) \in \born$ alors $R_a \geq 1$
+        \item Si $(a_n)$ converge et $\ln a_n \not = 0$ alors $R_a = 1$ 
+        \item Si $\ln a_n = 0$ alors $R_a \leq 1$
+        \end{enumerate}
+        \begin{proof}
+            Déjà vue
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Soient $a = (a_n)$ et $b = (b_n)$ deux suites complexes
+
+        \begin{enumerate}
+        \item Si il existe $N \in \bN$ tel que $\forall n \geq N, \abs{a_n} \leq \abs{b_n}$ alors $R_a \geq R_b$
+        \begin{proof}
+            On suppose $N \in \bN$ tel que $\forall n \geq N, \abs{a_n} \leq \abs{b_n}$, montrons que 
+            $R_a \geq R_b$.
+            \begin{ef}
+                Soit $r \in [0, R_b[$, $r < R_b$ donc $(b_n r^n) \in \born, 
+                \exists M \in \bR^{+}, \forall n \in \bN, \abs{b_nr^n} \leq M$
+                Pour $n \in \bN$ $\abs{a_nr^n} = \abs{a_n} r^n \leq \abs{b_n} r^n \leq M$
+                donc $\forall r \in [0,R_b[, (a_nr^n) \in \born$ donc $r \in R_a$
+                PPL quand $r \to R_b$ on a $R_b \leq R_a$
+            \end{ef}
+        \end{proof}
+
+        \item Si $a_n = \bO (b_n)$ alors $R_a \geq R_b$ et si $a_n \equiv b_n$ alors $R_a = R_b$
+        \begin{proof}
+            On suppose que $a_n = \bO(b_n)$ on a $\exists M \in R^{+*}, \forall n \in \bN \abs{\frac{a_n}{b_n}} \leq M$*
+            puis $\abs{a_n} \leq \abs{Mb_n}$ ainsi $R_a \geq R_{Mb}$ mais 
+            $R_{Mb} = R_b$ puis $R_b \leq R_a$ 
+
+            On suppose que $a_n \equiv b_n$ on a alors $a_n = \bO(b_n)$ et $b_n = \bO(a_n)$ 
+            par double inégalité $R_a = R_b$
+        \end{proof}
+    \end{enumerate}
+    \end{prop}
+    \begin{prop}
+        Soient $a = (a_n)$ et $b = (b_n)$ des suites complexes et $\alpha \in \bC$
+        \begin{enumerate}
+        \item $R_{a+b} \geq \min(R_a,R_b)$ et si $R_a \not= R_b$ alors $R_{a+b} = \min(R_a,R_b)$
+        \begin{proof}
+            On note $R = \min(R_a,R_b)$, soit $r \in [0,R[$, 
+            $r \leq R$ donc $r \leq R_a$ donc $(a_nr^n) \in \born$ 
+            de même $(b^nr^n) \in \born$ donc $(a_nr^n + b_nr^n) \in \born$ donc $r < R_{a+b}$ 
+            PPL quand $\lim_{r \to R}$ on a $R_{a+b} \geq \min(R_a,R_b)$ 
+        \end{proof}  
+
+        \item $R_{\alpha a} = \deq{R_a}{\alpha \not = 0}{\infty}$
+        \begin{proof}
+            On suppose $R_a \not = R_b, R_a < R_b$ on a $R = R_a \leq R_{a+b}$.
+            Supposons $R \not= R_{a+b}$ on a $R_a < R_b$ et $R_a < R_{a+b}$ donc $R_a < \min(R_b, R_{a+b})$.
+            Soit $r \in ]R_a,R'[$  avec $R' = R_{a+b}$, $R_a < r$ donc $(a_nr^n) \not\in \born$.
+            $r < R' < R_b$ donc $(b_nr^n) \in \born$ et $((a_n + b_n) r^n) \in \born$.
+            ainsi par CL $(a^nr^n) = ((a_n + b_n)r^n - b_nr^n) \in \born$ ce qui est absurde
+            Ainsi $R = R_{a+b}$     
+            le reste est acquis
+        \end{proof}
+    \end{enumerate}
+    \end{prop}
+    \begin{prop}
+        Soit $a = (a_n)$ une suite complexe
+        \begin{enumerate}  
+        \item $D(a)$ définie par $\forall n \in \bN, D(a)_n = (n+1)a_{n+1}$ a le même rayon de convergence que $(a_n)$
+        que $(a_n)$
+            \begin{itemize}
+            \item \begin{rmq}
+                Soit $P \in \bC[X]$, $P = \sum_{k \in \bN} \alpha_k X^k$ avec $(a_k) \in \bC^{\left(\bN\right)}$ 
+                \begin{equation*}
+                P' = \sum_{k \in \bN^*} k \alpha_k X^{k-1} = \sum_{k \in \bN} (k+1) \alpha_{k+1} X^k = \sum_{k \in \bN} O(\alpha)_k X^k \\
+                Q = \sum_{k \in \bN} \alpha_k \frac{X^{k-1}}{k+1} = \sum_{k \in \bN^*} \frac{\alpha_{k-1}}{k} X^k = \sum_{k \in \bN^*} I(\alpha)_k X^k
+                \end{equation*}
+            \end{rmq}
+            \item Montrons que $R_{D(a)} \leq R_a$ 
+            \begin{proof}
+            Soit $r \in [0, R_{D(a)}[, r < R_{D(a)}$ donc $(D(a)_n r^n) \in \born$
+            \begin{align*}
+                \abs{a_{n+1} r^{n+1}} = \abs{a_{n+1}} r^{n+1} &\leq (n+1)\abs{a_{n+1}} r^{n+1} \\ 
+                                                              &\leq \abs{(D(a)_n r^n) \cdot r} \\
+                                                              &\leq M_r \\
+            \intertext{cela $\forall n \in \bN$}
+                    \end{align*}
+            $\forall k \in \bN^*, \abs{a_k r^k} \leq M_r$ donc $(a_k r^k) \in \born$ et $r \leq R_a$ 
+            cela $\forall r \in [0,R_{D(a)}[$ 
+            donc PPL quand $n \to R_{D(a)}^-$ il vient $R_{D(a)} \leq R_a$
+                \end{proof}
+            
+            \item Montrons que $R_a \leq R_{D(a)}$ 
+            \begin{proof}
+                
+                
+                Soit $r \in ]0,R_a[, r < R_a$ donc $\exists M \in R^{+*}, \forall n \in \bN, \abs{a^n r^n} \leq M$
+                
+                $\abs{D(a)_n r^n} = (n+1) \abs{a_{n+1}} r^n$  
+                $\forall h \in R^{+*}, \forall p \in \bN, (r + h)^{p+1} \geq (p+1) r^p h$
+                \begin{ef}
+                    $(n+h)^{p+1} = \sum_{k=0}^{p+1} \binom{p+1}{k} r^k h^{p+1-k} \geq \binom{p+1}{p} r^p h = \binom{p-1}{1} r^p h = (p+1)r^ph$ \fef
+                \end{ef}
+                $r < R_a$ donc $\exists h_a \in \bR^{+*}, r < r + h_a < R_a$
+                 
+                donc $(a_n(r+h)^n) \in \born$ et $\exists M \in R^+, \forall n \in \bN, \abs{a_n (r+h_a)^n} \leq M$ \newline 
+                donc $\abs{D(a)_n r^n}h_a = (n+1)\abs{a_{n+1}}r^n h_a \leq M$ 
+                d'où $\abs{D(a)_n r^n} \leq \frac{M}{h_a}$ d'où $(D(a)_n r^n) \in \born$ et $r \leq R_{D(a)}$ 
+                 PPL quand $r \to R_a^-$ on a $R_a \leq R_{D(a)}$
+                 par double inégalite $R_a = R_{D(a)}$
+            \end{proof}
+        \end{itemize}
+            2. $I(a)$ définie par $I(a)_0 = 0$ et $\forall n \in \bN^*, I(a)_n = \frac{a_{n-1}}{n}$ a le même rayon de convergence
+            \begin{proof}
+                $D(I(a)) = a$ 
+                \begin{ef}
+                    $D(I(a))_n = (n+1)I(a)_{n+1} = (n+1) \frac{a_n}{n+1} = a_n$
+                    \fef 
+                \end{ef}
+                Donc $R_{I(a)} = R_{D(a)} = R_a$
+            \end{proof}
+        \end{enumerate}
+    \end{prop}
+    \begin{prop}{Corollaire}
+        \newline
+        Soit $a = (a_n)$ une suite complexe alors les rayons de convergences de 
+        $(a_n), (na_n)$ et $\left(\frac{a_n}{n}\right)_{n \geq 1}$ sont égaux
+        \begin{proof}
+            Soit $a = (a_n) \in \bC^{\bN}$ pour $n \in \bN$ 
+            on a 
+            \begin{align*}
+                a_n &= a_n \\
+                b_n &= n a_n \\
+                c_n &\deq{\frac{a_n}{n}}{n \leq 1}{0} \\
+            \end{align*}
+            $R_b = R_{(b_{n+1})} = R_{D(a)} = R_a$ et $R_{I(a)} = R_{(I(a)_{n+1})}$
+            on a 
+            $I(a)_{n+1} = \frac{a_n}{n+1} \equiv \frac{a_n}{n} = C_n$ donc $R_{I(a)} = R_c$
+        \end{proof}
+    \end{prop}
+\end{adjustwidth}
+\section{Une caractérisation du rayon de convergence via les séries numériques}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+        Soit $a = (a_n)$ une suite complexe. Le rayon $R_a$ de la suite est l'unique élément
+        de $[0,+\infty]$ qui possède les deux caractéristiques suivantes 
+        \begin{enumerate}
+        \item Pour tout complexe $z$ vérifiant $\abs{z} < R_a$ la série $\sum a_n z^n$ est ACV 
+        \item Pour tout complexe $z$ vérifiant $\abs{z} > R_a$ la série $\sum a_n z^n$ est grossièrement divergente (GDV)
+        \end{enumerate}
+        \begin{proof}
+            Soit \z, 
+            \begin{enumerate}
+            \item Supposons que $\abs{z} < R_a$ or $R_a = \sup (I_a)$ donc $\abs{z}$ ne majore pas $I_a$
+            ainsi, $\exists r \in I_a, \abs{z} < r, r \not= 0$ mais $r \in I_a$ ainsi $(a_nr^n) \in \born$
+            et $\exists M \in \bR^+, \forall n \in \bN, \abs{a_nr^n} \leq M$, 
+            On a
+            \begin{equation*}
+                0 \leq \abs{a^n z^n} = \abs{a^nr^n} \cdot \abs{\frac{z}{n}}^n \leq M \cdot \abs{\frac{z}{n}}^n
+            \end{equation*}
+            Or $\abs{\frac{z}{n}} < 1$ donc $\sum \left(\frac{z}{n}\right)^n$ CV puis $\sum \abs{a^nr^n}$ CV
+            donc $\sum a_nr^n$ ACV 
+            
+            \item Supposons que $\abs{z} > R_a$ on a $\parenth{a_n\abs{z}^n} \in \born$ et $\parenth{\abs{a_nz}^n} \not \in \born$
+            donc $(a_nz^n)$ ne tends pas vers $0$ donc $\sum a_nz^n$ est GDV
+             
+            \end{enumerate}
+                
+            $R_a$ est l'unique nombre qui vérifie les propriétés.
+            \begin{ef}
+                Soit $R \in [0, +\infty]$ vérifiant 1) et 2) donc la première étape.
+                On suppose $R \not= R_a$ avec sans perte de généralité $R < R_a$ 
+                on considère $r \in ]R,R_a[$ 
+                $R < r < \abs{r}$ donc $\sum a_n r^n$ est GDV donc DV 
+                $r < R_a$ donc $\abs{r} < R_a$ donc $\sum a_n r^n$ ACV donc CV 
+                C'est absurde donc $R = R_a$
+                \fef 
+            \end{ef}
+        \end{proof}
+
+    \end{theorem}
+    \begin{prop}{Corollaire}
+        \begin{enumerate}
+         Si $\abs{z_0} > R_a$ alors $\sum a_n z^n$ GDV  
+         Si $\abs{z_0} < R_a$ alors $\sum a_n z^n$ ACV 
+        \end{enumerate}
+    \end{prop}
+    \begin{prop}{Règle d'Alembert (Super HP)}
+        Supposons que $\ln \frac{a_{n+1}}{a_n} = L$ avec $L \in [0, +\infty]$
+        Montrons que $R_a = \frac{1}{L}$ 
+        \begin{proof}
+            Soit \z
+            \begin{itemize}[label=$\cdot$]
+
+            \item Supposons que $\abs{z} < \frac{1}{L}$ donc $L \not= \infty$
+            puis $L \cdot \abs{z} < 1$ 
+
+            \item Posons $u_n = a_n \abs{z}^n$ si $z=0$ alors $u_n = 0$ à pcr donc $\sum u_n$ est ACV 
+            si $z \not= 0$ on a $\forall n \in \bN, u_n \not= 0$ 
+            donc $\frac{\abs{u_{n+1}}}{\abs{u_n}} = \abs{z} \cdot \frac{\abs{a_{n+1}}}{\abs{a_n}}$ et on a $L \cdot \abs{z} < 1$
+            donc $\sum u_n$ ACV donc $\sum a_n  z^n ACV$ 
+
+            \item Supposons que $\abs{z} > \frac{1}{L}$ donc $L \not= 0$ et $z \not= 0$
+            on pose $u_n = a_n z^n$ on a $\fn u_n \not= 0$ 
+            donc $\frac{\abs{u_{n+1}}}{\abs{u_n}} = \abs{z} \cdot \frac{\abs{a_{n+1}}}{\abs{a_n}}$ 
+            donc $\sum u_n$ GDV
+             
+            
+            \item Par unicité, $R_a = \frac{1}{L}$
+            \end{itemize}
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Si $a \in \bC^*$ alors le rayon de convergence de $(a^n)$ est égal à $\frac{1}{\abs{a}}$ 
+    \end{prop}
+    \begin{prop}
+        Si $F$ est une fraction rationelle non nulle à coefficient dans $\bC$ n'ayant pas de pôle dans $\bN$ alors $R_{(F(n))} = 1$
+        \begin{proof}
+            Soit $F \in \bC(X)$ qui va bien $\mfc{P}(F) \in \bN = \emptyset$ avec $\mfc{P}(F)$ l'ensemble des pôles de F
+            on a donc $\fn Q(n) \not= 0$ donc $\fn F(n) \in \bC$ 
+            on a $F(n) = 0 \Leftrightarrow P(n) = 0$ 
+            or $P \in \bC[X]$ donc $\mfc{R}_{\bC} (P)$ est fini 
+            et $\exists N \in \bN, \forall n \geq N, P(n) \not= 0$
+            donc $\forall n \geq N, F(n) \not= 0$ 
+            puis $\frac{F(n+1)}{F(n)} \to 1$
+            \begin{ef}
+                On se muni de l'écriture polynomiale de $P$ et $Q$
+                on a $F(n) \equiv \frac{a_p n^p}{b_q n^q}$
+                puis $\frac{F(n+1)}{F(n)} \equiv \parenth{\frac{n}{n+1}}^q \cdot \parenth{\frac{n+1}{n}}^p \equiv 1$
+                \fef
+            \end{ef}
+            donc $\ln \abs{\frac{F(n+1)}{F(n)}} = 1$ d'où $R_{(F(n))} = \frac{1}{1} = 1$
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Soit $c$ le produit de convolution des suites $a$ et $b$ alors $R_c \geq \min(R_a,R_b)$
+        \begin{proof}
+            \begin{itemize}[label=$\cdot$]
+            \item Soit $a = (a_n)$ et $b = (b_n)$ des suites complexes
+            alors $c = (c_n)$ avec $c_n = \sum_{k=0}^n a_k b_{n-k}$ 
+            Montrons que $R_c \geq \min(R_a, R_b)$ 
+             
+            \item Soit $r \in [0, R[$ avec $R = \min(R_a, R_b)$ 
+            on a $r = \abs{r} < R \leq R_a$ donc $\sum a_n r^n$ est ACV 
+            \item on a $r = \abs{r} < R \leq R_b$ donc $\sum b_n r^n$ est ACV 
+            ainsi $\sum U_n$ est ACV avec $U_n = \sum_{k=0}^n (a_k r^k)(b_{n-k} r^{n-k})$ 
+             
+            \item \begin{equation*} 
+                U_n = \parenth{\sum_{k=0}^n a_k b_{n-k}} r^n = c_n r^n
+            \end{equation*}
+            \item ainsi $\sum c_n r^n$ est ACV
+            donc $\forall r \in [0,R[, r \leq R_c$ PPL quand $r \to R^-$ on a $R \leq R_c$ 
+        \end{itemize}
+        \end{proof}
+    \end{prop}
+    \newpage
+\end{adjustwidth}
+\chapter{Séries entières : premier contact}
+\section{Séries entières de la variable complexe}
+\begin{definition}
+    Soit $(f_a)$ une suite d'application de $\bC$ dans $\bC$ 
+    On dit que la série d'application $\sum f_a$ est une série 
+    entière de la variable complexe si et seulement si il existe une suite 
+    complexe $(a_n)$ telle que $\fn, \forall z \in \bC, f_n(z) = a_n z^n$
+\end{definition}
+\begin{rmq}
+    \begin{itemize}
+        \item Une série entière est donc une série d'application d'un type particulier 
+        \item Soit $(a_n)$ une suite complexe. On lui associe la série d'application $\sum f_n$ 
+        définie par $\fn, \forall z \in \bC, f_n(z) = a_n z^n$. La série 
+        d'application $\sum f_n$ est une série de la variable complexe est 
+        dite associée à la suite $(a_n)$. Elle est abusivement notée $\sum a_n z^n$
+        \item Via l'abus de notation précédent, le symbole $\sum a_n z^n$ peut désormais 
+        s'interpreter de deux manières. Il peut soit désigner la série numérique 
+        de terme général $a_n z^n$ ou bien désigner la série d'application $\sum f_n$ où 
+        $f_n \in \bC^{\bC}$ définie par $f_n(z) = a_n z^n$
+    \end{itemize}
+\end{rmq}
+\section{Rayon de convergence d'une série entière}
+\begin{definition}
+    Soit $\sum a_n z^n$ la série entière associée à la suite complexe $a = (a_n)$. 
+    Le rayon de convergence de la série entière $\sum a_n z^n$ est le rayon de convergence 
+    $R_a$ de la suite $(a_n)$ Il est aussi noté $R\parenth{\sum a_n z^n}$ on a donc 
+    par définition $R\parenth{\sum a_n z^n} = R_a$
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+        Soit $\se$ une SE de rayon de convergence $R_a$ 
+        $R_a$ est l'unique élément de $\overline{\bR^+}$ qui possède les deux propriétés suivantes 
+        \begin{enumerate}
+        \item Pout tout complexe $z$ vérifiant $\abs{z} < R_a$ la série $\se$ est ACV 
+        \item Pour tout complexe $z$ vérifiant $\abs{z} > R_a$ la série $\se$ est GDV
+        \end{enumerate}
+        \begin{proof}
+            C'est acquis cf chap précédent
+        \end{proof}
+    \end{theorem}
+    \begin{prop}[Corollaire]
+        Soit $\se$ une SE de rayon de convergence $R_a$ et $z_0 \in \bC$
+        \begin{enumerate}
+        \item Si la série $\seq{0}$ CV alors $\abs{z_0} \leq R_a$
+        \item Si la série $\seq{0}$ DV alors $\abs{z_0} \geq R_a$
+        \end{enumerate}
+        \begin{proof}
+            C'est acquis cf chap précédent
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Soit $\se$ une SE. 
+        \begin{align*}
+            1.  \forall \lambda \in \bC^*,  R\parenth{\sum \lambda z^n } &= 1 \\ 
+            2.  \forall \lambda \in \bC^*,  R\parenth{\sum \lambda a_n z^n} &= R\parenth{\se} \\ 
+            3.  \forall p \in \bN,  R\parenth{\sum a_{n+p} z^n} &= R\parenth{\se} \\ 
+            4.   R\parenth{\sum \abs{a_n} z^n} &= R\parenth{\se} \\
+            5.   R\parenth{\se} &= R\parenth{\sum_{n \geq 1} n a_n z^{n-1}} \\
+            6.   R\parenth{\se} &= R\parenth{\sum \frac{a_n}{n+1} z^{n+1}}
+        \end{align*}
+        \begin{proof}
+            \begin{enumerate}
+            \item $R_{(\lambda)} = 1$  
+            \item $R_{(\lambda_a)} = a$  
+            \item $R_{(a_{n+p})} = R_{(a_n)}$ 
+            \item $R_{(\abs{a_n})} = R_{(a_n)}$  
+            \item $R_a = R_{\alpha a}$ 
+            \item $R_a = R_{I(a)}$
+            \end{enumerate}
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Soient $\se$ et $\seb{b}$ des SE de rayon de convergence $R_a$ et $R_b$
+        \begin{enumerate} 
+        \item Si $\exists N \in \bN$ tel que $\forall n\geq N, \abs{a_n} \leq \abs{b_n}$  
+        \item Si $a_n = \mfc{O}(b_n)$ alors $R_a \geq R_b$  
+        \item Si $a_n \equiv b_n$ alors $R_a = R_b$
+        \end{enumerate}
+        \begin{proof}
+            Déjà fait cf chap précédent
+        \end{proof}
+    \end{prop}
+    \begin{prop}[Règle d'Alembert]
+        Soit $\se$ une SE telle que $\fn, a_n \not= 0$ 
+        \begin{itemize}[label=$\circ$]
+        \item si $\ln \abs{\frac{a_{n+1}}{a_n}} = L$ avec $L \in \overline{R^+}$ alors $R_a = L^{-1}$
+        \end{itemize}
+        \begin{proof}
+            déjà fait cf chap précédent
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Si $a \in \bC^*$ alors le rayon de convergence de la SE $\se$ est égal à $\abs{a}^{-1}$
+        Si $F$ est une fraction rationelle à coefficient dans $\bC$ n'ayant pas de pôle entier alors 
+        le rayon de convergence de la SE $\sum F(n) z^n$ est égal à 1.
+        \begin{proof}
+            déjà fait cf chap précédent
+        \end{proof}
+    \end{prop}
+
+\end{adjustwidth}
+\section{Somme d'une série entière}
+\begin{definition}
+    Soit $\se$ une SE de rayon de convergence $R_a$
+    \begin{itemize}[label=$\circ$]
+    \item l'ensemble $E_a$ des nombre \z pour laquelle 
+    la série $\se$ est convergente est appelée ensemble 
+    de convergence de la SE $\se$ 
+    \item L'ensemble $D_a = \{z \in \bC, \abs{z} < R_a\}$ est appelé disque 
+    ouvert de convergence de $\se$ 
+    \item L'ensemble $C_a = \{z \in \bC, \abs{z} = R_a\}$ est appelé cercle d'incertitude
+    de la SE $\se$ 
+    \end{itemize}
+\end{definition}
+\begin{rmq}
+    $D_a \cup C_a = \{z \in \bC, \abs{z} \leq R_a\}$. Si $R_a = 0$ 
+    alors $D_a = \emptyset$ et $C_a = \{0\}$. Si $R_a = \infty$ alors 
+    $D_a = \bC$ et $C_a = \emptyset$ 
+\end{rmq}
+\begin{adjustwidth}{-2em}{-1em}
+\begin{prop}
+    Soit $\se$ une SE de rayon de convergence $R_a$.
+    \begin{enumerate} 
+    \item $0 \in E_a$ et en particulier $E_a \not= \emptyset$  
+    \item $D_a \subset E_a \subset \parenth{D_a \cup C_a}$ 
+    \end{enumerate}
+    \begin{proof}
+        \begin{itemize}[label=$\cdot$]
+        \item $E_a = \{z \in \bC, \se \text{CV}\} = \{z \in \bC
+        , \sum_{k=0}^{\infty} a_n z^n \text{existe dans $\bC$}\}$
+         
+        \item On dispose de $R_a \in \overline{\bR^+}$
+        Si $z \in D_a$ alors $\se$ est ACV donc CV donc $z \in E_a$
+        d'où $D_a \subset E_a$
+         
+        \item \begin{equation*}
+            D_a \cup C_a = \{z \in \bC, \abs{z} \leq R_a\} = \mfc{D}(0, R_a) = \mfc{B}(0, R_a)
+        \end{equation*}
+         
+        \item Soit $z \in \bC \setminus (D_a \cup C_a)$ alors $\abs{z} > R_a$ 
+        et $\se$ GDV donc DV et $z \not \in E_a$. 
+        \item $z \not \in (D_a \cup C_a) \Rightarrow z \not \in E_a$ d'où 
+        $z \in E_a \Rightarrow z \in (D_a \cup C_a)$ par contraposition 
+        d'où $E_a \subset (D_a \cup C_a)$ et donc 
+        $D_a \subset E_a \subset (D_a \cup C_a)$
+        puis $\sum a^n O^n$ CV donc $O \in E_a$ 
+    \end{itemize}
+    \end{proof}
+\end{prop}
+\end{adjustwidth}
+\begin{definition}
+    On appelle somme de la série entière $\se$ l'application
+    $\func{S_a}{E_a \subset \bC}{\bC}$ définie par 
+    $\forall z \in E_a, S_a(z) = \sum_{n=0}^{\infty} a_n z^n$.
+\end{definition}
+\begin{rmq}
+    Il est à noté que $S_a$ n'est rien d'autre que l'application somme 
+    de la série d'application $\sum f_n$ où $\func{f_n}{\bC}{\bC}$ est définie 
+    par $f_n(z) = a_n z^n$.
+\end{rmq}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        Soit $\se$ une SE.
+        \begin{enumerate} 
+        \item La somme $S_a$ de la SE $\se$ est définie au moins sur $D_a$ avec $S_a(0) = a_0$.
+        \item La somme $S_a$ de la SE $\se$ n'est définie en aucun point de $\bC \setminus (D_a \cup C_a)$
+        \end{enumerate}
+        \begin{proof}
+            conséquence de la proposition précédente et
+            $S_a(0) = \sum_{k=0}^{\infty} a_k 0^k = a_0 + 0 = a_0$
+        \end{proof}
+    \end{prop}
+    \begin{theorem}
+        Soit $\se$ une SE 
+        \begin{enumerate} 
+        \item La série entière $\se$ ACV en tout point de son 
+        disque ouvert de convergence 
+        \item $\forall r \in [0,R_a[$ la SE $\se$ converge normalement et 
+        donc uniformément sur le disque fermé $D_r = \{z \in \bC, \abs{z} < r\}$.
+        Autrement dit la SE $\se$ CV normalement et donc uniformément sur tout 
+        disque fermé contenu dans son disque ouvert de convergence $D_a$
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+            \item Acquis
+             
+            \item Soit $r \in [0,R_a[$ , $\forall z \in D_r, 
+            \abs{f_n(z)} = \abs{a_n z^n} = \abs{a_n} \abs{z}^n \leq \abs{a_n} r^n$
+            or $0 \leq \norm{f_n}^{D_r}_{\infty} \leq \abs{a_n} r^n$ par propriété des BN
+            et $\abs{a_n}r^n = \abs{a^n r^n}$ et $\sum a_n r^n$ est ACV par $r = \abs{r} \leq R_a$
+            d'où $\sum \abs{a_n r^n}$ CV puis $\sum \norm{f_n}^{D_r}_{\infty}$ CV donc enfin 
+            $\sum f_n$ converge normalement (CVN) sur $D_r$
+            ainsi $\forall r \in [0,R_a[, \sum f_n$ CVU sur $D_r$ 
+            cependant $\sum f_n$ n'est pas nécessairement CVU sur $\bigcup_{r \in [0,R_a[} D_r = D_a$
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+    \begin{rmq}
+        La SE $\se$ n'est pas nécessairement CVU sur $D_a$
+        \begin{proof}
+            Soit $a = (1)$ la suite unité, on a $R_a = 1$ 
+            \begin{itemize}[label=$\circ$] 
+            \item $R\parenth{\sum z^n} = R_a = 1, \func{f_n}{\bC}{\bC}, f_n(z) = z^n$ \newline 
+            Supposons que $\sum f_n$ CVU sur $D_a$ 
+             
+            \item Ainsi $(R_n)$ CVU sur $D_a$ vers $0$, 
+            pour $z \in D_a, \sum f_n$ CVU sur $D_a$ donc CVS sur $D_a$ et $R_n(z)$ existe.
+            On a $R_n(z) = \sum_{k=n+1}^{\infty} z^k = z^{n+1} \sum_{k=0}^{\infty} z^k = z^{n+1} \frac{1}{1-z}$ car $\abs{z} < 1$
+            on pose $\alpha_n = 1 - \frac{1}{n+1}$ on a $R_n(\alpha_n) = \parenth{1 - \frac{1}{n+1}}^{n+1} (n+1)$
+            donc $\lim R_n(\alpha_n) = \infty$
+            et $R_n(\alpha_n) = \abs{R_n(\alpha_n)} \leq \norm{R_n}_{\infty}$ puis $\ln \norm{R_n}_{\infty} = \infty$ 
+            \item et il y a contradiction car par hypothèse $\ln \norm{R_n}_{\infty}^{D_a} = 0$
+            \end{itemize}
+        \end{proof}
+    \end{rmq}
+\end{adjustwidth}
+\section{Opération sur les séries entières}
+\begin{definition}
+    Soient $\se$ et $\seb{b}$ des séries entières et $\alpha \in \bC$
+    \begin{itemize}[label=$\circ$]
+    \item La sommes des SE $\se$ et $\seb{b}$ est la SE $\sum (a_n + b_n) z^n$. 
+    \item La SE produit de $\se$ et $\seb{b}$ est la SE $\seb{c}$ avec $c_n = \sum_{k=0}^n a_k b_{n-k}$
+    \end{itemize}
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        Soient $\alpha \in \bC$ et $\se, \seb{b}$ des SE de rayon $R_a$ et $R_b$
+        \newline 
+        \begin{enumerate}
+            \item $R_{\alpha a} = \infty$ si $\alpha = 0$ et $R_{\alpha a} \not= R_a$ si $\alpha \not= 0$
+            et $\forall z \in \bC$ vérifiant $\abs{z} < R_a$ on a $\sum_{n=0}^{\infty} \alpha a_n z^n = \alpha \sum_{n=0}^{\infty} a_n z^n$
+            \item $R_{a+b} \leq \min(R_a,R_b)$ et $R_{a+b} = min(R_a, R_b)$ si $R_a \not= R_b$
+            et $\forall z \in \bC$ vérifiant $\abs{z} < \min(R_a,R_b)$ on a $\sum_{n=0}^{\infty} (a_n+b_n) z^n = \sum_{n=0}^{\infty} a_n z^n + \sum_{n=0}^{\infty} b_n z^n$
+            \item $R_{c} \geq \min(R_a,R_b)$ 
+            et $\forall z \in \bC$ vérifiant $\abs{z} < \min(R_a,R_b)$ on a $\sum_{n=0}^{\infty} (c_n) z^n = \parenth{\sum_{n=0}^{\infty} a_n z^n} \cdot \parenth{\sum_{n=0}^{\infty} b_n z^n}$
+        \end{enumerate}
+        \begin{proof}
+            Déjà prouvée cf chap précédent
+        \end{proof}
+    \end{prop}
+\end{adjustwidth}
+\section{Sommes de quelques séries entières classiques}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        On considère $z \in \bC$ et $p \in \bN^*$
+        \begin{enumerate} 
+        \item Si $\abs{z} < 1$ alors $\is{z^n} = \frac{1}{1-z}$ 
+        \item Si $\abs{z} < 1$ alors $\iss{p}{n(n-1)\cdots (n-(p-1))z^{n-p}} = \frac{p!}{(1-z)^{p+1}}$ 
+        \item Si $\abs{z} < 1$ alors $\is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}$
+        \end{enumerate}
+        \begin{proof}
+            \begin{itemize}[label=$\cdot$]
+            \item 3. Soit $z \in \bC, \abs{z} < 1$ on a $\mfc{P}(p) \Leftrightarrow \is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}$
+            et  
+            $\binom{n}{0} = 1$ et $\is{z^n} = \frac{1}{1-z} = \frac{1}{(1-z)^(0+1)}$ donc $\mfc{P}(0)$ est vrai 
+             
+
+            \item On suppose $P(n-1)$ 
+            $z \not= 1$ donc $(1-z)\is{\binom{n+p}{p}z^n} = \parenth{\is{a_nz^n}} \cdot \parenth{\is{b_nz^n}}$
+            avec $a_0 = 1, a_1 = 1, et \forall n \geq 2, a_n = 0$ et $b_n = \binom{n+p}{p}$
+
+            \item \begin{rmq}
+                $b_n = \frac{(n+p)!}{n!p!} = F(n)$ avec \newline $F = \frac{(X+p)\cdots(X+1)}{p!}$ on a $R_b = 1$ et $\abs{z} < R_b$ donc $\seb{b}$ est ACV
+            \end{rmq}
+            
+            \item $\se$ et $\seb{b}$ sont ACV donc $(1-z)\is{\binom{n+p}{p}z^n} = \is{c_nz^n}$ avec $c_n = \sum_{k=0}^n a_k b_{n-k} = a_0 b_n + a_1 b_{n-1} + b_n - b_{n-1}$
+            donc $c_n = \binom{n+p}{p} - \binom{n+p-1}{p} = \binom{n+p-1}{p-1}$ 
+            donc $(1-z)\is{\binom{n+p}{p}z^n} = \is{\binom{n+p-1}{p-1}z^n} = \frac{1}{((1-z)^p)}$ par (HR)
+            puis donc $\is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}$ 
+
+            \item 2. $\binom{n+p}{p} = \frac{(n+p)\cdots (n+1)}{p!}$ et 
+            on a $\frac{1}{(1-z)^{p+1}} = \is{\binom{n+p}{p}z^n} = \is{\frac{(n+p)\cdots (n+1)}{p!}z^n} = \iss{p}{\frac{n(n-1)\cdots (n-(p-1))}{p!}z^{n-p}}$
+            d'où 
+            \begin{equation*}
+            \iss{p}{n(n-1)\cdots (n-(p-1))z^n} = \frac{p!}{(1-z)^{p+1}}
+            \end{equation*}
+        \end{itemize}
+            \begin{rmq}[Moyen mnémotechnique de dérivation]
+                $\frac{1}{1-z} = \is{z^n}$ et $\frac{1}{(1-z)^2} = \iss{1}{nz^{n-1}}$
+                donc $\frac{2}{(1-z)^3} = \iss{2}{n(n-1)z^{n-2}}$ puis $\frac{3 \cdot 2}{(1-z)^4} = \iss{3}{n(n-1)(n-2)z^{n-2}}
+                $ et enfin $\frac{p!}{(1-z)^(p+1)} = \iss{p}{n(n-1)\cdots (n-(p-1))z^{n-p}}$
+            \end{rmq}
+        \end{proof}
+    \end{prop}
+    \begin{prop}
+        Pour tout $z \in \bC$ on a 
+        \begin{enumerate}
+            \item $\is{\frac{z^n}{n!}} = e^z$ 
+            \item $\is{(-1)^n \frac{z^{2n}}{(2n)!}} = \cos z$ et $\is{\frac{z^{2n}}{(2n)!}} = \text{ch } z$
+            \item $\is{(-1)^n \frac{z^{2n+1}}{(2n+1)!}} = \sin z$ et $\is{\frac{z^{2n+1}}{(2n+1)!}} = \text{sh } z$
+        \end{enumerate}
+    \end{prop}
+\end{adjustwidth}
+\section{Série entières de la variable réelle}
+\begin{definition}
+    Soit $(f_n)$ une suite d'application de $\bR^{\bC}$
+    
+    
+    On dit que la série d'application $\sum f_n$ est uen SE de 
+    la variable réelle si et seulement si il existe $(a_n) \in \bC^{\bN}, 
+    \fn, \forall t \in \bR, f_n(t) = a_n t^n$ 
+\end{definition}
+\begin{rmq}
+    Soit $(a_n)$ une suite complexe. On lui associe la série d'application 
+    $\sum f_n$ définie par $\fn, \forall t \in \bR, f_n(t) = a_n t^n$. 
+    La série d'application $\sum f_n$ est une SE de la variable réelle.
+    Elle est dites associée à la suite complexe $(a_n)$ et notée $\ser$ 
+    Le symbole $\ser$ peut désigner la série de TG $a_n t^n$ ou la série d'application 
+    $\sum f_n$ avec $f_n \in \bC^{\bR}, f_n(t) = a_n t^n$.
+\end{rmq}
+\subsection{Rayon de convergence, intervalle de convergence, ensemble de convergence}
+\subsubsection{Introduction}
+Soit $\ser$ la SER de $(a_n)$, on a $R\parenth{\ser} = R_a$.
+Ce qui a été fait pour les SEC restent vrais pour les rayons de convergence.
+On appelle $]-R_a, R_a[$ l'intervalle ouvert de convergence de la SER $\ser$
+
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        On a $]-R_a, R_a[ \subset E_a \subset [-R_a, R_a]$
+        \begin{proof}
+            $\forall r \in ]-R_a, R_a[ = D_a, \seb{r}$ CV donc $D_a \in E_a$ , et $\forall r \in \bR, \abs{r} > R_a \Rightarrow \seb{r}$ GDV
+            donc $E_a \in [-R_a, R_a]$. 
+            donc $D_a \in E_a \in [-R_a, R_a]$
+        \end{proof}
+    \end{prop}
+    \paragraph{Exemple}
+    \begin{ex}
+        Soit $(a_n) = 1$ on a $S_a(t) = \is{t^n}$ on a $]-1,1[ \subset D_{S_a} \subset [-1,1]$
+        or $\sum 1^n$ et $\sum (-1)^n$ GDV donc DV 
+        donc $-1 \not \in D_{S_a}$ et $1 \not \in D_{S_a}$ donc 
+        $D_{S_a} = ]-1,1[$ et $\forall t \in D_{S_a}, S_a(t) = \frac{1}{1-t}$
+    \end{ex}
+    \begin{ex}
+        Soit $\forall n \in N^*, a_n = \frac{1}{n}$ et $a_0 = 0$
+        on a $a_n = F(n)$ avec $F = \frac{1}{X}$ $R_a = 1$ $S_a(t) = \iss{1}{\infty} \frac{t^n}{n}$ 
+        on a $]-1,1[ \subset D_{S_a}$, ensuite $\sum \frac{1}{n}$ DV donc $1 \not \in D_{S_a}$ 
+        et $\sum \frac{(-1)^n}{n}$ CV (CSSA) donc $-1 \in D_{S_a}$
+        donc $D_{S_a} = [-1,1[$
+    \end{ex}
+    \begin{ex}
+        $a_0 = 0$ et $\forall n \in \bN^*, a_n = \frac{1}{n^2}$
+        on a $a_n = F(n)$ avec $F = \frac{1}{X}$ donc $R_a = 1$ 
+        on a ensuite $S_a(t) = \is{a_nt^n}$ donc $]-1,1[ \in D_{S_a}$ 
+        on a que $\sum \frac{1}{n^2}$ CV (Riemann) donc $\sum \frac{(-1)^n}{n^2}$ est ACV donc CV
+        donc $D_{S_a} = [-1,1]$
+    \end{ex}
+    \begin{theorem}
+        Soit $\ser$ une SER de rayon $R_a > 0$ et de somme $S_a$ 
+        \begin{enumerate} 
+        \item La SE $\ser$ ACV sur $]-R_a,R_a[$ 
+        \item La SE $\ser$ CVN sur tout segment contenu dans $]-R_a,R_a[$ 
+        \item $S_a$ est $C^0$ sur $]-R_a, R_a[$
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+            1. $\sum f_n$ CVA en tout point de $]-R_a, R_a[$ car 
+            $\forall t \in ]-R_a, R_a[, \abs{t} < R_a$
+            et $\sum f_n(t)$ est ACV. 
+
+            2. Soit $S$ un segment de $]-R_a, R_a[$ 
+            On a $\exists r \in [0,R_a[, S \subset [-r,r]$, 
+            $\forall t \in [-r,r], \fn, \abs{f_n(t)} = \abs{a_nt^n} = \abs{a_n} \abs{t^n} \leq \abs{a_n} r^n$
+            donc $0 \leq \norm{f_n}^{[-r,r]}_{\infty} \leq \abs{a_nr^n}$ or $r < R_a$ donc $\sum a_n r^n$ est ACV 
+            donc $\sum \norm{f_n}^{[-r,r]}_{\infty} CV$
+            donc $\sum f_n$ CVN ( donc CVU ) sur S. 
+
+            3. $S_a = \is{f_n}$ 
+            $\fn f_n$ est $C^0$ sur $]-R_a, R_a[$, on a 
+            $\sum f_n$ CVU sur tout segment S de $]-R_a, R_a[$ donc par le (TC) 
+            $S_a = \is{f_n}$ est $C^0$ sur $]-R_a, R_a[$
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+\end{adjustwidth}
+\newpage
+\chapter{Intégrale généralisée}
+\section{Intégrale généralisée sur un intervalle semi-ouvert de la forme $[a,\infty[$}
+\subsection{Introduction} On fixe $a \in \bR$
+\begin{definition}
+    On considère $\func{f}{[a,\infty[}{\bK} M^0$ sur cet intervalle, on 
+    lui associe l'application $\func{F}{\af}{\bK}$ définie par $F(x) = \int_a^x f$ 
+    \begin{enumerate} 
+    \item On dit que l'intégrale de $f$ sur $\af$ est CV si et seulement si
+    l'application admet une limite dans $\bK$ en $+\infty$ on pose alors 
+    $\int_a^{\infty} f = \lim_{x \to \infty} \int_a^x f$. On appelle alors le scalaire $\int_a^{\infty} f$ 
+    intégrale généralisée de $f$ sur $\af$ 
+
+    \item Pour exprimer que l'intégrale de $f$ sur $\af$ n'est pas convergente on 
+    dit qu'elle est divergente.
+    \end{enumerate}
+\end{definition}
+\begin{rmq}
+    \begin{itemize}
+        \item Préciser la nature de l'intégrale de $f$ sur $\af$ revient 
+        à statuer sur l'existence de la limite de la quantité $\int_a^x f$ quand $x \to \infty$
+        \item Si $\bK = \bR$ alors l'intégrale de $f$ sur $\af$ peut être divergente si la limite 
+        n'existe pas ou si elle vaut $\infty$ en module.
+        \item On appelle aussi une intégrale généralisée une intégrale impropre.
+    \end{itemize}
+\end{rmq}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+        On considère $\func{\varphi}{\af}{\bR^+}$ $M^0$ et positive sur $\af$
+        on lui associe l'application $\func{\Phi}{\af}{\bR^*}$ définie par 
+        $\Phi(x) = \int_a^x \varphi$
+        \begin{enumerate}
+            
+        \item $\Phi$ croît sur $\af$ 
+        \item L'intégrale de $\varphi$ sur $\af$ CV si et seulement si $\Phi$ est majorée sur $\af$
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+            \item Soit $(x,y) \in \af^2, x < y$ on a $\Phi(y) - \Phi(x) = \int_a^y \varphi - \int_a^x \varphi = \int_x^y \varphi \leq 0$ car $\varphi$ est positive et $x < y$
+            donc $\Phi$ croît sur $\af$ 
+            \item $\int_a^{\infty} f$ CV $\Leftrightarrow$ $\lim_{\infty} \Phi$ existe dans $\bR$ $\Leftrightarrow$ $\Phi$ majorée sur $\af$ (TLM) 
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+    \begin{prop}
+        Soient $\func{f}{\af}{\bK}$ $M^0$ sur $\af$ et $c \in \af$
+        \begin{enumerate}
+        \item L'intégrale de $f$ sur $\af$ est de même nature que l'intégrale de $f$ sur $[c,\infty[$ 
+        et en cas de CV on a $\int_{a}^{\infty} = \int_{a}^c f + \int_c^{\infty} f$ 
+        \item L'intégrale de $f$ sur $\af$ CV ssi les intégrales de $\Re f$ et $\Im f$ CV et en cas de CV on a
+        $\int_a^{\infty} f = \int_{a}^{\infty} \Re f + i \int_{a}^{\infty} \Im f$ Avec $\int_{a}^{\infty} \Re f = \Re \parenth{\int_{a}^{\infty} f}$
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+            \item Vrai par propriété des limites. 
+            \item Soit $x \in \af$ on a $\int_{a}^{x} f = \int_{a}^{x} (\Re f + i \Im f) = \int_{a}^{x} \Re f + i \int_{a}^{x} \Im f$ 
+            on a donc $\int_{a}^{\infty} f$ CV $\Leftrightarrow$ $\int_{a}^{\infty} \Re f$ CV et $\int_{a}^{\infty} \Im f$ CV.
+            \end{enumerate}
+        \end{proof} 
+    \end{prop}
+    \begin{prop}
+        Soit $\func{f,g}{\af}{\bK}$ $M^0$ sur $\af$ et $(\alpha, \beta) \in \bK^2$
+        \begin{enumerate}
+        \item. Si les intégrales de $f$ et $g$ CV alors l'intégrale de $\alpha f + \beta g$ CV 
+        et $\int_{a}^{\infty} \alpha f + \beta g = \alpha \ig{f} + \beta \ig{g}$
+         
+        \item Si $f \leq 0$ et si l'intégrale de $f$ sur $\af$ CV alors $\ig{f} \leq 0$
+        et si $f \leq g$ et les intégrales de $f,g$ CV sur $\af$ alors $\ig{f} \leq \ig{g}$
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+            \item Soit $x \in \af$ on a $\int_{a}^{x} \alpha f + \beta g = \alpha \int_{a}^{x} f + \beta \int_{a}^{x} g$
+            les limites existent car $f,g$ CV donc PPL quand $x \to \infty$ on a la proposition.
+         
+            
+            \item Supposons $f \leq 0$ on a pour $x \in \af, \int_{a}^{x} f \leq 0$ PPL on a la proposition 
+            Si $f \leq g$ on a $\forall x \in \af, \int_{a}^{x} f \leq \int_{a}^{x} g$ PPL on a la proposition.
+            \end{enumerate}
+        \end{proof}
+    \end{prop}
+    \begin{theorem}
+        \begin{itemize}[label=$\circ$]
+        \item Soit $\func{f}{\af}{\bK}$ $M^0$ sur $\af$ on suppose que l'intégrale de $f$ sur $\af$ CV. 
+        \item Soit $\func{R}{\af}{\bK}$ définie par $R(x) = \int_{x}^{\infty} f$ 
+        \end{itemize}
+        \begin{enumerate}
+        \item $\forall x \in \af, R(x) = \ig{f} - \int_{a}^{x} f$ et $\lim_{x \to \infty} R(x) = 0$
+        \item Si $f$ est $C^0$ sur $\af$ alors $R$ est de classe $C^1$ sur $\af$ et $R' = -f$
+        
+        \begin{rmq}
+            La quantité $R(x)$ est alors appelée reste d'ordre $x$ de l'intégrale généralisée de $f$ sur $\af$
+        \end{rmq}
+        \end{enumerate}
+
+        
+        \begin{proof}
+            On suppose l'énoncé. 
+            alors $\forall x \in \af$, $\int_{x}^{\infty} x$ CV et $\ig{f} = \int_{a}^{x} f + \int_{x}^{\infty} f$
+            \begin{enumerate} 
+            \item $R(x) = \ig{f} - \int_{a}^{x} f \xrightarrow[x \to \infty]{} \ig{f} - \ig{f} = 0$
+             
+            \item Supposons que $f$ soit $C^0$ sur $\af$ 
+             
+            $R(x) = \ig{f} - F(x)$ avec $F(x) = \int_{a}^{x} f$; $f$ est $C^0$ sur $\af$ donc $F$ est dérivable 
+            sur $\af$ et $F' = f$ 
+             
+            Donc $R$ est dérivable sur $\af$ et $R' = 0 - f = -f$ 
+            donc $R'$ est $C^0$ sur $\af$ car $f$ est $C^0$ donc $R$ est $C^1$ sur $\af$ et $R' = -f$
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+\end{adjustwidth}
+
+    \section{Intégrale généralisée sur un intervalle semi-ouvert de la forme [a,b[}
+    \subsection{Introduction} On fixe $(a,b) \in \bR^2$ tel que $a < b$
+    \begin{definition}
+        On considère $\func{f}{\ab}{\bK}$ $M^0$ sur $\ab$ et on lui associe 
+        l'application $\func{F}{\ab}{\bK}$ définie par $F(x) = \int_{a}^{x} f$ 
+        \begin{enumerate}
+        \item On dit que l'intégrale de $f$ sur $\ab$ CV si et seulement si 
+        l'application admet une limite dans $\bK$ au point $b$ on note alors 
+        $\ib{f} = \lim_{x \to b} \int_{a}^{x} f$
+        \begin{rmq} 
+        Le scalaire $\ib{f}$ est alors appelé intégrale généralisée de $f$ sur $\ab$ 
+        \end{rmq} 
+
+        \item Pour exprimer que l'intégrale de $f$ sur $\ab$ n'est pas convergente on dit qu'elle est 
+        divergente 
+    \end{enumerate}
+    \end{definition}
+    \begin{adjustwidth}{-2em}{-1em}
+        \begin{theorem}
+            Soit $\func{\varphi}{\ab}{\bR^+}$ $M^0$ et positive sur $\ab$
+            on lui associe l'application $\func{\Phi}{\ab}{\bR^+}$ définie par 
+            $\Phi(x) = \int_{a}^{x} \varphi$ 
+            \begin{enumerate} 
+            \item $\Phi$ est croissante sur $\ab$ 
+            \item L'intégrale de $\varphi$ sur $\ab$ CV ssi $\Phi$ est majorée sur $\ab$
+            \end{enumerate}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof} 
+        \end{theorem}
+        \begin{prop}
+            Soient $\func{f}{\ab}{\bK}$ $M^0$ sur $\ab$ et $c \in \ab$ 
+            \begin{enumerate}
+            \item L'intégrale de $f$ sur $\ab$ est de même nature que l'intégrale 
+            de $f$ sur $[c,b[$ et si CV on a $\ib{f} = \int_{a}^{c} f + \int_{c}^{b} f$ 
+            \item L'intégrale de $f$ sur $\ab$ CV ssi les intégrales de $\Re f$ et $\Im f$ CV sur $\ab$ 
+            en cas de CV on a $\ib{f} = \ib{\Re f} + i \ib{\Im f}$. Avec $\ib{\Re f} = \Re \parenth{\ib{f}}$ et $\ib{\Im f} = \Im \parenth{\ib{f}}$
+            \end{enumerate}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{prop}
+        \begin{prop}
+            Soient $\func{f,g}{\ab}{\bK}$ $M^0$ sur $\ab$ et $(\alpha, \beta) \in \bK^2$ 
+            \begin{enumerate} 
+            \item Si les intégrales de $f$ et de $g$ CV sur $\ab$ alors l'intégrale de $\alpha f + \beta g$ sur $\ab$
+            CV et $\ib{\alpha f + \beta g} = \alpha \ib{f} + \beta \ib{g}$
+            \item Si $f \geq 0$ et l'intégrale de $f$ sur $\ab$ CV alors $\ib{f} \geq 0$
+            et si $f \leq g$ et intégrales de $f,g$ sur $\ab$ CV alors $\ib{f} \leq \ib{g}$
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{enumerate}
+        \end{prop}
+        \begin{theorem}
+            Soit $\func{f}{\ab}{\bK}$ $M^0$ sur $\ab$ et l'intégrale 
+            de $f$ sur $\ab$ CV. Soit $\func{R}{\ab}{\bK}$ définie par $R(x) = \int_{x}^{b} f$
+            \begin{enumerate} 
+            \item $\forall x \in \ab, R(x) = \ib{f} - \int_{a}^{x} f$ et $\lim_{x \to b} R(x) = 0$ 
+            \item Si $f$ est $C^0$ sur $\ab$ alors $R$ est $C^1$ sur $\ab$ avec $R' = -f$
+            \end{enumerate}
+            \begin{rmq}
+                $R(x) = \int_{x}^{b} f$ est alors appelée reste d'ordre $x$ de l'intégrale généralisée de $f$ sur $\ab$
+            \end{rmq}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}
+            Si $\func{f}{\ab}{\bK}$ est $M^0$ sur $[a,b]$ alors l'intégrale 
+            de $f$ sur $\ab$ CV et $\int_{a}^{b} = \int_{[a,b]} f$
+            \begin{proof}
+                On suppose l'énoncé, $\restr{f}{[a,b[}$ est $M^0$ 
+                montrons que $\ib{f}$ CV et que $\ib{f} = \int_{[a,b]} f$
+                \begin{itemize}[label=$\circ$] 
+                \item Soit $x \in \ab$, 
+                $\underset{MPSI}{\int_{[a,b]}} = \underset{MPSI}{\ib{f}} = \underset{MPSI}{\int_{a}^{x} f} + \underset{MPSI}{\int_{x}^{b} f}$
+                et $\int_{a}^{x} f = \int_{[a,b]} - \int_{x}^{b} f$
+                 
+                \item On a $\lim_{x \to b^-} \int_{x}^{b} f = 0$ 
+                \begin{ef}
+                    $\abs{\int_{x}^{b} f} \leq \int_{x}^{b} \abs{f}$ ensuite $f$ est $M^0$ sur $[a,b]$ donc $f$ est bornée 
+                    sur $[a,b]$ et $\norm{f}_{\infty}^{[a,b]} < \infty$.
+                     
+                    puis $\abs{f} < \norm{f}_{\infty}^{[a,b]}$ donc $\int_{x}^{b} \abs{f} \leq \int_{x}^{b} \norm{f}_{\infty}^{[a,b]} = (b-x)\norm{f}^{[a,b]}_{\infty};$
+                     Donc $0 \leq \abs{\int_{x}^{b} f} \leq (b-x)\norm{f}_{\infty}^{[a,b]}$ 
+                    donc par encadrement $\lim_{x \to b^-} f = 0$ \fef
+                \end{ef}
+                donc $\lim_{x \to b^-} \int_{a}^{x} = \int_{[a,b]} f - 0 = \int_{[a,b]} f$
+                donc $\underset{IG}{\int_{a}^{b} f} = \int_{[a,b]} f = \underset{MPSI}{\int_{a}^{b} f}$
+            \end{itemize}
+            \end{proof}
+        \end{theorem}
+        \subsection{Exemples}
+        \begin{ex}
+            $f(t) = \frac{1}{1-t^2}$ $f$ est $C^0$ sur $[0,1[$ 
+            \newline 
+            Pour $x \in [0,1[, \int_{0}^{x} f = \int_{0}^{x} \frac{\mfk{d}t}{1-t^2} = 
+            \left[ \frac{1}{2} \log{\frac{1+t}{1-t}} \right]^x_0 = \frac{1}{2} \log{\abs{\frac{1+x}{1-x}}} - 0$
+            \begin{ef}
+                \begin{align*}
+                    \int_{0}^{x} \frac{\mfk{d}t}{1-t^2} &= \frac{1}{2} \int_{0}^{x} \frac{(1+t) + (1-t)}{(1+t)(1-t)} \mfk{d}t \\ 
+                                                        &= \frac{1}{2} \int_{0}^{x} \left( \frac{1}{1-t} + \frac{1}{1+t} \right) \mfk{d}t \\ 
+                                                        &= \frac{1}{2} \left[- \log{\abs{1-t}} + \log{\abs{1+t}} \right] \\ 
+                                                        &= \frac{1}{2} \log{\abs{\frac{1+x}{1-x}}} \\
+                \end{align*}
+                \fef 
+            \end{ef}
+            ensuite $\int_{0}^{x} f = \frac{1}{2} \log{\abs{\frac{1+x}{1-x}}} \xrightarrow[x\to 1^-]{} \infty$ 
+            Donc $\int_{0}^{1} \frac{\mfk{d}t}{1-t^2}$ DV et $\int_{0}^{1} \frac{\mfk{d}t}{1-t^2}$ n'existe pas. 
+        \end{ex}
+        \begin{ex}
+            $g(t) = \frac{1}{\sqrt[]{1-t^2}}$ on a $g$ est $C^0$ sur $[0,1[$
+            \newline 
+            Soit $x \in [0,1[$ \newline 
+            $\int_{0}^{x} \frac{\mfk{d}t}{\sqrt[]{1-t^2}} = \left[\asin(t)\right]^x_0 = \asin(x) - 0 \xrightarrow[x \to 1^-]{} \asin(1) = \frac{\pi}{2}$.
+            \newline 
+            Donc $\int_{0}^{1} g$ CV et $\int_{0}^{1} = \frac{\pi}{2}$
+        \end{ex}
+        \begin{ex}
+            $h(t) = \frac{\log t}{t-1}$ on a $h$ est $C^0$ sur $[\frac{1}{2}, 1[$
+            \newline 
+            $\lim_{1^-} h = 1$ car $\frac{\log t}{t-1} \equiv \frac{t-1}{t-1} = 1$ on pose $h(1) = 1$ 
+            \newline 
+            Dès lors $h$ est $C^0$ sur $\left[\frac{1}{2}, 1\right]$ donc d'après le cours l'intégrale généralisée de $h$ sur $]0,1[$ converge et vaut $\underset{MPSI}{\int_{0}^{1} h}$
+        \end{ex}
+    \end{adjustwidth}
+   
+    
+    %IG - 3%
+    \section{Intégrale généralisée sur un intervalle semi-ouvert de la forme ]a,b]}
+    \subsection{Introduction} On considère $(a,b) \in \overline{\bR}^2$ avec $b < \infty$ 
+    \begin{definition}
+        On considère $\func{f}{\abc}{\bK}$ $M^0$ sur $\abc$ et on lui associe 
+        l'application $\func{F}{\abc}{\bK}$ définie par $F(x) = \int_{x}^{a} f$
+        \begin{enumerate} 
+        \item On dit que l'intégrale de $f$ sur $\abc$ CV si et seulement si 
+        l'application admet une limite dans $\bK$ au point $a$ on note alors 
+        $\ib{f} = \lim_{x \to a} \int_{x}^{b} f$
+        
+        \begin{rmq}
+        Le scalaire $\ib{f}$ est alors appelé intégrale généralisée de $f$ sur $\abc$ 
+        \end{rmq}
+
+        \item Pour exprimer que l'intégrale de $f$ sur $\abc$ n'est pas convergente on dit qu'elle est 
+        divergente 
+    \end{enumerate}
+    \end{definition}
+    \begin{adjustwidth}{-2em}{-1em}
+        \begin{theorem}
+            Soit $\func{\varphi}{\abc}{\bR^+}$ $M^0$ et positive sur $\abc$
+            on lui associe l'application $\func{\Phi}{\abc}{\bR^+}$ définie par 
+            $\Phi(x) = \int_{x}^{b} \varphi$ 
+            \begin{enumerate} 
+            \item $\Phi$ est croissante sur $\abc$ 
+            \item L'intégrale de $\varphi$ sur $\abc$ CV ssi $\Phi$ est majorée sur $\abc$
+            \end{enumerate}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof} 
+        \end{theorem}
+        \begin{prop}
+            Soient $\func{f}{\abc}{\bK}$ $M^0$ sur $\abc$ et $c \in \abc$ 
+            \begin{enumerate}
+            \item L'intégrale de $f$ sur $\abc$ est de même nature que l'intégrale 
+            de $f$ sur $[c,b]$ et si CV on a $\ib{f} = \int_{a}^{c} f + \int_{c}^{b} f$ 
+            \item L'intégrale de $f$ sur $\abc$ CV ssi les intégrales de $\Re f$ et $\Im f$ CV sur $\abc$ 
+            en cas de CV on a $\ib{f} = \ib{\Re f} + i \ib{\Im f}$. Avec $\ib{\Re f} = \Re \parenth{\ib{f}}$ et $\ib{\Im f} = \Im \parenth{\ib{f}}$
+            \end{enumerate}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{prop}
+        \begin{prop}
+            Soient $\func{f,g}{\abc}{\bK}$ $M^0$ sur $\abc$ et $(\alpha, \beta) \in \bK^2$ 
+            \begin{enumerate} 
+            \item Si les intégrales de $f$ et de $g$ CV sur $\abc$ alors l'intégrale de $\alpha f + \beta g$ sur $\abc$
+            CV et $\ib{\alpha f + \beta g} = \alpha \ib{f} + \beta \ib{g}$
+            \item 2. Si $f \geq 0$ et l'intégrale de $f$ sur $\abc$ CV alors $\ib{f} \geq 0$
+            et si $f \leq g$ et intégrales de $f,g$ sur $\abc$ CV alors $\ib{f} \leq \ib{g}$
+            \end{enumerate}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{prop}
+        \begin{theorem}
+            Soit $\func{f}{\abc}{\bK}$ $M^0$ sur $\abc$ et l'intégrale 
+            de $f$ sur $\abc$ CV. Soit $\func{R}{\abc}{\bK}$ définie par $R(x) = \int_{a}^{x} f$
+            \begin{enumerate} 
+            \item $\forall x \in \abc, R(x) = \ib{f} - \int_{x}^{b} f$ et $\lim_{x \to a} R(x) = 0$ 
+            \item Si $f$ est $C^0$ sur $\abc$ alors $R$ est $C^1$ sur $\abc$ avec $R' = -f$
+            \end{enumerate}
+            \begin{rmq}
+                $R(x) = \int_{a}^{x} f$ est alors appelée reste d'ordre $x$ de l'intégrale généralisée de $f$ sur $\abc$
+            \end{rmq}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}
+            Si $\func{f}{\abc}{\bK}$ est $M^0$ sur $[a,b]$ alors l'intégrale 
+            de $f$ sur $\abc$ CV et $\int_{a}^{b} = \int_{[a,b]} f$
+            \begin{proof}
+                cf partie précédente
+            \end{proof}
+        \end{theorem}
+        \subsection{Exemples}
+
+        \begin{ex}
+            $e_1$ est $C^0$ sur $\bR$ donc sur $R^-$ 
+            
+            
+            Pour $x \in \bR^-$, $\int_{x}^{0} e^t \mfk{d}t = \left[e^t\right]^0_x = 1 - e^x \xrightarrow[x \to -\infty]{} 1.$
+            Donc $\int_{-\infty}^{0} e_1$ CV et $\int_{-\infty}^{0} = 1$
+        \end{ex}
+
+        \begin{ex}
+            $\log$ est $C^0$ sur $]0,1]$ 
+
+
+            Pour $x \in ]0,1], \int_{x}^{1} \log = \left[t \log t - t\right]^1_x = -1 - x\log x + x \xrightarrow[x \to 0^+]{} -1$
+            Donc $\int_{0}^{1} \log$ CV et $\int_{0}^{1} \log = -1$
+        \end{ex}
+
+        \begin{ex}
+            Soit $s_c(t) = \deq{\frac{\sin t}{t}}{t \in \bR^+}{1}$
+            
+            
+            $s_c$ est $C^0$ sur $\bR$ donc sur $[0,1]$ donc d'après le 
+            théorème du cours on a $\int_{0}^{1} s_c(t) \mfk{d}t$ CV et $\int_{0}^{1} s_c = \int_{[0,1]} s_c$
+        \end{ex}
+
+    \end{adjustwidth}
+     
+    
+    
+    %IG - 4%
+    \section{Intégrale généralisée sur un intervalle ouvert ]a,b[}
+    \subsection{Introduction} On prend $(a,b) \in \overline{R}^2$
+    \begin{adjustwidth}{-2em}{-1em}
+        \begin{theorem}[Lemme]
+            Soit $\func{f}{\abd}{\bK}$ $M^0$ sur $\abd$ 
+            \begin{itemize} 
+            \item Si $\exists c \in \abd$ tel que l'intégrale de $f$ sur $]a,c]$ et l'intégrale de $f$ sur 
+            $[c,b[$ convergent alors $\forall d \in \abd$ l'intégrale de $f$ sur $]a,d$ et l'intégrale 
+            de $f$ sur $[d,b[$ convergent et on a $\int_{a}^{c} f + \int_{c}^{b} f = \int_{a}^{d} f + \int_{d}^{b} f$
+            \end{itemize}
+            \begin{proof}
+                Supposons $c \in \abd$ comme dans l'énoncé. 
+                Soit $d \in \abd$ avec par exemple $d \leq c$ 
+                on a $\int_{a}^{c} f$ CV donc $\int_{a}^{d}$ CV et $\int_{a}^{c} f = \int_{a}^{d} f + \underset{MPSI}{\int_{d}^{c} f}$
+                 
+                
+                Soit $x \in [d,b[$. 
+                $\int_{d}^{b} f = \int_{d}^{c} f + \int_{c}^{x} f \xrightarrow[x \to b^-]{} \int_{d}^{c} f + \int_{c}^{b} f$ car $\int_{c}^{b} f$ CV
+                Ainsi $\int_{d}^{b}$ CV et $\int_{d}^{b} f = \int_{d}^{c} f + \int_{c}^{b} f$
+                On a donc le résultat.
+            \end{proof}
+        \end{theorem}      
+        \begin{definition}
+            On considère $\func{f}{\abd}{\bK}$ $M^0$ sur $\abd$
+            \begin{enumerate}
+            \item On dit que l'intégrale de $f$ sur $\abc$ CV si et seulement si 
+            il existe $c \in \abd$ tel que l'intégrale de $f$ sur $]a,c]$ et l'intégrale de 
+            $f$ sur $[c,b[$ sont convergente. On pose alors $\ib{f} = \int_{a}^{c} f + \int_{c}^{b} f$
+            
+            \begin{rmq}
+            Le scalaire $\ib{f}$ est alors appelé intégrale généralisée de $f$ sur $\abd$ 
+            et avec le lemme précédent il est indépendant de $c$  
+            \end{rmq}
+
+            \item Pour exprimer que l'intégrale de $f$ sur $\abc$ n'est pas convergente on dit qu'elle est 
+            divergente 
+            \end{enumerate}
+        
+        \end{definition}
+        \begin{prop}
+            Soit $\func{f}{\abd}{\bK}$ $M^0$ sur $]a,b[$. L'intégrale 
+            de $f$ sur $\abd$ DV ssi $\exists c \in \abd$ tel que l'intégrale de 
+            $f$ sur $]a,c]$ DV ou l'intégrale de $f$ sur $[c,b[$ DV
+            \begin{proof}
+                conséquence de la définition.
+            \end{proof}
+        \end{prop}
+        \begin{prop}
+            Soient $\func{f}{\abd}{\bK}$ $M^0$ sur $\abd$ et $c \in \abd$ 
+            \begin{itemize}
+            \item L'intégrale de $f$ sur $\abd$ CV ssi les intégrales de $\Re f$ et $\Im f$ CV sur $\abd$ 
+            en cas de CV on a $\ib{f} = \ib{\Re f} + i \ib{\Im f}$. Avec $\ib{\Re f} = \Re \parenth{\ib{f}}$ et $\ib{\Im f} = \Im \parenth{\ib{f}}$
+            \end{itemize}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{prop}
+        \begin{prop}
+            Soient $\func{f,g}{\abd}{\bK}$ $M^0$ sur $\abd$ et $(\alpha, \beta) \in \bK^2$ 
+            \begin{enumerate} 
+            \item 1. Si les intégrales de $f$ et de $g$ CV sur $\abd$ alors l'intégrale de $\alpha f + \beta g$ sur $\abd$
+            CV et $\ib{\alpha f + \beta g} = \alpha \ib{f} + \beta \ib{g}$
+            \item 2. Si $f \geq 0$ et l'intégrale de $f$ sur $\abd$ CV alors $\ib{f} \geq 0$
+            et si $f \leq g$ et intégrales de $f,g$ sur $\abd$ CV alors $\ib{f} \leq \ib{g}$
+            \end{enumerate}
+            \begin{proof}
+                cf partie précédente (demo identique)
+            \end{proof}
+        \end{prop}
+        
+        \begin{theorem}
+            \begin{enumerate}
+            \item Si $\func{f}{\ab}{\bK}$ est $M^0$ sur $\ab$ et si
+            l'intégrale de $f$ sur $\ab$ est convergente alors l'intégrale 
+            de $f$ sur $\abd$ CV et les IG resultantes sont égales. (d'où la notation identique)
+
+            \item Si $\func{f}{\abc}{\bK}$ est $M^0$ sur $\abc$ et 
+            si l'intégrale de $f$ sur $\abc$ CV alors l'intégrale de $f$ 
+            sur $\abd$ CV et les IG résultantes sont égales 
+            \end{enumerate}
+            \begin{proof}
+                cf les deux parties précédentes.
+            \end{proof}
+        \end{theorem}
+
+        \begin{theorem}[Changement de variable]
+            Soit $(a,b) \in \overline{\bR}^2$ et $(\alpha, \beta) \in \overline{\bR}^2$
+            si $\func{\varphi}{]\alpha,\beta[}{\abd}$ est une bijection strictement 
+            monotone de classe dans $C^1(]\alpha, \beta[,\abd)$ et si 
+            $\func{f}{\abd}{\bK}$ est $C^0$ alors les intégrales $\ib{f}$ et $\int_{\alpha}^{\beta} (f \circ \varphi) \cdot \varphi'$ sont 
+            de même nature et en cas de convergence on a 
+            \begin{equation*}
+            \int_{a}^{b} f(x) \mfk{d}x = \int_{\alpha}^{\beta} f(\varphi(t)) \abs{\varphi'(t)} \mfk{d}t
+            \end{equation*}
+            \begin{proof}
+                Conséquence du théorème de changement de variable de MPSI par PPL
+            \end{proof}
+        \end{theorem}
+           \begin{theorem}[Intégration Par Parties]
+            Soit $(a,b) \in \overline{\bR}^2$. 
+           Soit $\func{u,v}{\abd}{\bK}$ de classe $C^1$ sur $\abd$ admettant des limites dans $\bK$ en $a$ et en $b$
+           alors les intégrales $\ib{u'v}$ et $\ib{uv'}$ sont de même nature 
+           et on a en cas de convergence 
+           \begin{equation*}
+            \ib{u'v} = [uv]^b_a - \ib{uv'} ; [uv']^b_a = \lim_b uv - \lim_a uv    
+           \end{equation*} 
+           
+            \begin{proof}
+                Conséquence du théorème d'IPP MPSI par PPL
+            \end{proof}
+        \end{theorem}
+    \end{adjustwidth}
+    \section{Intégrale généralisée sur un intervalle semi-ouvert ou ouvert}
+    \subsection{Introduction} Soit $I$ un intervalle semi-ouvert ou ouvert
+    on a $I \not= \emptyset$ de la forme $]a,b]$ ou $[a,b[$ ou encore $]a,b[$
+    Dans tous les cas on a $\func{f}{I}{\bK}$ $M^0$ sur $I$ et 
+    on a la notion de l'intégrale de $f$ sur $I$ et en cas de convergence de 
+    l'intégrale généralisée de $f$ sur $I$ notée $\ib{f}$
+    \begin{definition}
+        Soit $\func{f}{I}{\bK}$ $M^0$
+        \begin{itemize}[label=$\circ$]
+        \item L'intégrale de $f$ sur $I$ est dites absolument convergente 
+        si l'intégrale de $\abs{f}$ sur $I$ est convergente. 
+        \item L'intégrale  de $f$ sur I est dite semi-convergente si l'intégrale 
+        de $f$ sur $I$ CV mais n'est pas ACV.
+        \end{itemize} 
+    \end{definition}
+    \begin{adjustwidth}{-2em}{-1em}
+        \begin{theorem}
+            Soit $\func{\varphi, \psi}{I}{R^+}$ $M^0$ sur I et $0 \leq \varphi \leq \psi$
+            \begin{enumerate}
+            \item Si l'intégrale de $\psi$ sur $I$ CV alors l'intégrale de $\varphi$ sur $I$
+            CV et on a $0 \leq \ib{\varphi} \leq \ib{\psi}$ \newline 
+            \item Si l'intégrale de $\varphi$ sur $I$ DV alors l'intégrale de $\psi$ sur $I$ DV.
+            \end{enumerate}
+            \begin{proof}
+                On prouve le cas $I = \af$. 
+                \begin{enumerate}
+                \item On suppose que $\ig{\psi}$ CV donc $\Psi$ majorée, On a $\func{\Phi, \Psi}{I}{\bR}$
+                on a $0 \leq \varphi \leq \psi$ donc $\forall x \in \af, 0 \leq \Phi(x) \leq Psi(x)$ 
+                donc $\Phi$ est majorée sur $\af$ donc comme $\varphi \geq 0$ on a $\ig{\phi}$ CV 
+                
+                \item Supposons que $\ig{\varphi}$ DV, $\Phi$ n'est pas majorée 
+                (TLM) or $\Psi \leq \Phi$ donc $\Psi$ n'est pas majorée donc $\ig{\psi}$ DV.
+                \end{enumerate}
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}
+            Soit $\func{f}{I}{\bK}$ $M^0$ sur $I$. Si l'intégrale de $f$ sur $I$ ACV alors 
+            l'intégrale de $f$ sur $I$ CV et $\abs{\ib{f}} \leq \ib{\abs{f}}$
+            \begin{proof}
+                On suppose $\ig{\abs{f}}$ CV
+                \begin{enumerate} 
+                \item Cas $\bK = \bR$
+                on a $f = f^+ - f^-$ et $\abs{f} = f^+ + f^-$ avec $f^+ = \max(f,0)$ et $f^- = \max(-f,0)$
+                par suite $f^+$ et $f^-$ sont $M^0$ dans $I$ et $f^+ \geq 0$ et $f^- \geq 0$ 
+                puis $0 \leq f^+ \leq \abs{f}$ et $0 \leq f^- \leq \abs{f}$ donc $\ig{f}$ CV
+                donc $\ig{f^+}$ et $\ig{f^-}$ CV.
+
+                Pour $x \in \af, \int_{a}^{x} f  = \int_{a}^{x} f^+ - \int_{a}^{x} f^- \xrightarrow[x \to \infty]{} \ig{f^+} - \ig{f^-}$
+                donc $\ig{f}$ CV et $\ig{f} = \lim_{x \to \infty} \int_{a}^{x} f = \ig{f^+} - \ig{f^-}$
+                d'autre part on dispose de 
+                $\ig{\abs{f}} = \ig{f^+} + \ig{f^-}$. 
+                et on a $\forall x \in \af, \abs{\int_{a}^{x} f} \leq \int_{a}^{x} \abs*{f}$
+                donc PPL quand $x \to \infty, \abs{\ig{f}} \leq \ig{\abs{f}}$ 
+                
+                \item Cas $\bK = \bC$ 
+                On a $f = \Re f + i\Im f$, et $0 \leq \abs{\Re f} \leq \abs{f}$ et $0 \leq \abs{\Im f} \leq \abs{f}$
+                or $\ig{\abs{f}}$ CV donc $\ig{\abs{\Re f}}$ et $\ig{\abs{\Im f}}$ CV 
+                donc d'après 1. $\ig{\Re f}$ et $\ig{\Im f}$ CV
+                de même que le cas 1. $\ig{f}$ CV et $\abs{\ig{f}} \leq \ig{\abs{f}}$
+                \end{enumerate}
+            \end{proof}
+        \end{theorem}
+        \subsection{Exercice}
+        \begin{exe}{8.1}
+        \end{exe}
+    \end{adjustwidth}
+
+    \chapter{Intégration sur un intervalle quelconque des fonctions à valeurs réelles ou complexes}
+    \paragraph{Introduction} 
+    Dans le chapitre $\bK = \bR$ ou $\bC$ et $I$ est un intervalle non vide de $\bR$
+    \section{Notion d'application intégrable sur l'intervalle I}
+    \subsection{Définition}
+    \subsubsection{Introduction}
+    Soit $\func{f}{I}{\bK}$ $M^0$ sur $I$. $I$ est soit un segment 
+    ou $I$ est un semi ouvert, ou $I$ est un ouvert. Donc $I = \ab \ \overset{ou}{=} \  \abc\ \overset{ou}{=} \  \abd \  \overset{ou}{=} \ [a,b]$
+    \newline 
+
+    Si $I = [a,b]$ on dispose de l'intégrale MPSI $\int_{a}^{b} f$ sinon en cas de convergence on 
+    dispose de l'intégrale généralisée de $f$ sur $I$ $\int_{a}^{b} f$
+    \begin{definition}
+        Une application $\func{f}{I}{\bK}$ est intégrable sur $I$
+        ssi si elle est $M^0$ et ou bien $I$ est un segment ou bien l'intégrale de $f$
+        sur $I$ est ACV. On note l'ensemble des fonctions intégrables de $I$ dans $\bK$ 
+        $\L$ 
+    \end{definition}
+    \begin{adjustwidth}{-2em}{-1em}
+        \begin{prop}
+        Soient $\func{f}{I}{\bK}$ et $\func{\varphi}{I}{\bR^+}$ $M^0$ sur $I$
+        \begin{enumerate}
+        \item Si $\abs{f} \leq \varphi$ et si $\varphi \in \L$ alors $f \in \L$ 
+        \item $f \in \L$ ssi l'application $\abs{f} \in \L$ 
+        \item $f \in L$ ssi les applications $\Re f$ et $\Im f$ $\in \L$
+        \end{enumerate}
+        \begin{proof}
+            On suppose l'énoncé.
+            \begin{enumerate}
+            \item Soit $\abs{f} \leq \varphi$ et $\varphi \in \L$ \newline 
+            Si $I$ est un segment alors $f$ est intégration sur $I$ (def)
+            Sinon $I = |a,b|$ avec $a,b$ QVB. $\int_{a}^{b} \abs{\varphi}$ CV donc $\int_{a}^{b} \varphi$ CV
+            ainsi $\int_{a}^{b} \abs{f}$ CV donc $f \in \L$ \newline 
+
+            \item Si $I$ est un segment alors CLF.
+            Sinon 
+            \begin{align*}
+                \abs{f} \in L &\Leftrightarrow \int_{a}^{b} \abs{\abs{f}} \text{ CV} \\ 
+                                &\Leftrightarrow \int_{a}^{b} \abs{f} \text{ CV} \\ 
+                                &\Leftrightarrow f \in \L \\ 
+            \end{align*}
+
+            \item $f = \Re f + i\Im f$ donc si $f$ $M^0$ alors $\Re f$ et $\Im f$ aussi 
+            \begin{equation}
+                0 \leq \abs{\Re f} \leq \abs{f} \\
+                0 \leq \abs{\Im f} \leq \abs{f}
+            \end{equation}
+            Si $I$ est un segment alors CLF
+            Sinon $I = |a,b|$ $a,b$ QVB\newline 
+            Si $f \in \L$ alors $\abs{f} \in \L$ puis avec $(1)$ $\Re f \in \L$ et $\Im f \in \L$ \newline 
+            Si $(\Re f, \Im f) \in \L^2$ alors $\int_{a}^{b} \abs{\Re f}$ et $\int_{a}^{b} \abs{\Im} f$ CV
+            puis $\abs{f} \leq \abs{\Re f} + \abs{\Re f}$ et $\int_{a}^{b} \abs{f}$ CV donc $f \in \L$
+        \end{enumerate}
+        \end{proof}
+    \end{prop}
+        \begin{theorem}
+            $\L$ est un $\bK$-ev
+            \begin{proof}
+                $\L \subset M^0(I, \bK)$ qui est un $\bK$-ev.
+                \begin{itemize}[label=$\circ$]
+                    \item $\L \not= \emptyset$ car $0 \in \L$ 
+                    \item Soient $(f,g) \in \L^2$ et $(\alpha, \beta) \in \bK^2$,
+                    $\abs{\alpha f + \beta g} \leq \abs{\alpha} \abs{f} + \abs{\beta} \abs{g}$.
+                    Si $I$ est un segment alors CLF, sinon $I = |a,b|$ et $\int_{a}^{b} \abs{f}, \int_{a}^{b} \abs{g}$ CV 
+                    ainsi $\int_{a}^{b}\abs{\alpha} \abs{f} + \abs{\beta} \abs{g}$ et $\abs{\alpha} \abs{f} + \abs{\beta} \abs{g} \geq 0$ 
+                    ainsi $(\alpha f + \beta g) \in \L$
+                \end{itemize}
+                Donc $\L$ est un sev de $M^0(I, \bK)$
+            \end{proof}
+        \end{theorem}
+    \end{adjustwidth}
+    \subsection{Exemples de références}
+    \begin{adjustwidth}{-2em}{-1em}
+        \begin{theorem}
+            Soient $\alpha \in \bR$ et $a > 0$. 
+            \begin{enumerate}
+            \item L'application $\parenth{t \mapsto \frac{1}{t^{\alpha}}}$ est intégrable 
+            sur $]0,a]$ ssi $\alpha < 1$ 
+            \item L'application $\parenth{t \mapsto \frac{1}{t^{\alpha}}}$ est intégrable sur 
+            $[a,\infty[$ ssi $\alpha > 1$ 
+            \item L'application précédente n'est pas intégrable sur $R^{+*}$ 
+            \end{enumerate}
+            \begin{proof}
+                $f_{\alpha} (t) = e^{-\alpha \log t}$, $f_{\alpha}$ est $M^0$ sur 
+                $]0,a]$ et sur $[a,\infty[$
+                \begin{enumerate}
+                    \item \begin{itemize}[label=$ $]
+                     \item $f_{\alpha} \in \LI{]0,a]} \Leftrightarrow \int_{0}^{a} \abs{f_{\alpha}}$ CV
+                    $\Leftrightarrow \int_{0}^{a} f_{\alpha}$
+                    $\Leftrightarrow \lim_{x \to 0^+} \int_{x}^{a} f_{\alpha}$ existe dans $\bR$.
+                    \item Soit $x \in ]0,a]$ 
+                    \item $\int_{x}^{a} f_{\alpha}  = \deq{\left[\frac{t^{-\alpha + 1}}{1 - \alpha}\right] = \frac{1}{1 - \alpha} \cdot \parenth{\frac{1}{a^{\alpha - 1}} - \frac{1}{x^{\alpha - 1}}}}{\alpha \not=1}{\log a - \log x}$
+                    \item d'où $\lim_{x \to O^+} \int_{x}^{a} f_{\alpha} = \de{\infty}{\alpha \geq 1}{\frac{a^{1 - \alpha}}{1 - \alpha}}{\alpha < 1}$
+                    \item Donc $f \in \LI{]0,a} \Leftrightarrow \alpha < 1$
+                    \end{itemize}
+                    \item par le même raisonement on obtient $f \in \LI{[a,\infty[} \Leftrightarrow \alpha > 1$
+                    \item On s'apperçoit vite que $\alpha > 1$ et $\alpha < 1$ ne sont pas satisfiable en même temps
+                \end{enumerate}
+                
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}
+            Soient $\alpha \in \bR$ et $(a,b) \in \bR^2$ tel que $a < b$  
+            \begin{enumerate}
+            \item L'application $\parenth{t \mapsto \frac{1}{(b-t)^{\alpha}}}$ est 
+            intégrable sur $[a,b[$ ssi $\alpha < 1$. 
+            \item L'application $\parenth{t \mapsto \frac{1}{(t-a)^{\alpha}}}$ est 
+            intégrable sur $]a,b]$ ssi $\alpha < 1$.
+            \end{enumerate}
+            \begin{proof}
+                \begin{enumerate}
+                    \item On répète le raisonnement du théorème précédent 
+                    \item idem 
+                \end{enumerate}
+            \end{proof}
+        \end{theorem}
+        \subsubsection{Exemple}
+        \begin{ex}
+            \begin{enumerate}
+            \item On a $f(t) = \frac{1}{\sqrt{1 + t}}$ donc $f$ est $C^0$ sur $[0,1[$ 
+            et $\frac{1}{2} < 1$ donc $f$ est intégrable sur $[0,1[$
+            \item de même $f$ est intégrable sur $]1,2]$
+        \end{enumerate}
+        \end{ex}
+        
+    \end{adjustwidth}
+    \section{Intégrale d'une application $\L$}
+    \subsection{Définition}
+        \begin{definition}
+            Soit $\func{f}{I}{\bK} \in \L$
+            \begin{itemize}[label=$\circ$] 
+            \item Si $I = [a,b]$ alors on pose $\int_{I} f = \underset{MPSI}{\int_{a}^{b}} f$ 
+            \item Si $I$ est semi ouvert ou ouvert on pose $\int_{I} f = \underset{IG}{\int_{a}^{b} f}$
+            \end{itemize}
+            Dans tous les cas on appelle $\int_{I} f$ intégrale de $f$ sur $I$ 
+        \end{definition}
+    \subsection{Calcul}
+    \begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+        \begin{enumerate}
+        \item Si $-\infty < a < b \leq + \infty$ et si $f \in \LI{\ab}$
+        alors $\lim_{x \to b} \int_{a}^{x} f$ existe dans $\bK$ et 
+        $\int_{\ab} f = \lim_{x \to b} \int_{a}^{x}$ 
+        
+        \item Si $-\infty \leq a < b < + \infty$ et si $f \in \LI{\abc}$
+        alors $\lim_{x \to a} \int_{x}^{b} f$ existe dans $\bK$ et 
+        $\int_{\ab} f = \lim_{x \to a} \int_{x}^{b}$ 
+
+        \item Si $-\infty \leq a < b \leq + \infty$ et si $f \in \LI{\abd}$
+        alors $\forall c \in \abd$ $\lim_{x \to a} \int_{x}^{c} f$ et $\lim_{y \to b} \int_{c}^{y} f$ existent dans $\bK$ et 
+        $\int_{\ab} f = \lim_{x \to a} \int_{x}^{c} + \lim_{y \to b} \int_{c}^{y} f$
+        
+    \end{enumerate}
+    \begin{proof}
+        Conséquence des définitions.
+    \end{proof}
+    \end{theorem}
+
+    \begin{prop}
+        Soit $f$ $M^0$ de $\ab$ dans $\bK$
+        \begin{itemize}[label=$\circ$]
+            \item Si $f \geq 0$ alors $f$ est intégrable sur $\ab$ ssi $\lim_{x \to b} \int_{a}^{x} f$ existe dans $\bK$ si $f$ n'est pas positive on a pas la réciproque.
+            \item C'est aussi vrai sur $\abc$
+        \end{itemize}
+    \end{prop}
+
+    \begin{ex}
+        \textbf{Exemple fondamental}
+        Soit $s_c(t) = \deq{\frac{\sin t}{t}}{t \not= 0}{0}$ on a $s_c$ $C^0$ sur $\bR$
+        \begin{rmq}{Lemme 1}
+            $\int_{1}^{\infty} s_c$ CV.
+            \begin{itemize}[label=$\cdot$]
+                \item $s_c$ est $C^0$ donc $M^0$ sur $[1,\infty[$ donc $\int_{1}^{\infty} s_c$ CV $\Leftrightarrow \lim_{x\to\infty} \int_{1}^{x} s_c$ existe dans $\bR$ 
+                \item \begin{align*} 
+                    \text{Pour } x \in [1,\infty[, \int_{1}^{x} s_c &= \int_{1}^{x} \frac{\sin t}{t} \mfk{d}t \\ 
+                                                                    &= \int_{1}^{x} \frac{1}{t} \sin t \mfk{d}t \\ 
+                                                                    &= \left[-\cos t \times t^{-1}\right]^x_1 - \int_{1}^{x} \frac{\cos t}{t^2} \mfk{d}t (*) \\ 
+                                            Donc, \int_{1}^{x} s_c  &= -\frac{\cos x}{x} + \frac{\cos 1}{1} - \int_{1}^{x} \frac{\cos t}{t^2} \mfk{d}t
+                \end{align*}
+                \item Or $0 \leq \abs{\frac{\cos t}{t^2}} \leq \frac{1}{t^2}$ et $2>1$ donc $\left(t \mapsto \frac{1}{t^2}\right) \in \LI{[1,\infty[}$ et $\left(\frac{\cos t}{t^2}\right) \in \LI{[1,\infty]}$
+                \item Ainsi $\int_{1}^{\infty} \frac{cos t}{t^2} \mfk{d}t$ ACV donc $\lim_{x \to \infty} \int_{1}^{x} \frac{\cos t}{t^2} \mfk{d}t$ existe dans $\bR$
+                \item par encadrement $\lim_{x \to \infty} \frac{\cos x}{x} = 0$ 
+                \item Donc d'après $(*)$ on a $\lim_{x \to \infty} \int_{1}^{x} s_c = 0 + \cos 1 + \int_{1}^{\infty} \frac{\cos t}{t} \mfk{d}t$
+                donc $\int_{1}^{\infty} s_c$ CV et $\int_{1}^{\infty} s_c = \cos 1 - \int_{[1,\infty[} \frac{\cos t}{t} \mfk{d}t$
+             \end{itemize}
+        \end{rmq}
+        Nous allons voir que $\int_{[1,\infty[} s_c$ n'existe pas
+        \begin{rmq}{Lemme 2}
+            $s_c \not \in \LI{[1,\infty[}$ 
+            \begin{itemize}[label=$\cdot$]
+                \item Supposons que $s_c \in \LI{[1,\infty]}$ 
+                \item $\int_{1}^{\infty} \abs{s_c}$ CV posons $S(x) = \int_{1}^{x} \abs{s_c}$ pour $x \in [1,\infty[$
+                $\abs{s_c} \leq 0$ donc $S$ est majorée sur $[1,\infty[$ donc $\exists M \in \bR^+, \forall x \in [1,\infty[, \abs{S(x)} \leq M$
+                \item Donc $\forall n \in \bN, S((n+1)\pi) \leq M$
+                \item 
+                \begin{align*}
+                    S((n+1)\pi) &= \int_{1}^{(n+1)\pi} \abs{\frac{\sin{t}}{t}} \mfk{d}t \\
+                                &= \int_{1}^{\pi} \abs{s_c} + \sum_{k=1}^{n} \int_{k\pi}^{(k+1)\pi} \abs{s_c(t)} \mfk{d}t \\
+                                &\geq \int_{1}^{\pi} \abs{s_c} + \sum_{k=1}^n I_k \\ \intertext{$I_k = \int_{k\pi}^{(k+1)\pi} \frac{\abs{sin t}}{t} \mfk{d}t$}
+                    S((n+1)\pi) &\geq \int_{1}^{\pi} \abs{s_c} + \sum_{k=1}^{n} \frac{2}{(k+1)\pi} \\
+                                &= \int_{1}^{\pi} \abs{s_c} + \frac{2}{\pi}(H_{n+1} - 1) \\
+                                &\xrightarrow[n \to \infty]{} + \infty \\
+                \end{align*}
+                \item Donc $\lim_{n+1} S((n+1)\pi) = + \infty$ absurde donc $s_c \not \in \LI{[1,\infty[}$
+            \end{itemize}
+        \end{rmq}
+        avec 
+        \begin{ef}
+               \begin{align*}
+                I_k &= \frac{1}{(k+1)\pi} \int_{k\pi}^{(k+1)\pi} \abs{\sin{t}} \mfk{d}t \\ 
+                    &= \frac{1}{(k+1)\pi} \int_{0}^{\pi} \abs{\sin{u + k\pi}} \mfk{d}u \intertext{$t = u+k\pi = \varphi(u) \in C^1, dt = du$} \\ 
+                    &= \frac{1}{(k+1)\pi} \int_{0}^{\pi} \abs{\sin u \underset{=(-1)^k}{\cos{k\pi}} + \underset{=0}{\sin{k\pi}}\cos u} \mfk{d}u \\
+                    &= \frac{1}{(k+1)\pi} \int_{0}^{\pi} \abs{(-1)^k} \abs{\sin u} \mfk{d}u \\ 
+                    &= \frac{1}{(k+1)\pi} \int_{0}^{\pi} \sin u \mfk{d}u \\ 
+                    &= \frac{2}{(k+1)\pi} \\ 
+                    \end{align*}
+                    \fef
+        \end{ef}
+        Par le lemme 1 et 2 on a $s_c \not \in \LI{[1,\infty[}$ mais $\int_{1}^{s_c} s_c$ CV
+    \end{ex}
+
+\end{adjustwidth}
+\subsection{Propriétés fondamentales}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+        Soient $f,g$ intégrables sur $I$ à valeurs dans $K$, soient $(\alpha,\beta) \in \bK^2$
+        \begin{enumerate}
+            \item $\alpha f + \beta g$ est intégrable  sur I et $\int_I \alpha f + \beta g = \alpha \int_I f + \beta \int_I g$
+            \item $\abs{f}$ est intégrable sur I et $\abs{\int_I f} \leq \int_I \abs{f}$
+            \item $\overline{f}$ est intégrable sur $I$ et $\int_I \overline{f} = \overline{\int_I f}$
+            \item Si $f,g$ sont à valeur dans $\bR$ et $f \leq g$ alors $\int_I f \leq int_I g$
+        \end{enumerate}
+        \begin{proof}
+            conséquence de la definition
+        \end{proof}
+    \end{theorem}
+
+    \begin{theorem}
+        Si $\overset{\circ}{I} \not= \emptyset$ si $\func{\varphi}{I}{\bR}$ est $C^0$ positive et intégrable 
+        sur $I$ et $\int_{I} \varphi = 0$ alors $\varphi = O_{\bR^I}$
+        \begin{proof}
+            On suppose l'énoncé. 
+            \begin{enumerate}[label=$\cdot$]
+                \item Si $I$ est un segment CLF
+                \item Si I n'est pas un segment, par exemple $I = \af$ avec $a \in \bR$ 
+                \item Soit $x \in \bR, \int_{a}^{\infty} \varphi = \lim_{x \to \infty} \int_{a}^{x} \varphi = \lim_{x \to \infty} \Phi(x)$
+                $\Phi$ est croissante sur $\af$ donc $\Phi(x) \leq \lim_{t \to \infty} \Phi(t) = 0$ 
+                or $\Phi(x) \geq 0$ donc $0 \leq \Phi(x) \leq 0$ 
+                \item donc $\forall x \in \af, \Phi(x) = 0 = \int_{[a,x]} \varphi$
+                \item $\varphi$ est $C^0$ positive sur $[a,x]$ donc $\forall t \in [a,x], \varphi(t) = 0$, soit $t \in \af, t\in[a,t],\varphi(t)=0$
+                \item donc $\forall t \in \af, \varphi(t) = 0$ donc $\varphi = 0$
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+
+    \begin{prop}{Additivité}
+        \begin{enumerate}
+            \item Si $-\infty < a < b \leq + \infty$ si $f \in M^0(\ab, \bK)$ et si $c \in \abd$ 
+            alors $f$ est intégrable sur $\ab$ ssi f est intégrable sur $[c,b[$ et $\int_{\ab} f = \int_{[a,c]} f + \int_{[c,b[} f$
+            \item idem avec $\abc$
+            \item idem avec $\abd$
+        \end{enumerate}
+        \begin{proof}
+            Conséquence des définitions
+        \end{proof}
+    \end{prop}
+
+    \begin{prop}{Négligabilité}
+        \begin{enumerate}
+        \item Si $-\inf < a < b \leq + \inf$ et si $f \in LI{[a,b[}$ alors 
+        $f \in LI{\abd}$ et $\int_{\ab} f = \int_{\abd} f$
+        \item idem avec $\abc$
+        \item Si $(a,b) \in \bR^2$ avec $a \leq b$ alors $f$ est intégrable sur $[a,b], \ab, \abc, \abd$
+        et $\int_{[a,b]} f = \int_{\ab} f = \int_{\abc} f = \int_{\abd} f$
+        \end{enumerate}
+        \begin{proof}
+            Conséquence des définition
+        \end{proof}
+    \end{prop}
+
+\end{adjustwidth}
+\subsection{EV des application $C^O$ et intégrable sur I}
+\begin{definition}
+    On suppose que l'intérieur de I est on vide, on note $\mfc{L}^1_c(I,\bK)$ l'ensemble 
+    des application intégrables et continues sur I. On a $\mfc{L}^1_c(I,\bK) = \mfc{L}^1(I,\bK) \cap \mfc{C}^0(I, \bK)$
+    par intersection c'est un sev de $\L$ et si $I$ est un segment alors $\mfc{L}^1_c = \mfc{C}^0$ 
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        Pour $f \in \L$ on pose $\norm{f}_1 = \int_{I} f$ 
+        \begin{enumerate}
+            \item $\norm{\mathord{\cdot}}_1$ est une seminorme sur $\L$ et $(\L,\norm{\mathord{\cdot}}_1)$ est un ev semi normé
+            \item $\norm{\mathord{\cdot}}_1$ est une norme sur $\mfc{L}^1_c$ et $(\mfc{L}^1_c(I, \bK), \norm{\mathord{\cdot}}_1)$ est un evn
+        \end{enumerate}
+        \begin{proof}
+            Soit $f \in \L$ a $\norm{\mathord{\cdot}}_1$ 
+            \begin{enumerate}
+            
+            \item sur $\L$ \begin{itemize}[label=$\cdot$]
+                \item $\func{\norm{\mathord{\cdot}}_1}{\mfc{L}^1_c}{\bR^+}$ est une application à valeur positive car $f \in \L \Leftrightarrow \abs{f} \in \L$
+                \item Soit $f,g$ dans $\L$ et $\lambda \in \bK$ on a 
+                \begin{equation*}
+                    \norm{\lambda f}_1 = \int_{I} \abs{\lambda f} = \abs{\lambda} \int_{I} f = \abs{\lambda} \norm{f}_1 \\ 
+                    \norm{f+g}_1 = \int_I \abs{f+g} \leq \int_I f + \int_I g = \norm{f}_1 + \norm{g}_1 \\
+                \end{equation*}
+                \item Donc $\norm{\mathord{\cdot}}_1$ est bine une semi norme sur $\L$
+            \end{itemize}
+            \item sur $\mathcal{L}_c^1$ \begin{itemize}
+                \item On suppose que $\norm{f}_1 = 0$, $\abs{f}$ étant continue positive intégrable sur I donc $\abs{f} = 0$ puis 
+                $f = 0$ 
+                \item $\norm{\mathord{\cdot}}_1$ est bien une norme sur $\mathcal{L}^1_c$ 
+            \end{itemize}
+        \end{enumerate}
+        \end{proof}
+    \end{prop}
+\end{adjustwidth}
+\subsection{Relation de Chasle}
+\begin{definition}
+    Soit $f \in \L$ et $(a,b) \in \overline{\bR}^2$ tel que $]\min(a,b), \max(a,b)[ \subset I$ 
+    Si $-\infty \leq a < b \leq \infty$ alors $f \in \LI{]a,b[}
+    $ et on pose $\int_{a}^{b} f = \int_{]a,b[} f$. Si $-\infty \leq b < a \leq \infty$ alors $f \in \LI{]b,a[}$ 
+    et on pose $\int_{a}^{b} f = - \int_{]b,a[} f$. Et si $-\infty \leq a \leq \infty$ on pose $\int_{a}^{a} f = 0$
+\end{definition}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{prop}
+        Soient $f \in \L$ et $(a,b,c) \in \overline{\bR}^3$ tel que $]\min(a,b,c), \max(a,b,c)[ \subset I$ 
+        on a $\int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f$
+    \end{prop}
+    \begin{proof}
+        juste une histoire de vérification
+    \end{proof}
+\end{adjustwidth}
+\section{Critère de comparaison pour les fonctions à valeurs positives}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}
+        Soient $\func{\varphi, \psi}{I}{R^+}$ $M^0$ et positive sur $I$
+        \begin{itemize}[label=$\circ$]
+            \item Si $0 \leq \varphi \leq \psi$ et si $\psi$ est intégrable sur $I$ alors $\varphi$ l'est aussi 
+            et on a $0 \leq \int_I \varphi \leq \int_I \psi$
+            \item Si $0 \leq \varphi \leq \psi$ et si $\varphi$ n'est pas intégrable sur $I$ alors $\psi$ ne l'est pas 
+            non plus.
+        \end{itemize}
+        \begin{proof}
+            analogue aux séries numériques
+        \end{proof}
+    \end{theorem}
+    \begin{prop}
+        Soient $a,b$ dans $\overline{\bR}$ tels que $-\inf < a < b \leq +\inf$ et $\varphi, \psi$ dans $M^0([a,b[,\bR^+)$
+        \begin{enumerate}
+            \item Si $\varphi \underset{b}{=} \mfk{O}(\psi)$ et si $\psi$ intégrable alors $\varphi$ est intégrable.
+            et si $\varphi$ non intégrable alors $\psi$ non intégrable
+            \item Si $\varphi \underset{b}{=} \mfk{o}(\psi)$ et si $\psi$ intégrable alors $\varphi$ intégrable, 
+            de même si $\varphi$ n'est pas intégrable alors $\psi$ ne l'est pas 
+            \item Si $\varphi \underset{b}{\equiv} \psi$ alors $\varphi$ est intégrable ssi $\psi$ l'est
+          \end{enumerate}
+          \begin{proof}
+              analogues aux séries numériques
+          \end{proof}
+    \end{prop}
+    \begin{prop}
+        Soient $a,b$ dans $\overline{\bR}$ tels que $-\inf \leq a < b < +\inf$ et $\varphi, \psi$ dans $M^0(]a,b],\bR^+)$
+        \begin{enumerate}
+            \item Si $\varphi \underset{b}{=} \mfk{O}(\psi)$ et si $\psi$ intégrable alors $\varphi$ est intégrable.
+            et si $\varphi$ non intégrable alors $\psi$ non intégrable
+            \item Si $\varphi \underset{b}{=} \mfk{o}(\psi)$ et si $\psi$ intégrable alors $\varphi$ intégrable, 
+            de même si $\varphi$ n'est pas intégrable alors $\psi$ ne l'est pas 
+            \item Si $\varphi \underset{b}{\equiv} \psi$ alors $\varphi$ est intégrable ssi $\psi$ l'est
+        \end{enumerate}
+        \begin{proof}
+            analogues aux séries numériques
+        \end{proof}
+    \end{prop}
+    \begin{theorem}{Règle de Riemann - HP}
+        \begin{enumerate}
+            \item Soient $a \in \bR^{+*} et \func{\varphi}{]0,a]}{\bR^+}$ $M^0$ et positive.
+            \begin{itemize}
+                \item Si il existe $\alpha < 1$ tel que $\lim_{t \to 0^+} t^{\alpha} \varphi(t) = 0$ alors $\varphi(t) = \mfk{o}\parenth{\frac{1}{t^{\alpha}}}$
+                et $\varphi$ est intégrable
+                \item Si il existe $\alpha > 1$ tel que $\lim_{t \to 0^+} t^{\alpha} \varphi(t) = \infty$ alors $\frac{1}{t^{\alpha}} = \mfk{o}(\varphi(t))$ et
+                $\varphi$ n'est pas intégrable
+            \end{itemize} 
+            \item Soient $a \in \bR$ et $\func{\varphi}{[a,\infty[}{R^+}$ $M^0$ et positive 
+            \begin{itemize}
+                \item Si il existe $\alpha < 1$ tel que $\lim_{t \to \infty} t^{\alpha} \varphi(t) = 0$ alors $\varphi(t) = \mfk{o}\parenth{\frac{1}{t^{\alpha}}}$
+                et $\varphi$ est intégrable
+                \item Si il existe $\alpha > 1$ tel que $\lim_{t \to \infty} t^{\alpha} \varphi(t) = \infty$ alors $\frac{1}{t^{\alpha}} = \mfk{o}(\varphi(t))$ et
+                $\varphi$ n'est pas intégrable
+            \end{itemize}
+        \end{enumerate}
+        \begin{proof}
+            On suppose l'énoncé, on suppose $\exists \alpha < 1, \lim_{t \to O^+} t^{\alpha} \varphi(t) = 0$
+            et $\varphi(t) = \mfc{o}(t^{-\alpha})$ alors on a $\alpha < 1$ donc $\parenth{t \mapsto \frac{1}{t^{\alpha}}} \in \mfc{L}^1(]0,a], \bR)$
+            le reste est du même tonneau
+        \end{proof}
+        Utile lorsqu'on gère des exponentielles/logarithmes
+    \end{theorem}
+    \begin{theorem}{Comparaison Série/IG}
+        Soient $p \in \bN$ et $\func{\varphi}{[p,\infty[}{\bR}$ $M^0$ positive et décroissante
+        \begin{enumerate}
+            \item La série $\sum_{n \geq p} \varphi(n)$ est de même nature que l'IG $\int_{p}^{\infty} \varphi$
+            \item La série $\sum_{n \geq p} \parenth{\varphi(n) - \int_{n}^{n+1} \varphi}$ est CV
+        \end{enumerate}
+        \begin{proof}
+                    $\int_{p}^{\infty} \varphi$ CV $\Leftrightarrow \lim_{x \to \infty} \int_{p}^{x} \varphi$ existe dans $\bR$ $\varphi \geq 0$ donc $\Phi$ est croissante sur $[p, \infty[$ avec $\Psi(x) = \int_{p}^{x} \varphi$ 
+                    Supposons que $\sum_{n \geq p} \varphi(n)$ CV ainsi $(I_n)$ CV dans $\bR$ $\int_{p}^{\infty} \varphi$ CV $\Leftrightarrow \lim_{\infty} \Phi$ existe dans $\bR$
+                    or $\Phi$ est croissante donc d'après le TLM $\lim_{\infty} \Phi$ existe dans $\overline{\bR}$ $\lim n = \infty$ donc $\lim \Phi(n) = \lim \Phi \in \bR$ i.e $\lim I_n \in \bR$ et $\lim \Phi = \lim I_n \in \bR$ donc $\int_{p}^{\infty} \varphi$ CV.
+                    Supposons que $\int_{p}^{\infty} \varphi$ CV on a $\lim \Phi \in \bR$ et $\lim n = \infty$ donc $\lim \Phi(n) = \lim \Phi \in \bR$ 
+                    la suite $(I_n)$ converge et ainsi $\sum_{n \geq p} \varphi(n)$ CV
+            la suite est acquise
+        
+
+        \end{proof}
+    \end{theorem}
+    \begin{rmq}
+        Le théorème est une conséquence de l'inégalité $\varphi(k+1) \leq \int_{k}^{k+1} \varphi \leq \varphi(k)$ valable
+        pour tout entier $k \geq p$. L'idée est d'encadrer l'intégrale. 
+    \end{rmq}
+\end{adjustwidth}
+\section{Intégration des relations de comparaison pour les fonctions à valeurs positives}
+\begin{adjustwidth}{-2em}{-1em}
+    \begin{theorem}{Intégration des comparaison : le cas non intégrable}
+        Soient $(a,b)$ dans $\overline{\bR}$ tel que $-\infty < a < b \leq \infty$ et $\func{\varphi, \psi}{[a,b[}{\bR}$ $M^0$ et positives. on suppose $\psi$ 
+        non intégrable.
+        \begin{enumerate}
+            \item Si $\varphi \underset{b}{=} \mfk{O}(\psi)$ alors $\int_{a}^{x} \varphi \underset{b}{=} \mfk{O}\parenth{\int_{a}^{x} \psi}$
+            \item Si $\varphi \underset{b}{=} \mfk{o}(\psi)$ alors $\int_{a}^{x} \varphi \underset{b}{=} \mfk{o}\parenth{\int_{a}^{x} \psi}$
+            \item Si $\varphi \underset{b}{\equiv} \psi$ alors $\int_{a}^{x} \varphi \underset{b}{\equiv} \int_{a}^{x} \psi$
+        \end{enumerate} 
+        \begin{proof}
+            Comme pour les séries numériques 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}{Intégration des comparaison : cas intégrable}
+        Soient $(a,b)$ dans $\overline{\bR}$ tel que $-\infty < a < b \leq \infty$ et $\func{\varphi, \psi}{[a,b[}{\bR}$ $M^0$ et positives. on suppose $\psi$ 
+        intégrable
+        \begin{enumerate}
+            \item Si $\varphi \underset{b}{=} \mfk{O}(\psi)$ alors $\varphi$ est intégrable et $\int_{a}^{x} \varphi \underset{b}{=} \mfk{O}\parenth{\int_{a}^{x} \psi}$
+            \item Si $\varphi \underset{b}{=} \mfk{o}(\psi)$ alors $\varphi$ est intégrable et $\int_{a}^{x} \varphi \underset{b}{=} \mfk{o}\parenth{\int_{a}^{x} \psi}$
+            \item Si $\varphi \underset{b}{\equiv} \psi$ alors $\varphi$ est intégrable et $\int_{a}^{x} \varphi \underset{b}{\equiv} \int_{a}^{x} \psi$
+        \end{enumerate}
+        \begin{proof}
+            Comme pour les séries numériques
+        \end{proof}
+    \end{theorem}
+\end{adjustwidth}
+\end{document}
