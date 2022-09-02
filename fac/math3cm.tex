@@ -177,4 +177,118 @@
 \begin{document}
     \maketitle
     \tableofcontents
+
+
+    \chapter{Fonctions de $\bR$ dans $\bR$}
+
+    Soit $D \in \bR$, soit $f \in \bR^{D}$ 
+    \section{Limite}
+    \subsection{Adhérence}
+    \begin{definition}
+      On appelle adhérence de $D$ le plus petit ensemble fermé qui contient D. Noté $\bar{D}$ 
+    \end{definition}
+    \subsection{Limite}
+    Soit $f$ définie sur D, Soit $a \in \bar{D}$, Soit $l \in \bR$ 
+    \begin{definition}
+      On dit que $f$ a pour limite $l$ quand $x$ tends vers $a$ si
+      \begin{align*}
+        \forall \varepsilon > 0, \exists \eta > 0 | |x-a| < \eta \Rightarrow |f(x) - l| < \varepsilon
+      \end{align*}
+    \end{definition}
+    \subsection{Fonctions négligeables}
+    \begin{definition}
+      Soit $f,g \in \bR^{D}$ et $a \in \bar{D}$ on dit que $f = o_{a}(g)$ si $\dfrac{f(x)}{g(x)} \to_{a} 0$
+    \end{definition}
+    \begin{ex}
+      en 0 on a 
+      \begin{align}
+        \dfrac{f(x)}{g(x)} &= \dfrac{x}{\sqrt{x}} \\ 
+                           &\to_{0^{+}} 0 \\ 
+        f = o_{O^{+}}(g)
+      \end{align}
+    \end{ex}
+
+    \subsection{Croissance comparée}
+    \begin{theorem}
+      \textbf{Croissances Comparées}\newline
+      Soient $(\alpha,\beta,\gamma) \in R^{+*}$ avec $\gamma > 1$ avec 
+      \begin{align*}
+        f : x &\mapsto (\log x)^{\alpha} \\ 
+        g : x &\mapsto x^{\beta} \\ 
+        h : x &\mapsto \gamma^{x}
+      \end{align*} 
+      alors on a 
+      \begin{align*}
+        g = o_{\infty}(f) \\ 
+        h = o_{\infty}(g)
+      \end{align*}
+      c'est à dire 
+      \begin{align*}
+        \dfrac{(\log x)^\alpha}{x^\beta} &\to_{\infty} 0 \\ 
+        \dfrac{x^{\beta}}{\gamma^x} &\to_{\infty} 0
+      \end{align*}
+    \end{theorem}
+
+    \subsection{Fonctions Équivalentes}
+    \begin{definition}
+      Soit $f,g \in \bR^{D}$ et $a \in \bar{D}$ on dit que $f$ est équivalente à $g$ 
+      quand $x$ tends vers $a$ si $\dfrac{f}{g} \to_{a} 1$.  
+
+      On note $f \equiv_a g$ 
+    \end{definition}
+    \begin{ex}
+      \begin{itemize}
+        \item Un polynome est équivalent à son monôme de plus haut degrès (resp bas) quand $x$ tends vers $\infty$ (resp $0$)
+        \item $sin x \equiv_{0} x$
+        \item $ln(1+x) \equiv_{0} x$
+      \end{itemize}
+    \end{ex}
+    \subsection{Opération sur les équivalents}
+    Soient $f_1,g_1,f_2,g_2 \in \bR^D$ soit $a \in \bar{D}$ soit $\alpha \in \bR$ 
+    si 
+    \begin{align*}
+      f_1 &\equiv_{a} g_1 \\ 
+      f_2 &\equiv_{a} g_2 \\
+    \end{align*}
+    alors
+    \begin{itemize}
+      \item \begin{align*}
+      f_1 \cdot f_2 &\equiv_{a} g_1 \cdot g_2 \\ 
+      \dfrac{f_1}{f_2} &\equiv_{a} \dfrac{g_1}{g_2} \\
+      f_1^\alpha &\equiv_{a} g_1^\alpha
+    \end{align*}
+    \item \begin{equation}
+      f = o_{a} g \Rightarrow f + g \equiv_{a} g 
+    \end{equation}
+    \item Si $f \equiv_{a} g$ et $\lim_{x \to a} f(x) = l$ alors $\lim_{x \to a} g(x) = l$
+    \item \begin{prop}
+      Si $f \equiv_a g$ et $lim_a f \not= 1$ alors $ln f \equiv_a ln g$
+      \begin{proof}
+        \begin{align*}
+          \dfrac{\log g(x)}{\log f(x)} - 1 &= \dfrac{\log g(x) - \log f(x)}{\log f(x)}
+          &= \dfrac{\dfrac{\log g(x)}{\log f(x)}}{\log f(x)}
+          &to_{a} 0
+        \end{align*}
+      \end{proof}
+    \end{prop}
+    Cas particulier où $l=1$ 
+    \begin{ex}
+      $f(x) = 1+x$ et $g(x) = 1 + \sqrt{x}$ on a bien $f \equiv_0 g$ et $f \to_0 1$ 
+      on a aussi $\log f(x) = \log 1+x \equiv_0 x$ et $ln g(x) = ln 1+\sqrt{x} \equiv_0 \sqrt{x}$ et $x \not= \sqrt{x}$
+    \end{ex}
+  \end{itemize}
+  \section{Continuité}
+  \begin{definition}
+    Soit $f$ définie sur un ouvert $D$ de $\bR$ et $a \in D$.  
+    On dit que $f$ est continue en $a$ si et seulement si $lim_a f(x) = f(a)$.  
+    On note $\mathcal{C}^0$ l'ensemble des fonctions continues, c'est un espace vectoriel.
+  \end{definition}
+  \section{Dérivabilité}
+  \begin{definition}
+    Soit $f$ définie sur un ouvert $D$ de $\bR$ et $a \in D$.  
+    On dit que $f$ est dérivable en $a$ si et seulement si $lim_a \dfrac{f(x) - f(a)}{x - a}$ existe dans $\bR$.  
+    On note $f'$ la fonction $x \mapsto \lim_a \dfrac{f(x) - f(a)}{x - a}$ définie sur l'ensemble des valeurs dérivables de $f$.
+  \end{definition}
+  \subsection{Dérivée successives}
+  On peut ensuite étudier la dérivabilité des dérivées successives de f
 \end{document}
