@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[11pt,hidelinks]{book}
+\documentclass[11pt,colorlinks]{book}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +171,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Math3 CM}
-\author{Tapé par C. THOMAS}
+\author{Cours de L. PASQUEREAU \\ Tapé par C. THOMAS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -262,32 +262,34 @@
     \end{equation}
     \item Si $f \equiv_{a} g$ et $\lim_{x \to a} f(x) = l$ alors $\lim_{x \to a} g(x) = l$
     \item \begin{prop}
-      Si $f \equiv_a g$ et $lim_a f \not= 1$ alors $ln f \equiv_a ln g$
+      Si $f \equiv_a g$ et $\lim_a f \not= 1$ alors $\log f \equiv_a \log g$
       \begin{proof}
         \begin{align*}
-          \dfrac{\log g(x)}{\log f(x)} - 1 &= \dfrac{\log g(x) - \log f(x)}{\log f(x)}
-          &= \dfrac{\dfrac{\log g(x)}{\log f(x)}}{\log f(x)}
-          &to_{a} 0
+          \dfrac{\log g(x)}{\log f(x)} - 1 &= \dfrac{\log g(x) - \log f(x)}{\log f(x)} \\
+          &= \dfrac{\log \left(\dfrac{g(x)}{f(x)}\right)}{\log f(x)} && \text{or } f \equiv_a g \\
+          &\to_{a} \dfrac{0}{f(a)} && \text{par passage à la limite car } \lim_a f \not= 1 \\
+          &= 0
         \end{align*}
+        Donc $\lim_{x \to a} \dfrac{\log f(x)}{\log g(x)} = 1$ donc $\log f \equiv_a \log g$
       \end{proof}
     \end{prop}
     Cas particulier où $l=1$ 
     \begin{ex}
       $f(x) = 1+x$ et $g(x) = 1 + \sqrt{x}$ on a bien $f \equiv_0 g$ et $f \to_0 1$ 
-      on a aussi $\log f(x) = \log 1+x \equiv_0 x$ et $ln g(x) = ln 1+\sqrt{x} \equiv_0 \sqrt{x}$ et $x \not= \sqrt{x}$
+      on a aussi $\log f(x) = \log 1+x \equiv_0 x$ et $\log g(x) = \log 1+\sqrt{x} \equiv_0 \sqrt{x}$ et $x \not= \sqrt{x}$
     \end{ex}
   \end{itemize}
   \section{Continuité}
   \begin{definition}
     Soit $f$ définie sur un ouvert $D$ de $\bR$ et $a \in D$.  
-    On dit que $f$ est continue en $a$ si et seulement si $lim_a f(x) = f(a)$.  
+    On dit que $f$ est continue en $a$ si et seulement si $\lim_{x \to a} f(x) = f(a)$.  
     On note $\mathcal{C}^0$ l'ensemble des fonctions continues, c'est un espace vectoriel.
   \end{definition}
   \section{Dérivabilité}
   \begin{definition}
     Soit $f$ définie sur un ouvert $D$ de $\bR$ et $a \in D$.  
-    On dit que $f$ est dérivable en $a$ si et seulement si $lim_a \dfrac{f(x) - f(a)}{x - a}$ existe dans $\bR$.  
-    On note $f'$ la fonction $x \mapsto \lim_a \dfrac{f(x) - f(a)}{x - a}$ définie sur l'ensemble des valeurs dérivables de $f$.
+    On dit que $f$ est dérivable en $a$ si et seulement si $\lim_{x \to a} \dfrac{f(x) - f(a)}{x - a}$ existe dans $\bR$.  
+    On note $f'$ la fonction $a \mapsto \lim_{x \to a} \dfrac{f(x) - f(a)}{x - a}$ définie sur l'ensemble des valeurs dérivables de $f$.
   \end{definition}
   \subsection{Dérivée successives}
   On peut ensuite étudier la dérivabilité des dérivées successives de f
