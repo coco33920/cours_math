@@ -293,4 +293,164 @@
   \end{definition}
   \subsection{Dérivée successives}
   On peut ensuite étudier la dérivabilité des dérivées successives de f
+
+  \section{Développements Limités (DL)}
+  \begin{definition}
+    On appelle Développement Limité (DL) à l'ordre $n$ et au point $a \in I$ d'une fonction $f$ défini sur un interval ouvert $I$ de $\bR$, un polynome $P$ tel que
+    \begin{align*}
+      \deg P &= n \\ 
+      f(x) &= P(x-a) + o_0((x-a)^n)
+    \end{align*}
+    C'est une propriété \textbf{locale} de $f$ en $a$ 
+  \end{definition}
+  \subsection{Taylor-Young}
+  \begin{theorem}[Formule de Taylor-Young]
+
+
+    Soit $f$ une fonction définie de $I$ dans $\bR$, $n$ fois dérivable, alors $f$ admet un $DL_n$ pour un point $a$ de la forme 
+    \begin{equation*}
+      f(x) = \sum_{k=0}^n \dfrac{f^{(k)}(a)}{k!} (x-a)^k + o((x-a)^n)
+    \end{equation*} 
+  \end{theorem}
+  \begin{rmq}
+    Dans la majorité des cas pratiques, on prend $a=0$ ce qui donne
+    \begin{equation*}
+      f(x) = \sum_{k=0}^n \dfrac{f^{(k)}(0)x^k}{k!} + o(x^n)
+    \end{equation*}
+  \end{rmq}
+  \begin{ex}
+    En exemple on prend $f = \exp$, $\exp \in \mathcal{C}^{\infty}$ et on a $\forall n \in \bN, f^{(n)} = \exp$ donc $\forall n \in \bN, f^{(n)}(0) = 1$
+    donc d'après le théorème de Taylor-Young, $\forall n \in \bN, \exp$ admet un $DL_n$ de la forme 
+    \begin{align*}
+      \exp(x) &= \sum_{k=0}^n \dfrac{\exp^{(k)}(0)}{k!} x^k + o(x^n) \\ 
+      \exp(x) &= \sum_{k=0}^n \dfrac{x^k}{k!} + o(x^n)
+    \end{align*}
+  \end{ex}
+
+  \begin{rmq}
+    La formule de Taylor-Young permet aussi de faire l'inverse, de trouver la valeur d'une dérivée en un point si l'on connaît le DL de la fonction. 
+    \begin{ex}
+      Un exemple pour la valeur en $0$ de la dérivée quatrième de $\dfrac{1}{1-x}$ 
+      \begin{equation*}
+        \dfrac{1}{1-x} = 1 + x + x^2 + x^3 + x^4 + o(x^4)
+      \end{equation*}
+      Et d'après Taylor-Young on a 
+      \begin{equation*}
+        \dfrac{1}{1-x} = \dfrac{f(0)}{1} + \dfrac{f'(0)}{1}x + \dfrac{f''(0)}{2}x^2 + \dfrac{f^{(3)}(0)}{3!}x^3 + \dfrac{f^{(4)}(0)}{4!}x^4 + o(x^4)
+      \end{equation*}
+      Or les deux DL sont égaux, donc les polynômes aussi, et donc par identification des coefficients on a
+      \begin{equation*}
+        \dfrac{f^{(4)}(0)}{4!} = 1
+      \end{equation*}
+      ce qui donne 
+      \begin{align*}
+        \dfrac{f^{(4)}(0)}{4!} &= 1 \\ 
+        f^{(4)}(0) = 4! = 24
+      \end{align*}
+      On a donc la valeur de la dérivée quatrième en $O$ sans avoir à dériver la fonction.
+    \end{ex}
+    En pratique ça permet l'étude des dérivées en un point sur des fonctions bien plus complexes
+  \end{rmq}
+
+  \subsection{DL usuels}
+  \begin{prop}
+    Les développements limités usuels en 0 sont les suivants
+    \begin{align*}
+      e^x &= \sum_{k=0}^{n} \dfrac{x^k}{k!} + o(x^n) \\
+      \sin x &= \sum_{k=0}^{n} \dfrac{(-1)^{k} x^{2k+1}}{(2k+1)!} + o(x^{2n+1}) \\ 
+      \cos x &= \sum_{k=0}^{n} \dfrac{(-1)^{k} x^{2k}}{(2k)!} + o(x^{2n}) \\
+      \dfrac{1}{1-x} &= \sum_{k=0}^{n} x^k + o(x^n) \\ 
+      \dfrac{1}{1+x} &= \sum_{k=0}^{n} (-1)^k x^k + o(x^n) \\ 
+      \log (1+x) &= \sum_{k=0}^n \dfrac{(-1)^k x^k}{k} + o(x^n) \\ 
+      (1+x)^{\alpha} &= \sum_{k=0}^{n} \sigma_{\alpha}(k) x^k + o(x^n) && \text{avec} \\
+      \alpha &\in \bR && \text{et} \\
+      \sigma_{\alpha}(k) &= 
+      \begin{dcases}
+        1 ,& \text{si } k=0 \\ 
+        \dfrac{\sum_{i=0}^{k-1} (\alpha - i)}{k!} ,& \text{sinon}
+      \end{dcases}
+    \end{align*}
+  \end{prop}
+  \begin{rmq}
+    Les DL de fonctions paires (resp impaires) ne contiennent que des coefficients sur les degrès pairs (resp impairs)
+    \begin{ex}
+      Exemple, la fonction $\cos$ est paire
+    \end{ex}
+  \end{rmq}
+
+  \subsection{Opération sur les DL}
+  Sans perte de généralité, les DL sont ici en $0$  \newline
+
+
+  Soit $P,Q \in R[X]$ et $f,g \in \bR^{I}$ tels que 
+  \begin{align*}
+    \deg P &= \deg Q = n \\ 
+    f(x) &= P(x) + o(x^n) \\ 
+    g(x) &= Q(x) + o(x^n)
+  \end{align*}
+  \subsubsection{Troncage}
+  \begin{definition}
+    On appelle "troncage" à l'ordre $k \leq n$ d'un DL, le polynome tronqué $F_k$ de degrès $k$ tel que 
+    tous les coefficients de $F_k$ sont égaux à ceux de $F$ jusqu'au coefficient de $x^k$ et tel que 
+    \begin{equation*}
+      f(x) = F_k(x) + o(x^k)
+    \end{equation*}
+  \end{definition}
+  \begin{ex}
+    On a 
+    \begin{equation*}
+      e^x = 1 + x + \dfrac{x^2}{2} + \dfrac{x^3}{3!} + \dfrac{x^4}{4!} + \dfrac{x^5}{5!} + o(x^5)
+    \end{equation*}
+    le $DL_5$ de $exp$ alors on peut le "tronquer" à l'ordre $k=3\leq 5$ pour avoir le $DL_3$ de exp 
+    \begin{equation*}
+      e^x = 1 + x + \dfrac{x^2}{2} + \dfrac{x^3}{3!} + o(x^3)
+    \end{equation*}
+  \end{ex}
+  \subsubsection{Somme}
+  \begin{prop}
+    Le $DL_n$ de la fonction $f+g$ est la somme des $DL_n$ de $f$ et de $g$ 
+    \begin{equation*}
+      (f+g)(x) = P(x)+Q(x) + o(x^n)
+    \end{equation*}
+  \end{prop}
+  \subsubsection{Produit}
+  \begin{prop}
+    Le $DL_n$ de la fonction $fg$ est le produit des $DL_n$ de $f$ et de $g$ tronqué à l'ordre $n$ 
+    \begin{equation*}
+      (fg)(x) = PQ_{n}(x) + o(x^n)
+    \end{equation*}
+  \end{prop}
+  \subsubsection{Composée}
+  \begin{prop}
+    Si $g(0) = 0$ alors on peut composer les $DL_n$ et le $DL_n$ de $f \circ g$ est la composition des $DL_n$ de $f$ et de $g$ tronqué à l'ordre $n$
+    \begin{equation*}
+      (f\circ g)(x) = (P \circ Q)_{n}(x) + o(x^n)
+    \end{equation*}
+  \end{prop}
+  \begin{ex}
+    Exemple $DL_3$ de $\sqrt{1 + \sin x}$. On a bien $\sin 0 = 0$.
+    \begin{align*}
+      \sin x &= x - \dfrac{x^3}{6} + o(x^3) \\ 
+      (1+X)^{\alpha} &= 1 + \alpha X + \dfrac{\alpha(\alpha-1)x^2}{2} X^2 + \dfrac{\alpha(\alpha-1)(\alpha-2)}{6} X^3 + o(X^3) && \text{donc} \\ 
+      (1 + \sin x)^{\frac{1}{2}} &= 1 + \dfrac{1}{2} \left(x - \dfrac{x^3}{6}\right) - \dfrac{1}{8} \left(x - \dfrac{x^3}{6}\right)^2 + \dfrac{3}{48} \left(x - \dfrac{x^3}{6}\right)^3 + o(x^9) \\ 
+      (1 + \sin x)^{\frac{1}{2}} &= 1 + \dfrac{1}{2} x - \dfrac{x^3}{12} - \dfrac{1}{8} x^2 + \dfrac{3}{48} x^3 + o(x^3) && \text{tronquage} \\ 
+      (1 + \sin x)^{\frac{1}{2}} &= 1 + \dfrac{1}{2} x - \dfrac{1}{8} x^2 - \dfrac{1}{48} x^3 + o(x^3) 
+    \end{align*}
+  \end{ex}
+  \subsection{Application au calcul de dérivé}
+  Les DL sont utiles pour résoudre des formes indéterminées lors du calcul de limite 
+  \begin{ex}
+    Calcul de la limite en 0 de la fonction $f : $ $x \mapsto \dfrac{e^{x^2} - \cos x}{x^2}$  
+
+    On calcule les différents DL à l'ordre 4
+    \begin{align*}
+      e^{x^2} &= 1 + (x^2) + \dfrac{(x^2)^2}{2} + o(x^4) \\
+      \cos x &= 1 - \dfrac{x^2}{2} + \dfrac{x^4}{24} + o(x^4) \\
+      e^{x^2} - \cos x &= \dfrac{3}{2}x^2 + o(x^2) && \text{tronquage, inutile au delà} \\ 
+      f(x) &= \dfrac{\dfrac{3}{2}x^2 + o(x^2)}{x^2} \\ 
+      f(x) &= \dfrac{3}{2} + o(1) && \text{d'où} \\
+      \lim_{x \to 0} f(x) &= \dfrac{3}{2}
+    \end{align*}
+    On voit après que l'ordre 2 aurait suffit, l'intuition peut aider pour savoir à quel ordre calculer.
+  \end{ex}
 \end{document}
