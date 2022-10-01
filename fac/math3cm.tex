@@ -18,6 +18,8 @@
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{psfrag}
+\usepackage[T1]{fontenc}
+\usepackage{physics}
 \usepackage{pgfplots}
 \usepackage[french]{babel}
 \usepackage{bm}
@@ -45,7 +47,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{mytheoremstyle}
+  {3pt}{3pt}
+  {\normalfont}{0cm}
+  {\rmfamily\bfseries}{}
+  {\newline }{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
 \newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
 \theoremstyle{mytheoremstyle}
 \newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt]{theorem}{Théorème}[section]
@@ -115,6 +121,8 @@
 \def\bR{\mbb{R}}
 \def\bQ{\mbb{Q}}
 \def\bZ{\mbb{Z}}
+\def\mC{\mathcal{C}}
+\def\mM{\mathcal{M}}
 \def\L{\mfc{L}^1(I,\bK)}
 \def\Li#1{\mfc{L}^{#1}(I,\bK)}
 \def\LI#1{\mfc{L}^1(#1,\bK)}
@@ -209,8 +217,7 @@
     \end{ex}
 
     \subsection{Croissance comparée}
-    \begin{theorem}
-      \textbf{Croissances Comparées}\newline
+    \begin{theorem}[Croissances Comparées]
       Soient $(\alpha,\beta,\gamma) \in R^{+*}$ avec $\gamma > 1$ avec 
       \begin{align*}
         f : x &\mapsto (\log x)^{\alpha} \\ 
@@ -245,12 +252,10 @@
     \end{ex}
     \subsection{Opération sur les équivalents}
     Soient $f_1,g_1,f_2,g_2 \in \bR^D$ soit $a \in \bar{D}$ soit $\alpha \in \bR$ 
-    si 
     \begin{align*}
       f_1 &\equiv_{a} g_1 \\ 
       f_2 &\equiv_{a} g_2 \\
     \end{align*}
-    alors
     \begin{itemize}
       \item \begin{align*}
       f_1 \cdot f_2 &\equiv_{a} g_1 \cdot g_2 \\ 
@@ -293,7 +298,6 @@
   \end{definition}
   \subsection{Dérivée successives}
   On peut ensuite étudier la dérivabilité des dérivées successives de f
-
   \section{Développements Limités (DL)}
   \begin{definition}
     On appelle Développement Limité (DL) à l'ordre $n$ et au point $a \in I$ d'une fonction $f$ défini sur un interval ouvert $I$ de $\bR$, un polynome $P$ tel que
@@ -305,8 +309,6 @@
   \end{definition}
   \subsection{Taylor-Young}
   \begin{theorem}[Formule de Taylor-Young]
-
-
     Soit $f$ une fonction définie de $I$ dans $\bR$, $n$ fois dérivable, alors $f$ admet un $DL_n$ pour un point $a$ de la forme 
     \begin{equation*}
       f(x) = \sum_{k=0}^n \dfrac{f^{(k)}(a)}{k!} (x-a)^k + o((x-a)^n)
@@ -326,7 +328,6 @@
       \exp(x) &= \sum_{k=0}^n \dfrac{x^k}{k!} + o(x^n)
     \end{align*}
   \end{ex}
-
   \begin{rmq}
     La formule de Taylor-Young permet aussi de faire l'inverse, de trouver la valeur d'une dérivée en un point si l'on connaît le DL de la fonction. 
     \begin{ex}
@@ -349,9 +350,8 @@
       \end{align*}
       On a donc la valeur de la dérivée quatrième en $O$ sans avoir à dériver la fonction.
     \end{ex}
-    En pratique ça permet l'étude des dérivées en un point sur des fonctions bien plus complexes
+    En pratique ça permet l'étude des dérivées en un point sur des fonctions bien plus complexes.
   \end{rmq}
-
   \subsection{DL usuels}
   \begin{prop}
     Les développements limités usuels en 0 sont les suivants
@@ -377,11 +377,8 @@
       Exemple, la fonction $\cos$ est paire
     \end{ex}
   \end{rmq}
-
   \subsection{Opération sur les DL}
   Sans perte de généralité, les DL sont ici en $0$  \newline
-
-
   Soit $P,Q \in R[X]$ et $f,g \in \bR^{I}$ tels que 
   \begin{align*}
     \deg P &= \deg Q = n \\ 
@@ -441,7 +438,6 @@
   Les DL sont utiles pour résoudre des formes indéterminées lors du calcul de limite 
   \begin{ex}
     Calcul de la limite en 0 de la fonction $f : $ $x \mapsto \dfrac{e^{x^2} - \cos x}{x^2}$  
-
     On calcule les différents DL à l'ordre 4
     \begin{align*}
       e^{x^2} &= 1 + (x^2) + \dfrac{(x^2)^2}{2} + o(x^4) \\
@@ -453,4 +449,531 @@
     \end{align*}
     On voit après que l'ordre 2 aurait suffit, l'intuition peut aider pour savoir à quel ordre calculer.
   \end{ex}
+  \section{Intégrales de Riemann}
+  Explication des notations,
+  \begin{align*}
+    \int_a^b f &= \int_a^b f(x) \text{d}x \\ 
+    \int_{[a,b]} f &= \int_a^b f
+  \end{align*}
+  \subsection{Introduction}
+  Soit $a,b \in \bR$ tels que $a < b$. Soit $f$ définie et bornée sur $[a,b]$ et $d=(x_1,\cdots,x_n) \subset [a,b]$ une subdivision de $[a,b]$ pour $n \in \bN$.  
+  On définie 
+  \begin{align*}
+    M_i &= \sup_{x\in [x_{i-1},x_i]} f(x) \\ 
+    m_i &= \inf_{x\in [x_{i-1},x_i]} f(x) \\ 
+    S(d) &= \sum_{i=1}^n M_i \cdot (x_i-x_{i-1}) \\ 
+    s(d) &= \sum_{i=1}^n m_i \cdot (x_i-x_{i-1})
+  \end{align*}
+  Le but est double 
+  \begin{itemize}
+    \item Approcher $f$ par des fonctions en escalier 
+    \item Augmenter $n$ pour augmenter la précision de l'approche
+  \end{itemize}
+  Et pour $d'$ une subdivision plus fine que $d$ on a 
+  \begin{equation*}
+    s(d) \leq s(d') \leq S(d') \leq S(d)
+  \end{equation*}
+  On peut définir des suites convergentes, et à l'infini on note 
+  \begin{align*}
+    I &= \sup_{[a,b]} S(d) \\ 
+    J &= \inf_{[a,b]} s(d)
+  \end{align*}
+  \begin{definition}
+    Une fonction $f$ est Riemann-intégrable si $I_f=J_f=\int_{a}^b f$
+  \end{definition}
+  \subsection{Propriétés de l'intégrale}
+  On prend $f,g$ deux fonctions Riemann-intégrable définie sur $[a,b]$
+  \begin{prop}
+    On a
+    \begin{align*}
+      \int_a^a f &= 0 \\ 
+      \int_b^a f &= - \int_a^b f
+    \end{align*}
+  \end{prop}
+  \begin{prop}[Relation de Chales]
+    Soit $c \in [a,b]$,
+    \begin{equation*}
+      \int_a^b f = \int_a^c f + \int_c^b f
+    \end{equation*}
+  \end{prop}
+  \begin{ex}
+    Exemple d'une fonction non-Riemann-intégrable. Soit $f$ la fonction indicatrice de $\bQ$ sur $[0,1]$ alors on a 
+    \begin{align*}
+      M_i = \sup f &= 1 \\ 
+      m_i = \inf f &= 0
+    \end{align*}
+    D'où 
+    \begin{align*}
+      S(d) = x_n - x_0 &= 1 \\
+      s(d) = 0
+    \end{align*}
+    Donc 
+    \begin{equation*}
+      I \not= J
+    \end{equation*}
+    Par conséquence, $f$ n'est pas Riemann-intégrable sur $[0,1]$
+  \end{ex}
+  \begin{theorem}
+    Soit $f$ une fonction définie sur $[a,b]$
+    \begin{enumerate}
+      \item Si $f$ est $\mathcal{C}^0$ alors $f$ est Riemann-intégrable
+      \item Théorème des singularités supprimable, si on modifie $f$ sur un nombre fini de point, l'intégrale n'est pas modifiée
+      \item Par conséquence, les fonctions continues par morceaux ($\mathcal{M}^0$) sont aussi Riemann-intégrable
+    \end{enumerate}
+  \end{theorem}
+  \subsection{Opération sur les intégrales}
+  \begin{prop}
+    Soient $f,g$ Riemann-intégrables sur $I$
+    \begin{itemize}
+      \item Soit $\lambda \in \bR$, alors $\int_I \lambda f = \lambda \int_I f$
+      \item La fonction $(f+g)$ est Riemann-intégrable et $\int_I (f+g) = \int_I f + \int_I g$
+      \item La fonction $\abs{f}$ est Riemann-intégrable
+      \item La fonction $(fg)$ est Riemann-intégrable
+    \end{itemize}
+  \end{prop}
+  \subsection{Positivité de l'intégrale}
+  \begin{prop}
+    Soit $f$ Riemann-intégrable sur $I$
+    \begin{itemize}
+      \item Si $\forall x \in I, f(x) \geq 0$ alors $\int_I f \geq 0$
+      \item Si $\forall x \in I, f(x) \leq 0$ alors $\int_I f \leq 0$
+    \end{itemize}
+  \end{prop}
+  \begin{theorem}[Positivité de l'intégrale]
+    Soit $f,g$ Riemann-intégrable sur $I$ telles que 
+    \begin{equation*}
+      \forall x \in I, f(x) \leq g(x)
+    \end{equation*}
+    Alors il vient de la prop précédente que 
+    \begin{equation*}
+      \int_I f \leq \int_I g
+    \end{equation*}
+  \end{theorem}
+  \begin{prop}[Généralisation de l'inégalitée triangulaire]
+    Soit $f$ Riemann-intégrable sur I, on a alors 
+    \begin{equation*}
+      \abs{\int_I f} \leq \int_I \abs{f}
+    \end{equation*}
+  \end{prop}
+  \subsection{Moyenne}
+  Soit $f,g$ Riemann-intégrable sur $I$, on note 
+  \begin{align*}
+    m &= \inf_I f \\
+    M &= \sup_I f
+  \end{align*}
+  \begin{prop}
+    Si $g$ est de signe constant sur $I$ alors $\exists \mu \in [m,M], \int_I fg = \mu \int_I g$
+    \begin{proof}
+      On a, $\forall x \in I, m \leq f(x) \leq M$, on considère sans perte de généralité que $\forall x \in I, g(x) \geq 0$ et 
+      que $\int_I g \not= 0$ 
+      alors on a 
+      \begin{align*}
+        \forall x \in I,& m \leq f(x) \leq M \\ 
+        &m g(x) \leq f(x)g(x) \leq Mg(x) \\ 
+        &m\int_I g \leq \int_I fg \leq M \int_I g && \text{g est positive} \\ 
+        &m \leq \dfrac{\int_I fg}{\int_I g} \leq M && \text{car }\int_I g \not= 0
+      \end{align*}
+      On pose $\dfrac{\int_I fg}{\int_I g} = \mu$, il vient que $\mu \in [m,M]$ et que $\mu \int_I g = \int_I fg$
+    \end{proof}
+  \end{prop}
+  \begin{rmq}
+    On prend le cas particulier où $g=1$ on a $\int_a^b f = \mu \int_a^b 1$ ce qui donne finalement
+    \begin{equation*}
+      \mu = \dfrac{1}{(b-a)} \int_a^b f
+    \end{equation*}
+    On appelle alors $\mu$ la valeur moyenne de la fonction $f$ sur $[a,b]$ 
+  \end{rmq}
+  \subsection{Théorème fondamental de l'analyse}
+  
+  \begin{prop}
+    Soit $f : [a,b] \to \bR$ Riemann-intégrable, et on définie $g : [a,b] \in \bR$ telle que 
+    \begin{equation*}
+    \forall x \in [a,b], g(x) = \int_a^x f
+    \end{equation*}
+    Alors
+    \begin{itemize}
+      \item Si $f$ est Riemann-intégrable alors $g$ est continue
+      \item Si $f$ est continue en $x_0 \in [a,b]$ alors $g$ est dérivable en $x_0$
+      \item Si $f$ est continue sur $[a,b]$ alors $g$ est dérivable sur $[a,b]$ et $g' = f$
+    \end{itemize}
+  \end{prop}
+
+  \begin{theorem}[Théorème fondamental de l'analyse]
+    Soit $f$ une fonction $\mathcal{C}^0$ sur $I$ un interval de $\bR$, et soit $\alpha \in I$ alors $f$ admet une unique primitive $F_{\alpha}$ 
+    telle que $F_{\alpha}' = f$ s'annulant en $x=\alpha$.
+    De plus pour toute fonction $F$ primitive de $f$ on a $\int_a^b f = F(b) - F(a)$
+  \end{theorem}
+  \subsection{Primitives usuelles}
+  \begin{prop}
+    Les primitives usuelles sont les suivantes, par abus de notation toutes les fonctions suivantes 
+    sont marquées selon leur procédure, par example $x^{\alpha}$ réfère à la fonction $(x \mapsto x^{\alpha})$ sur son plus grand interval de 
+    définition, $c$ désigne une constante réelle.
+    \begin{align*}
+      f = x^{\alpha}, F &= \dfrac{x^{\alpha+1}}{\alpha+1} + c && \alpha \not= -1 \\ 
+      f = \dfrac{1}{x}, F &= ln \abs{f} + c \\ 
+      f = \dfrac{1}{\sqrt{x}}, F &= 2\sqrt{x} + c \\ 
+      f = e^x, F &= e^x + c \\
+      f = \cos (ax+b), F &= \dfrac{1}{a} \sin (ax+b) + c && a \not= 0 \\ 
+      f = \sin (ax+b), F &= - \dfrac{1}{a} \cos(ax+b) + c && a \not= 0 \\
+      f = \dfrac{1}{\cos^2 x}, F &= \tan x \\ 
+      f = \dfrac{1}{x^2+a^2}, F &= \dfrac{1}{a} \arctan \dfrac{x}{a} + c && a \not= 0 
+    \end{align*}
+    Pour les fonctions, il faut pas oublier la règle de la composée qui donne par example
+    \begin{align*}
+      f = u^{\alpha} \cdot u', F &= \dfrac{u^{\alpha+1}}{\alpha+1} && \alpha \not=-1 \\ 
+      f = \dfrac{u'}{u}, F &= ln \abs{u} \\
+      f = \dfrac{u'}{\sqrt{u}}, F &= 2\sqrt{u}
+    \end{align*}
+  \end{prop}
+  \subsection{Changement de variable}
+  \begin{theorem}[Théorème de changement de variable]
+    Soit $\varphi [a,b] \in \bR, \mathcal{C}^1$ sur $[a,b]$, et soit $f : I \in \bR \mathcal{C^0}$ sur $I$ alors on a la formule suivante
+    \begin{equation*}
+      \int_a^b f \circ \varphi \cdot \varphi' = \int_{\varphi(a)}^{\varphi(b)} f
+    \end{equation*}
+  \end{theorem}
+  \begin{ex}
+    Calculons, $I = \int_0^1 \dfrac{x \text{d}x}{\sqrt{d - x^2}}$
+    On pose $t = 2 - x^2$ ce qui est bien $\mathcal{C}^1$ alors on a $\text{d}t = -2x \text{d}x$ 
+    donc par changement de variable,
+    \begin{align*}
+      I &= \int_2^1 \dfrac{\text{d}t}{-2\sqrt{t}} \\ 
+        &= \int_1^2 \dfrac{\text{d}t}{2\sqrt{t}} \\ 
+        &= \left[2\sqrt{x}\right]_1^2 \\ 
+        &= \sqrt{2} - 1
+    \end{align*}
+  \end{ex}
+  \subsection{Intégration par parties}
+  \begin{theorem}[Théorème d'intégration par parties]
+    Soit $u,v$, $\mathcal{C}^1$ sur $[a,b]$ alors on a 
+    \begin{equation*}
+      \int_a^b uv' = [uv]_a^b - \int_a^b u'v
+    \end{equation*}
+  \end{theorem}
+  \begin{ex}
+    Exemple calculons $I = \int_0^1 xe^x \text{d}x$
+    On pose $u(x) = x$ donc $u'(x) = 1$ et donc $v'(x) = e^x$ ce qui donne $v(x) = e^x$ ce qui sont bien $C^1$,
+    donc par IPP on a 
+    \begin{align*}
+      I &= [xe^x]_0^1 - \int_0^1 e^x \text{d}x \\ 
+      &= e - (e - 1) \\ 
+      &= 1
+    \end{align*}
+  \end{ex}
+  \section{Intégrales Généralisées}
+  Il existe deux cas d'intégrales généralisées
+  \begin{enumerate}
+    \item Le cas où l'on intègre une fonction bornée sur un intervalle non borné (de forme $[a,b[$)
+    \item Le cas où l'on intègre une fonction non bornée sur un intervalle bornée (de forme $[a,b]$)
+  \end{enumerate}
+  \begin{definition}
+    Soit $[a,b[$ tel que $-\infty < a < b \leq +\infty$.
+    Soit $f : [a,b[ \to \bR$. On prend l'application $I(\lambda) = \int_a^{\lambda} f$ définie sur $[a,b[$
+    \begin{itemize}
+      \item Si $I(\lambda)$ converge en $b^{-}$ alors $f$ est intégrable sur $[a,b[$, 
+      on note $\lim_{\lambda \to b^{-}} I(\lambda) = \int_a^b f$ et on appelle 
+      le scalaire $\int_a^b f$ \textbf{intégrale généralisée} de $f$ sur $[a,b[$
+      \item Si $I(\lambda)$ diverge en $b^{-}$ alors $f$ n'est pas intégrable sur $[a,b[$
+    \end{itemize}
+  \end{definition}
+  \begin{ex}
+    On cherche à connaître la nature de l'intégrale de $\left(x \mapsto \dfrac{1}{x^2}\right)$ sur $[1,+\infty[$
+    \begin{align*}
+      I(\lambda) &= \int_1^{\lambda} \dfrac{\text{d}x}{x^2} \\ 
+                &= - \left[\dfrac{1}{x}\right]_1^{\lambda} \\ 
+                &= - \dfrac{1}{\lambda} + 1 \to_{\infty} 1
+    \end{align*}
+    Donc $\int_1^{\infty} \dfrac{\text{d}x}{x^2}$ existe et vaut $1$
+  \end{ex}
+  \begin{ex}
+    On cherche à connaître la nature de l'intégrale de $\left(x \mapsto \cos x\right)$ sur $[0,\infty[$.
+    \begin{align*}
+      I(\lambda) &= \int_1^{\lambda} \cos x \text{d}x \\ 
+                &= \left[\sin x\right]_1^{\lambda} \\ 
+                &= - \sin \lambda && \text{DV}
+    \end{align*}
+    Donc $\left(x \mapsto \cos x\right)$ n'est pas intégrable sur $[0,\infty[$
+  \end{ex}
+  \begin{rmq}
+    Soit $c \in [a,b[$ alors $\int_a^b f$ et $\int_c^b f$ sont de même nature, et sont notés en général $\int^b f$
+  \end{rmq}
+  \begin{rmq}
+    Si on a $a = \infty$ ou $f$ non définie en $a$ on sépare l'étude en plusieurs sous problèmes
+  \end{rmq}
+  \subsection{Cas des fonctions réelles positives}
+  Dans la section $f$ est une fonction réelle positive définie sur $[a,b[$
+  \subsubsection{Majoration}
+  \begin{prop}
+    l'intégrale de $f$ sur $[a,b[$ CV $\Leftrightarrow \int_a^{\lambda} f$ majorée
+    \begin{proof}
+      \begin{equation*}
+        I(\lambda) = \int_{a}^{\lambda} f
+      \end{equation*}
+      On a $I$ qui est croissante sur $[a,b[$ d'après le théorème des limites monotones alors 
+      \begin{itemize}
+        \item si $I$ est majorée alors $I(\lambda) \to \mu \in \bR$ et $f$ est intégrable sur $[a,b[$
+        \item si $I$ n'est pas majorée alors $I(\lambda) \to \infty$ donc $f$ n'est pas intégrable sur $[a,b[$
+      \end{itemize}
+    \end{proof}
+  \end{prop}
+  \subsubsection{Comparaison}
+  \begin{prop}[Théorème de comparaison]
+    Soit $g : [a,b[ \to \bR$ tel que $0 \leq f \leq g$ alors 
+    \begin{itemize}
+      \item Si $g$ est intégrable sur $[a,b[$ alors $f$ l'est 
+      \item Si $f$ n'est pas intégrable sur $[a,b[$ alors $g$ ne l'est pas
+    \end{itemize}
+  \end{prop}
+  \subsubsection{Equivalent}
+  \begin{prop}
+    Soit $g : [a,b[ \to \bR$ tel que $f \equiv_b g$ alors $\int^b f$ et $\int^b g$ sont de même nature
+  \end{prop}
+  \subsection{Cas des fonction réelles positives et où $b=\infty$}
+  \begin{prop}
+    Si $f \not\to 0$ alors $f$ n'est pas intégrable sur $[a,\infty[$
+    \begin{proof}
+      Supposons que $f \to l \not= 0$ alors $f \equiv l$ donc $\int^{\infty} f$ est de même nature que $\int^{\infty} l \text{d}x$ donc 
+      $\int^{\infty} f$ DV
+    \end{proof}
+  \end{prop}
+  \subsubsection{Critère de Riemann}
+  \begin{theorem}[Critère de Riemann]
+    La fonction $(x \mapsto \frac{1}{x^{\alpha}})$ est : 
+    \begin{itemize}
+      \item intégrable $\Leftrightarrow \alpha > 1$
+      \item pas intégrable $\Leftrightarrow \alpha \leq 1$ 
+    \end{itemize}
+    \begin{proof}
+      \begin{align*}
+        I(\lambda) &= \int_1^{\lambda} \frac{\text{d}x}{x^{\alpha}} && \alpha \not= 1 \\
+                  &= \left[\frac{x^{1 - \alpha}}{1 - \alpha}\right]_1^{\lambda} \\ 
+                  &= \frac{1}{(1-\alpha)\lambda^{\alpha-1}} - \frac{1}{1-\alpha}
+      \end{align*}
+      Donc $I$ ne converge que si $\alpha > 1$ et en retour si $\alpha > 1$ alors $I$ converge.
+    \end{proof}
+  \end{theorem}
+  \begin{ex}
+    Cherchons la nature de $\int_0^{\infty} \frac{2x+1}{\sqrt{x^4+8}}$ 
+    \begin{align*}
+      \frac{2x+1}{\sqrt{x^4+8}} &\equiv \frac{2x}{\sqrt{x^4}} \\ 
+                                &\equiv \frac{2}{x}
+    \end{align*}
+    Donc d'après le critère de Riemann $\int_0^{\infty} \frac{2x+1}{\sqrt{x^4+8}}$ DV
+  \end{ex}
+  \subsubsection{Règle de Riemann}
+  \begin{prop}[Règle de Riemann]
+    Soit $f$ une fonction définie sur $[a,\infty[$
+    \begin{itemize}
+      \item Si il existe $\alpha > 1$ tel que $x^{\alpha}f(x) \to l \in \bR$ alors $\int^{\infty} f$ CV
+      \item Si il existe $\alpha \leq 1$ tel que $x^{\alpha}f(x) \to l \in \bar{\bR^{*}}$ alors $f$ n'est pas intégrable     
+    \end{itemize}
+    \begin{proof}
+      Conséquence du critère de Riemann.
+    \end{proof}
+  \end{prop}
+  \begin{ex}
+    Est-ce que $(x \mapsto \sqrt{x}e^{-x})$ est intégrable sur $[0,\infty[$
+    \begin{align*}
+      x^2*\sqrt{x}e^{-x} &= \frac{x^{\frac{5}{2}}}{e^x} \\ 
+                        &\to 0 && \text{CC} 
+    \end{align*}
+    Donc d'après la règle de Riemann, $\int^{\infty} \sqrt{x}e^{-x}$ CV
+  \end{ex}
+  \subsection{Cas où b est fini}
+  On note 
+  \begin{equation*}
+    g(x) = \frac{1}{(b-x)^{\alpha}}, \alpha > 0
+  \end{equation*}
+  \begin{prop}
+    Nature de $\int_a^b g$. 
+    \begin{align*}
+      I(\lambda) &= - \frac{1}{(1-\alpha)} \left((b-\lambda)^{1-\alpha} - (b-a)^{1 - \alpha}\right)
+    \end{align*}
+    Donc
+    \begin{itemize}
+      \item si $\alpha < 1$ alors $(b - \lambda)^{1-\alpha} \to 0$ donc $I$ CV
+      \item si $\alpha > 1$ alors $(b - \lambda)^{1-\alpha} \to \infty$ donc $I$ DV
+      \item si $\alpha = 1$ alors $I \to \infty$ donc $I$ DV
+    \end{itemize}
+  \end{prop}
+  \subsubsection{Critère de Riemann}
+  \begin{theorem}[Critère de Riemann - Version finie]
+    \begin{equation*}
+      \int_a^b \frac{\text{d}x}{(b-x)^{\alpha}} \text{ CV } \Leftrightarrow \alpha < 1
+    \end{equation*}.
+    \begin{proof}
+      Voir ci dessus.
+    \end{proof}
+  \end{theorem}
+  \begin{prop}
+    Par conséquent si $f \equiv \frac{A}{(b-x)^{\alpha}}$ alors $\int^b f$ CV ssi $\alpha < 1$
+    \begin{proof}
+      Conséquence directe du critère de Riemann.
+    \end{proof}
+  \end{prop}
+  \begin{ex}
+    Nature de $\int_0^1 \frac{x+1}{\sqrt{x}}$ on a 
+    \begin{align*}
+      \frac{x+1}{\sqrt{x}} &\equiv \frac{2}{\sqrt{x}} \\
+                          &\equiv \frac{2}{x^{\frac{1}{2}}}
+    \end{align*}
+    or $\frac{1}{2} < 1$ donc $\int_0^1 \frac{x+1}{\sqrt{x}}$ CV
+  \end{ex}
+  \subsubsection{Règle de Riemann}
+  \begin{prop}[Règle de Riemann - Version finie]
+    Soit $f$ une fonction définie sur $[a,b[$ 
+    \begin{itemize}
+      \item Si il existe $\alpha < 1$ tel que $x^{\alpha}f(x) \to l \in \bR$ alors $\int^{\infty} f$ CV
+      \item Si il existe $\alpha \geq 1$ tel que $x^{\alpha}f(x) \to l \in \bar{\bR^{*}}$ alors $f$ n'est pas intégrable     
+    \end{itemize}
+    \begin{proof}
+      Conséquence du critère de Riemann.
+    \end{proof}
+  \end{prop}
+  \subsection{Cas des fonctions de signes qql}
+  \begin{definition}
+    On dit que l'intégrale de $f$ est simplement convergente si et seulement si $I(\lambda)$ a une limite et si
+    \begin{equation*}
+      \lim_{x \to b^{-}} \int_a^x f \in \bR
+    \end{equation*}
+  \end{definition}
+  \begin{definition}
+    On dit que l'intégrale de $f$ est absolument convergente si et seulement si $\int_a^x \abs{f} \to \mu \in \bR$ 
+  \end{definition}
+  \begin{theorem}[Comparaison]
+    Soient $a \in \bR$, $b \in \bar{\bR}$ tel que $a < b$ et $f$ une fonction définie sur $[a,b[$
+    \begin{enumerate}
+      \item Si l'intégrale de $f$ est absolument convergente alors l'intégrale de $f$ est simplement convergente
+      \item Le résultat $\abs{\int f} \leq \int \abs{f}$ est étendu aux intégrales généralisées
+    \end{enumerate}
+    \begin{proof}
+      \begin{enumerate}
+        \item Notons, $f^{-} = max(-f,0)$ et $f^{+} = max(f,0)$. On observe que 
+      \begin{align*}
+        f^{-} + f^{+} &= max(-f,0) + max(f,0) \\ 
+                      &= \abs{f}
+      \end{align*}
+      Et on a aussi
+      \begin{align*}
+        f^{+} - f^{-} &= max(f,0) - max(-f,0) \\ 
+                     &= f
+      \end{align*}
+      On suppose que $\int \abs{f}$ est convergente donc 
+      \begin{equation*}
+        \exists \mu \in \bR, \lim_{x \to b^{-}} \int_a^x (f^{+}+f^{-}) = \mu
+      \end{equation*}
+      Or Les fonctions $f^{+}$ et $f^{-}$ sont à valeurs positives, donc
+      \begin{align*}
+        \exists (\mu_1,\mu_2) \in \bR^2, &\lim_{x \to b^{-}} \int_a^x (f^{+}) = \mu_1 && \text{et} \\ 
+                                         &\lim_{x \to b^{-}} \int_a^x (f^{-}) = \mu_2
+      \end{align*}
+      Donc par linéarité, 
+      \begin{equation*}
+        \lim_{x \to b^{-}} \int_a^x (f^{+}-f^{-}) = \mu_1 + \mu_2 \in \bR
+      \end{equation*}
+      Ce qui revient à 
+      \begin{equation*}
+        \exists \lambda \in \bR, \lim_{x \to b^{-}} \int_a^x f = \lambda
+      \end{equation*}
+      Donc l'intégrale de $f$ est simplement convergente.\newline
+
+        \item Supposons que l'intégrale de $f$ est absolument convergente, rappelons d'abord que sur les intégrales de Riemann on a 
+      pour $(\alpha,\beta) \in \bR^2$ tels que $a < b$ et $g$ $\mM^0$ sur $[a,b]$
+      \begin{equation}
+        \abs{\int_{\alpha}^{\beta} g} \leq \int_{\alpha}^{\beta} \abs{g}
+      \end{equation}
+      Puis,
+      \begin{align*}
+        \forall x \in [a,b[, \abs{\int_a^x f} &= \abs{\int_a^x (f^{+} - f^{-})} \\ 
+        &\leq \abs{\int_a^x f^{+}} + \abs{\int_a^x f^{-}} && \textit{IT} \\ 
+        &\leq \int_a^x \abs{f^{+}} + \int_a^x \abs{f^{-}} && (1)\\ 
+        &\leq \int_a^x f^{+} + f^{-} && \text{valeurs positives} \\
+        &\leq \int_a^x \abs{f}
+      \end{align*}
+      Enfin par passage à la limite avec $x \to b^{-}$ (les limites existe avec la démonstration du 1.)
+      \begin{equation*}
+        \abs{\int_a^b f} \leq \int_a^b \abs{f}
+      \end{equation*}
+    \end{enumerate}
+    \end{proof}
+  \end{theorem}
+  \begin{ex}
+    Nature de $\int_0^1 \sin \frac{1}{x} \text{d}x$. 
+    On a 
+    \begin{equation*}
+      \forall x \in ]0,1] \leq 1 
+    \end{equation*}
+    Donc l'intégrale est absolument convergente donc l'intégrale est convergente
+  \end{ex}
+  \begin{ex}
+    Nature de $\int_0^{\infty} \frac{\cos x}{1+x^2}$ par le même raisonnement absolument convergente donc convergente.
+  \end{ex}
+
+\chapter{Notations et rappels}
+\section{Ensembles}
+\begin{rmq}
+  Soit $D$ un ensemble
+  \begin{itemize}
+    \item $\bar{D}$ est l'adhérence de $D$ c'est à dire le plus 
+    petit ensemble fermé contenant $D$, par exemple $\bar{R} = \bR \cup \{-\infty,+\infty\}$
+    \item Soit $\bK$ un corps, alors $\bK[X]$ est l'ensemble des polynomes 
+    à coefficient dans $\bK$ a une indéterminée (en gros, variable)
+  \end{itemize}
+\end{rmq}
+\section{Fonctions}
+\subsection{Ensembles de fonctions}
+\begin{rmq}
+  Soit $E,F$ deux ensembles, et soit $I$ un interval de $\bR$
+  \begin{itemize}
+    \item $E^{F}$ est l'ensemble des applications (fonctions) de $F$ dans $E$
+    \item $\mC^0(I)$ est l'ensemble des fonctions continues sur $I$
+    \item Dans le cas général $\mC^n(I)$ est l'ensemble des fonctions dérivable $n$ fois sur $I$ et 
+    dont la n-ème dérivée est continue sur $I$
+    \item $\mM^0(I)$ est l'ensemble des fonctions continues par morceaux sur $I$
+  \end{itemize}
+\end{rmq}
+\subsection{Opérations entre fonctions et fonctions et fonctions et scalaires}
+\begin{rmq}
+  Soit $f,g$ deux fonctions, Soit $\lambda \in \bR$
+  \begin{itemize}
+    \item $\lambda f$ est la fonction $\left(x \mapsto \lambda \cdot f(x)\right)$
+    \item $f+g$ est la fonction $\left(x \mapsto f(x)+g(x)\right)$
+    \item $fg$ est la fonction $\left(x \mapsto f(x)g(x)\right)$
+    \item $f \circ g$ est la fonction $\left(x \mapsto f(g(x))\right)$
+  \end{itemize}
+\end{rmq}
+\subsection{Comparaison entre fonctions et fonctions et fonctions et scalaires}
+\begin{rmq}
+  Soit $f,g$ deux fonctions et $\lambda \in \bR$
+  \begin{itemize}
+  \item $f \geq \lambda$ (resp $>, \leq, <$) représente $\forall x \in I, f(x) \geq \lambda$ (resp $>,\leq,<$)
+  \item $f \geq g$ (resp $>,\leq,<$) représente $\forall x \in I, f(x) \geq g(x)$ (resp $>,\leq,<$)
+  \item $f = o_a(g) \Leftrightarrow \lim_a \frac{f}{g} = 0$
+  \item $f = \mathcal{O}_a(g) \Leftrightarrow \lim_a \frac{f}{g} \in \bR$
+  \item $f \equiv_a g \Leftrightarrow \lim_a \frac{f}{g} = 1$
+  \end{itemize}
+\end{rmq}
+\subsection{Limites, continuité et dérivabilité}
+\begin{rmq}
+  Soit $f$ une fonction définie sur $I$ et $a \in I$
+  \begin{itemize}
+    \item Définition de la limite de $f$ au point $a$
+    \begin{equation*}
+      \left(\lim_{x \to a} f(x) = l\right) \Leftrightarrow \left(\forall \varepsilon > 0, \exists 
+      \nu > 0, \abs{x-a} < \nu \Rightarrow \abs{f(x) - l} < \varepsilon\right)
+    \end{equation*}
+    \item $\lim_a f = \lim_{x \to a} f(x)$ 
+    \item $f$ est continue en $a$ si $\lim_a f = f(a)$ 
+    \item $f$ est continue sur $I$ si $\forall x \in I, f$ est continue en $x$
+    \item $f$ est dérivable en $a$ si le quotient $\frac{f(x) - f(a)}{x - a}$ admet une limite finie quand $x \to a$
+    \item $f$ est dérivable sur $I$ si $\forall x \in I, f$ est dérivable en $x$
+  \end{itemize}
+\end{rmq}
+\subsection{Autre}
+\begin{rmq}
+  Soit $f$ une fonction définie sur $I$ un interval de $\bR$ tel que $I = [a,b]$
+  \begin{itemize}
+    \item $\int_I f = \int_a^b f = \int_a^b f(x) \text{d}x$
+  \end{itemize}
+\end{rmq}
 \end{document}
