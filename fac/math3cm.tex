@@ -21,6 +21,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{physics}
 \usepackage{pgfplots}
+\usepackage{fancyhdr}
 \usepackage[french]{babel}
 \usepackage{bm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,6 +148,11 @@
 \def\fef{\textbf{FEF}}
 \def\ln{\lim_{n \to \infty}}
 \def\bO{\mfc{O}}
+\def\rN{\bR^{\bN}}
+\def\rNp{\left(\bR^{+}\right)^{\bN}}
+\def\sn{\sum_{n=0}^{\infty} u_n}
+\def\satp{série à terme positifs}
+\def\apcr{à partir d'un certain rang}
 % Sometimes helpful macros
 \newcommand{\func}[3]{#1\colon#2\to#3}
 \newcommand{\cvs}[2]{converge simplement sur $#1$ vers $#2$}
@@ -179,14 +185,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Math3 CM}
-\author{Cours de L. PASQUEREAU \\ Tapé par C. THOMAS}
+\author{Cours de L. PASQUEREAU \\ Note de C. THOMAS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
     \maketitle
     \tableofcontents
-
-
+    \pagestyle{fancy}
+    \fancyfoot{}
+    \fancyfoot[C]{Approuvé pour usage interne à l'Université de Rennes, page \thepage}
     \chapter{Fonctions de $\bR$ dans $\bR$}
 
     Soit $D \in \bR$, soit $f \in \bR^{D}$ 
@@ -449,6 +456,8 @@
     \end{align*}
     On voit après que l'ordre 2 aurait suffit, l'intuition peut aider pour savoir à quel ordre calculer.
   \end{ex}
+
+  \chapter{Intégration}
   \section{Intégrales de Riemann}
   Explication des notations,
   \begin{align*}
@@ -909,6 +918,447 @@
     Nature de $\int_0^{\infty} \frac{\cos x}{1+x^2}$ par le même raisonnement absolument convergente donc convergente.
   \end{ex}
 
+
+
+\chapter{Séries numériques}
+\section{Introduction aux séries numériques}
+\begin{definition}
+  Soit $(u_n) \in \bR^{\bN}$ et $S_n = \sum_{i=0}^n u_i$ alors la suite $(S_n)_{n \in \bN}$ est appélée \textit{série de terme général $u_n$} 
+  notée $\sum u_n$.
+  
+  De plus si la suite $(S_n)$ converge alors on note $S = \ln \sum_{k=0}^n u_k$, notée aussi $\sum_{k=0}^{\infty} u_k$ 
+  appelée \textit{somme de la série}. 
+  
+  On dit alors que la série de terme général $u_n$ est convergente. Dans le cas contraire on dit qu'elle est divergente. 
+\end{definition}
+\begin{definition}
+  On appelle $S_n = \sum_{k=0}^n u_k$ somme partielle de la série de terme général $u_n$, et si la série est convergente alors on note 
+  $R_n = S - S_n$ le reste de la série.
+\end{definition}
+\begin{rmq}
+  On a donc $\ln R_n = 0$
+\end{rmq}
+\begin{rmq}
+  Les séries $\sum_{0} u_n$ et $\sum_{n_0}$ sont de même nature d'où la notation $\sum u_n$ 
+\end{rmq}
+\begin{prop}[Condition nécessaire de convergence]
+  \begin{equation*}
+    \left(\sum u_n \text{ CV}\right) \Leftrightarrow \ln u_n = 0
+  \end{equation*}
+
+  
+  \begin{proof}
+    On observe que 
+    \begin{equation*}
+      S_{n+1} - S_n = u_n
+    \end{equation*}
+    Donc, en supposant que $\sum u_n$ CV on a 
+    \begin{align*}
+      u_n &\to S - S \\ 
+          &= 0
+    \end{align*}
+    Donc $\ln u_n = 0$
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  Cette condition est surtout utilisé pour montrer qu'il n'y a pas convergence (contraposée), lorsque $u_n \not\to 0$ on dit 
+  que $\sum u_n$ est \textit{grossièrement divergente}.
+\end{rmq}
+\begin{ex}
+  Soit $u_n = \dfrac{1}{n(n+1)}$. Soit $n \geq 1$ on a alors
+  \begin{equation*}
+    \dfrac{1}{n(n+1)} = \dfrac{1}{n} - \dfrac{1}{n+1}
+  \end{equation*}
+  Donc par somme téléscopique on obtient que 
+  \begin{equation*}
+    \sum_{k=1}^{n} \dfrac{1}{n(n+1)} = 1 - \dfrac{1}{n+1} \to_{n \to \infty} 1 
+  \end{equation*}
+  Donc la série de terme générale $u_n$ est convergente et sa somme vaut $1$
+\end{ex}
+\begin{ex}
+  Soit $u_n = \log \left(1 + \frac{1}{n}\right)$, alors on a 
+  \begin{align*}
+    u_n &= \log \frac{n+1}{n} \\ 
+        &= \log n+1 - \log n
+  \end{align*}
+  Donc,
+  \begin{align*}
+    \sum_{k=1}^{n} u_n &= \sum_{k=1}^n \log n+1 - \log n \\
+                       &= \log n+1 - \log 1 && \text{somme téléscopique} \\ 
+                       &= \log n+1 \\
+                       &\to \infty
+  \end{align*}
+  Donc la série de terme générale $u_n$ est divergente
+\end{ex}
+\subsection{Sommes de séries numériques}
+\begin{prop}[Somme]
+  Soit $(v_n) \in \rN$ et $(u_n) \in \rN$ et $w_n = u_n + v_n$ 
+  \begin{itemize}
+    \item Si $\sum u_n$ et $\sum v_n$ convergent alors $\sum w_n$ converge
+    \item Si $\sum u_n$ ou $\sum v_n$ divergent alors $\sum w_n$ diverge
+    \item Si $\sum u_n$ et $\sum v_n$ divergent alors on ne peut rien dire de $\sum w_n$
+  \end{itemize}
+\end{prop}
+\section{Séries géométriques}
+\begin{definition}
+  Soit $r \in \bR$ alors on appelle suite géométrique une suite de la forme $u_n = r^n$ et alors 
+  la série de terme général $u_n$ est appelée \textit{série géométrique} de raison $r$
+\end{definition}
+\begin{theorem}[Théorèmes des Séries Géométriques]
+  Soit $u_n = r^n$ et $\sum u_n$ la série associée, alors on a 
+  \begin{equation*}
+    \sum u_n \text{ CV } \Leftrightarrow \abs{r} < 1 
+  \end{equation*}
+  Et dans ce cas alors on a 
+  \begin{equation*}
+    \sum_{n=0}^{\infty} u_n = \frac{1}{1-r}
+  \end{equation*}
+  \begin{proof}
+    Soit $r \in \bR$, soit $n \in \bN$ 
+    \begin{align*}
+      (1-r)S_n &= (1-r)\cdot \sum_{i=0}^n r^n \\
+               &= \sum_{i=0}^n (1-r)r^n && (1-r) \in \bR \\ 
+               &= \sum_{i=0}^n r^n - r^{n+1} \\ 
+               &= 1 - r^{n+1} && \text{somme téléscopique} \\
+               &\to \deq{1}{\abs{r} < 1}{\text{DV}}
+  \end{align*}
+  D'où dans le cas convergent 
+  \begin{equation*}
+    S = \frac{1}{1-r}
+  \end{equation*}
+  \end{proof}
+\end{theorem}
+\section{Séries À Termes Positifs (SATP)}
+\begin{definition}
+  Soit $(u_n) \in \rNp$ on appelle alors la série de terme générale $\sum u_n$ une \textit{série à terme positifs}, abrégés \textit{SATP}
+\end{definition}
+\subsection{Introduction}
+\begin{prop}
+  Soit $(u_n) \in \rNp$ 
+  \begin{equation*}
+    \left(\sum u_n \text{ CV}\right) \Leftrightarrow (S_n)_{n\in \bN} \text{ majorée}
+  \end{equation*}
+  \begin{proof}
+    $\sum (u_n)$ est une \satp donc la suite $(S_n)_{n\in \bN}$ des sommes partielles est croissante donc par 
+    théorème des limites monotones $(S_n)_{n\in \bN}$ converge si et seulement si elle est majorée
+  \end{proof}
+\end{prop}
+\subsection{Comparaison}
+\begin{theorem}[Théorème de Comparaison des SATP]
+  Soit $(u_n) \in \rNp$ et $(v_n) \in \rNp$ tels que 
+  \begin{equation*}
+    \forall n \in \bN, 0 \leq u_n \leq v_n
+  \end{equation*}
+  On a,
+  \begin{enumerate}
+    \item Si $\sum v_n$ CV alors $\sum u_n$ CV
+    \item Si $\sum u_n$ DV alors $\sum v_n$ DV
+  \end{enumerate}
+  \begin{proof}
+    Conséquence du théorème des limites monotones 
+  \end{proof}
+\end{theorem}
+\begin{prop}
+  Soit $(u_n),(v_n) \in \rNp$ telles que 
+  \begin{equation*}
+    u_n \equiv_{\infty} v_n
+  \end{equation*}
+  Alors $\sum u_n$ et $\sum v_n$ sont de même nature
+\end{prop}
+\begin{ex}
+  Soit $u_n = \ln \left(1 + \frac{1}{n}\right)$ on a $u_n \equiv \frac{1}{n}$ et $\sum u_n$ DV donc la série 
+  $\sum \frac{1}{n}$ est divergente
+  \begin{rmq}
+    La série $\sum \frac{1}{n}$ est appelée \textit{série harmonique}
+  \end{rmq}
+\end{ex}
+
+\subsection{Liaison séries intégrales}
+\begin{theorem}[Comparaison Série/Intégrale]
+  Soit $f\geq 0$, $\mC^0$, et décroissante à partir d'un réel $x_0$, alors $\sum f(n)$ et $\int^{\infty} f$ sont de même nature
+  \begin{proof}
+    Soit $f\geq 0$, $\mC^0$ et décroissante, soit $n \in \bN$ on observe que 
+    \begin{align*}
+      I(n+1) &\leq S_n && {et} \\ 
+      S_n &\leq f(0) + I(n)
+    \end{align*}
+    Donc si $\sum f(n)$ converge alors par comparaison à termes positifs on a $I(n)$ qui converge par la première inégalité, et 
+    si $\sum f(n)$ diverge alors par la deuxième inégalité $I(n)$ diverge. Donc $I$ et $\sum f(n)$ sont de même nature
+  \end{proof}
+\end{theorem}
+
+\subsection{Séries de Riemann}
+\begin{theorem}[Critère de Riemann]
+  \begin{equation*}
+    \sum \frac{1}{n^{\alpha}} \text{ CV} \Leftrightarrow \alpha > 1 \text{.}
+  \end{equation*}
+  \begin{proof}
+    Soit $\alpha \in \bR$ soit $f(x) = \frac{1}{x^{\alpha}}$, $f$ est $\mC^0$, à terme positifs et décroissante 
+    donc par comparaison série intégrale $\int f$ et $\sum f(n)$ sont de même nature, or par critère de Riemann dans les 
+    intégrales $\int f$ converge si et seulement si $\alpha > 1$ donc $\sum f(n) = \sum \frac{1}{n^{\alpha}}$ converge si et 
+    seulement si $\alpha > 1$.
+  \end{proof}
+\end{theorem}
+\begin{rmq}
+  Si $u_n \equiv \frac{A}{n^{\alpha}}$ alors $\sum u_n$ CV si et seulement si $\alpha > 1$ 
+\end{rmq}
+\begin{prop}[Règle de Riemann]
+  Soit $(u_n) \in \rNp$, alors 
+  \begin{itemize}
+    \item Si il existe $\alpha > 1$ tel que $n^{\alpha}u_n \to l \in \bR$ alors $\sum u_n$ CV
+    \item Si il existe $\alpha \leq 1$ tel que $n^{\alpha}u_n \to l \in \bar{\bR^{*}}$ alors $\sum u_n$ DV
+  \end{itemize}
+  \begin{proof}
+    Conséquence du critère de Riemann.
+  \end{proof}
+\end{prop}
+\subsection{Règle de Cauchy}
+\begin{theorem}[Règle de Cauchy]
+  Soit $(u_n) \in \rNp$, telle que 
+  \begin{equation*}
+    \ln \sqrt[n]{u_n} = l \in \bR
+  \end{equation*}
+  On a 
+  \begin{itemize}
+    \item Si $l < 1$ alors $\sum u_n$ CV
+    \item Si $l > 1$ alors $\sum u_n$ DV 
+    \item Si $l=1$ on ne peut pas déterminer la nature de $\sum u_n$ par cette méthode
+  \end{itemize}
+  \begin{proof}
+    Soit $(u_n) \in \rNp$ telle que $\ln \sqrt[n]{u_n} = l \in \bR$ alors 
+    \begin{equation*}
+      \forall \varepsilon > 0, \exists n_0 \in \bN, \forall n \geq n_0, \abs{\sqrt[n]{u_n} - l} \leq \varepsilon
+    \end{equation*}
+    Donc 
+    \begin{equation*}
+      \forall \varepsilon > 0, \exists n_0 \in \bN, \forall n \geq n_0, l - \varepsilon \leq \sqrt[n]{u_n} \leq l + \varepsilon
+    \end{equation*}
+
+
+    Supposons $l < 1$ alors prenons $\varepsilon$ tel que $\varepsilon+l < 1$, on prend le $n_0$ associé, et soit $n \geq n_0$
+    \begin{align*}
+      \sqrt[n]{u_n} \leq l + \varepsilon < 1
+    \end{align*}
+    Donc 
+    \begin{align*}
+      (\sqrt[n]{u_n})^{n} &\leq \left(l + \varepsilon\right)^n \\
+      u_n &\leq \left(l + \varepsilon\right)^n
+    \end{align*}
+    Or $\abs{l +\varepsilon} < 1$ donc par théorème des séries géométriques $\sum (l+\varepsilon)^n$ converge, donc 
+    par comparaison de \satp, $\sum u_n$ converge.\newline
+
+    
+    Supposons maintenant que $l > 1$ alors prenons $\varepsilon$ tel que $l - \varepsilon > 1$, et soit $n \geq n_0$
+    \begin{align*}
+      \left(l - \varepsilon\right) &\leq \sqrt[n]{u_n} \\ 
+      \left(l - \varepsilon\right)^n &\leq \sqrt[n]{u_n}^n \\
+      \left(l - \varepsilon\right)^n &\leq u_n
+    \end{align*}
+    Or $\abs{l - \varepsilon} > 1$ donc par théorèmes des séries géométriques $\sum (l-\varepsilon)^n$ diverge, donc 
+    par comparaisons de \satp, $\sum u_n$ diverge.
+  \end{proof}
+\end{theorem}
+\subsection{Règle d'Alembert}
+\begin{theorem}[Règle d'Alembert]
+  Soit $(u_n) \in \rNp$ tel que 
+  \begin{equation*}
+    \ln \frac{u_{n+1}}{u_n} = l \in \bR
+  \end{equation*}
+  On a 
+  \begin{itemize}
+    \item Si $l < 1$ alors $\sum u_n$ CV 
+    \item Si $l > 1$ alors $\sum u_n$ DV 
+    \item Si $l=1$ alors on ne peut pas déterminer la nature de $\sum u_n$ par cette méthode
+  \end{itemize}
+  \begin{proof}
+    Soit $(u_n) \in \rNp$ telle que $\ln \frac{u_{n+1}}{u_{n}} \to l \in \bR$.\newline
+
+    
+    Supposons que $l > 1$ alors a que $\exists n_0 \in \bN, \forall n \geq n_0, u_{n+1} > u_{n}$. 
+    Donc $(u_n)$ est strictement croissante \apcr, donc par le théorème des limites monotones $\ln u_n = \infty$ donc 
+    la série $\sum u_n$ est grossièrement divergente.\newline
+
+
+    Supposons que $l < 1$ alors soit $q \in \bR$ tel que $l < q < 1$. On a qu'il existe un rang $n_0$ tel que 
+    $l < q$ ainsi on a \apcr
+    \begin{equation*}
+      \frac{u_{n+1}}{u_n} < q 
+    \end{equation*}
+    Donc par produit téléscopique on a que la suite $(u_n)$ est majorée par la suite $v = (u_{n_0}q^{n-n_0})$, 
+    or $\abs{q} < 1$ donc par théorème des séries géométriques $\sum v_n$ converge, donc par comparaison de séries à termes 
+    positifs $\sum u_n$ converge. 
+  \end{proof}
+\end{theorem}
+\section{Séries de signes non constant}
+\begin{definition}
+  Soit $(u_n) \in \rN$, Soit $\sum u_n$ la série de terme général $u_n$.
+  \begin{itemize}
+    \item Si $\exists \lambda \in \bR, \ln \sum_{k=0}^n u_k = \lambda$ alors $\sum u_n$ est dite \textit{simplement convergente}
+    \item Si $\exists \mu \in \bR, \ln \sum_{k=0}^n \abs{u_k} = \mu$ alors $\sum u_n$ est dite \textit{absolument convergente}
+  \end{itemize}
+\end{definition}
+  \begin{theorem}
+    La convergence absolue implique la convergence simple 
+    \begin{proof}
+      voir la preuve du théorème analogue pour les suites
+    \end{proof}
+  \end{theorem}
+  \begin{ex}
+    Soit $u_n = \frac{\cos n^2}{n^4}$.\newline 
+
+    On a $\forall n \in \bN, \abs{\frac{\cos n^2}{n^4}} \leq \frac{1}{n^4}$, or par critère de Riemann la série $\sum \frac{1}{n^4}$ converge 
+    donc par comparaison de série à terme positive la série $\sum \abs{\frac{\cos n^2}{n^4}}$ converge donc la série
+    $\sum \frac{\cos n^2}{n^4}$ est absolument convergente donc elle converge simplement.
+  \end{ex}
+  \subsection{Séries Alternées}
+  \begin{definition}
+    Soit $(u_n) \in \rN$ on dit que la série $\sum u_n$ est \textit{alternée} si et seulement si la suite $(-1)^nu_n$ est de signe constant
+  \end{definition}
+  \begin{theorem}[Critère Spécial des Séries Alternées (CSSA)]
+    Soit $(u_n) \in \rN$ telle que $\sum u_n$ soit une série alternée, 
+    si la suite $(\abs{u_n})$ est décroissante et que $\ln u_n = 0$ alors $\sum u_n$ converge
+    \begin{proof}
+      Considérons, sans perte de généralitée que $u_0 > 0$ alors on a 
+
+      \begin{align*}
+        S_n &= u_0 + u_1 + \cdots + u_n \\ 
+         &= \abs{u_0} - \abs{u_1} \cdots (-1)^n u_n && \text{il vient} \\ 
+        S_{n} - S_{n-2} &= (-1)^{n-1} \abs{u_{n-1}} + (-1)^n \abs{u_n} \\ 
+        &= (-1)^n \left(\abs{u_n} - \abs{u_{n-1}}\right)
+      \end{align*}
+      
+      Or par hypothèse $\abs{u_n}$ est décroissante donc la quantité $\abs{u_n} - \abs{u_{n-1}}$ est négative.\newline 
+      \begin{itemize}
+        \item Si $n$ est pair alors $n=2p$ et la quantité $S_{2p} - S_{2p-2}$ est négative donc la suite $(S_{2p})$ est décroissante
+        \item Si $n$ est impair alors $n=2p+1$ et la quantité $S_{2p+1} - S_{2p-1}$ est positive donc la suite $(S_{2p+1})$ est croissante
+        \item De plus $S_{2p+1}-S_{2p} = u_{2p+1} \to 0$ 
+      \end{itemize}
+      Donc les suites $(S_{2p})$ et $(S_{2p+1})$ sont adjacente, donc 
+      \begin{equation}
+        \exists S \in \bR, \lim_{p \to \infty} S_{2p} = \lim_{p \to \infty} S_{2p+1} = S
+      \end{equation}
+      Donc par théorème des indices pair et impair la suite $(S_n)$ converge donc la série $\sum u_n$ est convergente
+    \end{proof}
+  \end{theorem}
+  \begin{ex}
+    Soit $u_n = \frac{(-1)^n}{n+1}$ on a $\abs{u_n} = \frac{1}{n+1}$ donc décroissante, et $\ln u_n = 0$ car $(-1)^n$ est bornée
+    donc par critère spécial des séries alternées la série $\sum u_n$ converge 
+  \end{ex}
+
+\chapter{Séries Entières}
+\begin{definition}
+  Soit $(u_n) \in \rN$ on définie $(f_n)_{n\in\bN}$ par \vfunc{f_n}{\bR}{\bR}{x}{a_nx^n} on appelle la série de terme générale $f_n(x)$ 
+  soit la suite $\left(\sum_{k=0}^n f_k(x)\right)_{n\in \bN}$ \textit{série entière centrée en 0} ou plus simplement \textit{série entière}.\newline
+
+  Le but de l'étude est de trouver l'ensemble $D$ pour lesquels $\forall x \in D, \sum f_n(x)$ converge, autrement dit 
+  l'ensemble de définition de la fonction $\left(x \mapsto \sum_{n=0}^{\infty} a_n x^n\right)$ 
+\end{definition}
+\begin{rmq}
+  Toute série entière converge pour $x=0$
+\end{rmq}
+\begin{rmq}
+  Soit $(x_1,x_2) \in \bR^2$ tels que $\abs{x_1} < \abs{x^2}$ alors $\abs{a_nx_1^n} < \abs{a_nx_2^n}$ donc on en tire les conclusions suivantes 
+  \begin{itemize}
+    \item Si $\sum a_n x_2^n$ est absolument convergente alors $\sum a_n x_1^n$ est ACV 
+    \item Si $\sum a_n x_1^n$ est divergente alors $\sum a_nx_2^n$ est DV
+  \end{itemize}
+\end{rmq}
+\section{Domaine de convergence}
+\begin{theorem}[Lemme d'Abel]
+  Si il existe $x_0 \not=0$ tel que $(a_nx_0^n)$ soit borné alors $\forall x \in \bR$ tels que $\abs{x} < \abs{x_0}$, $\sum a_n x^n$ ACV 
+  \begin{proof}
+    Soit $x \in \bR$ tel que $\abs{x} < \abs{x_0}$ alors 
+    \begin{align*}
+      \abs{a_nx^n} &= \abs{a_nx_0^n} \cdot \abs{\frac{x}{x_0}}^n \\ 
+      &\leq M \abs{\frac{x}{x_0}}^n
+    \end{align*}
+    Or $\sum \left(\frac{x}{x_0}\right)^n$ est ACV car $\abs{\frac{x}{x_0}} < 1$ donc $\sum a_n x^n$ est absolument convergente.
+  \end{proof} 
+\end{theorem}
+\begin{rmq}
+  Si il existe $x_0 \not=0$ tel que $\sum (a_nx_0^n)$ soit simplement convergente alors $\forall x \in \bR$ tels que $\abs{x} < \abs{x_0}$, $\sum a_n x^n$ ACV 
+  \begin{proof}
+    La convergence simple implique que la suite est borné \apcr
+  \end{proof}
+\end{rmq}
+\begin{rmq}
+  Par contraposée on obtient que si il existe $x_0 \not 0$ tel que $\sum a_n x_0^n$ DV alors $\forall x \in \bR$ tels que $\abs{x} > \abs{x_0}$, $\sum a_n x^n$ DV
+\end{rmq}
+\section{Rayon et intervalle de convergence}
+\begin{definition}
+  Pour toute série entière $\sum a_n x^n$ il existe $R \in \bar{\bR}$ tel que $R >= 0$ et 
+  \begin{itemize}
+    \item $\forall x \in \bR$ tels que $\abs{x} < R$ la série entière $\sum a_n x^n$ est ACV
+    \item $\forall x \in \bR$ tels que $\abs{x} > R$ la série entière $\sum a_n x^n$ est DV
+  \end{itemize}
+  On appelle $R$ le \textit{rayon de convergence} de la série entière $\sum a_n x^n$ et l'intervalle $]-R,R[$ est appelé \textit{intervalle de convergence}.
+\end{definition}
+\begin{rmq}
+  Pour une petite apparté, d'un point de vue général pour $(c_n) \in \bC^{\bN}$ et $a \in \bC$ on a que la série $\sum c_n (z-a)^n$ est la série 
+  entière centrée en a de $(c_n)$. On a alors convergence si $\abs{z - a} < R$ et divergence si $\abs{z - a} > R$ ce qui dans le plan complexe représente 
+  un disque de centre $a$ et de rayon $R$ (disque sans le bord), d'où l'appellation \textit{rayon de convergence}
+\end{rmq}
+\section{Calcul du rayon de convergence}
+On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauchy) pour calculer l'inverse du rayon de convergence
+\begin{prop}
+
+  Soit $(a_n) \in \rN$ telle que $\ln \abs{\frac{a_{n+1}}{a_n}} = l \in \bar{\bR}$, $l >= 0$, on a 
+  \begin{itemize}
+    \item si $l\abs{x} < 1$ alors $\sum \abs{a_nx^n}$ CV 
+    \item si $l\abs{x} > 1$ alors $\sum \abs{a_nx^n}$ DV
+  \end{itemize}
+  \begin{proof}
+    
+  \begin{equation}
+    \frac{\abs{a_{n+1}x^{n+1}}}{\abs{a_nx^n}} = \abs{\frac{a_{n+1}}{a_n}}\abs{x}
+  \end{equation}
+  D'après les hypothèses on a que $\ln \abs{\frac{a_{n+1}}{a_n}} = l \in \bar{\bR}$ et $l >= 0$
+  on a alors d'après la règle d'Alembert on obtient le résultat donné en énoncé.
+\end{proof}
+\end{prop}
+\begin{rmq}
+  De la même manière on peut calculer $l$ avec la règle de Cauchy.
+\end{rmq}
+\begin{prop}
+  Soit $l \in \bar{\bR}$
+  \begin{itemize}
+    \item $R = \frac{1}{l}$ si $l \not= 0$
+    \item $R = \infty$ si $l=0$ 
+    \item $R = 0$ si $l = \infty$
+  \end{itemize}
+  \begin{proof}
+    Conséquence de la proposition précédente
+  \end{proof}
+\end{prop}
+
+\begin{ex}
+  Soit la série entière $\sum \frac{x^n}{n2^n}$ on a alors $a_n = \frac{1}{n2^n}$
+  \begin{align*}
+    \frac{a_{n+1}}{a_n} &= \frac{\frac{1}{(n+1)2^{n+1}}}{\frac{1}{n2^n}} \\ 
+    &= \frac{n2^n}{(n+1)2^{n+1}} \\
+    &= \frac{1}{2} \cdot \frac{n}{n+1}
+    \to \frac{1}{2}
+  \end{align*}
+  Donc $l = \frac{1}{2}$ ce qui donne $R = 2$ donc la série entière est convergente sur au moins $]-2,2[$\newline
+
+  Observons maintenant en $x=2$ on a alors 
+  \begin{align*}
+    \left(\sum \frac{x^n}{n2^n}\right)(2) &= \sum \frac{2^n}{n2^n} \\ 
+    &= \sum \frac{1}{n}
+  \end{align*}
+  ce qui est divergent par le critère de Riemann, donc la série entière est divergente en 2.\newline
+
+  Enfin, en $x=-2$
+  \begin{align*}
+    \left(\sum \frac{x^n}{n2^n}\right)(-2) &= \sum \frac{(-2)^n}{n2^n} \\ 
+    &= \sum \frac{(-1)^n}{n}
+  \end{align*}
+  Ce qui est convergent par le critère spécial des séries alternées, donc la série entière est convergente en -2.\newline
+
+
+  On a donc enfin que l'intervalle de convergence de $\sum \frac{x^n}{n2^n}$ est $[-2,2[$
+\end{ex}
+
 \chapter{Notations et rappels}
 \section{Ensembles}
 \begin{rmq}
@@ -926,6 +1376,7 @@
   Soit $E,F$ deux ensembles, et soit $I$ un interval de $\bR$
   \begin{itemize}
     \item $E^{F}$ est l'ensemble des applications (fonctions) de $F$ dans $E$
+    \item En particulier $\rN$ est l'ensemble des suites réelles
     \item $\mC^0(I)$ est l'ensemble des fonctions continues sur $I$
     \item Dans le cas général $\mC^n(I)$ est l'ensemble des fonctions dérivable $n$ fois sur $I$ et 
     dont la n-ème dérivée est continue sur $I$
