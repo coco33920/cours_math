@@ -1380,6 +1380,8 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $\mC^0(I)$ est l'ensemble des fonctions continues sur $I$
     \item Dans le cas général $\mC^n(I)$ est l'ensemble des fonctions dérivable $n$ fois sur $I$ et 
     dont la n-ème dérivée est continue sur $I$
+    \item On note $\mC^{\infty}(I)$ l'ensemble $\bigcup_{n=0}^{\infty} \mC^n(I)$. En pratique ces fonctions 
+    sont dérivable une infinité de fois (par exemple les polynomes, exponentielle etc.)
     \item $\mM^0(I)$ est l'ensemble des fonctions continues par morceaux sur $I$
   \end{itemize}
 \end{rmq}
@@ -1418,6 +1420,28 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $f$ est continue sur $I$ si $\forall x \in I, f$ est continue en $x$
     \item $f$ est dérivable en $a$ si le quotient $\frac{f(x) - f(a)}{x - a}$ admet une limite finie quand $x \to a$
     \item $f$ est dérivable sur $I$ si $\forall x \in I, f$ est dérivable en $x$
+  \end{itemize}
+\end{rmq}
+\subsection{Séries}
+\begin{rmq}
+  Soit $(u_n) \in \rN$
+  \begin{itemize}
+    \item $\sum u_n$ est la suite $(S_n)_{n\in\bN}$ avec pour $n \in \bN$, $S_n = \sum_{k=0}^n u_k$ et 
+    est \textit{la série de terme générale $u_n$}.
+    \item Une SATP est une série dont tous les termes sont positifs
+    \item On se ramène à l'étude d'une SATP en étudiant le module d'une série
+  \end{itemize}
+\end{rmq}
+\subsection{Séries Entières}
+\begin{rmq}
+  Soit $(a_n) \in \rN$ 
+  \begin{itemize}
+    \item On note $\sum a_n x^n$ la suite de fonctions $\left(\sum_{k=0}^n a_k x^k\right)_{n\in \bN}$, appelée
+    \textit{série entière} de terme général $a_n$
+    \item $\sum a_n x^n$ est une suite de \textbf{fonctions}, alors que pour $\lambda \in D$ la suite $\left(\left(\sum a_n x^n\right)(\lambda)\right)_{n \in \bN}$
+    est une suite de \textbf{réel} des fonctions évalués en $\lambda$ elle est égale à la suite de réelle $\left(\sum a_n \lambda^n\right)_{n \in \bN}$
+    \item \textbf{Hors Programme} On dit que la série entière converge simplement sur $D$ vers $f$ si il existe $f \in \bR^{D}$ telle que $f = \sum_{n=0}^{\infty} a_n x^n$
+    \item \textbf{Hors Programme} On dit que la série entière converge absolument sur $D$ vers $f$ si il existe $f \in \bR^{D}$ telle que $f = \sum_{n=0}^{\infty} \abs{a_n x^n}$ 
   \end{itemize}
 \end{rmq}
 \subsection{Autre}
