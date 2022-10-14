@@ -856,15 +856,19 @@
       \item Le résultat $\abs{\int f} \leq \int \abs{f}$ est étendu aux intégrales généralisées
     \end{enumerate}
     \begin{proof}
+      Cette preuve est \textit{\textbf{hors du programme présenté lors du cours}}, je la trouve utile mais on peut la sauter c'était juste pour donner une idée 
+      de à quoi peut ressembler ce genre de preuve.\newline 
+
+
       \begin{enumerate}
-        \item Notons, $f^{-} = max(-f,0)$ et $f^{+} = max(f,0)$. On observe que 
+        \item Notons, $f^{-} = \max(-f,0)$ et $f^{+} = \max(f,0)$. On observe que 
       \begin{align*}
-        f^{-} + f^{+} &= max(-f,0) + max(f,0) \\ 
+        f^{-} + f^{+} &= \max(-f,0) + \max(f,0) \\ 
                       &= \abs{f}
       \end{align*}
       Et on a aussi
       \begin{align*}
-        f^{+} - f^{-} &= max(f,0) - max(-f,0) \\ 
+        f^{+} - f^{-} &= \max(f,0) - \max(-f,0) \\ 
                      &= f
       \end{align*}
       On suppose que $\int \abs{f}$ est convergente donc 
@@ -1358,6 +1362,181 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 
   On a donc enfin que l'intervalle de convergence de $\sum \frac{x^n}{n2^n}$ est $[-2,2[$
 \end{ex}
+\section{Somme des Séries Entières}
+\begin{definition}
+  Soit $a = (a_n) \in \rN$, alors on note la \textit{fonction somme de la série entière} $\sum a_n x^n$ la fonction suivante
+  \vfunc{S_a(x)}{]-R,R[}{\bR}{x}{\sum_{n=0}^{\infty} a_n x^n}
+\end{definition}
+\begin{prop}
+  La fonction $S_a$ est $\mC^0$ sur $]-R,R[$.
+\end{prop}
+\begin{rmq}
+  Si la SE est définie en $x=R$ (resp $x=-R$) alors on peut prolonger par continuité $S_a$ en $x=R$ (resp $x=-R$)
+\end{rmq}
+
+\subsection{Dérivation et Intégration des Séries Entières}
+\begin{definition}
+  Soit $(a_n) \in \rN$, on dispose de la série entière $SE = \sum a_n x^n$ de rayon de convergence $R$ alors 
+  \begin{itemize}
+    \item La série entière $\sum n a_n x^{n-1}$ est nommée \textit{série dérivée} de SE, de rayon de convergence $R_d$
+    \item La série entière $\sum a_n \frac{x^{n+1}}{n+1}$ est nommée \textit{série intégrée} de SE, de rayon de convergence $R_i$
+  \end{itemize}
+\end{definition}
+\begin{theorem}
+  \begin{equation*}
+    R = R_d = R_i
+  \end{equation*}
+
+
+  \begin{proof}
+    Soit $(a_n) \in \rN$, nous allons montrer que $R = R_d$
+    \begin{itemize}
+      \item Soit $x$ tel que $\abs{x} < R_d$ donc $\sum n a_n x^{n-1}$ est ACV, $x \in \bR$ donc une multiplication par $x$ ne change pas 
+      la nature de la suite donc $\sum n a_n x^n$ est ACV. Or
+      \begin{equation*}
+        \forall n \geq 1, \abs{a_n x^n} \leq \abs{n a_n x^n}
+      \end{equation*}
+      Donc par comparaison de SATP, la série $\sum a_n x^n$ est ACV donc $\abs{x} \leq R$ par propriété du rayon de convergence donc $R \leq R_d$
+      \item Soit $x$ tel que $\abs{x} < R$ soit $\rho \in ]\abs{x},R[ \not= \emptyset$ on a 
+      \begin{equation*}
+        \abs{n a_n x^{n-1}} = \abs{a_n \rho^n} \cdot \abs{\frac{nx^{n-1}}{\rho^{n-1}} \cdot \frac{1}{\rho}}
+      \end{equation*}
+      Or 
+      \begin{equation*}
+        \ln \abs{\frac{nx^{n-1}}{\rho^{n-1}} \cdot \frac{1}{\rho}} = 0
+      \end{equation*}
+      car $\abs{\frac{x}{\rho}} < 1$
+      donc
+      \begin{equation*}
+        \exists N_0 \in \bN, \forall n \geq N_0, \abs{n a_n x^{n-1}} \leq \abs{a_n \rho^n}
+      \end{equation*}
+      Or $\rho < R$ donc $\sum a_n \rho^n$ est ACV donc par comparaison de SATP $\sum n a_n x^{n-1}$ est ACV donc $R_d \leq R$
+    \end{itemize}
+    On a $R_d \leq R$ et $R \leq R_d$ donc $R = R_d$ par anti-symétrie de $(\leq)$.\newline 
+
+    La série $SE$ est la série intégrée, puis dérivée donc naturellement on a $R = R_i$ par le point précédent, donc finalement
+    \begin{equation*}
+      R = R_i = R_d
+    \end{equation*}
+  \end{proof}
+\end{theorem}
+\begin{ex}
+  On a que $\sum \frac{x^n}{n2^n}$ est $R=2$ donc $\sum \frac{x^{n-1}}{2^n}$ a $R=2$ par dérivation etc.
+\end{ex}
+\begin{rmq}
+  Attention, les propriétés aux bord $R$ et $-R$ ne sont pas conservées.
+\end{rmq}
+\section{Développement en Séries Entières}
+\begin{definition}
+  Soit $\func{f}{D \subset \bR}{\bR}$, on dit que $f$ est \textit{développable en série entière}, si
+  \begin{equation*}
+    \exists (a_n) \in \rN, \lim_{n \to \infty} \sum_{k=0}^n a_k x^k = f
+  \end{equation*}
+\end{definition}
+\subsection{Conditions nécessaires}
+\begin{theorem}
+  Soit $f$ DSE, alors $\forall n \in \bN f^{n}$ est définie en $0$
+  \begin{proof}
+  \begin{equation*}
+    \exists (a_n) \in \rN, \exists R \in \bR, \forall x \text{ tq } \abs{x} < R, f(x) = \sum_{n=0}^{\infty} a_n x^n
+  \end{equation*}
+  D'où
+  \begin{equation*}
+    f(0) = a_0
+  \end{equation*}
+  Puis par dérivation
+  \begin{equation*}
+    f'(0) = a_1
+  \end{equation*}
+  Enfin par récurrence 
+  \begin{equation*}
+    \forall n \in \bN, f^{(n)}(0) = n! a_n \textit{ (Taylor) }
+  \end{equation*}
+\end{proof}
+\end{theorem}
+\begin{ex}
+  Par exemple la fonction $\left(x \mapsto \abs{x}\right)$ n'est pas dérivable en $0$ donc elle n'est pas DSE
+\end{ex}
+\begin{rmq}
+  En remaniant l'équation on obtient
+  \begin{equation*}
+    \forall n \in \bN, a_n = \frac{f^{(n)}}{n!}
+  \end{equation*}
+  Ce qui garantie l'unicité d'un développement en série entière 
+\end{rmq}
+\begin{prop}
+  Si $f$ est DSE alors $f \in \mC^{\infty}(]-R,R[)$
+  \begin{proof}
+    Conséquence du théorème précédent
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  La réciproque est fausse.
+  \begin{proof}
+    Soit \vfunc{f}{\bR}{\bR}{x}{\deq{e^{\frac{-1}{x^2}}}{x \not= 0}{0}}, on suppose qu'elle est DSE.
+    Alors on voit que par récurrence 
+    \begin{equation*}
+      \forall n \geq 1, \lim_{x\to0} f^{(n)}(x) = 0
+    \end{equation*}
+    Donc toutes les dérivées peuvent être prolongées par continuité en $0$ et on obtient (car $f(0)=0$)
+    \begin{equation*}
+      \forall n \geq 0, f^{(n)}(0) = 0
+    \end{equation*}
+    Or d'après le point précédent ça veut dire que 
+    \begin{equation*}
+      \forall n \in \bN, a_n = 0
+    \end{equation*}
+    donc que 
+    \begin{align*}
+      \forall x \in \bR, f(x) &= \sum a_n x^n \\ 
+      &= \sum 0 \\
+      &= 0
+    \end{align*}
+    Or $f$ n'est pas la fonction nulle, par exemple $f(1) = e^{-1} \not= 0$ donc c'est absurde, donc $f$ n'est pas DSE.
+  \end{proof}
+\end{rmq}
+\section{Opération sur les DSE}
+\begin{prop}
+  Soit $f,g$ DSE on a 
+  \begin{itemize}
+    \item $(f+g)$ DSE 
+    \item $\forall \lambda \in \bR, (f+\lambda g)$ DSE 
+    \item $(fg)$ DSE 
+    \item $\forall k \in \bN, f^k$ DSE
+    \item $\forall k \in \bN, \left(x \mapsto f(x^k)\right)$ DSE
+  \end{itemize}
+\end{prop}
+\begin{rmq}
+  Attention aux intervalles de convergences quand $R_f \not= R_g$ 
+\end{rmq}
+\section{DSE usuels}
+\begin{prop}
+  \begin{align*}
+    e^{x} &= \sum_{k=0}^{\infty} \frac{x^k}{k!} && R=+\infty \\
+    \sin x &= \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k+1}}{(2k+1)!} && R=+\infty \\
+    \cos x &= \sum_{k=0}^{\infty} \frac{(-1)^{k} x^{2k}}{(2k)!} && R=+\infty \\
+    \frac{1}{1-x} &= \sum_{k=0}^{\infty} x^k && R=1 \\
+    \log (1-x) &= - \sum \frac{x^k}{k} && R=1 \\
+    \frac{1}{1+x} &= \sum_{k=0}^{\infty} (-1)^k x^k && R=1 \\ 
+    \log (1+x) &= \sum_{k=0}^{\infty} \frac{(-1)^k x^k}{k} && R=1 \\ 
+    \frac{1}{1+x^2} &= \sum_{k=0}^{\infty} (-1)^k x^(2k) && R=1 \\
+    \arctan x &= \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k+1}}{(2k+1)!} && R=1 \\ 
+    (1+x)^{\alpha} &= DL_{\infty} && R=1
+  \end{align*}
+\end{prop}
+\begin{rmq}
+  Pour $\log (1-x)$ et $\arctan(x)$ par le CSSA elles convergent en $x=1$
+\end{rmq}
+\subsection{Application à la somme d'une série numérique}
+\begin{rmq}
+  On peut utiliser les DSE pour calculer une série numérique, exemple avec $\sum \frac{n}{2^n}$
+  \begin{align*}
+    \forall x \in ]-1,1[, &\sum x^n = \frac{1}{1-x} \\ 
+    &\sum nx^{n-1} = \frac{1}{(1-x)^2} && \text{dérivation} \\ 
+    &\sum nx^{n} = \frac{x}{(1-x)^2} && \text{multiplication par }x \\ 
+    &=2 && \text{en } x=\frac{1}{2}
+  \end{align*}
+\end{rmq}
 
 \chapter{Notations et rappels}
 \section{Ensembles}
@@ -1422,6 +1601,38 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $f$ est dérivable sur $I$ si $\forall x \in I, f$ est dérivable en $x$
   \end{itemize}
 \end{rmq}
+\subsection{Suites et série d'application}
+\begin{rmq}
+  Soit $I$ un interval de $\bR$, $f$ une fonction de $\bR^{I}$ et $(f_n) \in \left(\bR^{I}\right)^{\bN}$ une suite d'application.
+  \begin{itemize}
+    \item \textbf{HP} On dit que $(f_n)$ converge simplement sur $I$ vers $f$ si 
+    \begin{equation*}
+      \forall x \in I, \ln f_n(x) = f(x)
+    \end{equation*}
+    ce qui est équivalent à 
+    \begin{equation*}
+      \forall x \in I, \forall \varepsilon > 0, \exists N_x \in \bN, \forall n \geq N_x, \abs{f_n(x) - f(x)} < \varepsilon
+    \end{equation*}
+    \item \textbf{HP} On dit que $(f_n)$ converge uniformément sur $I$ vers $f$ si 
+    \begin{equation*}
+      \forall \varepsilon > 0, \exists N \in \bN, \forall n \geq N, \forall x \in I, \abs{f_n(x) - f(x)} < \varepsilon
+    \end{equation*}
+    La différence avec la définition de la convergence simple est dans l'emplacement du $\forall x \in I$ le $N$ ne dépend plus de $x$
+    c'est le même pour tous!
+    \item \textbf{HP} On dit que $\sum f_n$ converge absolument en tout point de $I$ si 
+    \begin{equation*}
+      \forall x \in I, \sum \abs{f_n(x)} \text{ CV}
+    \end{equation*} 
+    \item \textbf{HP} On dit que $\sum f_n$ converge normalement sur $A$ si 
+    \begin{equation*}
+      \sum \norm{f_n}^A_{\infty} \text{ CV}
+    \end{equation*}
+    La notation $\norm{f}_{\infty}$ étant la \textbf{norme infinie} de $f$ définie par 
+    \begin{equation*}
+      \norm{f}^A_{\infty} = \sup_{x \in A} f(x)
+    \end{equation*}
+  \end{itemize}
+\end{rmq}
 \subsection{Séries}
 \begin{rmq}
   Soit $(u_n) \in \rN$
@@ -1440,9 +1651,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \textit{série entière} de terme général $a_n$
     \item $\sum a_n x^n$ est une suite de \textbf{fonctions}, alors que pour $\lambda \in D$ la suite $\left(\left(\sum a_n x^n\right)(\lambda)\right)_{n \in \bN}$
     est une suite de \textbf{réel} des fonctions évalués en $\lambda$ elle est égale à la suite de réelle $\left(\sum a_n \lambda^n\right)_{n \in \bN}$
-    \item \textbf{Hors Programme} On dit que la série entière converge simplement sur $D$ vers $f$ si il existe $f \in \bR^{D}$ telle que $f = \sum_{n=0}^{\infty} a_n x^n$
-    \item \textbf{Hors Programme} On dit que la série entière converge absolument sur $D$ vers $f$ si il existe $f \in \bR^{D}$ telle que $f = \sum_{n=0}^{\infty} \abs{a_n x^n}$ 
-  \end{itemize}
+    \end{itemize}
 \end{rmq}
 \subsection{Autre}
 \begin{rmq}
