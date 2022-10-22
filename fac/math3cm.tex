@@ -966,8 +966,8 @@
   \end{proof}
 \end{prop}
 \begin{rmq}
-  Cette condition est surtout utilisé pour montrer qu'il n'y a pas convergence (contraposée), lorsque $u_n \not\to 0$ on dit 
-  que $\sum u_n$ est \textit{grossièrement divergente}.
+  Cette condition est surtout utilisé pour montrer qu'il n'y a pas convergence (contraposée), lorsque $u_n \not\to 0$ 
+  (en pratique plutôt lorsque $\ln u_n = \infty$) on dit que $\sum u_n$ est \textit{grossièrement divergente}.
 \end{rmq}
 \begin{ex}
   Soit $u_n = \dfrac{1}{n(n+1)}$. Soit $n \geq 1$ on a alors
@@ -1600,6 +1600,68 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $f$ est continue sur $I$ si $\forall x \in I, f$ est continue en $x$
     \item $f$ est dérivable en $a$ si le quotient $\frac{f(x) - f(a)}{x - a}$ admet une limite finie quand $x \to a$
     \item $f$ est dérivable sur $I$ si $\forall x \in I, f$ est dérivable en $x$
+  \end{itemize}
+\end{rmq}
+\section{Bornes sup et bornes inf}
+\begin{definition}
+  On appelle la \textit{borne supérieure} de $D \subset \bR$ le nombre $M \in \bR$ caractérisé par 
+  \begin{align*}
+    &\forall x \in D, x \leq M && \text{M est un majorant de } D \\ 
+    &\forall \lambda \text{ tq } (\forall x \in D, x \leq \lambda), M \leq \lambda && \text{M est le plus petit des majorants}
+  \end{align*}
+  On note alors 
+  \begin{equation*}
+    M = \sup A
+  \end{equation*}
+  Par analogie la \textit{borne inférieure} est le plus grand des minorants, noté 
+  \begin{equation*}
+    m = \inf A
+  \end{equation*}
+  Ces définitions sont soumises à condition d'existences (il faut que $A$ admette une borne sup/inf)
+\end{definition}
+\begin{rmq}
+  Si $M = \sup A \in A$ (resp $m = \inf A \in A$) alors on dit que $M$ est le maximum de $A$ (resp $m$ 
+  est le minimum de $A$) et on le note $M = \max A$ (resp $m = \min A)$ 
+\end{rmq}
+\begin{rmq}
+  Le maximum (resp minimum) s'il existe est unique
+  \begin{proof}
+    Soit $M,M'$ deux maximum de $A$. On a alors par définition 
+    \begin{align*}
+      &\forall x \in A, x \leq M \\ 
+      &\forall x \in A, x \leq M'
+    \end{align*}
+    or $M\in A$ et $M' \in A$ donc en particulier on a 
+    \begin{align*}
+      &M' \leq M \\ 
+      &M \leq M'
+    \end{align*}
+    Par antisymétrie de $(\leq)$ on a $M=M'$
+  \end{proof}
+  La preuve est analogue pour l'unicité du minimum de $A$
+\end{rmq}
+\begin{theorem}[Propriété fondamentale de $\bR$]
+  Soit $E \subset \bR$ tel que $E \not= \emptyset$ alors si $E$ est majoré il admet une borne supérieure.\newline
+  Soit $E \subset \bR$ tel que $E \not= \emptyset$ alors si $E$ est minoré il admet une borne inférieure.
+\end{theorem}
+\begin{theorem}[Caractérisation séquentielle de la borne sup/inf]
+  Soit $E \subset \bR$ non vide, et $M$ un majorant de $E$ (resp $m$ un minorant de $E$) alors 
+  \begin{equation*}
+    M = \sup E \Leftrightarrow \exists (a_n) \in E^{\bN}, \ln a_n = M
+  \end{equation*}
+  et 
+  \begin{equation*}
+    m = \inf E \Leftrightarrow \exists (a_n) \in E^{\bN}, \ln a_n = m
+  \end{equation*}
+\end{theorem}
+\section{Convergence}
+\begin{rmq}
+  $ $
+  \begin{itemize}
+    \item Pour la convergence on abbrège \textit{CV} 
+    \item Pour l'absolue convergence on dit \textit{ACV} 
+    \item Pour la convergence uniforme on dit \textit{CVU} 
+    \item Pour la convergence normale on dit \textit{CVN}
   \end{itemize}
 \end{rmq}
 \section{Suites, et séries}
