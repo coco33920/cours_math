@@ -181,6 +181,7 @@
   \right|_{#2} % this is the delimiter
   }}
 %%
+\renewcommand{\equiv}{\sim}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -279,7 +280,7 @@
         \begin{align*}
           \dfrac{\log g(x)}{\log f(x)} - 1 &= \dfrac{\log g(x) - \log f(x)}{\log f(x)} \\
           &= \dfrac{\log \left(\dfrac{g(x)}{f(x)}\right)}{\log f(x)} && \text{or } f \equiv_a g \\
-          &\to_{a} \dfrac{0}{f(a)} && \text{par passage à la limite car } \lim_a f \not= 1 \\
+          &\to_{a} \dfrac{0}{\log f(a)} && \text{par passage à la limite car } \lim_a f \not= 1 \\
           &= 0
         \end{align*}
         Donc $\lim_{x \to a} \dfrac{\log f(x)}{\log g(x)} = 1$ donc $\log f \equiv_a \log g$
@@ -374,7 +375,7 @@
       \sigma_{\alpha}(k) &= 
       \begin{dcases}
         1 ,& \text{si } k=0 \\ 
-        \dfrac{\sum_{i=0}^{k-1} (\alpha - i)}{k!} ,& \text{sinon}
+        \dfrac{\prod_{i=0}^{k-1} (\alpha - i)}{k!} ,& \text{sinon}
       \end{dcases}
     \end{align*}
   \end{prop}
@@ -619,7 +620,7 @@
     définition, $c$ désigne une constante réelle.
     \begin{align*}
       f = x^{\alpha}, F &= \dfrac{x^{\alpha+1}}{\alpha+1} + c && \alpha \not= -1 \\ 
-      f = \dfrac{1}{x}, F &= ln \abs{f} + c \\ 
+      f = \dfrac{1}{x}, F &= ln \abs{x} + c \\ 
       f = \dfrac{1}{\sqrt{x}}, F &= 2\sqrt{x} + c \\ 
       f = e^x, F &= e^x + c \\
       f = \cos (ax+b), F &= \dfrac{1}{a} \sin (ax+b) + c && a \not= 0 \\ 
@@ -882,7 +883,7 @@
       \end{align*}
       Donc par linéarité, 
       \begin{equation*}
-        \lim_{x \to b^{-}} \int_a^x (f^{+}-f^{-}) = \mu_1 + \mu_2 \in \bR
+        \lim_{x \to b^{-}} \int_a^x (f^{+}-f^{-}) = \mu_1 - \mu_2 \in \bR
       \end{equation*}
       Ce qui revient à 
       \begin{equation*}
@@ -943,11 +944,11 @@
   On a donc $\ln R_n = 0$
 \end{rmq}
 \begin{rmq}
-  Les séries $\sum_{0} u_n$ et $\sum_{n_0}$ sont de même nature d'où la notation $\sum u_n$ 
+  Les séries $\sum_{0} u_n$ et $\sum_{n_0} u_n$ sont de même nature d'où la notation $\sum u_n$ 
 \end{rmq}
 \begin{prop}[Condition nécessaire de convergence]
   \begin{equation*}
-    \left(\sum u_n \text{ CV}\right) \Leftrightarrow \ln u_n = 0
+    \left(\sum u_n \text{ CV}\right) \Rightarrow \ln u_n = 0
   \end{equation*}
 
   
@@ -999,7 +1000,7 @@
   Soit $(v_n) \in \rN$ et $(u_n) \in \rN$ et $w_n = u_n + v_n$ 
   \begin{itemize}
     \item Si $\sum u_n$ et $\sum v_n$ convergent alors $\sum w_n$ converge
-    \item Si $\sum u_n$ ou $\sum v_n$ divergent alors $\sum w_n$ diverge
+    \item Si $\sum u_n$ CV (resp DV) et $\sum v_n$ DV (resp CV) alors $\sum w_n$ diverge
     \item Si $\sum u_n$ et $\sum v_n$ divergent alors on ne peut rien dire de $\sum w_n$
   \end{itemize}
 \end{prop}
@@ -1516,10 +1517,10 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \sin x &= \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k+1}}{(2k+1)!} && R=+\infty \\
     \cos x &= \sum_{k=0}^{\infty} \frac{(-1)^{k} x^{2k}}{(2k)!} && R=+\infty \\
     \frac{1}{1-x} &= \sum_{k=0}^{\infty} x^k && R=1 \\
-    \log (1-x) &= - \sum \frac{x^k}{k} && R=1 \\
+    \log (1-x) &= \sum_{k=1}^{\infty} - \frac{x^k}{k} && R=1 \\
     \frac{1}{1+x} &= \sum_{k=0}^{\infty} (-1)^k x^k && R=1 \\ 
-    \log (1+x) &= \sum_{k=0}^{\infty} \frac{(-1)^k x^k}{k} && R=1 \\ 
-    \frac{1}{1+x^2} &= \sum_{k=0}^{\infty} (-1)^k x^(2k) && R=1 \\
+    \log (1+x) &= \sum_{k=1}^{\infty} \frac{(-1)^{k+1} x^k}{k} && R=1 \\ 
+    \frac{1}{1+x^2} &= \sum_{k=0}^{\infty} (-1)^k x^{2k} && R=1 \\
     \arctan x &= \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k+1}}{(2k+1)!} && R=1 \\ 
     (1+x)^{\alpha} &= DL_{\infty} && R=1
   \end{align*}
@@ -1538,7 +1539,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{align*}
 \end{rmq}
 
-\chapter{Notations et rappels}
+\chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
   Soit $D$ un ensemble
@@ -1601,6 +1602,18 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $f$ est dérivable sur $I$ si $\forall x \in I, f$ est dérivable en $x$
   \end{itemize}
 \end{rmq}
+\section{Suites, et séries}
+\subsection{Suites de scalaires}
+\begin{rmq}
+  Soit $(a_n)_{n\in\bN}$ une suite de complexe (ou réels)
+  \begin{itemize}
+    \item L'ensemble de toutes les suites est noté $\rN$. $E = (\rN,+,\cdot)$ où $(\cdot)$ est la loi de composition externe suivante 
+    \vfunc{\cdot}{\bK\times \rN}{\rN}{(\lambda,(a_n))}{(\lambda a_n)}
+    est un espace vectoriel
+    \item Une suite $(u_n)$ est dite convergente si $u_n \to \lambda \in \bR$ 
+    \item Une suite $(u_n)$ est dite absolument convergente si $\abs{u_n} \to \lambda \in \bR$
+  \end{itemize}
+\end{rmq}
 \subsection{Suites et série d'application}
 \begin{rmq}
   Soit $I$ un interval de $\bR$, $f$ une fonction de $\bR^{I}$ et $(f_n) \in \left(\bR^{I}\right)^{\bN}$ une suite d'application.
@@ -1629,7 +1642,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \end{equation*}
     La notation $\norm{f}_{\infty}$ étant la \textbf{norme infinie} de $f$ définie par 
     \begin{equation*}
-      \norm{f}^A_{\infty} = \sup_{x \in A} f(x)
+      \norm{f}^A_{\infty} = \sup_{x \in A} \abs{f(x)}
     \end{equation*}
   \end{itemize}
 \end{rmq}
@@ -1653,7 +1666,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     est une suite de \textbf{réel} des fonctions évalués en $\lambda$ elle est égale à la suite de réelle $\left(\sum a_n \lambda^n\right)_{n \in \bN}$
     \end{itemize}
 \end{rmq}
-\subsection{Autre}
+\section{Autre}
 \begin{rmq}
   Soit $f$ une fonction définie sur $I$ un interval de $\bR$ tel que $I = [a,b]$
   \begin{itemize}
