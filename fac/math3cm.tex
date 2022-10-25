@@ -152,6 +152,10 @@
 \def\rNp{\left(\bR^{+}\right)^{\bN}}
 \def\sn{\sum_{n=0}^{\infty} u_n}
 \def\satp{série à terme positifs}
+\def\sev{sous espace vectoriel }
+\def\ev{espace vectoriel }
+\def\mor{\mfc{L}(E,F)}
+\def\endo{\mfc{L}(E)}
 \def\apcr{à partir d'un certain rang}
 % Sometimes helpful macros
 \newcommand{\func}[3]{#1\colon#2\to#3}
@@ -1539,6 +1543,367 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{align*}
 \end{rmq}
 
+
+\chapter{Applications Linéaires}
+\section{Définition}
+\begin{definition}
+  Soit $E$ et $F$ deux espaces vectoriels sur $\bK$, on dit que $f$ est une application linéaire de $E$ dans $F$ si
+  \begin{align*}
+    &\forall (x,x') \in E^2, f(x+x') = f(x) + f(x') && \text{et} \\
+    &\forall \lambda \in \bK, \forall x \in E, f(\lambda x) = \lambda f(x)
+  \end{align*}
+  On note l'ensemble des applications linéaire (\textit{morphisme}) de $E$ dans $F$, $\mfc{L}(E,F)$
+\end{definition}
+\begin{rmq}
+  Cette définition est équivalente à 
+  \begin{equation*}
+    (f \in \mfc{L}(E,F)) \Leftrightarrow \forall (x,x') \in E^2, \forall \lambda \in \bK, f(\lambda x + x') = \lambda f(x) + f(x') \in F
+  \end{equation*}
+\end{rmq}
+\begin{rmq}
+  On déduit des axiomes que $f(0_E) = 0_F$
+\end{rmq}
+\begin{rmq}
+  Si $E = F$ alors on dit que $f$ est un \textit{endomorphisme} et on note $\mfc{L}(E)$ l'ensemble des endomorphismes de E.
+\end{rmq}
+\section{Noyaux et Images}
+\begin{definition}
+  On définie
+  \begin{align*}
+    &\ker f = \left\{x \in E | f(x) = 0_F\right\} && \text{et} \\ 
+    &\Im f = \left\{f(x), x \in E\right\}
+  \end{align*}
+\end{definition}
+\begin{prop}
+  On a que $\ker f$ est un \sev  de $E$ et $\Im f$ est un \sev  de $F$
+  \begin{proof}
+    Conséquences de la linéarité de $f$
+  \end{proof}
+\end{prop}
+\subsection{Propriétés}
+\begin{prop}
+  Soit $E$ et $F$ deux \ev, et $f \in \mor$ 
+  \begin{equation*}
+    f \text{ injective } \Leftrightarrow \ker f = \{0_E\}
+  \end{equation*}
+  \begin{proof}
+    Soit $f \in \mor$
+    \begin{itemize}
+      \item Sens $f$ injective $\Rightarrow \ker f = \{0_E\}$
+      \begin{equation*}
+        f(0_E) = 0_F 
+      \end{equation*}
+      Donc
+      \begin{equation*}
+        0_E \in \ker f
+      \end{equation*}
+      Soit $x \in \ker f$ donc
+      \begin{equation*}
+        f(x) = 0_E
+      \end{equation*}
+      Or par injectivité de $f$ ce $x$ est unique donc il n'existe pas de $y \not= x \in E$ tel que $f(y) = \ker E$ donc
+      \begin{equation*}
+        \ker f \subset \{0_E\}
+      \end{equation*}
+      Par double inclusion on a donc 
+      \begin{equation*}
+        \ker f = \{0_E\}
+      \end{equation*}
+      \item Sens $\ker f = \{0_E\} \Rightarrow f$ injective.
+      \begin{equation*}
+        \text{Soit } (x,y) \in E^2 | f(x) = f(y)
+      \end{equation*}
+      Donc on a 
+      \begin{equation*}
+        f(x) - f(y) = 0_F
+      \end{equation*}
+      Donc par linéarité de $f$ 
+      \begin{equation*}
+        f(x - y) = 0_F
+      \end{equation*}
+      Or $\ker f = \{0_E\}$ donc 
+      \begin{align*}
+        &x-y = 0_E \\ 
+        &x=y
+      \end{align*}
+      Donc $f$ est injective
+    \end{itemize}
+    Donc par double inclusion la propriété est démontrée.
+  \end{proof}
+\end{prop}
+\section{Rang}
+\begin{definition}
+  Soit $E,F$ deux \ev de dimension finie alors on définie le \textit{rang} de $f \in \mor$ comme 
+  \begin{equation*}
+    \text{rg}(f) = \dim \Im f
+  \end{equation*}
+\end{definition}
+\begin{theorem}[Théorème du rang]
+  Soit $E,F$ deux \ev de dimension finie alors on a 
+  \begin{equation*}
+    \dim E = \dim \Im f + \dim \ker f
+  \end{equation*}
+\end{theorem}
+\begin{prop}[Corollaire]
+  Soit $E,F$ deux \ev de dimension finie alors
+  \begin{equation*}
+    \forall f \in \mor, \dim \Im f \leq \dim E
+  \end{equation*}
+  Le cas d'égalité est pour $f \in \mor$ injective
+\end{prop}
+\section{Matrice d'une application linéaire}
+\begin{definition}
+  Soit $E,F$ deux \ev de dimensions finies tels que $\dim E = p$ et $\dim F = n$, et soit $f \in \mor$.
+  Soit $\mfc{B} = (e_1,\cdots,e_p)$ une base de $E$ et $\mfc{V} = (v_1,\cdots,v_n)$ une base de $f$ 
+  alors la matrice de $f$ exprimé de la base $\mfc{B}$ dans la base $\mfc{V}$ est noté
+  \begin{equation*}
+    \text{Mat}_{\mfc{B},\mfc{V}} f = \begin{bmatrix}
+      f(e_1) \cdots f(e_p)
+    \end{bmatrix} = \begin{bmatrix}
+      a_{1,1} & \cdots & a_{1,p} \\
+      a_{2,1} & \cdots & a_{2,p} \\ 
+      \vdots & \vdots & \vdots \\ 
+      a_{n,1} & \cdots & a_{n,p}
+    \end{bmatrix} \in \mfc{M}_{n,p}(\bK)
+  \end{equation*}
+\end{definition}
+\begin{rmq}
+  Par la méthode des pivots on se rend compte que 
+  \begin{equation*}
+    \text{rang}(f) = \text{rang}\left(\text{Mat}_{\mfc{B},\mfc{V}} f\right)
+  \end{equation*}
+\end{rmq}
+\begin{ex}
+  Soit $B = (i,j)$ la base canonique de $\bR^2$ et $C = (a,b,c)$ la base canonique de $\bR^3$
+  Soit \vfunc{f}{\bR^2}{\bR^3}{\alpha i+ \beta j}{(2\alpha - \beta)a + \alpha b + (7\alpha - 9\beta)c}
+  Alors 
+  \begin{equation*}
+    \text{Mat}_{B,C} f = \begin{bmatrix}
+      2 & -3 \\ 
+      1 & 0 \\ 
+      7 & -9
+    \end{bmatrix}
+  \end{equation*}
+  Car 
+  \begin{align*}
+    f(i) &= 2a + b + 7c \\ 
+    f(j) &= -3a -9c
+  \end{align*}
+\end{ex}
+\begin{ex}
+  Soit $E,F$ deux \ev tels que $\dim E = p$ et $\dim F = n$ et $r = \text{rang}(f)$ donc $\dim \ker f = p - r$ 
+  On prend comme base de $\ker f$
+  \begin{equation*}
+    (k_1,\cdots,k_{p-r}) 
+  \end{equation*}
+  que l'on complète en une base de $E$ grâce au théorème de completion des bases en dimension finie par $(s_1,\cdots,s_r)$ et finalement 
+  \begin{equation*}
+    \mfc{B} = (k_1,\cdots,k_{p-r},s_1,\cdots,s_r)
+  \end{equation*}
+  Base de $E$
+  de la même manière on prend
+  \begin{equation*}
+    \mfc{V} = (f(s_1),\cdots,f(s_r),t_{r+1},\cdots,t_{n})
+  \end{equation*}
+  Base de $F$, la famille $(f(s_1),\cdots,f(s_r))$ étant libre car $(s_1,\cdots,s_r)$ l'est et $f$ est un morphisme. On a alors 
+  \begin{equation*}
+    \text{Mat}_{\mfc{B},\mfc{V}} = \begin{bmatrix}
+      I_r & 0_{p-r} \\ 
+      0_{n-r} & 0
+    \end{bmatrix}
+  \end{equation*}
+\end{ex}
+\section{Matrice d'un endomorphisme}
+\begin{definition}
+  Soit $E$ un \ev, $f$ est un endomorphisme de E si $f \in \mfc{L}(E,E)$ on note $f \in \endo$, si $\dim E = n$
+  et $\mfc{B}$ la base canonique de $E$ alors 
+  \begin{equation*}
+    \text{Mat}_{\mfc{B},\mfc{B}} f = \text{Mat}_{\mfc{B}} f \in \mfc{M}_{n}(\bK)
+  \end{equation*}
+\end{definition}
+\subsection{Image d'un vecteur}
+\begin{definition}
+  Soit $E$ deux \ev, de dimension $p$ soit $\mfc{B}$ une base de $E$,
+  soit $x \in E$ alors on défini le vecteur associé de la base $\mfc{B}$ à x comme ceci
+  \begin{equation*}
+    \text{Mat}_{\mfc{B}} x = \begin{bmatrix}
+      x_1 \\ 
+      \vdots \\ 
+      x_p
+    \end{bmatrix}
+  \end{equation*}
+  où $(x_1,\cdots,x_p)$ sont les coordonnées de $x$ dans la base $\mfc{B}$
+\end{definition}
+\begin{prop}
+  Soit $E,F$ deux \ev de dimensions respectives $p$ et $n$, $\mfc{B}$ une base de $E$, $\mfc{V}$ une base de $F$, et $f \in \mor$.
+  Soit $Y = \text{Mat}_{\mfc{V}} f(x)$, soit $X = \text{Mat}_{\mfc{B}} x$ alors on a 
+  \begin{equation*}
+    Y = \text{Mat}_{\mfc{B},\mfc{V}} f \times X
+  \end{equation*}
+\end{prop}
+\section{Endomorphismes}
+\subsection{Matrices de changement de base}
+\begin{definition}
+  Soit $E$ un \ev de dimension $n$, soit $\mfc{B}$ et $\mfc{B}'$ deux bases de $E$ on cherche a exprimer les coordonnées de $x$ d'une base 
+  à une autre. 
+  \begin{equation*}
+    \text{Mat}_{\mfc{B}} x = \text{Mat}_{\mfc{B},\mfc{B}'} I_d \times \text{Mat}_{\mfc{B}'} x
+  \end{equation*}
+  en pratique ce qui nous interesse est la matrice $\text{Mat}_{\mfc{B}',\mfc{B}}$ pour changer des coordonnées connues à la nouvelle base, on a 
+  \begin{equation*}
+    \text{Mat}_{\mfc{B}',\mfc{B}} I_d = \left(\text{Mat}_{\mfc{B},\mfc{B}'}\right)^{-1}
+  \end{equation*}
+  on sait que $\text{Mat}_{\mfc{B},\mfc{B}'} \in \mfc{GL}_n(\bK)$ car toutes les familles sont libres. 
+  Une telle matrice est appellée \textit{matrice de changement de base}
+\end{definition}
+\begin{ex}
+  Soit $B = (i,j)$ la base canonique de $\bR^2$, soit $x = \begin{pmatrix}
+    5 \\ 
+    1
+  \end{pmatrix}$
+  Soit $u = 2i + j$ et $v = -i + j$, on note $B' = (u,v)$
+  \begin{align*}
+    P &= \text{Mat}_{B,B'} I_2 \\ 
+      &= \begin{bmatrix}
+        2 & -1 \\ 
+        1 & 1
+      \end{bmatrix}
+  \end{align*}
+  On a 
+  \begin{equation*}
+    \det P = 2 + 1 = 3
+  \end{equation*}
+  Donc 
+  \begin{align*}
+    P^{-1} &= \frac{1}{\det P} \begin{bmatrix}
+      1 & 1 \\ 
+      -1 & 2
+    \end{bmatrix} \\ 
+    &= \frac{1}{3} \begin{bmatrix}
+      1 & 1 \\ 
+      -1 & 2
+    \end{bmatrix}
+  \end{align*}
+  D'où
+  \begin{align*}
+    X' &= \frac{1}{3} \begin{bmatrix}
+      1 & 1 \\ 
+      -1 & 2
+    \end{bmatrix} \times \begin{pmatrix}
+      6 \\ 
+      1
+    \end{pmatrix} \\ 
+    &= \begin{bmatrix}
+      2 \\ 
+      -1
+    \end{bmatrix}
+  \end{align*}
+  d'où
+  \begin{equation*}
+    x = 2u - v
+  \end{equation*}
+  \begin{rmq}
+    C'est équivalent à résoudre un système d'équation (l'inversion de matrice est essentiellement ça)
+  \end{rmq}
+\end{ex}
+\subsection{Matrices équivalentes}
+\begin{definition}
+  On dit que $A$ et $A'$ sont équivalentes s'il existe $P \in \mfc{GL}_n(\bK)$ et $Q \in \mfc{GL}_m(\bK)$ telles que 
+  \begin{equation*}
+    A' = Q^{-1} A P
+  \end{equation*}
+\end{definition}
+\subsection{Matrices semblables}
+\begin{definition}
+  On dit que $A$ et $A'$ sont semblable s'il existe $P \in \mfc{GL}_n(\bK)$ tel que 
+  \begin{equation*}
+    A' = P^{-1} A P
+  \end{equation*}
+\end{definition}
+\begin{rmq}
+  Deux matrices semblables représente le même endomorphisme dans des bases différentes
+\end{rmq}
+\begin{rmq}
+  \begin{equation*}
+    \text{rang}(A) = \text{rang}(A') = \text{rang}(f)
+  \end{equation*}
+\end{rmq}
+\subsection{Application}
+\begin{ex}
+  Soit \vfunc{f}{\bR^2}{\bR^2}{\begin{pmatrix}
+    x \\ 
+    y
+  \end{pmatrix}}{\begin{pmatrix}
+    17x - 45y \\ 
+    6x - 16y
+  \end{pmatrix}}
+  Dans la base canonique $B = (i,j)$ de $\bR^2$ on a 
+  \begin{equation*}
+    \text{Mat}_{B} f = \begin{bmatrix}
+      17 & -45 \\ 
+      6 & -16
+    \end{bmatrix}
+  \end{equation*}
+  \begin{rmq}
+    Mais que se passe-t-il si on veut calculer la matrice de $f^5$ ou $f^{10}$ les calculs deviennent vites horrible
+  \end{rmq}
+  \begin{equation*}
+    \text{Mat}_{B} f^5 = \begin{bmatrix}
+      197 & -495 \\ 
+      66 & -166
+    \end{bmatrix}
+  \end{equation*}
+  Il faut donc trouver une base dans lesquels c'est plus simple par exemple 
+  \begin{equation*}
+    B' = (u,v)
+  \end{equation*}
+  avec $u = 3i + j$ et $v = 5i + 2j$
+  \begin{equation*}
+    P = \text{Mat}_{B,B'} I_2 = \begin{bmatrix}
+      3 & 5 \\ 
+      1 & 2
+    \end{bmatrix}
+  \end{equation*}
+  donc 
+  \begin{equation*}
+    P^{-1} = \begin{bmatrix}
+      2 & -5 \\ 
+      -1 & 3
+    \end{bmatrix}
+  \end{equation*}
+  On a ensuite 
+  \begin{align*}
+    A' &= P^{-1} A P \\ 
+       &= \begin{bmatrix}
+        2 & -5 \\ 
+        -1 & 3
+       \end{bmatrix} 
+       \begin{bmatrix}
+        17 & -45 \\ 
+        6 & -16 
+       \end{bmatrix}
+       \begin{bmatrix}
+        3 & 5 \\ 
+        1 & 2
+       \end{bmatrix} \\ 
+       &= \begin{bmatrix}
+        2 & -5 \\ 
+        -1 & 3
+       \end{bmatrix} 
+       \begin{bmatrix}
+        6 & -5 \\ 
+        2 & -2
+       \end{bmatrix} \\
+       &= \begin{bmatrix}
+        2 & 0 \\ 
+        0 & -1
+       \end{bmatrix} \in \mfc{D}_2(\bK)
+  \end{align*}
+  cette matrice étant diagonale on peut facilement calculer $f^{5}$ et $f^{10}$ dans $B'$.\newline 
+
+  La recherche d'une telle base est appelée \textit{réduction des endomorphismes}
+\end{ex}
+
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
@@ -1548,6 +1913,9 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     petit ensemble fermé contenant $D$, par exemple $\bar{R} = \bR \cup \{-\infty,+\infty\}$
     \item Soit $\bK$ un corps, alors $\bK[X]$ est l'ensemble des polynomes 
     à coefficient dans $\bK$ a une indéterminée (en gros, variable)
+    \item $\mfc{M}_{n,p}(\bK)$ est l'ensemble des matrices à $n$ lignes et $p$ colonnes à coefficient dans $\bK$
+    \item $\mfc{M}_{n}(\bK) = \mfc{M}_{n,n}(\bK)$
+    \item $\mfc{GL}_n(\bK)$ est l'ensemble des matrices inversibles de $\mfc{M}_n(\bK)$, c'est un groupe multiplicatif
   \end{itemize}
 \end{rmq}
 \section{Fonctions}
