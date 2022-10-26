@@ -24,6 +24,11 @@
 \usepackage{fancyhdr}
 \usepackage[french]{babel}
 \usepackage{bm}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Other Settings
@@ -122,6 +127,7 @@
 \def\bR{\mbb{R}}
 \def\bQ{\mbb{Q}}
 \def\bZ{\mbb{Z}}
+\def\mR{\mfc{R}}
 \def\mC{\mathcal{C}}
 \def\mM{\mathcal{M}}
 \def\L{\mfc{L}^1(I,\bK)}
@@ -2096,8 +2102,9 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     est une suite de \textbf{réel} des fonctions évalués en $\lambda$ elle est égale à la suite de réelle $\left(\sum a_n \lambda^n\right)_{n \in \bN}$
     \end{itemize}
 \end{rmq}
-\section{Rappels d'Algèbre Générale}
-\subsection{Loi de Composition Internes}
+\section{Rappels d'Algèbre}
+\subsection{Algèbre Générale}
+\subsubsection{Loi de Composition Internes}
 \begin{rmq}
   Soit $E$ un ensemble
   \begin{itemize}
@@ -2123,7 +2130,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     On note alors $y = x^{-1}$
   \end{itemize}
 \end{rmq}
-\subsection{Magma et Monoïde}
+\subsubsection{Magma et Monoïde}
 \begin{rmq}
   Soit $E$ un ensemble et $(\cdot)$ une lci sur $E$ 
   \begin{itemize}
@@ -2133,7 +2140,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item On appelle la donnée du couple $(E,\cdot)$ où $(\cdot)$ est associative et possède un élement neutre un \textit{monoïde}
   \end{itemize}
 \end{rmq}
-\subsection{Groupe}
+\subsubsection{Groupe}
 \begin{definition}
   Soit $\mathcal G = (E,\cdot)$ un monoïde d'élement neutre $\varepsilon$, on appelle $\mathcal G$ un \textit{groupe} si et seulement si 
   \begin{equation*}
@@ -2294,7 +2301,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Ce théorème est souvent utilisé lorsqu'on touche aux sous groupes de $\bR$ et les irrationels comme $\mathcal G = \bZ + 2\pi\bZ$ par exemple, pour l'algèbre modulaire
 \end{rmq}
-\subsection{Anneaux}
+\subsubsection{Anneaux}
 \begin{definition}
   On appelle la donnée de $\mathcal A = (A,+,\cdot)$ anneaux si et seulement si 
   \begin{itemize}
@@ -2354,7 +2361,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     Laissée à l'éxercice du lecteur (indice: par analyse synthèse)
   \end{proof}
 \end{ex}
-\subsection{Idéaux}
+\subsubsection{Idéaux}
 \begin{definition}
   Soit $I \subset A$ avec $\mathcal A = (A,+,\cdot)$ un anneau commutatif intègre, on dit que $I$ est un \textit{idéal} de $\mathcal A$ si 
   \begin{itemize}
@@ -2365,7 +2372,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{itemize}
 \end{definition}
 \begin{rmq}
-  ${0_A}$ et $A$ sont appelés \textit{idéaux triviaux} de $\mathcal A$
+  $\{0_A\}$ et $A$ sont appelés \textit{idéaux triviaux} de $\mathcal A$
 \end{rmq}
 \begin{ex}
   Pour $\bZ$ les idéaux sont de la forme $n\bZ$ avec $n \in \bN$
@@ -2388,7 +2395,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{ex}
   Dans $\bZ$ les idéaux maximaux sont exactement de la forme $p\bZ$ avec $p$ un nombre premier.
 \end{ex}
-\subsection{Corps}
+\subsubsection{Corps}
 \begin{definition}
   On dit que $\mathcal A = (A,+,\cdot)$ est un corps si et seulement si 
   \begin{itemize}
@@ -2403,8 +2410,8 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   Les corps les plus connus (écris souvents $\bK$) sont $\bR$ ou $\bC$, mais $\bQ$ est aussi un corps et plus généralement les anneaux 
   quotients $\bZ/p\bZ$ où $p$ est un entier premier.
 \end{ex}
-\section{Rappels d'Algèbre Linéaire}
-\subsection{Loi de Composition Externe}
+\subsection{Linéaire}
+\subsubsection{Loi de Composition Externe}
 \begin{definition}
   On appelle \textit{loi de composition externe} (lce) de $\bK$ sur $E$ une application de la forme 
   \vfunc{(\cdot)}{\bK \times E}{E}{(\lambda,x)}{\lambda \cdot x}
@@ -2413,7 +2420,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   Ces lois sont généralement d'un ensemble qu'on appelle ensemble des \textit{scalaire} (en général : un corps commutatif)
   sur un \textit{espace vectoriel}
 \end{rmq}
-\subsection{Espaces vectoriels}
+\subsubsection{Espaces vectoriels}
 \begin{definition}
   On appelle \textit{espace vectoriel} sur $\bK$ ou $\bK$-ev la donnée du triplet $(E,+,\cdot)$ tels que 
   \begin{itemize}
@@ -2462,7 +2469,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Donc $R^2$, $R^3$ etc. $R^n$ sont des espaces vectoriels par produit
 \end{rmq}
-\subsection{Familles libres/génératrices}
+\subsubsection{Familles libres/génératrices}
 \begin{definition}
   Soit $E$ un $\bK$-ev, soit $x = (x_i)_{i \in I}$ une famille de vecteurs de $E$ indexé sur $I$
   on dit que $x$ est libre si et seulement si 
@@ -2489,7 +2496,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Dans le cas général $I$ est une partie de $\bN$.
 \end{rmq}
-\subsection{Dimension finie}
+\subsubsection{Dimension finie}
 \begin{definition}
   On dit que $E$ est un $\bK$-ev de dimension finie si et seulement si il existe $\mathcal B$ une base de $E$ telle que $\abs{B} \in \bN$ 
   on dit alors que 
@@ -2513,7 +2520,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \forall (\mathcal B,\mathcal B') \text{ base de } E, \abs{\mathcal B} = \abs{\mathcal B'} = \dim E
   \end{equation*}
 \end{theorem}
-\subsection{Morphismes}
+\subsubsection{Morphismes}
 \begin{definition}
   Soit $E,F$ deux \ev. Un \textit{morphisme} de $E$ dans $F$ est une application linéaire de $E$ dans $F$, on note 
   l'ensemble des morphismes de $E$ dans $F$ $\mor$
@@ -2537,7 +2544,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   En particulier tout \ev de dimension $n$ est isomorphe à $R^n$ appelé \textit{espace canonique de dimension n}
 \end{rmq}
-\subsection{Espace pré-hilbertien, euclidien}
+\subsubsection{Espace pré-hilbertien, euclidien}
 \begin{definition}
   Soit $E$ un $\bR$-ev, on dit que $f = (\cdot | \cdot)$ est un produit scalaire sur $E$ si c'est une forme bilinéaire, définie, positive, symétrique
   \begin{itemize}
@@ -2553,7 +2560,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{definition}
   Un \textit{espace euclidien} est un espace pré-hilbertien de dimension finie.
 \end{definition}
-\subsection{Espace vectoriel normés}
+\subsubsection{Espace vectoriel normés}
 \begin{definition}
   Soit $E$ un $\bK$-ev on dit que $f = \norm{\cdot}$ est une norme sur $E$ si 
   \begin{itemize}
@@ -2573,7 +2580,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{definition}
   On appelle $(E,f)$ un \textit{espace vectoriel normé} si $E$ est un espace vectoriel et $f$ une norme sur $E$
 \end{definition}
-\subsubsection{Dimension finie}
+\paragraph{Dimension finie}
 \begin{definition}
   Si $E$ est un \ev de dimension finie alors toutes les normes sont équivalentes, et toutes les endomorphismes de $E$ sont continus
 \end{definition}
@@ -2584,4 +2591,252 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $\int_I f = \int_a^b f = \int_a^b f(x) \text{d}x$
   \end{itemize}
 \end{rmq}
+\chapter{Hors Programme - Supplément}
+\section{Relation binaire}
+\begin{definition}
+  Soit $E$ un ensemble, soit $\Gamma \subset E^2$ on lui associe la relation binaire suivante $\mathcal{R}$ définie par 
+  \begin{equation*}
+    \forall (x,y) \in E^2, x\mathcal{R}y \Leftrightarrow (x,y) \in \Gamma
+  \end{equation*}
+  On dit que $x$ \textit{est en relation} avec $y$ pour $\mathcal{R}$
+\end{definition}
+\subsection{Propriétés particulières}
+\begin{definition}
+  Soit $E$ un ensemble, soit $\Gamma \subset E^2$ et $\mathcal{R}$ la relation binaire associée
+  \begin{itemize}
+    \item si $\forall x \in E, x\mathcal{R}x$ on dit que $\mathcal{R}$ est \textit{reflexive} c'est équivalent à 
+    \begin{equation*}
+      \forall x \in E, (x,x) \in \Gamma
+    \end{equation*}
+    \item si $\forall (x,y) \in E^2, x\mR y \Rightarrow y\mR x$ on dit que $\mR$ est \textit{symétrique} c'est équivalent à 
+    \begin{equation*}
+      \forall (x,y) \in E^2, (x,y) \in \Gamma \Rightarrow (y,x) \in \Gamma
+    \end{equation*}
+    \item si $\forall (x,y,z) \in E^3, (x \mR y) \wedge (y \mR z) \Rightarrow x\mR z$ on dit que $\mR$ est \textit{transitive} c'est équivalent à 
+    \begin{equation*}
+      \forall (x,y,z) \in E^3 ((x,y) \in \Gamma) \wedge ((y,z) \in \Gamma) \Rightarrow (x,z) \in \Gamma
+    \end{equation*}
+    \item si $\forall (x,y) \in E^2 (x\mR y) \wedge (y\mR x) \Rightarrow x=y$ alors on dit que $\mR$ est \textit{antisymétrique}
+  \end{itemize}
+\end{definition}
+\section{Relations particulière}
+\subsection{Relation d'ordre}
+\begin{definition}
+  Soit $E$ un ensemble, soit $\Gamma \subset E^2$ et $\mR$ la relation binaire associé on dit que $\mR$ est une relation de pré-ordre sur $E$ si
+  \begin{itemize}
+    \item $\mR$ est réflexive
+    \item $\mR$ est transitive
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  Soit $E$ un ensemble, soit $\Gamma \subset E^2$ et $\mR$ la relation associée, on dit que $\mR$ est une relation d'ordre sur $E$ si 
+  \begin{itemize}
+    \item $\mR$ est un pré-ordre sur $E$
+    \item $\mR$ est antisymétrique
+  \end{itemize}
+\end{definition}
+\begin{ex}
+  Par exemple $(\leq)$ ou $(\geq)$ sont des ordres sur $\bN,\bZ,\bQ$ et $\bR$, on appelle la donnée d'un ensemble et d'une relation d'ordre sur cet ensemble 
+  un \textit{ensemble ordonné}
+\end{ex}
+\begin{definition}
+  Soit $\mR$ une relation d'ordre on dit que $\mR$ est totale si 
+  \begin{equation*}
+    \forall (x,y) \in E^2, (x\mR y) \vee (y\mR x) \vee (x=y)
+  \end{equation*}
+\end{definition}
+\begin{ex}
+  Par exemple la relation $|$ "divise" sur $\bN$ est une relation d'ordre non-totale, par exemple $2$ et $3$ ne sont pas en relation entre eux et $2 \not= 3$
+\end{ex}
+\section{Relation d'équivalence}
+\begin{definition}
+  Soit $\mR$ un pré-ordre sur $E$ alors $\mR$ est une relation d'équivalence si et seulement si $\mR$ est symétrique, on note alors $\mR$ en général par le symbole "tilde" $\sim$
+\end{definition}
+\subsection{Classes d'équivalence}
+\begin{definition}
+  Soit $\mR$ une relation d'équivalence sur $E$. Soit $x \in E$ on note
+  \begin{equation*}
+    \bar{x} = \left\{y \in E, x\mR y\right\} = \left\{x \in E, y\mR x \right\}
+  \end{equation*}
+  la \textit{classe d'équivalence} de $x$.
+\end{definition}
+\begin{prop}
+  Soit $\mR$ une relation d'équivalence sur $E$ alors 
+  \begin{equation*}
+    \forall (x,y) \in E^2, x\mR y \Leftrightarrow \bar{x} =\bar{y}
+  \end{equation*}
+  \begin{proof}
+    Soit $\mR$ une relation d'équivalence sur $E$ et soit $(x,y) \in E^2$ 
+    \begin{itemize}
+      \item On suppose que $x \mR y$ alors soit $z \in \bar{x}$ donc $z\mR x$ par transitivité on a $z \mR y$ donc $z \in \bar{y}$ 
+      soit $z \in \bar{y}$ alors $y \mR z$ donc par transitivité $x \mR z$ donc $z \in \bar{x}$ par double inclusion on a $\bar{x} = \bar{y}$
+      \item On suppose que $\bar{x} = \bar{y}$ alors soit $z \in \bar{x}$ on a $x \mR z$ et comme $\bar{x} = \bar{y}$ on a $z \in \bar{y}$ donc $z \mR y$ par transitivité on a $x \mR y$
+    \end{itemize}
+  \end{proof}
+\end{prop}
+\section{Ensemble quotient}
+\begin{definition}
+  Soit $\mR$ une relation d'équivalence sur $E$, on note l'ensemble des classes d'équivalences 
+  \begin{equation*}
+    E/\mR = \left\{\bar{x},x \in E\right\}
+  \end{equation*}
+  On appelle $E/\mR$ ensemble quotient de $E$ par $\mR$
+\end{definition}
+\begin{rmq}
+  Pour $x \in E$, on appelle $y \in \bar{x}$ \textit{représentant de la classe} $\bar{x}$
+\end{rmq}
+\begin{prop}
+  Les classes d'équivalences sont disjointes c'est à dire, 
+  \begin{equation*}
+    \forall (\bar{x},\bar{y}) \in (E/\mR)^2 (\bar{x}\not= \bar{y}) \Rightarrow x \cap y = \emptyset
+  \end{equation*}
+  \begin{proof}
+    Soit $(\bar{x},\bar{y}) \in (E/\mR)^2$ tel que $(\bar{x}\not= \bar{y})$, soit $z \in \bar{x} \cap \bar{y}$ donc par définition
+    $x \mR z$ et $z \mR y$ donc par transitivité $x \mR y$ donc par le théorème précédent $\bar{x} =\bar{y}$ ce qui est absurde, donc $\bar{x} \cap \bar{y} = \emptyset$
+  \end{proof}
+\end{prop}
+\begin{prop}
+  Les classes d'équivalences forment une partition de $E$
+  \begin{proof}
+    Il a été précédamment prouvé que $\bar{x}$ et $\bar{y}$ sont disjoints deux à deux, or 
+    \begin{equation*}
+      \forall x \in E, x \in \bar{x} 
+    \end{equation*}
+    donc 
+    \begin{equation*}
+      \bigcup_{\bar{x}\in E} = E
+    \end{equation*}
+    puis comme l'union est disjointes les classes d'équivalences forment bien une partition de $E$
+  \end{proof}
+\end{prop}
+\section{Morphismes}
+\subsection{Morphismes d'Anneaux}
+\begin{definition}
+  %to be defined%
+  blabla
+\end{definition}
+\subsubsection{Bijectivité}
+more blabla
+\section{Algèbre modulaire}
+\subsection{Les anneaux $\bZ/n\bZ$}
+Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial réduit à $0$
+\begin{definition}
+  On note $\bZ/n\bZ$ l'anneau des entier modulo $n$ 
+\end{definition}
+\begin{prop}
+  Soit $n \in \bN^*$ l'ensemble quotient $\bZ/n\bZ$ est de cardinal $n$ et $\bZ/n\bZ = \left\{\bar{0},\cdots,\overline{n-1}\right\}$
+  \begin{proof}
+    Conséquence directe de la congruence modulo $n$
+  \end{proof}
+\end{prop}
+\subsubsection{Inverses modulaires}
+\begin{definition}
+  Les inverses modulos $n$ sont exactements les éléments inversibles de $\bZ/n\bZ$
+\end{definition}
+\begin{prop}
+  L'inverse de $a$ modulo $n$ existe si et seulement si $a$ et $n$ sont premiers entre eux.
+  \begin{proof}
+    L'inverse de $a$ modulo $n$ est un entier $u$ vérifiant 
+    \begin{equation*}
+      au \equiv 1 \mod n
+    \end{equation*}
+    ce qui est équivalent à s'il existe un entier $v$ tel que 
+    \begin{equation*}
+      au + nv = 1
+    \end{equation*}
+    Or d'après le théorème de Bézout on a que $a \wedge b = 1 \Leftrightarrow \exists (u,v) \in \bN^*, au + bv = 1$,
+    donc d'après le théorème de bézout il faut que $a \wedge n = 1$ donc que $a$ et $n$ soient premier entre eux
+  \end{proof}
+\end{prop}
+\subsubsection{Les corps $\bZ/p\bZ$}
+\begin{theorem}
+  L'ensemble quotient $\bZ/p\bZ$ est un corps si et seulement si $p$ est premier
+  \begin{proof}
+    D'après la définition on sait que $\bZ/p\bZ = \left\{\bar{0},\cdots,\bar{p-1}\right\}$
+    \begin{itemize}
+      \item On suppose que $p$ est premier, alors $\forall \bar{x} \in \bZ/p\bZ$ $p \wedge \bar{x} = 1$ si $\bar{x} \not= \bar{0}$, or 
+      $\bar{0}$ est l'élement neutre additif de $\bZ/p\bZ$ alors par la proposition précédente
+      \begin{equation*}
+        \forall \bar{x} \in \bZ/p\bZ, \bar{x} \not= \bar{0} \Rightarrow \bar{x}^{-1} \in \bZ/p\bZ 
+      \end{equation*}
+      donc tous les éléments sauf l'élement neutre additif sont inversible donc $\bZ/p\bZ$ est un corps
+      \item On suppose maintenant que $\bZ/p\bZ$ alors
+      \begin{equation*}
+        \forall \bar{x} \in \bZ/p\bZ, \bar{x} \not= \bar{0} \Rightarrow \bar{x}^{-1} \in \bZ/p\bZ
+      \end{equation*}
+      Donc tous les éléments ont un inverse modulo $p$ par la proposition précédente on a donc 
+      \begin{equation*}
+        \forall \bar{x} \in \bZ/p\bZ, \bar{x} \not= \bar{0} \Rightarrow p \wedge \bar{x} = 1 
+      \end{equation*}
+      Donc 
+      \begin{equation*}
+        \forall i \in [1,p-1] \cap \bN, i \wedge p = 1
+      \end{equation*}
+      Donc $p$ est premier avec tous les entiers précédents, donc $p$ est premier
+    \end{itemize}
+    Donc $\bZ/p\bZ$ est un corps si et seulement si $p$ est premier
+  \end{proof}
+\end{theorem}
+\subsection{Théorème des restes chinois}
+\begin{theorem}[Théorème des restes chinois]
+  Soit $n$ et $m$ tels que $n \wedge m = 1$ alors $\bZ/nm\bZ$ est isomorphe à $\bZ/n\bZ \times \bZ/m\bZ$
+  \begin{proof}
+    Soit $n$ et $m$ tels que $n \wedge m = 1$.
+    \begin{itemize}
+      \item Premièrement $\abs{\bZ/nm\bZ} = nm$ et $\abs{\bZ/n\bZ \times \bZ/m\bZ} = nm$ donc les cardinaux sont égaux
+      \item Ensuite soit \vfunc{f}{\bZ/nm\bZ}{\bZ/n\bZ\times \bZ/m\bZ}{\bar{x}_{nm}}{(\bar{x}_n,\bar{x}_m)}
+      Soit $(x,y)$ tels que $\bar{x}_{nm} = \bar{y}_nm$ on a que $nm | x - y$ donc comme $n \wedge m = 1$ par théorème de Gauss, 
+      on a 
+      \begin{equation*}
+        (n | x - y) \wedge (m | x - y)
+      \end{equation*}
+      donc 
+      \begin{equation*}
+        \bar{x}_{n} = \bar{y}_{n} \wedge \bar{x}_m = \bar{y}_m
+      \end{equation*}
+      donc finalement 
+      \begin{equation*}
+        f(\bar{x}_{nm}) = f(\bar{y}_{nm})
+      \end{equation*}
+      Donc $f$ est bien définie. Soit $(x,y) \in \bZ^2$ 
+      \begin{align*}
+        f(\bar{x}_{nm} + \bar{y}_{nm}) &= f(\overline{x+y}_{nm}) && \text{addition dans } \bZ/nm\bZ \\ 
+        &= (\overline{x+y}_n,\overline{x+y}_m) && \text{définition de } f \\ 
+        &= (\bar{x}_n + \bar{y}_n,\bar{x}_m + \bar{x}_m) && \text{addition dans } \bZ/n\bZ \text{ et } \bZ/m\bZ \\ 
+        &= (\bar{x}_n,\bar{x}_m) + (\bar{y}_n,\bar{y}_m) \\ 
+        &= f(\bar{x}_{nm}) + f(\bar{y}_{nm}) 
+      \end{align*}
+      On prouve de la même manière la conservation de l'élément neutre multiplicatif.
+      Donc $f$ est linéaire donc $f$ est un morphisme d'anneaux.
+      \item Puis, soit $x \in \bZ$ tel que 
+      \begin{align*}
+        f(\bar{x}_{nm}) &= (\bar{0}_n,\bar{0}_m) \\
+        (\bar{x}_n = \bar{0}_n) &\wedge (\bar{x}_m = \bar{0}_m) \\ 
+        (n | x) &\wedge (m | x) \\ 
+        (nm &| x) && \text{ car } n \wedge m = 1 \\ 
+        \bar{x}_{nm} &= \bar{0}_{nm}
+      \end{align*}
+      Donc $f(x) = 0 \Rightarrow x=0$ donc $f$ est injective
+      \item Enfin, $f$ est un morphisme injectif entre $\bZ/nm\bZ$ et $\bZ/n\bZ \times \bZ/m\bZ$ et les deux ensembles sont de cardinal égaux 
+      donc $f$ est une isomorphie d'anneaux entre $\bZ/nm\bZ$ et $\bZ/n\bZ \times \bZ/m\bZ$
+    \end{itemize}
+    Donc $\bZ/nm\bZ$ est isomorphe à $\bZ/n\bZ \times \bZ/m\bZ$ 
+  \end{proof}
+\end{theorem}
+\subsection{Décomposition des $\bZ/n\bZ$}
+\begin{definition}
+  Le théorème fondamental de l'arithmétique dit 
+  \begin{align*}
+    \forall n \in \bN, !\exists (p_i) \in \mathbb{P}^{I} \wedge (\alpha_i) \in \bN^{I}, n = \sum_{i\in I} p_i^{\alpha_i}
+  \end{align*}
+\end{definition}
+\begin{theorem}
+  Soit $n \in \bN_{\geq 2}$, soit $(p_i)$ et $(\alpha_i)$ l'unique Décomposition de $n$ alors 
+  \begin{equation*}
+    \bZ/n\bZ = \prod_{i\in I} (\bZ/p_i\bZ)^{\alpha_i}
+  \end{equation*}
+  \begin{proof}
+    Les premiers étants premier deux à deux, conséquences du théorème des restes chinois.
+  \end{proof}
+\end{theorem}
 \end{document}
