@@ -2403,6 +2403,65 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   Les corps les plus connus (écris souvents $\bK$) sont $\bR$ ou $\bC$, mais $\bQ$ est aussi un corps et plus généralement les anneaux 
   quotients $\bZ/p\bZ$ où $p$ est un entier premier.
 \end{ex}
+\section{Rappels d'Algèbre Linéaire}
+\subsection{Loi de Composition Externe}
+\begin{definition}
+  On appelle \textit{loi de composition externe} (lce) de $\bK$ sur $E$ une application de la forme 
+  \vfunc{(\cdot)}{\bK \times E}{E}{(\lambda,x)}{\lambda \cdot x}
+\end{definition}
+\begin{rmq}
+  Ces lois sont généralement d'un ensemble qu'on appelle ensemble des \textit{scalaire} (en général : un corps commutatif)
+  sur un \textit{espace vectoriel}
+\end{rmq}
+\subsection{Espaces vectoriels}
+\begin{definition}
+  On appelle \textit{espace vectoriel} sur $\bK$ ou $\bK$-ev la donnée du triplet $(E,+,\cdot)$ tels que 
+  \begin{itemize}
+    \item $(E,+)$ est un groupe abélien
+    \item $(\cdot)$ est une lce de $\bK$ sur $E$ 
+    \item $(\cdot)$ est distributive à droite sur $+$ et à gauche sur $+_{\bK}$, c'est à dire 
+    \begin{align*}
+      \forall (u,v) \in E^2, \forall (\lambda,\mu) \in \bK^2, &\lambda(u+v) = (\lambda \cdot u) + (\lambda \cdot v) \\ 
+      &(\lambda + \mu) \cdot u = (\lambda \cdot u) + (\mu \cdot v) \\ 
+      &(\lambda \mu) \cdot v = \lambda (\mu \cdot v) \\ 
+      &1_{\bK} v = v \\
+      &\lambda u = 0_E \Leftrightarrow (\lambda = 0_{\bK}) \vee (u = 0_E) \\ 
+      &- (\lambda u) = -\lambda (u) = \lambda (-u)
+    \end{align*}
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  On a comme espaces vectoriels 
+  \begin{itemize}
+    \item $\bR$
+    \item $\bC$
+    \item $\bR^{\bR}$ (les fonctions réelles)
+    \item $\mfc{C}^0$ (les fonctions continues)
+    \item etc.
+  \end{itemize}
+\end{rmq}
+\begin{definition}
+  On appelle un sous espace vectoriel tout ensemble $F \subset E$ tels que 
+  \begin{itemize}
+    \item $(E,+,\cdot)$ est un $\bK$-ev
+    \item $F$ est stable par combinaison linéaire c'est à dire
+    \begin{equation*}
+      \forall (x,y) \in F, \forall \lambda \in \bK, \lambda x + y \in F
+    \end{equation*}
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  En pratique c'est cette caractérisation ci que l'on utilise pour savoir si $E$ est un espace vectoriel
+\end{rmq}
+\begin{prop}
+  Soit $E,F$ deux \ev alors $E \times F$ est un \ev 
+  \begin{proof}
+    Laissé à éxercice du lecteur (mais découle de la définition)
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  Donc $R^2$, $R^3$ etc. $R^n$ sont des espaces vectoriels par produit
+\end{rmq}
 \section{Autre}
 \begin{rmq}
   Soit $f$ une fonction définie sur $I$ un interval de $\bR$ tel que $I = [a,b]$
