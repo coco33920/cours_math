@@ -2096,6 +2096,204 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     est une suite de \textbf{réel} des fonctions évalués en $\lambda$ elle est égale à la suite de réelle $\left(\sum a_n \lambda^n\right)_{n \in \bN}$
     \end{itemize}
 \end{rmq}
+\section{Rappels d'Algèbre Générale}
+\subsection{Loi de Composition Internes}
+\begin{rmq}
+  Soit $E$ un ensemble
+  \begin{itemize}
+    \item On dit que $(\cdot)$ est une \textit{loi de composition interne} sur $E$ si 
+    \vfunc{(\cdot)}{E^2}{E}{(x,y)}{x\cdot y}
+    \item On dit que $\varepsilon$ est un élement neutre pour $(\cdot)$ une lci si 
+    \begin{equation*}
+      \forall x \in E, \varepsilon \cdot x = x \cdot \varepsilon = x
+    \end{equation*}
+    Il est par définition unique.
+    \item On dit que $(\cdot)$ est associative si 
+    \begin{equation*}
+      \forall (x,y,z) \in E^3, (x \cdot y) \cdot z = x \cdot (y \cdot z)
+    \end{equation*}
+    \item On dit que $(\cdot)$ est commutative si 
+    \begin{equation*}
+      \forall (x,y) \in E^2, x \cdot y = y \cdot x
+    \end{equation*}
+    \item On dit que $x \in E$ est \textit{inversible} pour la loi $(\cdot)$ si 
+    \begin{equation*}
+      \exists y \in E, x\cdot y = \varepsilon
+    \end{equation*}
+    On note alors $y = x^{-1}$
+  \end{itemize}
+\end{rmq}
+\subsection{Magma et Monoïde}
+\begin{rmq}
+  Soit $E$ un ensemble et $(\cdot)$ une lci sur $E$ 
+  \begin{itemize}
+    \item On appelle la donnée du couple $(E,\cdot)$ un \textit{magma}
+    \item On appelle la donnée du couple $(E,\cdot)$ où $(\cdot)$ possède un élément neutre un \textit{magma unifère}
+    \item Si $(\cdot)$ est associative alors la donnée du couple $(E,\cdot)$ est appelée un \textit{magma associatif} ou plus rarement \textit{demi-groupe}
+    \item On appelle la donnée du couple $(E,\cdot)$ où $(\cdot)$ est associative et possède un élement neutre un \textit{monoïde}
+  \end{itemize}
+\end{rmq}
+\subsection{Groupe}
+\begin{definition}
+  Soit $\mathcal G = (E,\cdot)$ un monoïde d'élement neutre $\varepsilon$, on appelle $\mathcal G$ un \textit{groupe} si et seulement si 
+  \begin{equation*}
+    \forall x \in E, \exists y \in E, x \cdot y = y \cdot x = \varepsilon
+  \end{equation*}
+  autrement dit $\mathcal G$ est un monoïde où tous les élements sont inversibles (ou symétrisable)
+\end{definition}
+\begin{definition}
+  Soit $F \subset E$ on dit que $F$ est un \textit{sous groupe} de $(E,\cdot)$ si
+  \begin{itemize}
+    \item $(E,\cdot)$ est un groupe
+    \item \begin{equation*}
+      \forall y \in F, y^{-1} \in F
+    \end{equation*}
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  Si $\mathcal G = (E,\cdot)$ est un groupe et que $(\cdot)$ est commutative alors on appelle $\mathcal G$ un \textit{groupe abélien} ou \textit{groupe commutatif}
+\end{rmq}
+\begin{ex}
+  On a comme groupes notables,
+  \begin{itemize}
+    \item $(\bC,+)$ et ses sous groupes $(\bR,+),(\bQ,+),(\bZ,+)$ etc. 
+    \item $(\bN,+)$ est un \textit{monoïde} mais pas un groupe car aucun élement (autre que $0$) n'est inversible pour $(+)$
+    \item $(\bC^*,\cdot)$ est un groupe ainsi que ses sous groupes.
+  \end{itemize}
+\end{ex}
+\begin{theorem}[Théorème de caractérisation des sous groupes de $(\bR,+)$ HP]
+  Soit $H \in \bR$ tel que $(H,+)$ soit un sous groupe de $(\bR,+)$ alors
+  \begin{itemize}
+    \item Soit $H$ est dense dans $\bR$
+    \item Soit $\exists \alpha \in \bR^{+}, H = \alpha \bZ$ où $\alpha \bZ = \left\{\alpha z, z\in \bZ\right\}$
+  \end{itemize}
+  \begin{proof}
+    Encore une fois le théorème est \textbf{Hors Programme}, la preuve encore plus, mais la voilà pour les curieux,\newline\par
+    Soit $H \subset \bR$ tel que $(H,+)$ est un groupe, on suppose que 
+    \begin{equation}
+      H = \{0\}
+    \end{equation}
+    alors $H = 0\bZ$ fin de la démonstration. Donc à partir de maintenant on suppose que 
+    \begin{equation}
+      H \not= \{0\}\
+    \end{equation}
+    Autrement dit 
+    \begin{equation}
+      \exists h \not= 0 \in H
+    \end{equation}
+    Et par propriété des groupes on a aussi
+    \begin{equation*}
+      -h \in H
+    \end{equation*}
+    On pose 
+    \begin{equation*}
+      \mathcal{\varepsilon} = \left\{x > 0, x \in H\right\}
+    \end{equation*}
+    Or par $(3)$ $\exists h \not= 0 \in H$ donc 
+    \begin{align*}
+      &\text{si } h > 0, h \in \mathcal{\varepsilon} && \text{et} \\ 
+      &\text{si } h < 0, -h > 0 \in H, -h \in \mathcal{\varepsilon} 
+    \end{align*}
+    Donc 
+    \begin{equation}
+      \mathcal{\varepsilon} \not= \emptyset
+    \end{equation}
+    Or $\mathcal{\varepsilon} \subset \bR$ non vide et minoré par $0$ donc par propriété fondamentale de $\bR$,
+    $\mathcal{\varepsilon}$ admet une borne inf, on note
+    \begin{equation*}
+      \alpha = \inf \mathcal{\varepsilon}
+    \end{equation*}
+    On a que $\alpha > 0$ ou $\alpha = 0$.
+    \begin{itemize}
+      \item Supposons que $\alpha > 0$, on suppose que $\alpha \not\in H$ alors 
+      \begin{equation*}
+        \exists x \in \mathcal{\varepsilon} \in ]\alpha,2\alpha[
+      \end{equation*}
+      De même on a $y \in \mathcal{\varepsilon}$ tel que 
+      \begin{equation*}
+        \alpha < y < x
+      \end{equation*}
+      donc 
+      \begin{equation*}
+        0 < x-y < \alpha
+      \end{equation*}
+      Et alors 
+      \begin{equation*}
+        (x-y) \in H \in \mathcal{\varepsilon} < \alpha
+      \end{equation*}
+      or $\alpha = \inf \mathcal{\varepsilon}$
+      ce qui est une absurdité donc 
+      \begin{equation}
+        \alpha \in H
+      \end{equation}
+      Or par propriété des groupes additifs
+      \begin{equation*}
+        \forall n \in \bZ, n\cdot \alpha \in H
+      \end{equation*}
+      Donc 
+      \begin{equation*}
+        \alpha Z \subset H
+      \end{equation*}
+      Réciproquement, prenons $h \in H$ on note alors 
+      \begin{equation*}
+        \bR = \bigcup_{n \in \bZ} [n\alpha,(n+1)\alpha[
+      \end{equation*}
+      Il existe donc $\delta \in [0,\alpha[$ et $n \in \bZ$ tel que $h = n\alpha + \delta$
+      or 
+      \begin{equation*}
+        n\alpha \in H
+      \end{equation*}
+      donc par propriété de $H$ on a 
+      \begin{equation*}
+        \delta = h - n\alpha \in H \cap R^{+}
+      \end{equation*}
+      Supposons alors que $\delta > 0$ on a alors $\delta \in \mathcal{\varepsilon}$ et $\delta < \alpha$ ce qui 
+      est une absurdité car $\alpha = \inf \mathcal{\varepsilon}$ donc par l'absurde on a 
+      \begin{equation*}
+        \delta = 0
+      \end{equation*}
+      ce qui revient à 
+      \begin{equation*}
+        h = n\alpha
+      \end{equation*}
+      Donc
+      \begin{equation*}
+        H \subset \alpha\bZ 
+      \end{equation*}
+      ce qui par double inclusion 
+      \begin{equation*}
+        H = \alpha\bZ
+      \end{equation*}
+      \item Supposons maintenant que $\alpha = 0$. Soit $u,v \in \bR^2$ tels que $v > u$ on note 
+      \begin{equation*}
+        I = ]u,v[
+      \end{equation*}
+      Soit $\varepsilon = v-u > 0$ par définition de la borne inférieure on a 
+      \begin{equation*}
+        \exists h \in ]\alpha,\varepsilon[ \cap H
+      \end{equation*}
+      ce qui dans notre cas où $\alpha = 0$ revient à 
+      \begin{equation*}
+        \exists h \in ]0,\varepsilon[ \cap H
+      \end{equation*}
+      Soit $m \in \bZ$ tel que
+      \begin{equation*}
+        (m-1)h \leq u \leq mh
+      \end{equation*}
+      par propriété des groupes additifs $mh \in H$ et 
+      \begin{equation*}
+        u < mh = (m-1)h + h \leq u+h < u + \varepsilon = v
+      \end{equation*}
+      Donc $mh \in I$ et $mh \in H$ et $I \cap H \not= \emptyset$ donc pour tout interval non trivial $I$ de $\bR$ il existe $h \in H \cap I$ donc 
+      \begin{equation*}
+        H\text{ est dense dans } \bR
+      \end{equation*}
+    \end{itemize}
+  \end{proof}
+\end{theorem}
+\begin{rmq}
+  Ce théorème est souvent utilisé lorsqu'on touche aux sous groupes de $\bR$ et les irrationels comme $\mathcal G = \bZ + 2\pi\bZ$ par exemple, pour l'algèbre modulaire
+\end{rmq}
 \section{Autre}
 \begin{rmq}
   Soit $f$ une fonction définie sur $I$ un interval de $\bR$ tel que $I = [a,b]$
