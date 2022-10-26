@@ -2294,6 +2294,115 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Ce théorème est souvent utilisé lorsqu'on touche aux sous groupes de $\bR$ et les irrationels comme $\mathcal G = \bZ + 2\pi\bZ$ par exemple, pour l'algèbre modulaire
 \end{rmq}
+\subsection{Anneaux}
+\begin{definition}
+  On appelle la donnée de $\mathcal A = (A,+,\cdot)$ anneaux si et seulement si 
+  \begin{itemize}
+    \item $(A,+)$ est un groupe abélien (commutatif)
+    \item $(\cdot)$ admet un élement neutre (élement neutre multiplicatif)
+    \item $(\cdot)$ est distributive sur $(+)$ c'est à dire
+    \begin{align*}
+      &\forall (x,y,z) \in A^3 a \cdot (b+c) = (a \cdot b) + (a \cdot c) && \text{et} \\ 
+      &\forall (x,y,z) \in A^3 (a+b) \cdot c = (a \cdot c) + (b \cdot c)
+    \end{align*}
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  Si $(\cdot)$ est commutative alors l'anneau est dit \textit{commutatif}.
+\end{rmq}
+\begin{definition}
+  On note $A^{\times}$ l'ensemble des éléments de $A$ inversible pour $\cdot$, on a 
+  \begin{equation*}
+    \mathcal G = (A^{\times},\cdot)
+  \end{equation*}
+  qui forme un groupe (commutatif ou non selon la commutativité de $\cdot$)
+\end{definition}
+\begin{definition}
+  Soit $B \subset A$, on dit que $B$ est un sous anneau de $A$ si et seulement si 
+  \begin{itemize}
+    \item $(A,+,\cdot)$ est un anneaux
+    \item $B$ est stable par $(+)$ et $(\cdot)$
+  \end{itemize}
+\end{definition}
+\begin{ex}
+  On a comme anneaux notables,
+  \begin{itemize}
+    \item $(\bC,+,\cdot)$ et ses sous anneaux 
+    \item $\mathcal{M}_{n}(\bK)$ (qui sont non commutatifs)
+  \end{itemize}
+\end{ex}
+\begin{definition}
+  On dit que $\mathcal A = (A,+,\cdot)$ est intègre si et seulement si 
+  \begin{equation*}
+    \forall (x,y) \in A^2, x \cdot y = 0_A \Leftrightarrow (x = 0_A) \wedge (y = 0_A)
+  \end{equation*}
+\end{definition}
+\begin{ex}
+  Les anneaux $(\bR,+,\cdot)$ et $(\bR[X],+,\cdot)$ sont intègre mais dans le cas général les anneaux $(\mathcal M_n(\bK),+,\cdot)$ 
+  ne le sont pas
+\end{ex}
+\begin{definition}
+  On appelle $\mathcal C $ le centre d'un anneau $\mathcal A = (A,+,\cdot)$ l'ensemble 
+  \begin{equation*}
+    \mathcal C = \left\{a \in A, (\forall b \in A, a \cdot b = b \cdot a)\right\}
+  \end{equation*}
+  C'est à dire l'ensemble des éléments de $A$ qui commutent avec tous les autres
+\end{definition}
+\begin{ex}
+  Par exemple le centre de $(\mathcal M_n(\bK),+,\cdot)$ est $\mathcal C = \left\{\lambda I_n, \lambda \in \bK\right\}$
+  \begin{proof}
+    Laissée à l'éxercice du lecteur (indice: par analyse synthèse)
+  \end{proof}
+\end{ex}
+\subsection{Idéaux}
+\begin{definition}
+  Soit $I \subset A$ avec $\mathcal A = (A,+,\cdot)$ un anneau commutatif intègre, on dit que $I$ est un \textit{idéal} de $\mathcal A$ si 
+  \begin{itemize}
+    \item $(I,+)$ est un sous groupe de $(A,+)$
+    \item \begin{equation*}
+      \forall x \in I, \forall a \in A, x\cdot a = a\cdot x \in I
+    \end{equation*}
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  ${0_A}$ et $A$ sont appelés \textit{idéaux triviaux} de $\mathcal A$
+\end{rmq}
+\begin{ex}
+  Pour $\bZ$ les idéaux sont de la forme $n\bZ$ avec $n \in \bN$
+\end{ex}
+\begin{definition}
+  On appelle idéal premier $P$ de $\mathcal A$ un idéal $P$ tel que 
+  \begin{itemize}
+    \item $P \not= A$
+    \item \begin{equation*}
+      \forall (x,y) \in A^2, (xy) \in P \Rightarrow (x \in P) \vee (y \in P)
+    \end{equation*}
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  On appelle idéal maximal $M$ de $\mathcal A$ un idéal $M$ lorsque 
+  \begin{equation*}
+    \forall I \text{ idéal }, M \subset I \Rightarrow (I = M) \vee (I = A)
+  \end{equation*}
+\end{definition}
+\begin{ex}
+  Dans $\bZ$ les idéaux maximaux sont exactement de la forme $p\bZ$ avec $p$ un nombre premier.
+\end{ex}
+\subsection{Corps}
+\begin{definition}
+  On dit que $\mathcal A = (A,+,\cdot)$ est un corps si et seulement si 
+  \begin{itemize}
+    \item $\mathcal A$ est un anneaux intègre 
+    \item $A^{\times} = A - \{0_A\}$ (tous les élements sauf l'élement neutre additifs sont inversibles)
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  Les corps sont les ensembles que l'on a l'habitude de manipuler tels que $\bR$ où on peut faire "toutes les opération" (multiplier, additionner, diviser, soustraire)
+\end{rmq}
+\begin{ex}
+  Les corps les plus connus (écris souvents $\bK$) sont $\bR$ ou $\bC$, mais $\bQ$ est aussi un corps et plus généralement les anneaux 
+  quotients $\bZ/p\bZ$ où $p$ est un entier premier.
+\end{ex}
 \section{Autre}
 \begin{rmq}
   Soit $f$ une fonction définie sur $I$ un interval de $\bR$ tel que $I = [a,b]$
