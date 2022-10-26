@@ -2462,6 +2462,121 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Donc $R^2$, $R^3$ etc. $R^n$ sont des espaces vectoriels par produit
 \end{rmq}
+\subsection{Familles libres/génératrices}
+\begin{definition}
+  Soit $E$ un $\bK$-ev, soit $x = (x_i)_{i \in I}$ une famille de vecteurs de $E$ indexé sur $I$
+  on dit que $x$ est libre si et seulement si 
+  \begin{equation*}
+    \forall (\lambda_i)_{i \in I} \in \bK^I, \sum_{i\in I} \lambda_i x_i = 0_E \Rightarrow \forall i \in I, \lambda_i = 0_E
+  \end{equation*}
+\end{definition}
+\begin{definition}
+  Soit $E$ un $\bK$-ev, soit $x = (x_i)_{i \in I}$ une famille de vecteur de $E$ indexée sur $I$, 
+  on dit que $x$ est génératrice si et seulement si 
+  \begin{equation*}
+    \forall x \in E, \exists (\lambda_i)_{i \in I} \in \bK^I, x = \sum_{i\in I} \lambda_i x_i
+  \end{equation*}
+  Autrement dit $E = \text{Vect}(x_i)$
+\end{definition}
+\begin{definition}
+  Soit $E$ un $\bK$-ev soit $x = (x_i)_{i \in I}$ une famille de vecteur de $E$ indexée sur $I$, on dit que $x$ est 
+  une base de $E$ si et seulement si 
+  \begin{itemize}
+    \item $x$ est libre 
+    \item $x$ est génératrice
+  \end{itemize}
+\end{definition}
+\begin{rmq}
+  Dans le cas général $I$ est une partie de $\bN$.
+\end{rmq}
+\subsection{Dimension finie}
+\begin{definition}
+  On dit que $E$ est un $\bK$-ev de dimension finie si et seulement si il existe $\mathcal B$ une base de $E$ telle que $\abs{B} \in \bN$ 
+  on dit alors que 
+  \begin{equation*}
+    \dim E = \abs{B}
+  \end{equation*}
+\end{definition}
+\begin{prop}[Critère nécessaire de liberté]
+  \begin{equation*}
+    (x_i)_{i \in I} \text{ libre dans } E \Rightarrow \abs{(x_i)} \leq \dim E
+  \end{equation*} 
+\end{prop}
+\begin{prop}[Critère nécessaire de génération]
+  \begin{equation*}
+    (x_i)_{i \in I} \text { génératrice de } E \Rightarrow \abs{(x_i)} \geq \dim E
+  \end{equation*}
+\end{prop}
+\begin{theorem}
+  On a donc 
+  \begin{equation*}
+    \forall (\mathcal B,\mathcal B') \text{ base de } E, \abs{\mathcal B} = \abs{\mathcal B'} = \dim E
+  \end{equation*}
+\end{theorem}
+\subsection{Morphismes}
+\begin{definition}
+  Soit $E,F$ deux \ev. Un \textit{morphisme} de $E$ dans $F$ est une application linéaire de $E$ dans $F$, on note 
+  l'ensemble des morphismes de $E$ dans $F$ $\mor$
+\end{definition}
+\begin{definition}
+  \begin{itemize}
+    \item Un morphisme de $E$ dans $E$ est appelé \textit{endomorphisme}, on note l'ensemble des endomorphisme $\endo$
+    \item Un morphisme bijectif de $E$ dans $F$ est appelé \textit{isomorphisme}
+    \item Un morphisme bijectif de $E$ dans $E$ est appelé \textit{automorphisme}, on note leur ensemble $\mfc{GL}(E)$ aussi 
+    appelé \textit{groupe linéaire} de $E$
+    \item Un morphisme de $E$ dans $\bK$ est appelé \textit{forme linéaire} on note leur ensemble $\mfc{L}(E,K)$ ou encore $E^*$ appelé 
+    \textit{espace dual} de $E$
+  \end{itemize}
+\end{definition}
+\begin{theorem}[Théorème d'isomorphie]
+  Soit $E,F$ deux espaces vectoriels de dimensions finies
+  \begin{equation*}
+    \dim E = \dim F \Leftrightarrow \exists f \in \mfc{L}(E,F) \text{ bijective}
+  \end{equation*}
+\end{theorem}
+\begin{rmq}
+  En particulier tout \ev de dimension $n$ est isomorphe à $R^n$ appelé \textit{espace canonique de dimension n}
+\end{rmq}
+\subsection{Espace pré-hilbertien, euclidien}
+\begin{definition}
+  Soit $E$ un $\bR$-ev, on dit que $f = (\cdot | \cdot)$ est un produit scalaire sur $E$ si c'est une forme bilinéaire, définie, positive, symétrique
+  \begin{itemize}
+    \item forme bilinéaire : $f : E^2 \to \bR^+$ 
+    \item définie : $\forall x \in E, f(x,x) = 0 \Rightarrow x=0$
+    \item positive : $\forall x \in E, f(x,x) \geq 0$ 
+    \item symétrique : $\forall (x,y) \in E^2, f(x,y) = f(y,x)$
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  Soit $E$ un $\bK$-ev on appelle \textit{espace pré-hilbertien} $E$ muni d'un produit scalaire $(\cdot | \cdot)$
+\end{definition}
+\begin{definition}
+  Un \textit{espace euclidien} est un espace pré-hilbertien de dimension finie.
+\end{definition}
+\subsection{Espace vectoriel normés}
+\begin{definition}
+  Soit $E$ un $\bK$-ev on dit que $f = \norm{\cdot}$ est une norme sur $E$ si 
+  \begin{itemize}
+    \item forme linéaire (positive) : $f : E \to \bR^+$
+    \item positivité : $\forall x \in E, f(x) \geq 0$ 
+    \item définie : $\forall x \in E, f(x)=0 \Rightarrow x=0_E$
+    \item homogène : $\forall x \in E, \forall \lambda \in \bK, f(\lambda x) = \abs{\lambda} f(x)$
+    \item inégalité triangulaire, $\forall (x,y) \in E^2, f(x+y) \leq f(x) + f(y)$
+  \end{itemize}
+\end{definition}
+\begin{ex}
+  Par exemple la \textit{norme infinie} est une norme sur $\bR^{\bR}$ définie par 
+  \begin{equation*}
+    \forall f \in \bR^{\bR}, \norm{f}_{\infty} = \sup{x \in \bR} \abs{f(x)}
+  \end{equation*}
+\end{ex}
+\begin{definition}
+  On appelle $(E,f)$ un \textit{espace vectoriel normé} si $E$ est un espace vectoriel et $f$ une norme sur $E$
+\end{definition}
+\subsubsection{Dimension finie}
+\begin{definition}
+  Si $E$ est un \ev de dimension finie alors toutes les normes sont équivalentes, et toutes les endomorphismes de $E$ sont continus
+\end{definition}
 \section{Autre}
 \begin{rmq}
   Soit $f$ une fonction définie sur $I$ un interval de $\bR$ tel que $I = [a,b]$
