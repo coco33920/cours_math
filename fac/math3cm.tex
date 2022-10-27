@@ -2804,7 +2804,11 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
       \end{align*}
       Donc $\forall y \in x\ker f, \exists h \in \ker f, \varphi(h) = y$ donc $\varphi$ est surjective
     \end{itemize}
-    Donc $\varphi$ est bijective, donc $\abs{\ker f} = \abs{x\ker f}$.\newline 
+    Donc $\varphi$ est bijective, donc (lemme 1)
+    \begin{equation*}
+      \abs{\ker f} = \abs{x\ker f}
+    \end{equation*}
+    
     Montrons ensuite que pour un morphisme $f$, $x_0 \in G$ on a 
     \begin{equation*}
       f(x_0)^{-1} = f(x_0^{-1})
@@ -2814,7 +2818,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
       &= f(\varepsilon) \\ 
       &= \varepsilon_{G'}
     \end{align*}
-    Donc 
+    Donc (lemme 2)
     \begin{equation*}
       f(x_0)^{-1} = f(x_0^{-1})
     \end{equation*}
@@ -2824,14 +2828,14 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
       &= \{x \in G, f(x) = y_i\} \\ 
       &= \{x \in G, f(x) = f(x_i)\} \\ 
       &= \{x \in G, f(x_i)^{-1}f(x) = \varepsilon_{G'}\} \\ 
-      &= \{x \in G, f(x_i^{-1})f(x) = \varepsilon_[G']\} \\ 
+      &= \{x \in G, f(x_i^{-1})f(x) = \varepsilon_{G'}\} && \text{lemme 2}\\ 
       &= \{x \in G, x_i^{-1}x \in \ker f\} \\ 
       &= \{x \in G, x \in x_i\ker f\}
     \end{align*}
     Donc 
     \begin{align*}
       \abs{G_i} &= \abs{x_i\ker f} \\ 
-      &= \abs{\ker f}
+      &= \abs{\ker f} && \text{lemme 1}
     \end{align*}
     Donc finalement 
     \begin{align*}
