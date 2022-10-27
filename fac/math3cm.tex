@@ -2710,13 +2710,295 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{proof}
 \end{prop}
 \section{Morphismes}
+\subsection{Morphisme de Groupes}
+\begin{definition}
+  Soit $\mathcal G = (G,\cdot)$ et $\mathcal G' = (G',\cdot_1)$ deux groupes soit $f : G \to G'$ on dit que $g$ est un morphisme de groupe si et seulement si 
+  \begin{itemize}
+    \item $\forall (x,y) \in G, f(x \cdot y) = f(x) \cdot_1 f(y)$ 
+    \item $f(\varepsilon_{G}) = \varepsilon_{G'}$
+  \end{itemize}
+\end{definition}
+\subsubsection{Images et Noyaux}
+\begin{definition}
+  Soit $f$ un morphisme de groupe entre $G$ et $G'$ alors on défini l'image de $f$ par 
+  \begin{equation*}
+    \Im f = \left\{f(h), h \in G\right\}
+  \end{equation*}
+\end{definition}
+\begin{definition}
+  Soit $f$ un morphisme de groupe entre $G$ et $G'$ alors on défini le noyau de $f$ par 
+  \begin{equation*}
+    \ker f = \left\{h \in G, f(h) = \varepsilon_{G'}\right\}
+  \end{equation*}
+\end{definition}
+\subsubsection{Morphisme de groupes finis}
+\begin{theorem}[Formule des cardinaux]
+  Soit $G$ un groupe fini, soit $G'$ un groupe, soit $f : G \to G'$ un morphisme de groupe alors 
+  \begin{equation*}
+    \abs{G} = \abs{\ker f} \cdot \abs{\Im f}
+  \end{equation*}
+  \begin{proof}
+    Soit $G$ un groupe fini, $G'$ un groupe et $f$ un morphisme de groupe alors 
+    \begin{equation*}
+      \exists p \in \bN, \left\{y_1,\cdots,y_p\right\} \subset G' = \Im f
+    \end{equation*}
+    car $G$ est fini
+    Prenons maintenant l'application $f' : G \to \Im f$ par définition elle est surjective (toute application est surjective sur son image)
+    donc il vient que 
+    \begin{equation*}
+      \abs{G} \geq \abs{\Im f} = p
+    \end{equation*}
+    On note 
+    \begin{equation*}
+      I = [1,p] \cap \bN
+    \end{equation*}
+    Maintenant on note la famille $(x_i)$ définie par 
+    \begin{equation*}
+      \forall i \in I, f(x_i) = y_i
+    \end{equation*}
+    On observe par définition d'une application que 
+    \begin{equation*}
+      G = \bigcup_{i=1}^p f^{-1}\{y_i\}
+    \end{equation*}
+    On note alors 
+    \begin{equation*}
+      \forall i \in I, G_i = f^{-1}\{y_i\}
+    \end{equation*}
+    On prouve ensuite que l'union est disjointe, soit $i,j \in I$ tels que $i\not=j$, on suppose qu'il existe $x \in G_i \cap G_j$ 
+    alors ça veut dire que 
+    \begin{equation*}
+      f(x) = y_i
+    \end{equation*}
+    et 
+    \begin{equation*}
+      f(x) = y_j
+    \end{equation*}
+    Or $y_i \not= y_j$ donc c'est une absurdité donc 
+    \begin{equation*}
+      G_i \cap G_j = \emptyset
+    \end{equation*}
+    Donc 
+    \begin{equation*}
+      G = \biguplus_{i=1}^p G_i
+    \end{equation*}
+    Il vient donc 
+    \begin{equation*}
+      \abs{G} = \sum_{i=1}^p \abs{G_i}
+    \end{equation*}
+    Il suffit donc de calculer le cardinal de $G_i$ pour $i \in I$, pour cela soit $x \in G$ on défini 
+    \vfunc{\varphi}{\ker f}{x\ker f}{h}{xh}
+    \begin{itemize}
+      \item On montre que $\varphi$ est injective, en effet soit $h,h' \in G$ tels que 
+      \begin{align*}
+        \varphi(h) = \varphi(h') &\Leftrightarrow \\ 
+        &\Leftrightarrow xh = xh' \\
+        &\Leftrightarrow x^{-1}xh = x^{-1}xh' && \text{car } x \in G \\ 
+        &\Leftrightarrow h=h'
+      \end{align*}
+      Donc $\varphi$ est injective
+      \item On montre maintenant que $\varphi$ est surjective, soit $y \in x\ker f$ alors 
+      \begin{align*}
+        \varphi(h) = y &\Leftrightarrow xh = y \\ 
+        &\Leftrightarrow x^{-1}xh = x^{-1}y \\ 
+        &\Leftrightarrow h = x^{-1}y
+      \end{align*}
+      Donc $\forall y \in x\ker f, \exists h \in \ker f, \varphi(h) = y$ donc $\varphi$ est surjective
+    \end{itemize}
+    Donc $\varphi$ est bijective, donc $\abs{\ker f} = \abs{x\ker f}$.\newline 
+    Montrons ensuite que pour un morphisme $f$, $x_0 \in G$ on a 
+    \begin{equation*}
+      f(x_0)^{-1} = f(x_0^{-1})
+    \end{equation*}
+    \begin{align*}
+      f(x_0)f(x_0^{-1}) &= f(x_0\cdot x_0^{-1}) && \text{morphisme de groupe} \\ 
+      &= f(\varepsilon) \\ 
+      &= \varepsilon_{G'}
+    \end{align*}
+    Donc 
+    \begin{equation*}
+      f(x_0)^{-1} = f(x_0^{-1})
+    \end{equation*}
+    Soit $i \in I$
+    \begin{align*}
+      G_i &= f^{-1}\{y_i\} \\ 
+      &= \{x \in G, f(x) = y_i\} \\ 
+      &= \{x \in G, f(x) = f(x_i)\} \\ 
+      &= \{x \in G, f(x_i)^{-1}f(x) = \varepsilon_{G'}\} \\ 
+      &= \{x \in G, f(x_i^{-1})f(x) = \varepsilon_[G']\} \\ 
+      &= \{x \in G, x_i^{-1}x \in \ker f\} \\ 
+      &= \{x \in G, x \in x_i\ker f\}
+    \end{align*}
+    Donc 
+    \begin{align*}
+      \abs{G_i} &= \abs{x_i\ker f} \\ 
+      &= \abs{\ker f}
+    \end{align*}
+    Donc finalement 
+    \begin{align*}
+      \abs{G} &= \sum_{i=1}^p \abs{G_i} \\ 
+      &= \sum_{i=1}^p \abs{\ker f} \\ 
+      &= p\abs{\ker f} \\ 
+      &= \abs{\Im f}\abs{\ker f}
+    \end{align*}
+    Donc enfin 
+    \begin{equation*}
+      \abs{G} = \abs{\Im f} \cdot \abs{\ker f}
+    \end{equation*}
+  \end{proof}
+
+\end{theorem}
 \subsection{Morphismes d'Anneaux}
 \begin{definition}
-  %to be defined%
-  blabla
+  Soit $\mathcal A = (A,+_1,\cdot_1)$ et $\mathcal B = (B,+_2,\cdot_2)$ deux anneaux, et $f : A \to B$ on dit que $f$ est un morphisme 
+  d'anneaux si et seulement si 
+  \begin{itemize}
+    \item $\forall (x,y) \in A^2, f(x +_1 y) = f(x) +_2 f(y)$
+    \item $\forall (x,y) \in A^2, f(x \cdot_1 y) = f(x) \cdot_2 f(y)$
+    \item $f(1_A) = 1_B$
+  \end{itemize}
+\end{definition}
+\subsubsection{Images et noyaux}
+\begin{definition}
+  Soit $f$ un morphisme d'anneau entre $A$ et $B$ alors on défini l'image de $f$ par 
+  \begin{equation*}
+    \Im f = \left\{f(a), a \in A\right\}
+  \end{equation*}
+  C'est un sous-anneau de $B$
+\end{definition}
+\begin{definition}
+  Soit $f$ un morphisme d'anneau entre $A$ et $B$ alors on défini le noyau de $f$ par 
+  \begin{equation*}
+    \ker f = \left\{a \in A, f(a) = 0_B\right\}
+  \end{equation*}
+  C'est un sous groupe additif de $(A,+)$
 \end{definition}
 \subsubsection{Bijectivité}
-more blabla
+\begin{theorem}
+  Soit $f$ un morphisme d'anneau entre $A$ et $B$ alors 
+  \begin{itemize}
+    \item $f$ est \textit{injective} de $A$ dans $B$ si $\ker f = \{0_A\}$
+    \item $f$ est \textit{surjective} de $A$ dans $B$ si $\Im f = B$
+    \item $f$ est \textit{bijective} de $A$ dans $B$ si $f$ est injective et surjective
+  \end{itemize}
+\end{theorem}
+\begin{definition}
+  On dit que $f$ est une \textit{isomorphie d'anneaux} si et seulement si $f$ est un morphisme bijectif d'anneaux, dans ce cas là on dit que 
+  $A$ est isomorphe à $B$
+\end{definition}
+\begin{rmq}
+  La relation $\sim$ définie par
+  \begin{equation*}
+    A \sim B \Rightarrow \exists f : A \to B \textit{ bijective} 
+  \end{equation*}
+  est une relation d'équivalence
+  \begin{proof}
+    Soit $\sim$ définie comme ci dessus
+    \begin{itemize}
+      \item La fonction $Id_{A}$ l'identité de $A$ est un morphisme d'anneaux bijectif de $A$ dans $A$ donc $A \sim A$ donc $\sim$ est reflexive
+      \item Soit $A,B$ deux anneaux et $f$ une isomorphie d'anneaux entre $A$ et $B$ alors $f^{-1}$ est une isomorphie d'anneaux (par définition) entre $B$ et $A$ donc $B \sim A$
+      donc $\sim$ est symétrique 
+      \item Soit $A,B,C$ trois anneaux, soit $f : A \to B$ et $g : B \to C$ deux isomorphie d'anneaux alors $f \circ g : A \to C$ est aussi une isomorphie d'anneaux donc $A \sim C$ 
+      donc $\sim$ est transitive
+    \end{itemize}
+    Donc $\sim$ est une relation symétrique, transitive et réfléxive, donc $\sim$ est bien une relation d'équivalence
+  \end{proof}
+\end{rmq}
+\subsubsection{Anneaux finis}
+\begin{definition}
+  Soit $A$ un anneau, on dit que $A$ est fini si son cardinal est un entier naturel, on note son cardinal $\abs{A}$
+\end{definition}
+\begin{prop}[Condition nécessaire]
+  \begin{equation*}
+    (A,+,\cdot) \textit{ fini } \Rightarrow (A,+) \textit{ groupe fini} 
+  \end{equation*}
+\end{prop}
+\begin{theorem}[Formule des cardinaux]
+  Soit $A$ un anneau fini et $B$ un anneau et $f : A \to B$ un morphisme d'anneau alors on a 
+  \begin{equation*}
+    \abs{A} = \abs{\Im f} \cdot \abs{\ker f}
+  \end{equation*}
+  \begin{proof}
+    Le groupe $(A,+)$ induit de $A$ est fini car $A$ est fini, c'est donc une conséquence de la formule des cardinaux pour les 
+    groupes finis
+  \end{proof}
+\end{theorem}
+\begin{prop}
+  Soit $A,B$ deux anneaux finis, et $f : A \to B$ deux anneaux finis alors 
+  \begin{equation*}
+    f \text{ est une isomorphie } \Rightarrow \abs{A} = \abs{B}
+  \end{equation*}
+  \begin{proof}
+    D'après la formule des cardinaux on a 
+    \begin{equation*}
+      \abs{A} = \abs{\Im f} \cdot \abs{\ker f}
+    \end{equation*}
+    Or $f$ est une isomorphie donc $f$ est injective donc $\abs{\ker f} = 1$ donc 
+    \begin{equation*}
+      \abs{A} = \abs{\Im f}
+    \end{equation*}
+    Or $f$ est une isomorphie donc $f$ est surjective donc $\Im f = B$ donc 
+    \begin{equation*}
+      \abs{A} = \abs{B}
+    \end{equation*}
+  \end{proof}
+\end{prop}
+\begin{theorem}
+  Soit $A$ et $B$ deux anneaux finis (i.e anneaux avec un nombre d'élement fini). On note $\abs{\cdot}$ le cardinal d'un ensemble, 
+  soit $f$ un morphisme d'anneaux entre $A$ et $B$ alors 
+  \begin{equation*}
+    f \text{ bijective} \Leftrightarrow (\abs{A} = \abs{B}) \wedge (\ker f = \{0_A\}) \Leftrightarrow (\abs{A} = \abs{B}) \wedge (\Im f = B)
+  \end{equation*}
+  ce qui est équivalent à, si $\abs{A} = \abs{B}$ alors 
+  \begin{equation*}
+    f \text{ bijective} \Leftrightarrow f \text{ injective} \Leftrightarrow f \text{ surjective}
+  \end{equation*}
+  \begin{proof}
+    Démontrons par démonstration circulaire c'est à dire $(A \Rightarrow B) \wedge (B \Rightarrow C) \wedge (C \Rightarrow A)$
+    \begin{itemize}
+      \item Montrons $(A \Rightarrow B)$, on suppose que $f$ est une isomorphie d'anneaux, alors par la condition nécessaire d'isomorphie on a 
+      \begin{equation*}
+        \abs{A} = \abs{B}
+      \end{equation*}
+      ensuite, $f$ est une isomorphie donc $f$ est injective
+      \item Montrons $(C \Rightarrow A)$ on suppose que $f$ est surjective et $\abs{A} = \abs{B}$, $f$ est surjective donc 
+      \begin{equation*}
+        \Im f = B
+      \end{equation*}
+      or par formule des cardinaux on sait que 
+      \begin{equation*}
+        \abs{A} = \abs{\ker f} \cdot \abs{\Im f}
+      \end{equation*}
+      or $\abs{\Im f} = \abs{B} = \abs{A}$ donc 
+      \begin{equation*}
+        \abs{\ker f} = \frac{\abs{A}}{\abs{A}}
+      \end{equation*}
+      d'où 
+      \begin{equation*}
+        \abs{\ker f} = 1
+      \end{equation*}
+      Or on a forcément $\varepsilon \in \ker f$ par définition donc finalement 
+      \begin{equation*}
+        \ker f = \{\varepsilon\}
+      \end{equation*}
+      Donc $f$ est injective, donc $f$ est bijective 
+      \item Montrons finalement $(B \Rightarrow C)$, on suppose que $f$ est injective et que $\abs{A} = \abs{B}$
+      par formule des cardinaux on a 
+      \begin{equation*}
+        \abs{A} = \abs{\ker f} \cdot \abs{\Im f}
+      \end{equation*}
+      Or $f$ est injective donc $\abs{\ker f} = 1$ donc 
+      \begin{equation*}
+        \abs{A} = \abs{\Im f}
+      \end{equation*}
+      donc 
+      \begin{equation*}
+        \abs{B} = \abs{\Im f}
+      \end{equation*}
+      Or $\Im f \subset B$ et $\abs{B} = \abs{\Im f}$ donc $\Im f = B$ donc $f$ est surjective
+    \end{itemize}
+    Par démonstration circulaire, la propriété est démontrée
+  \end{proof}
+\end{theorem}
 \section{Algèbre modulaire}
 \subsection{Les anneaux $\bZ/n\bZ$}
 Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial réduit à $0$
@@ -2830,7 +3112,7 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
     \forall n \in \bN, !\exists (p_i) \in \mathbb{P}^{I} \wedge (\alpha_i) \in \bN^{I}, n = \sum_{i\in I} p_i^{\alpha_i}
   \end{align*}
 \end{definition}
-\begin{theorem}
+\begin{theorem}[Théorème fondamental de l'arithmétique, version algébrique]
   Soit $n \in \bN_{\geq 2}$, soit $(p_i)$ et $(\alpha_i)$ l'unique Décomposition de $n$ alors 
   \begin{equation*}
     \bZ/n\bZ = \prod_{i\in I} (\bZ/p_i\bZ)^{\alpha_i}
