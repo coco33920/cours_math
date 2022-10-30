@@ -1910,6 +1910,538 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   La recherche d'une telle base est appelée \textit{réduction des endomorphismes}
 \end{ex}
 
+
+\chapter{Système linéaire homogène}
+\begin{definition}
+  Soit $A = [a_{i,j}] \in \mathcal{M}_{n,p}(\bK)$ soit $X = \begin{pmatrix}
+    x_1 \\ 
+    \vdots \\ 
+    x_p
+  \end{pmatrix} \in \mathcal{M}_{p,1}(\bK)$ 
+  on appelle système linéaire homogène l'équation 
+  \begin{equation*}
+    AX = 0_{\mathcal{M}_{n,p}(\bK)}
+  \end{equation*}
+  aussi noté 
+  \begin{equation*}
+    \begin{cases}
+      a_{1,1} x_1 + a_{1,2} x_2 + \cdots + a_{1,p} x_p = 0 \\
+      a_{2,1} x_1 + a_{2,2} x_2 + \cdots + a_{2,p} x_p = 0 \\ 
+      \vdots \\ 
+      a_{n,1} x_1 + a_{n,2} x_2 + \cdots + a_{n,p} x_p = 0
+    \end{cases}
+  \end{equation*}
+\end{definition}
+\begin{rmq}
+  En prenant $\mathcal B_i$ la base canonique de $\bR^i$ et en prenant $f : \bR^p \to \bR^n$ tel que 
+  \begin{equation*}
+    A = \text{Mat}_{\mathcal{B_p},\mathcal{B_n}} f
+  \end{equation*}
+  alors le système est équivalent à trouver $\ker f$. En pratique on cherche $\text{rg}(S) = \text{rg}(A)$ pour en déduire 
+  la dimension du noyau de $f$ par le \textit{théorème du rang} et en prennant des vecteurs libre de $A$ 
+\end{rmq}
+\begin{ex}
+  Soit $(S)$ le système 
+  \begin{equation*}
+    \begin{cases}
+      x+y = 0 \\ 
+      2x - y + z = 0
+    \end{cases}
+  \end{equation*}
+  On a $A = \begin{bmatrix}
+    1 & 2 & 0 \\ 
+    2 & -1 & 1
+  \end{bmatrix}$ $\Rightarrow$ $\begin{bmatrix}
+    1 & 2 & 0 \\
+    0 & -1 & 1 \\
+  \end{bmatrix}$ 
+  par
+  $C_1 \leftarrow C_1 - 2C_2$
+  et donc $\text{rg}(A) = 2$ donc $\dim \ker A = 1$ 
+  On a alors 
+  \begin{equation*}
+    (S) \Leftrightarrow \begin{cases}
+      x+y = 0 \\ 
+      z = 3y
+    \end{cases}
+  \end{equation*}
+  D'où $S = \text{Vect}((-1,1,3))$ la droite vectorielle des solutions
+\end{ex}
+\begin{rmq}
+  On peut arriver au même résultat en appliquant la \textit{méthode de fresnel}
+\end{rmq}
+
+\chapter{Matrices}
+\section{Transposée}
+\begin{definition}
+  Soit $M = (a_{i,j}) \in \mathcal{M}_{n,p}(\bK)$ alors on définie la transposée de $M$ notée $~^{t}M$ définie par
+  \begin{equation*}
+    ~^{t}M[i,j] = M[j,i]
+  \end{equation*}
+\end{definition}
+\begin{rmq}
+  Visuellement, la matrice transposée de $M$ est le symétrique des coefficients de $M$ par sa diagonale
+\end{rmq}
+\begin{prop}[Propriétés]
+  Soit $A,B \in \mathcal M_{n,p}(\bK)$ alors 
+  \begin{itemize}
+    \item $~^{t}(A+B) = ~^{t}A + ~^{t}B$
+    \item $~^{t}(AB) = ~^{t}B \cdot ~^{t}A$
+  \end{itemize}
+\end{prop}
+\section{Matrices carrées}
+\subsection{Matrices symétriques}
+\begin{definition}
+  Soit $S \in \mathcal{M}_n(\bK)$ on dit que $S$ est \textit{symétrique} si 
+  \begin{equation*}
+    ~^{t}S = S
+  \end{equation*}
+  On note $\mathcal S_n(\bK)$ l'ensemble des matrices symétriques de dimension $n$ par $n$
+\end{definition}
+\subsection{Trace d'une matrice}
+\begin{definition}
+  Soit $A = (a_{i,j}) \in \mathcal{M}_n(\bK)$ alors on appelle \textit{trace} le scalaire tel que 
+  \begin{equation*}
+    \text{tr}(A) = \sum_{i=1}^n a_{i,i}
+  \end{equation*}
+\end{definition}
+\begin{prop}[Propriétés]
+  Soit $A,B \in \mathcal{M}_n(\bK)$ et $\alpha \in \bK$ alors 
+  \begin{itemize}
+    \item $\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)$ 
+    \item $\text(tr)(\alpha A) = \alpha \text{tr}(A)$
+    \item $\text{tr}(~^t A) = \text{tr}(A)$
+  \end{itemize}
+  \begin{proof}
+    Soit $A,B \in \mathcal{M}_n(\bK)$, alors 
+    \begin{align*}
+      \text{tr}(A+B) &= \sum_{i=1}^n [A]_{i,i} + [B]_{i,i} \\ 
+      &= \sum_{i=1}^n [A]_{i,i} + \sum_{i=1}^n [B]_{i,i} \\ 
+      &= \text{tr}(A) + \text{tr}(B)
+    \end{align*}.
+    Et soit $\alpha \in \bK$ alors 
+    \begin{align*}
+      \text{tr}(\alpha A) &= \sum_{i=1}^n [\alpha A]_{i,i} \\ 
+      &= \sum_{i=1}^n \alpha [A]_{i,i} \\ 
+      &= \alpha \sum_{i=1}^n [A]_{i,i} \\ 
+      &= \alpha \text{tr}(A)
+    \end{align*}
+    Le troisième est par conservation de la diagonale lors de la transposition
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  Ces propriétés nous disent que 
+  \vfunc{\text{tr}(\cdot)}{\mathcal{M}_n(\bK)}{\bK}{M}{\text{tr}(M)}
+  est une forme linéaire sur $\mathcal{M}_n(\bK)$ (et que donc $\ker \text{tr}$ est un hyperplan de $\mathcal{M}_n(\bK)$)
+\end{rmq}
+\begin{theorem}
+  Soit $A,B \in \mathcal{M}_n(\bK)$ on a 
+  \begin{equation*}
+    \text{tr}(AB) = \text{tr}(BA)
+  \end{equation*}
+  \begin{proof}
+    Pour rappel on a 
+    \begin{equation*}
+      [AB]_{i,j} = \sum_{k=1}^n [A]_{i,k} \cdot [B]_{k,j}
+    \end{equation*}
+    Donc 
+    \begin{align*}
+      \text{tr}(AB) &= \sum_{i=1}^n [AB]_{i,i} \\ 
+      &= \sum_{i=1}^n \sum_{i=1}^n [A]_{i,k} \cdot [B]_{k,i} \\ 
+      &= \sum_{k=1}^n \sum_{i=1}^n [A]_{i,k} \cdot [B]_{k,i} \\ 
+      &= \sum_{k=1}^n \sum_{i=1}^n [~^{t}A]_{k,i} \cdot [~^{t}B]_{i,k} \\ 
+      &= \sum_{k=1}^n [~^{t}A \cdot ~^{t}B]_{k,k} \\ 
+      &= \sum_{k=1}^n [~^{t}(BA)]_{k,k} \\ 
+      &= \text{tr}(~^{t}(BA)) \\
+      &= \text{tr}(BA)
+    \end{align*}
+  \end{proof}
+\end{theorem}
+\begin{rmq}
+  En conséquence de ceci, deux matrices semblables ont la même trace.
+\end{rmq}
+\subsection{Déterminant}
+\begin{definition}
+  Soit $A \in \mathcal{M}_n(\bK)$, on note $A_{i,j} \in \mathcal{M}_{n-1,n-1}$ la matrice à laquelle on a enlevé la $i$ème ligne et la 
+  $j$ème colonne. Alors on appelle déterminant l'unique application telle que 
+  \begin{equation*}
+    \det A = \begin{cases}
+      a_{1,1} &\text{si } n=1 \\ 
+      \sum_{j=1}^{n} (-1)^{1+j} a_{1,j} \det A_{1,j}
+    \end{cases} \in \bK
+  \end{equation*}
+  On appelle alors cette application le \textit{développement de det(A) suivant la 1ère ligne} (on peut le faire pour n'importe quelle ligne ou colonne)
+\end{definition}
+\begin{ex}
+  Soit $A = \begin{bmatrix}
+    a_{1,1} & a_{1,2} \\ 
+    a_{2,1} & a_{2,2} 
+  \end{bmatrix}$
+  alors 
+  \begin{align*}
+    \det A &= \begin{vmatrix}
+      a_{1,1} & a_{1,2} \\ 
+      a_{2,1} & a_{2,2} 
+    \end{vmatrix} \\ 
+    &= a_{1,1} \abs{a_{2,2}} - a_{1,2} \abs{a_{2,1}} \\ 
+    &= a_{1,1}a_{2,2} - a{1,2}a_{2,1}
+  \end{align*}
+\end{ex}
+\begin{theorem}
+  En dimension 2, soit $A = \begin{bmatrix}
+    a & b \\ 
+    c & d
+  \end{bmatrix}$ 
+  alors 
+  \begin{equation*}
+    \det A = ad - bc 
+  \end{equation*}
+  \begin{proof}
+    démonstration au dessus
+  \end{proof}
+\end{theorem}
+\begin{ex}
+  Soit $A = \begin{bmatrix}
+    4 & 2 \\ 
+    3 & 5
+  \end{bmatrix}$
+  alors 
+  \begin{align*}
+    \det A &= \begin{vmatrix}
+      4 & 2 \\ 
+      3 & 5
+    \end{vmatrix} \\ 
+    &= 4 \cdot 5 - 3 \cdot 2 \\ 
+    &= 20 - 6 \\ 
+    &= 14
+  \end{align*}
+\end{ex}
+\subsubsection{Interprétation géométrique}
+\begin{definition}
+  Pour $A \in \mathcal{M}_{n}(\bR)$ alors $\det A$ est le volume de l'hyper-parralépipède de dimension $n$ s'appuyant sur les vecteurs colonnes de la matrice $A$.
+  \begin{rmq}
+    Cela ce voit particulièrement bien en dimension 2, où $\det A$ est l'aire d'un parralélogramme.
+  \end{rmq}
+\end{definition}
+\subsubsection{Dimension 3}
+\begin{definition}
+  Soit $A = (a_{i,j})$ pour $A$ une matrice carrée de dimension $3$ on a 
+  \begin{equation*}
+    \det A = a_{1,1} \cdot a_{2,2} \cdot a_{3,3} + a_{2,1} \cdot a_{3,2} \cdot a_{1,3} + 
+    a_{3,1} \cdot a_{1,2} \cdot a_{2,3} -
+    a_{3,1} \cdot a_{2,2} \cdot a_{1,3} - 
+    a_{1,1} \cdot a_{3,2} \cdot a_{2,3} -
+    a_{2,1} \cdot a_{1,2} \cdot a_{3,3}
+  \end{equation*}
+  \begin{proof}
+    Soit $A = (a_{i,j})$ alors on a 
+    \begin{align*}
+      \det A &= a_{1,1} \begin{vmatrix}
+        a_{2,2} & a_{2,3} \\ 
+        a_{3,2} & a_{3,3}
+      \end{vmatrix} -
+      a_{1,2} \begin{vmatrix}
+        a_{2,1} & a_{2,3} \\ 
+        a_{3,1} & a_{3,3} 
+      \end{vmatrix} + 
+      a_{1,3} \begin{vmatrix}
+        a_{2,1} & a_{2,2} \\ 
+        a_{3,1} & a_{3,2}
+      \end{vmatrix} \\ 
+      &= a_{1,1} (a_{2,2}a_{3,3} - a_{3,2}a_{2,3}) - a_{1,2} (a_{2,1}a_{3,3} - a_{3,1}a_{2,3}) + a_{1,3} (a_{2,1}a_{3,2} - a_{3,1}a_{2,2}) \\ 
+      &= a_{1,1}a_{2,2}a_{3,3} + a_{1,2}a_{3,1}a_{2,3} + a_{1,3}a_{2,1}a_{3,2} - a_{1,1}a_{3,2}a_{2,3} - a_{1,2}a_{2,1}a_{3,3} - a_{1,3}a_{3,1}a_{2,2}
+    \end{align*}
+  \end{proof}
+\end{definition}
+\begin{rmq}
+  Avec des lettres on a $\det A = aei + dhc + gbf - gec - ahf - dbi$
+\end{rmq}
+\begin{theorem}[Règle de Sarrus]
+  Une façon plus simple pour se souvenir de cette formule est de prendre la matrice $5$ par $5$ 
+  \begin{equation*}
+    \begin{bmatrix}
+      a & b & c \\ 
+      d & e & f \\ 
+      g & h & i \\ 
+      a & b & c \\ 
+      d & e & f
+    \end{bmatrix}
+  \end{equation*}
+  et de faire la somme des produit des diagonales descendantes moins la somme des produits des diagonales montantes et on a en effet 
+  \begin{equation*}
+    aei + dhc + gbf - gec - ahf - dbi
+  \end{equation*}
+\end{theorem}
+\begin{ex}
+  Soit $A = \begin{bmatrix}
+    1 & 1 & 2 \\ 
+    1 & -2 & 3 \\ 
+    2 & 0 & 4
+  \end{bmatrix}$
+  où
+  \begin{align*}
+    \det A &= -8 + 0 + 6 - (-8) - 0 - 4 \\ 
+    &= 2
+  \end{align*}
+\end{ex}
+\subsection{Matrices triangulaire}
+\begin{definition}
+  Soit $T \in \mathcal{M}_n(\bK)$ une matrice on dit que $T$ est \textit{triangulaire supérieure} si 
+  \begin{equation*}
+    T = \begin{bmatrix}
+      a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\ 
+      0 & a_{2,2} & \cdots & a_{2,n} \\ 
+      0 & \vdots & \vdots & \vdots \\ 
+      0 & \cdots & \cdots & a_{n,n}
+    \end{bmatrix}
+  \end{equation*}
+  Ou autrement définie, $T = (a_{i,j})$ est triangulaire supérieure si $\forall i \in [\![1,n]\!], \forall j < i, a_{i,j} = 0$
+  On note l'ensemble des matrices triangulaire supérieures de dimensions $n$ par $n$,  $\mathcal{T}^{+}_n$
+  \end{definition}
+  \begin{rmq}
+    De manière analogue on définie les matrices triangulaire inférieures, $\mathcal T^{-}_n$
+  \end{rmq}
+  \begin{theorem}
+    Soit $T \in \mathcal{T}^{+}_n$ alors 
+    \begin{equation*}
+      \det T = \prod_{i=1}^n a_{i,i}
+    \end{equation*}
+    \begin{proof}
+      Par récurrence sur $n$ et par définition.
+    \end{proof}
+  \end{theorem}
+\subsection{Propriété du déterminant}
+\begin{theorem}
+  Le déterminant est invariant par combinaison linéaire de colonnes et de lignes de la matrice (Gauss)
+\end{theorem}
+\begin{prop}
+  Soit $A \in \mathcal{M}_n(\bK)$, on note $C_j$ la colonne $j$ de $A$, on dit que $C_j \equiv C_i$ si, $\exists \alpha \in \bK^{*}, C_j = \alpha C_i$
+  \begin{equation*}
+    \det A = 0 \Leftrightarrow \exists i,j \in [\![1,n]\!]^2, i \not= j \wedge C_j \equiv C_i \\ 
+  \end{equation*}
+\end{prop}
+\subsection{Matrices inversible}
+\begin{definition}
+  Soit $A \in \mathcal{M}_n(\bK)$ on dit que $A$ est inversible si et seulement si 
+  \begin{equation*}
+    \exists B \in \mathcal{M}_n(\bK), AB = BA = I_n
+  \end{equation*}
+  où $I_n$ est la matrice identité de $\mathcal{M}_n(\bK)$.\newline
+
+  L'ensemble des matrices inversibles de $\mathcal{M}_n(\bK)$ est noté $\mathcal{GL}_n(\bK)$ où \textit{groupe linéaire}, et 
+  \begin{equation*}
+    \mathcal G = (\mathcal{GL}_n(\bK),\cdot)
+  \end{equation*}
+  où $(\cdot)$ est la multiplication matricielle, est un groupe, (tous les éléments sont inversible et le reste est hérité de la structure d'espace vectoriel de $\mathcal{M}_n(\bK)$)
+\end{definition}
+\begin{prop}[Critère d'inversibilité]
+  $A \in \mathcal{M}_n(\bK)$ est inversible si et seulement si $\det A \not= 0$
+  \begin{proof}
+    Soit $A \in \mathcal{M}_n(\bK)$
+    \begin{itemize}
+      \item Supposons que $\det A \not= 0$ alors selon la partie précédente la famille de ses vecteurs colonnes est libre, on a donc $\text{rg}(A) = n$ donc $A$ est inversible
+      \item Supposons que $A$ est inversible, supposons que $\det A = 0$ alors il existe $(i,j) \in [\![1,n]\!]^2$ tels que $C_i \equiv C_j$ donc la famille 
+      des vecteurs colonnes n'est pas libre donc $\dim \ker A \leq 1$ donc $\text{rg} A < n$ donc $A$ n'est pas inversible, ce qui est absurde, donc $\det A \not= 0$   
+    \end{itemize}
+  \end{proof}
+\end{prop}
+\subsubsection{Co-matrice}
+\begin{definition}
+  Soit $A \in \mathcal{M}_n(\bK)$ alors on définie la co-matrice de $A$, la matrice $\text{com}(A) = (c_{i,j})$ telle que 
+  \begin{equation*}
+    \forall (i,j) \in [\![1,n]\!]^2, c_{i,j} = (-1)^{i+j} \det A_{i,j}
+  \end{equation*}
+\end{definition}
+\begin{prop}
+  Soit $A \in \mathcal{M}_n(\bK)$, on a alors 
+  \begin{equation*}
+    A \cdot \text{com}(~^tA) = \det A\cdot I_n
+  \end{equation*}
+  où $I_n$ est l'identité de $\mathcal{M}_n(\bK)$
+  \begin{proof}
+    Soit $A \in \mathcal{M}_n(\bK)$, montrons que
+    \begin{equation*}
+      A \cdot \text{com}(~^tA) = \det A\cdot I_n
+    \end{equation*}
+    Il faut donc montrer, que 
+    \begin{equation*}
+      \forall (i,j) \in [\![1,n]\!]^2, [A\cdot \text{com}(~^tA)]_{i,j} = [\det A\cdot I_n]_{i,j}
+    \end{equation*}
+    D'abord calculons à gauche
+    \begin{equation*}
+      \forall (i,j) \in [\![1,n]\!]^2, [\det A\cdot I_n]_{i,j} = \begin{cases}
+        0 & \text{si } i \not= j \\ 
+        \det A & \text{si } i=j
+      \end{cases}
+    \end{equation*}
+    Calculons donc dans le cas $i=j$ à droite 
+    \begin{equation*}
+      [A\cdot \text{com}(~^tA)]_{i,i} = \sum_{k=1}^n [A]_{i,k} \cdot [\text{com}(~^tA)]_{k,i}
+    \end{equation*}
+    Or on a 
+    \begin{equation*}
+      [\text{com}(~^tA)]_{k,i} = (-1)^{k+i} \det ~^tA_{k,i}
+    \end{equation*}
+    d'où
+    \begin{align*}
+      [A\cdot \text{com}(~^tA)]_{i,i} &= \sum_{k=1}^n [A]_{i,k} \cdot (-1)^{k+i} \det ~^tA_{k,i} \\ 
+      &= \sum_{k=1}^n (-1)^{i+k} a_{i,k} \det ~^tA_{k,i} 
+    \end{align*}
+    or $~^tA_{k,i} = A_{i,k}$ donc
+    \begin{equation*}
+      [A\cdot \text{com}(~^tA)]_{i,i} = \sum_{k=1}^n (-1)^{i+k} a_{i,k} \det A_{i,k}
+    \end{equation*}
+    ce qui est le développement de la i-ième ligne de $\det A$ donc 
+    \begin{equation*}
+      [A\cdot \text{com}(~^tA)]_{i,i} = \det A
+    \end{equation*}
+    On a prouvé que
+    \begin{equation*}
+      \forall i \in [\![1,n]\!], [A\cdot \text{com}(~^tA)]_{i,i} = \det A
+    \end{equation*}
+    il reste à prouver que 
+    \begin{equation*}
+      \forall (i,j) \in [\![1,n]\!]^2, i\not=j \Rightarrow [A\cdot \text{com}(~^tA)]_{i,j} = 0
+    \end{equation*}
+    Soit $(i,j) \in [\![1,n]\!]^2, i\not=j$,
+    \begin{align*}
+      [A\cdot \text{com}(~^tA)]_{i,j} &= \sum_{k=1}^n [A]_{i,k} \cdot \text{com}(~^tA)_{k,j} \\ 
+      &= \sum_{k=1}^n a_{i,k} \cdot (-1)^{k+j} \cdot \det (~^tA)_{k,j} \\ 
+      &= \sum_{k=1}^n a_{i,k} \cdot (-1)^{k+j} \cdot \det A_{j,k} \\ 
+      &= \sum_{k=1}^n a_{i,k} \text{com}(A)_{j,k}
+    \end{align*}
+    Or regardons le déterminant de la matrice $A$ où l'on a remplacé la i-ième ligne par la j-ième par les formules de développement à 
+    la j-ième ligne on a
+    \begin{equation*}
+      \det A' = \sum_{k=1}^n (-1)^{k+j} a_{j,k} \det A_{j,k} 
+    \end{equation*}
+    Or on a remplacé la i-ième ligne par la j-ième on a donc $\forall k \leq n, a_{i,k} = a_{j,k}$ donc 
+    \begin{equation*}
+      \det A' = \sum_{k=1}^n (-1)^{k+j} a_{i,k} \det A_{j,k}
+    \end{equation*}
+    d'où 
+    \begin{equation*}
+      [A\cdot \text{com}(~^tA)]_{i,j} = \det A'
+    \end{equation*}
+    Or $A'$ a deux lignes identiques, donc le déterminant est nul donc $\det A' = 0$ donc 
+    \begin{equation*}
+      \forall (i,j) \in [\![1,n]\!]^2, i \not= j \Rightarrow [A\cdot \text{com}(~^tA)]_{i,j} = 0
+    \end{equation*}
+    Donc, enfin par égalité des coefficients on a
+
+    \begin{equation*}
+      A\cdot \text{com}(~^tA) = \det A \cdot I_n
+    \end{equation*}
+  \end{proof} 
+\end{prop}
+\begin{theorem}
+  Si $A \in \mathcal{GL}_n(\bK)$ alors 
+  \begin{equation*}
+    A^{-1} = \frac{1}{\det A} \text{com}(~^tA)
+  \end{equation*}
+  \begin{proof}
+    conséquence direte de la proposition précédente.
+  \end{proof}
+\end{theorem}
+\begin{rmq}[Inversibilité en dimension 2]
+  Soit $A \in \mathcal{GL}_2(\bK) = \begin{bmatrix}
+    a & b \\ 
+    c & d
+  \end{bmatrix}$
+  on a $~^tA = \begin{bmatrix}
+    a & c \\ 
+    b & d
+  \end{bmatrix}$
+  et 
+  \begin{equation*}
+    \text{com}(~^tA) = \begin{bmatrix}
+      d & -c \\ 
+      -b & a
+    \end{bmatrix}
+  \end{equation*}
+  d'où 
+  \begin{equation*}
+    A^{-1} = \frac{1}{ad-bc} \begin{bmatrix}
+      d & -c \\ 
+      -b & a
+    \end{bmatrix}
+  \end{equation*}
+\end{rmq}
+\begin{ex}
+  Soit $A = \begin{bmatrix}
+    1 & -1 & 4 \\ 
+    2 & 1 & -1 \\ 
+    3 & 2 & 1
+  \end{bmatrix}$, on a donc 
+  \begin{equation*}
+  ~^tA = \begin{bmatrix}
+    1 & 2 & 3 \\ 
+    -1 & 1 & 2 \\ 
+    4 & -1 & 1
+  \end{bmatrix}
+  \end{equation*}
+  puis 
+  \begin{equation*}
+    \det A = -2 + 16 + 3 -12 -4 + 2 = 3
+  \end{equation*}
+  On a alors
+  \begin{align*}
+    \text{com}(~^tA) &= 
+    \begin{bmatrix}
+      \begin{vmatrix}
+        1 & 2 \\ 
+        -1 & -2
+      \end{vmatrix}&
+      - \begin{vmatrix}
+        -1 & 2 \\ 
+        4 & -2
+      \end{vmatrix}&
+      + \begin{vmatrix}
+        -1 & 1 \\ 
+        4 & -1
+      \end{vmatrix}\\ 
+      - \begin{vmatrix}
+        2 & 3 \\ 
+        -1 & -2
+      \end{vmatrix}&
+      \begin{vmatrix}
+        1 & 3 \\ 
+        4 & -2
+      \end{vmatrix}&
+      - \begin{vmatrix}
+        1 & 2 \\ 
+        4 & -1
+      \end{vmatrix}\\ 
+      \begin{vmatrix}
+        2 & 3 \\ 
+        1 & 2
+      \end{vmatrix}&
+      - \begin{vmatrix}
+        1 & 3 \\ 
+        -1 & 2
+      \end{vmatrix}&
+      \begin{vmatrix}
+        1 & 2 \\ 
+        -1 & 1
+      \end{vmatrix}
+    \end{bmatrix} \\ 
+    &= \begin{bmatrix}
+      0 & 6 & -3 \\ 
+      1 & -14 & 9 \\ 
+      1 & -5 & 3
+    \end{bmatrix}
+  \end{align*}
+  d'où 
+  \begin{equation*}
+    A^{-1} = \frac{1}{3}
+    \begin{bmatrix}
+      0 & 6 & -3 \\ 
+      1 & -14 & 9 \\ 
+      1 & -5 & 3
+    \end{bmatrix}
+  \end{equation*}
+\end{ex}
+
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
@@ -2341,7 +2873,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{definition}
   On dit que $\mathcal A = (A,+,\cdot)$ est intègre si et seulement si 
   \begin{equation*}
-    \forall (x,y) \in A^2, x \cdot y = 0_A \Leftrightarrow (x = 0_A) \wedge (y = 0_A)
+    \forall (x,y) \in A^2, x \cdot y = 0_A \Leftrightarrow (x = 0_A) \vee (y = 0_A)
   \end{equation*}
 \end{definition}
 \begin{ex}
