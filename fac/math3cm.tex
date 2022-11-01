@@ -316,9 +316,54 @@
     \begin{ex}
       \begin{itemize}
         \item Un polynome est équivalent à son monôme de plus haut degrès (resp bas) quand $x$ tends vers $\infty$ (resp $0$)
-        \item $sin x \equiv_{0} x$
-        \item $ln(1+x) \equiv_{0} x$
+        \item $\sin x \equiv_{0} x$
+        \item $\log(1+x) \equiv_{0} x$
       \end{itemize}
+      $ $
+      \begin{proof}
+
+          Soit $P \in \bR[X]$ tel que $\deg P = n$ et $a_n = \text{dom} P$ alors, soit $x \in \bR$
+          \begin{align*}
+            \frac{P(x)}{a_n x^n} &= 1 + \frac{a_{n-1}x^{n-1}}{a_nx^n} + \cdots + \frac{a_0}{a_nx^n} \\ 
+            &= 1 + \frac{a_{n+1}}{a_n x} + \cdots + \frac{a_0}{a_n x^n} \\ 
+            &\to 1 
+          \end{align*}
+          donc 
+          \begin{equation*}
+            \lim_{X \to \infty} \frac{P(x)}{a_n x^n} = 1
+          \end{equation*}
+          d'où 
+          \begin{equation*}
+            P(x) \sim_{\infty} a_n x^n
+          \end{equation*}
+          La démonstration est similaire pour en 0.\newline
+
+
+          Soit $x \in \bR^*$ 
+          \begin{equation*}
+            \frac{\sin x}{x} = \frac{\sin x - \sin 0}{x - 0}
+          \end{equation*}
+          d'où en $x \to 0$ 
+          \begin{align*}
+            \frac{\sin x}{x} &\to sin'(0) \\ 
+            &\to cos(0) = 1
+          \end{align*}
+          d'où $\sin x \sim x$\newline
+
+
+          Soit $x \in \bR^*$ alors 
+          \begin{align*}
+            \frac{\log(1+x)}{x} &= \frac{\log(1+x) - \log(1+0)}{x - 0} \\ 
+            &\to (\log(1+x))'(0) \\ 
+            &= \frac{1}{x+1}(0) \\ 
+            &= \frac{1}{1} \\ 
+            &= 1
+          \end{align*}
+          d'où 
+          \begin{equation*}
+            \log 1+x \sim_0 x
+          \end{equation*}
+      \end{proof}
     \end{ex}
     \subsection{Opération sur les équivalents}
     Soient $f_1,g_1,f_2,g_2 \in \bR^D$ soit $a \in \bar{D}$ soit $\alpha \in \bR$ 
