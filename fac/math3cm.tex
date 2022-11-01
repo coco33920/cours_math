@@ -244,14 +244,66 @@
       \end{align*} 
       alors on a 
       \begin{align*}
-        g = o_{\infty}(f) \\ 
-        h = o_{\infty}(g)
+        g &= o_{\infty}(f) \\ 
+        h &= o_{\infty}(g)
       \end{align*}
       c'est à dire 
       \begin{align*}
-        \dfrac{(\log x)^\alpha}{x^\beta} &\to_{\infty} 0 \\ 
-        \dfrac{x^{\beta}}{\gamma^x} &\to_{\infty} 0
+        &\dfrac{(\log x)^\alpha}{x^\beta} \to_{\infty} 0 \\ 
+        &\dfrac{x^{\beta}}{\gamma^x} \to_{\infty} 0
       \end{align*}
+      \begin{proof}
+        \begin{enumerate}
+          \item Commençons par prouver que pour $X \in \bR$
+          \begin{equation*}
+            \frac{X}{e^X} \to 0
+          \end{equation*}
+          Notons d'abord que 
+          \begin{equation*}
+            \frac{X}{e^X} = \frac{1}{\frac{e^X}{X}}
+          \end{equation*}
+          donc on se réduit à l'étude de
+          \begin{equation*}
+            \frac{e^X}{X}
+          \end{equation*}
+          On fait un $DL_2$ en 0 on a 
+          \begin{equation*}
+            \frac{e^X}{X} = \frac{1+X+\frac{X^2}{2}+o(X^2)}{X+o(X^2)}
+          \end{equation*}
+          Donc 
+          \begin{equation*}
+            \frac{e^X}{X} = \frac{1}{X} + 1 + \frac{X}{2} + o(1)
+          \end{equation*}
+          Par passage à la limite quand $X \to \infty$ on a 
+          \begin{equation*}
+            \lim_{X\to \infty} \frac{e^X}{X} = \infty  
+          \end{equation*}
+          d'où 
+          \begin{equation*}
+            \lim_{X\to \infty} \frac{X}{e^X} = 0
+          \end{equation*}
+          \item Ensuite soit $\alpha,\beta \in \bR^{+*}$ alors on a
+          \begin{align*}
+            \frac{(\log x)^{\alpha}}{x^{\beta}} &= \frac{e^{\alpha \log \log x}}{\beta \log x} \\ 
+            &= \frac{e^{\alpha}}{e^{\beta}} \cdot \frac{e^{\log \log x}}{e^{\log x}} && X=\log x \\ 
+            &= \frac{e^{\alpha}}{e^{\beta}} \cdot \frac{e^{\log X}}{e^X} \\
+            &= \frac{e^{\alpha}}{e^{\beta}} \cdot \frac{X}{e^X} \\
+            &\to 0 && (1)
+          \end{align*}
+          \item Ensuite soit $\beta,\gamma \in \bR^{+*}$ alors on a 
+          \begin{align*}
+            \frac{x^{\beta}}{\gamma^{x}} &= \frac{e^{\beta \log x}}{e^{x \log \gamma}} \\ 
+            &= \frac{e^{\beta}}{e^{\log \gamma}} \cdot \frac{e^{\log x}}{e^x} \\ 
+            &= \frac{e^{\beta}}{e^{\log \gamma}} \cdot \frac{x}{e^x} \\ 
+            &=\to 0 && (1)
+          \end{align*}
+        \end{enumerate}
+        d'où 
+        \begin{align*}
+          g &= o_{\infty}(f) \\ 
+          h &= o_{\infty}(g)
+        \end{align*}
+      \end{proof}
     \end{theorem}
 
     \subsection{Fonctions Équivalentes}
