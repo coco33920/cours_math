@@ -1110,6 +1110,30 @@
     \item Si $\sum u_n$ CV (resp DV) et $\sum v_n$ DV (resp CV) alors $\sum w_n$ diverge
     \item Si $\sum u_n$ et $\sum v_n$ divergent alors on ne peut rien dire de $\sum w_n$
   \end{itemize}
+  $ $
+  \begin{proof}
+    Soit $(v_n) \in \rN$ et $(u_n) \in \rN$ on note $w_n = u_n + v_n$
+    \begin{itemize}
+      \item On a $\sum_{n=0}^{\infty} v_n = \mu$ et $\sum_{n=0}^{\infty} u_n = \lambda$ alors 
+      \begin{align*}
+        \sum_{n=0}^{\infty} w_n &= \sum_{n=0}^{\infty} u_n+v_n \\ 
+        &= \sum_{n=0}^{\infty} u_n + \sum_{n=0}^{\infty} v_n \\
+        &= \mu + \lambda
+      \end{align*}
+      Donc $\sum w_n$ est convergent
+      \item Sans perte de généralité, supposons que $\sum v_n$ converge vers $\lambda$ et $\sum u_n$ diverge, soit $n\in \bN$ 
+      \begin{align*}
+        \sum_{k=0}^n w_k &= \sum_{k=0}^n u_k + v_k \\ 
+        &= \sum_{k=0}^n u_k + \sum_{k=0}^n v_k \\ 
+      \end{align*}
+      On suppose que $\sum_{k=0}^n w_k$ converge vers $\mu$ alors 
+      \begin{align*}
+        \sum_{k=0}^n w_k - \sum_{k=0}^n v_k &= \sum_{k=0}^n u_k + \sum_{k=0}^n v_k - \sum_{k=0}^n v_k \\ 
+        \sum_{k=0} u_k &\to \mu - \lambda
+      \end{align*}
+      Donc $\sum u_n$ converge ce qui est absurde donc $\sum w_n$ diverge
+    \end{itemize}
+  \end{proof}
 \end{prop}
 \section{Séries géométriques}
 \begin{definition}
