@@ -3245,6 +3245,68 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{itemize}
 \end{rmq}
 \chapter{Hors Programme - Supplément}
+\section{Application}
+\subsection{Définitions}
+\begin{definition}
+  Soit $E,F$ deux ensembles et $F' \subset F$ alors on appelle une application $f$ la donnée du triplé $(E,F,E\times F')$ si
+  \begin{equation*}
+    \forall (x,y),(x',y') \in E\times F', x=x' \Rightarrow y=y'
+  \end{equation*}
+  on la note \vfunc{f}{E}{F}{x}{f(x)}
+\end{definition}
+\begin{definition}
+  Une autre définition d'une application $f$ est que $f$ est la donnée du triplet $(E,F,P)$ où $P$ est appelée une \textit{procédure}, c'est 
+  une relation binaire de $E$ dans $F'$ tel que si $xPy$ et $xPz$ alors $y=z$ (unicité de l'image), cette définition est équivalente à la précédente
+\end{definition}
+\begin{definition}
+  Soit $f$ une application de $E$ vers $F$ alors pour $x\in E$ on appelle $f(x)$ \textit{image de x par f} elle est par définition unique. $x$ est appelé 
+  \textit{un antécédent} de $f(x) \in F$ 
+\end{definition}
+\begin{definition}
+  Soit $E' \subset E$ on note $f(E)$ l'ensemble 
+  \begin{equation*}
+    f(E) = \left\{f(x), x\in E'\right\}
+  \end{equation*}
+  appelé l'image de $E'$ par $f$
+\end{definition}
+\subsection{Premières propriétées}
+\begin{definition}
+  On dit que $E' \subset E$ est stable pour $f : E \to E$ si 
+  \begin{equation*}
+    f(E') \subset E'
+  \end{equation*}
+\end{definition}
+\begin{definition}
+  On dit que $f : E \to F$ est injective si
+  \begin{equation*}
+    \forall (x,x') \in E^2, f(x) = f(x') \Rightarrow x=x'
+  \end{equation*}
+\end{definition}
+\begin{definition}
+  On dit que $f : E \to F$ est surjective si 
+  \begin{equation*}
+    \forall y \in F, \exists x \in E, f(x)=y
+  \end{equation*}
+  c'est à dire 
+  \begin{equation*}
+    f(E) = F
+  \end{equation*}
+\end{definition}
+\begin{definition}
+  On dit que $f$ est bijective si 
+  \begin{itemize}
+    \item f est injective 
+    \item f est surjective
+  \end{itemize}
+  c'est à dire 
+  \begin{equation*}
+    \forall y \in F, !\exists x \in E, f(x)=y
+  \end{equation*}
+  \begin{proof}
+    Existence par surjectivité, unicité par injectivité
+  \end{proof}
+\end{definition}
+
 \section{Relation binaire}
 \begin{definition}
   Soit $E$ un ensemble, soit $\Gamma \subset E^2$ on lui associe la relation binaire suivante $\mathcal{R}$ définie par 
