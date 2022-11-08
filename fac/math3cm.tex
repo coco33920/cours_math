@@ -1806,23 +1806,6 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     Par choix judicieux des bases (projections).
   \end{proof}
 \end{theorem}
-\begin{prop}
-  Soit $f \in \mfc{L}(E)$
-  \begin{equation*}
-    f \in \mfc{GL}(E) \Leftrightarrow \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)
-  \end{equation*}
-  \begin{proof}
-    On prouve par double implication
-    \begin{itemize}
-      \item Soit $\mfc{B}$ telle que $M = \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)$ alors $\text{rg}  M = \text{rg}  f = n$ donc $f \in \mfc{GL}(E)$
-      \item Soit $f \in \mfc{GL}(E)$, soit $M = \text{Mat}_{\mfc{B}} f$ avec $\mfc{B}$ une base de $E$ alors $\text{rg}  M = \text{rg} f = n$ donc $M \in \mfc{GL}_n(\bK)$
-    \end{itemize}
-    On a donc 
-    \begin{equation*}
-      f \in \mfc{GL}(E) \Leftrightarrow \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)
-    \end{equation*}
-  \end{proof}
-\end{prop}
 \begin{rmq}
   Par la méthode des pivots on se rend compte que 
   \begin{equation*}
@@ -1897,6 +1880,27 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     Y = \text{Mat}_{\mfc{B},\mfc{V}} f \times X
   \end{equation*}
 \end{prop}
+\subsection{Critère d'inversibilité}
+\begin{prop}[Critère d'inversibilité]
+  Soit $f \in \mfc{L}(E)$
+  \begin{equation*}
+    f \in \mfc{GL}(E) \Leftrightarrow \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)
+  \end{equation*}
+  \begin{proof}
+    On prouve par double implication
+    \begin{itemize}
+      \item Soit $\mfc{B}$ telle que $M = \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)$ alors $\text{rg}  M = \text{rg}  f = n$ donc $f \in \mfc{GL}(E)$
+      \item Soit $f \in \mfc{GL}(E)$, soit $M = \text{Mat}_{\mfc{B}} f$ avec $\mfc{B}$ une base de $E$ alors $\text{rg}  M = \text{rg} f = n$ donc $M \in \mfc{GL}_n(\bK)$
+    \end{itemize}
+    On a donc 
+    \begin{equation*}
+      f \in \mfc{GL}(E) \Leftrightarrow \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)
+    \end{equation*}
+  \end{proof}
+  \begin{rmq}
+    Ici faite dans le cadre des endomorphisme cette propriété est vrai pour tout morphisme $f \in \mfc{L}(E,F)$ si $\dim E = \dim F$.
+  \end{rmq}
+\end{prop}
 \section{Endomorphismes}
 \subsection{Matrices de changement de base}
 \begin{definition}
@@ -1912,6 +1916,9 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   on sait que $\text{Mat}_{\mfc{B},\mfc{B}'} \in \mfc{GL}_n(\bK)$ car toutes les familles sont libres. 
   Une telle matrice est appellée \textit{matrice de changement de base}
 \end{definition}
+\begin{rmq}
+  D'après la proposition sur le critère d'inversibilité ces matrices de changements de bases correspondent à des automorphismes.
+\end{rmq}
 \begin{ex}
   Soit $B = (i,j)$ la base canonique de $\bR^2$, soit $x = \begin{pmatrix}
     5 \\ 
