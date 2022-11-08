@@ -1794,6 +1794,35 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \end{bmatrix} \in \mfc{M}_{n,p}(\bK)
   \end{equation*}
 \end{definition}
+\begin{theorem}[Théorème des morphismes]
+  Soit $M \in \mfc{M}_{n,p}(\bK)$ soit $E,F$ deux espaces vectoriels de dimension finie alors $\exists f \in \mfc{L}(E,F)$
+  et $\mfc{B},\mfc{V}$ bases de $E$ et de $F$ respectivement
+  telle que 
+  \begin{equation*}
+    M = \text{Mat}_{\mfc{B},\mfc{V}} f
+  \end{equation*}
+  Donc à toute matrice on peut lui associer un morphisme et inversement.
+  \begin{proof}
+    Par choix judicieux des bases (projections).
+  \end{proof}
+\end{theorem}
+\begin{prop}
+  Soit $f \in \mfc{L}(E)$
+  \begin{equation*}
+    f \in \mfc{GL}(E) \Leftrightarrow \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)
+  \end{equation*}
+  \begin{proof}
+    On prouve par double implication
+    \begin{itemize}
+      \item Soit $\mfc{B}$ telle que $M = \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)$ alors $\text{rg}  M = \text{rg}  f = n$ donc $f \in \mfc{GL}(E)$
+      \item Soit $f \in \mfc{GL}(E)$, soit $M = \text{Mat}_{\mfc{B}} f$ avec $\mfc{B}$ une base de $E$ alors $\text{rg}  M = \text{rg} f = n$ donc $M \in \mfc{GL}_n(\bK)$
+    \end{itemize}
+    On a donc 
+    \begin{equation*}
+      f \in \mfc{GL}(E) \Leftrightarrow \text{Mat}_{\mfc{B}} f \in \mfc{GL}_n(\bK)
+    \end{equation*}
+  \end{proof}
+\end{prop}
 \begin{rmq}
   Par la méthode des pivots on se rend compte que 
   \begin{equation*}
@@ -3179,6 +3208,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   l'ensemble des morphismes de $E$ dans $F$ $\mor$
 \end{definition}
 \begin{definition}
+  Soit $E,F$ deux \ev
   \begin{itemize}
     \item Un morphisme de $E$ dans $E$ est appelé \textit{endomorphisme}, on note l'ensemble des endomorphisme $\endo$
     \item Un morphisme bijectif de $E$ dans $F$ est appelé \textit{isomorphisme}
@@ -3193,6 +3223,49 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \begin{equation*}
     \dim E = \dim F \Leftrightarrow \exists f \in \mfc{L}(E,F) \text{ bijective}
   \end{equation*}
+  \begin{proof}
+    On prouve par double implication. Soit $\mfc{B}$ et $\mfc{B}'$ bases de $E$ et $F$ respectivement
+    
+    \begin{itemize}
+    \item On suppose qu'on a $E,F$ deux \ev tels que $\dim E = \dim F$, 
+    construisons $f \in \mfc{L}(E,F)$ bijective. On note $n = \dim E = \dim F$ 
+    
+
+    D'après le théorème des morphismes on a 
+    \begin{equation*}
+      \exists f \in \mfc{L}(E,F), \text{Mat}_{\mfc{B},\mfc{B'}} f = \begin{bmatrix}
+        1 & 0 & \cdots & 0 \\ 
+        0 & 1 & \cdots & 0 \\ 
+        0 & \vdots & \vdots & 0 \\ 
+        0 & 0 & \cdots & 1
+      \end{bmatrix} = I_n \in \mfc{M}_n(\bK)
+    \end{equation*}
+    Or $I_n$ est inversible car c'est la matrice identité de taille $n$ alors $f$ est inversible donc $f$ est bijective.
+    Donc 
+    \begin{equation*}
+      \dim E = \dim F \Rightarrow \exists f \in \mfc{L}(E,F) \text{ bijective}
+    \end{equation*}
+
+    \item On suppose maintenant qu'on a deux ev et $f \in \mfc{L}(E,F)$ bijective, alors par théorème des morphismes on a que la matrice
+    \begin{equation*}
+      A = \text{M}_{\mfc{B},\mfc{B'}} f
+    \end{equation*}
+    est inversible, or, pour être inversible elle est nécessairement carré, et donc $\abs{\mfc{B}} = \abs{\mfc{B'}}$ d'où 
+    \begin{equation*}
+      \dim E = \dim F
+    \end{equation*}
+    d'où finalement 
+    \begin{equation*}
+      \exists f \in \mfc{L}(E,F) \text{ bijective} \Rightarrow \dim E = \dim F
+    \end{equation*}
+  \end{itemize}
+  
+  Finalement par double implication on a 
+  \begin{equation*}
+    \dim E = \dim F \Leftrightarrow \exists f \in \mfc{L}(E,F) \text{ bijective}
+  \end{equation*}
+
+  \end{proof}
 \end{theorem}
 \begin{rmq}
   En particulier tout \ev de dimension $n$ est isomorphe à $R^n$ appelé \textit{espace canonique de dimension n}
@@ -3227,7 +3300,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{ex}
   Par exemple la \textit{norme infinie} est une norme sur $\bR^{\bR}$ définie par 
   \begin{equation*}
-    \forall f \in \bR^{\bR}, \norm{f}_{\infty} = \sup{x \in \bR} \abs{f(x)}
+    \forall f \in \bR^{\bR}, \norm{f}_{\infty} = \sup_{x \in \bR} \abs{f(x)}
   \end{equation*}
 \end{ex}
 \begin{definition}
