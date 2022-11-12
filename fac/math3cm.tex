@@ -2599,6 +2599,248 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{equation*}
 \end{ex}
 
+
+\chapter{Réduction des endomorphismes}
+\section{Valeurs/vecteurs propres}
+\subsection{Définition}
+\begin{definition}
+  Soit $E$ un \ev, soit $f \in \mfc{L}(E)$, alors si on a 
+  \begin{equation*}
+    \exists \lambda \in \bK, \exists x \in E, f(x) = \lambda x
+  \end{equation*}
+  on appelle $x$ un \textit{vecteur propre} de $f$ et $\lambda$ la valeur propre qui lui est associé.
+\end{definition}
+\begin{rmq}
+  On ne considère pas $0$ comme vecteur/valeur propre. 
+\end{rmq}
+\subsection{Sous espace propre}
+\begin{definition}
+  Soit $E$ un espace vectoriel soit $f \in \mfc{L}(E)$, et soit $\lambda \in \bK$ une valeur propre de $f$ alors on définie le sous espace propre
+  $E_\lambda$ le sous espace engendré par les vecteurs propres associés à $\lambda$. C'est par définition un espace vectoriel.
+\end{definition}
+\begin{prop}[Caractérisation]
+  Soit $E_{\lambda}$ un sous espace propre de $E$ alors 
+  \begin{align*}
+    x \in E_{\lambda} &\Leftrightarrow f(x) = \lambda x \\ 
+    &\Leftrightarrow f(x) - \lambda x = 0 \\ 
+    &\Leftrightarrow x \in \ker (f - Id_E)
+  \end{align*}
+  donc 
+  \begin{equation*}
+    E_\lambda = \ker (f - Id_E)
+  \end{equation*}
+\end{prop}
+\begin{rmq}
+  Cela peut aussi s'écrire de façon matricielle, soit $A$ la matrice canonique de $f$ alors on a 
+  \begin{align*}
+    (A-\lambda X) = 0 &\Leftrightarrow (A-\lambda X) \not\in \mfc{GL}_n(\bK) \\
+    &\Leftrightarrow \det A-\lambda X = 0
+  \end{align*}
+\end{rmq}
+\subsection{Polynome caractéristique}
+\begin{definition}
+  Soit $E$ un \ev de dimension fini, soit $f \in \mfc{L}(E)$, soit $\lambda$ une valeur propre de $f$, soit $A$ la matrice canonique de $f$
+  alors on note 
+  \begin{equation*}
+    P_A(\lambda) = \det A - \lambda X
+  \end{equation*}
+  le polynome caractéristique de $A$ associé à $\lambda$.
+
+  
+  Chercher pour des valeurs propres revient à chercher les racines de $P_A(\lambda)$ dans $\bK$ (réalistiquement dans $\bR$ car d'après le théorème de 
+  d'Alembert Gauss tous les polynomes sont scindés sur $\bC$). Une racine $\lambda_0$ de multiplicité $p$ est alors appelée une valeur propre de multiplicité $p$ de $f$
+\end{definition}
+\subsection{Changement de base}
+\begin{prop}
+  Les valeurs propres de la matrice $A$ sont invariant par changement de base.
+  \begin{proof}
+    Soit $P$ la matrice de changement de base pour passer de la matrice $A$ à la matrice $A'$ alors on a 
+    \begin{align*}
+      \det (A'-\lambda I) &= \det P (A-\lambda I) P^{-1} \\ 
+      &= \det P \cdot \det (A-\lambda I) \cdot P^{-1} \\ 
+      &= \frac{\det P}{\det P} \cdot \det (A-\lambda I) \\ 
+      &= \det (A-\lambda I)
+    \end{align*}
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  Cela s'étend à toutes les matrices semblables, elles ont les mêmes valeurs propres.
+\end{rmq}
+\subsection{Dimension deux}
+\begin{prop}
+  Soit $E$ un $\bR$ \ev de dimension $2$, alors il existe trois cas 
+  \begin{enumerate}
+    \item $P_A(\lambda) = (\lambda - \lambda_1) \cdot (\lambda - \lambda_2)$
+    \item $P_A(\lambda) = (\lambda - \lambda_1)^2$
+    \item $P_A$ n'a pas de racine (donc $A$ n'a pas de valeur propre)
+  \end{enumerate}
+  \begin{proof}
+    Soit 
+    \begin{equation*}
+      A = \text{Mat}_{\mfc{B}}(f) = \begin{bmatrix}
+        a & b \\ 
+        c & d
+      \end{bmatrix} 
+    \end{equation*}
+    Alors 
+    \begin{align*}
+      \det A - \lambda I &= \begin{vmatrix}
+        a - \lambda & b \\ 
+        c & d - \lambda
+      \end{vmatrix} \\ 
+      &= \lambda^2 - (a+d)\lambda + (ad-bc) \\ 
+      &= \lambda^2 - \text{Tr}(A) \lambda + \det A
+    \end{align*}
+    Les trois cas se déduisent alors du théorèmes des racines en dimension 2.
+  \end{proof}
+\end{prop}
+\subsection{Cas des matrices triangulaires}
+\begin{definition}
+  Si on a $T \in \mfc{T}^+_n(\bK)$ alors les valeurs propres sont les diagonales compté avec multiplicité 
+\end{definition}
+\subsection{Cas général}
+\begin{definition}
+  Soit $A$, dans le cas général on a 
+  \begin{equation*}
+    P_A(\lambda) = (-1)^n \lambda^n + (-1)^{n-1} \lambda^{n-1} \text{Tr}(A) + \cdots + \det A
+  \end{equation*}
+\end{definition}
+\begin{rmq}
+  Si $P_A$ est scindé sur $\bR$ alors on a notre décomposition en vecteurs propres, comptés avec multiplicité et on en a assez pour une base.
+\end{rmq}
+\subsection{Recherche de valeurs propre}
+\begin{definition}[Méthode]
+  Pour rechercher des valeurs propres on 
+  \begin{itemize}
+    \item Cherche les racines du polynome caractéristiques 
+    \item Calcule les différents sous-espace propre pour chaque valeur propre trouvée
+  \end{itemize}
+\end{definition}
+\begin{ex}
+  Soit $A = \begin{bmatrix}
+    0 & 0 & 1 \\ 
+    1 & 0 & 0 \\ 
+    7 & -6 & 0
+  \end{bmatrix}$
+  On a 
+  \begin{align*}
+    P_A(\lambda) &= \det (A - \lambda I) \\ 
+    &= (-\lambda)^3 - 6 + 7\lambda \\ 
+    &= -\lambda^3 + 7\lambda - 6 && \text{1 solution évidente} \\ 
+    &= (1 - \lambda)(\lambda^2+\lambda-6) && \text{simple résolution} \\ 
+    &= (1 - \lambda)(\lambda - 2)(\lambda + 3)
+  \end{align*}
+  (On a bien Tr$(A)$ = 0), donc 
+  \begin{equation*}
+    A
+  \end{equation*}
+  possède 3 valeurs propres distinctes, chacunes d'ordre 1 $1, 2$ et $-3$
+  \paragraph*{Espaces Propres}
+  Calculons $E_1$
+  \begin{align*}
+    E_1 &= \left\{X \in \mfc{M}_{3,1}, AX = X\right\} \\ 
+    &= \left\{X \in \mfc{M}_{3,1}, (A-I_3)X = 0_{M_{3,1}}\right\} \\ 
+    &= \left\{X \in \mfc{M}_{3,1}, \begin{bmatrix}
+      -1 & 0 & 1 \\ 
+      1 & -1 & 0 \\ 
+      7 & -6 & -1 
+    \end{bmatrix}\begin{bmatrix}
+      x \\ 
+      y \\ 
+      z
+    \end{bmatrix} = 0\right\} \\ 
+    &= \begin{cases}
+      x = z \\ 
+      y = z \\ 
+      0 = 0
+    \end{cases} \\
+    &= \text{Vect}\left(\begin{pmatrix}
+      1 \\ 
+      1 \\ 
+      1
+    \end{pmatrix}\right)
+  \end{align*}
+  Puis de la même façon on obtient 
+  \begin{equation*}
+    E_2 = \text{Vect}\left(\begin{pmatrix}
+      2 \\ 
+      \frac{1}{2} \\ 
+      1
+    \end{pmatrix}\right)
+  \end{equation*}
+  et 
+  \begin{equation*}
+    E_3 = \text{Vect}\left(\begin{pmatrix}
+      -3 \\ 
+      \frac{-1}{3} \\ 
+      1
+    \end{pmatrix}\right)
+  \end{equation*}
+  Les trois vecteurs $ u = \begin{pmatrix}
+    1 \\ 
+    1 \\ 
+    1
+  \end{pmatrix}$, $ w = \begin{pmatrix}
+    -3 \\ 
+    \frac{-1}{3} \\ 
+    1
+  \end{pmatrix}$ et $v = \begin{pmatrix}
+    2 \\ 
+    \frac{1}{2} \\ 
+    1
+  \end{pmatrix}$ 
+  forment une base de $E$ où on a 
+  \begin{align*}
+    f(u) &= u \\ 
+    f(v) &= 2v \\ 
+    f(w) &= -3w 
+  \end{align*}
+  Autrement dit on a 
+  \begin{equation*}
+    \text{Mat}_{(u,v,w)} f = \begin{bmatrix}
+      1 & 0 & 0 \\ 
+      0 & 2 & 0 \\ 
+      0 & 0 & -3
+    \end{bmatrix}
+  \end{equation*}
+  Autrement dit, on a réduit f, il est maintenant beaucoup plus simple de calculer des puissance de $f$ ou une inversibilité.
+\end{ex}
+\subsection{Dimension d'un espace propre}
+\begin{definition}
+  Soit $\lambda$ une racine de multiplicité $p$ 
+  \begin{equation*}
+    \dim E_{\lambda} \leq \text{mult}(\lambda) = p
+  \end{equation*}
+  \begin{proof}
+    Soit $f \in \mfc{L}(E)$, et soit $\dim E_\lambda = p$ alors on prend une base $v = (v_1,\cdots,v_p)$ de $E_\lambda$ et 
+    on la complète avec $w = (w_{p+1},\cdots,w_n)$ vecteurs de $E$ pour en former une base de $E$ on a 
+    \begin{equation*}
+      \text{Mat} f = \begin{bmatrix}
+        \lambda_0 & 0 & \cdots & 0 & A \\ 
+        0 & \lambda_0 & \cdots & 0 & A \\ 
+        \ 0 & 0 & \cdots & \lambda_0 & A \\ 
+        0 & 0 & 0 & 0 & A
+      \end{bmatrix}
+    \end{equation*}
+    Donc 
+    \begin{equation*}
+      P_A(\lambda) = \begin{vmatrix}
+        \lambda_0 - \lambda & 0 & \cdots & 0 & A \\ 
+        0 & \lambda_0 - \lambda & \cdots & 0 & A \\ 
+        \ 0 & 0 & \cdots & \lambda_0 - \lambda & A \\ 
+        0 & 0 & 0 & 0 & A
+      \end{vmatrix}
+    \end{equation*}
+    D'où 
+    \begin{equation*}
+      P_A(\lambda) = (\lambda_0-\lambda)^p \abs{Q(\lambda)}
+    \end{equation*}
+    Avec Q le reste des coefficients, donc $\lambda_0$ est une valeur propre de multiplicité au moins $p$ d'où 
+    \begin{equation*}
+      \dim E_{\lambda} \leq p = \text{mult}(\lambda_0)
+    \end{equation*}
+  \end{proof}
+\end{definition}
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
