@@ -2600,9 +2600,8 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \end{ex}
 
 
-\chapter{Réduction des endomorphismes}
-\section{Valeurs/vecteurs propres}
-\subsection{Définition}
+\chapter{Valeurs/vecteurs propres}
+\section{Définition}
 \begin{definition}
   Soit $E$ un \ev, soit $f \in \mfc{L}(E)$, alors si on a 
   \begin{equation*}
@@ -2613,7 +2612,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   On ne considère pas $0$ comme vecteur/valeur propre. 
 \end{rmq}
-\subsection{Sous espace propre}
+\section{Sous espace propre}
 \begin{definition}
   Soit $E$ un espace vectoriel soit $f \in \mfc{L}(E)$, et soit $\lambda \in \bK$ une valeur propre de $f$ alors on définie le sous espace propre
   $E_\lambda$ le sous espace engendré par les vecteurs propres associés à $\lambda$. C'est par définition un espace vectoriel.
@@ -2637,7 +2636,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     &\Leftrightarrow \det A-\lambda X = 0
   \end{align*}
 \end{rmq}
-\subsection{Polynome caractéristique}
+\section{Polynome caractéristique}
 \begin{definition}
   Soit $E$ un \ev de dimension fini, soit $f \in \mfc{L}(E)$, soit $\lambda$ une valeur propre de $f$, soit $A$ la matrice canonique de $f$
   alors on note 
@@ -2650,7 +2649,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   Chercher pour des valeurs propres revient à chercher les racines de $P_A(\lambda)$ dans $\bK$ (réalistiquement dans $\bR$ car d'après le théorème de 
   d'Alembert Gauss tous les polynomes sont scindés sur $\bC$). Une racine $\lambda_0$ de multiplicité $p$ est alors appelée une valeur propre de multiplicité $p$ de $f$
 \end{definition}
-\subsection{Changement de base}
+\section{Changement de base}
 \begin{prop}
   Les valeurs propres de la matrice $A$ sont invariant par changement de base.
   \begin{proof}
@@ -2666,7 +2665,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Cela s'étend à toutes les matrices semblables, elles ont les mêmes valeurs propres.
 \end{rmq}
-\subsection{Dimension deux}
+\section{Dimension deux}
 \begin{prop}
   Soit $E$ un $\bR$ \ev de dimension $2$, alors il existe trois cas 
   \begin{enumerate}
@@ -2694,7 +2693,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     Les trois cas se déduisent alors du théorèmes des racines en dimension 2.
   \end{proof}
 \end{prop}
-\subsection{Cas des matrices triangulaires}
+\section{Cas des matrices triangulaires}
 \begin{definition}
   Si on a $T \in \mfc{T}^+_n(\bK)$ alors les valeurs propres sont les diagonales compté avec multiplicité 
 \end{definition}
@@ -2708,7 +2707,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 \begin{rmq}
   Si $P_A$ est scindé sur $\bR$ alors on a notre décomposition en vecteurs propres, comptés avec multiplicité et on en a assez pour une base.
 \end{rmq}
-\subsection{Recherche de valeurs propre}
+\section{Recherche de valeurs propre}
 \begin{definition}[Méthode]
   Pour rechercher des valeurs propres on 
   \begin{itemize}
@@ -2805,8 +2804,8 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{equation*}
   Autrement dit, on a réduit f, il est maintenant beaucoup plus simple de calculer des puissance de $f$ ou une inversibilité.
 \end{ex}
-\subsection{Dimension d'un espace propre}
-\begin{definition}
+\section{Dimension d'un espace propre}
+\begin{theorem}
   Soit $\lambda$ une racine de multiplicité $p$ 
   \begin{equation*}
     \dim E_{\lambda} \leq \text{mult}(\lambda) = p
@@ -2840,6 +2839,322 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
       \dim E_{\lambda} \leq p = \text{mult}(\lambda_0)
     \end{equation*}
   \end{proof}
+\end{theorem}
+
+\chapter{Diagonalisation des endomorphismes/matrices}
+\section{Définitions}
+\begin{definition}
+  Soit $E$ un \ev de dimension $n$ on dit que $f \in \mfc{L}(E)$ est diagonalisable si il existe $B = (u_1,\cdots,u_n)$ une base de $E$ telle 
+  que 
+  \begin{equation*}
+    \text{Mat}_{B} f \in \mfc{D}_n(\bK)
+  \end{equation*}. On note $\mfc{D}'_n(\bK)$ l'ensemble des matrices diagonalisable
+  De manière équivalente 
+  \begin{equation*}
+    M \in \mfc{D}'_n(\bK) \Leftrightarrow \exists P \in \mfc{GL}_n(\bK), \exists D \in \mfc{D}_n(\bK) M = PDP^{-1}
+  \end{equation*}
+  Ou encore $f$ est diagonalisable si il existe une base de $E$ formée de vecteur propre de $f$.
+\end{definition}
+\begin{prop}
+  \begin{equation*}
+    A \in \mfc{D'}_n(\bK) \Leftrightarrow P_A(\lambda) \text{ scindé sur } \bK \wedge \forall i \leq n, \dim E_{\lambda_i} = \text{mult } \lambda_i  
+  \end{equation*}
+  \begin{proof}
+    Directe par la définition.
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  D'après le théorème de d'Alembert-Gauss on réduis l'étude sur $\bC$ a seulement 
+  \begin{equation*}
+    A \in \mfc{D'}_n(\bK) \Leftrightarrow \forall i \leq n, \dim E_{\lambda_i} = \text{mult } \lambda_i  
+  \end{equation*}
+\end{rmq}
+\begin{ex}
+  Soit $A$ telle que $P_A(\lambda) = (2-\lambda)^3 (5-\lambda) (4 - \lambda)^2$ alors 
+  $A$ est diagonalisable si et seulement si $\dim E_{2} = 3 \wedge \dim E_{5} = 1 \wedge \dim E_{4} = 2$
+\end{ex}
+\begin{rmq}
+  Si $P_A(\lambda)$ admet n racines distinctes alors $A$ est diagonalisable 
+  \begin{proof}
+    Directe par la proposition précédente et le théorème 8.8.1
+  \end{proof}
+\end{rmq}
+\section{Application}
+\begin{ex}
+  Soit $A = \begin{bmatrix}
+    0 & 0 & 0 \\ 
+    1 & 0 & 0 \\ 
+    7 & -6 & 0
+  \end{bmatrix}$ 
+  On a vu précédamment que $P_{A}(\lambda) = (1-\lambda)(2-\lambda)(-3-\lambda)$ donc $A$ est diagonalisable. Dans la base 
+  $B = (u,v,w)$ avec 
+  \begin{align*}
+    u &= \begin{pmatrix}
+      1 \\ 
+      1 \\ 
+      1
+    \end{pmatrix} \\ 
+    v &= \begin{pmatrix}
+      2 \\ 
+      1 \\ 
+      4
+    \end{pmatrix} \\ 
+    w &= \begin{pmatrix}
+      -3 \\
+      1 \\
+      9
+    \end{pmatrix}
+  \end{align*}
+  On a alors 
+  \begin{equation*}
+    A = PDP^{-1}
+  \end{equation*}
+  avec 
+  \begin{align*}
+    D &= \begin{bmatrix}
+      1 & 0 & 0 \\ 
+      0 & 2 & 0 \\ 
+      0 & 0 & -3
+    \end{bmatrix} && \text{et} \\ 
+    P &= \begin{bmatrix}
+      1 & 2 & -3 \\ 
+      1 & 1 & 1 \\ 
+      1 & 4 & 9
+    \end{bmatrix}
+  \end{align*}
+\end{ex}
+\begin{rmq}
+  $D$ n'est pas unique, mais à $D$ fixé, la matrice de passage $P$ est unique
+\end{rmq}
+\begin{ex}
+  La matrice 
+  \begin{equation*}
+    A = \begin{bmatrix}
+      7 & 2 & -2 \\ 
+      2 & 4 & -1 \\ 
+      -2 & -1 & 4
+    \end{bmatrix}
+  \end{equation*}
+  est-elle diagonalisable?
+  \begin{align*}
+    P_A(\lambda) &= \begin{vmatrix}
+      7-\lambda & 2 & -2 \\ 
+      2 & 4-\lambda & -1 \\ 
+      -2 & -1 & 4 - \lambda
+    \end{vmatrix} \\ 
+    &= \begin{vmatrix}
+      7 - \lambda & 2 & -2 \\ 
+      2 & 4 - \lambda & -1 \\ 
+      0 & 3 - \lambda & 3 - \lambda 
+    \end{vmatrix} \\ 
+    &= (3-\lambda) \begin{vmatrix}
+      7-\lambda & 2 & -2 \\ 
+      2 & 4-\lambda & -1 \\ 
+      0 & 1 & 1
+    \end{vmatrix} \\ 
+    &= (3-\lambda) (\lambda^2 - 11\lambda + 28 - 1 - \lambda) \\ 
+    &= (3-\lambda) (\lambda^2 - 12\lambda + 27) \\ 
+    &= (3-\lambda) (3-\lambda) (9-\lambda) \\ 
+    &= (3-\lambda)^2 (9-\lambda)
+  \end{align*}
+  Il suffit de calculer $\dim E_3 = \dim \ker (f-3Id_E)$
+  \begin{align*}
+    (A-3I)X = 0 &\Leftrightarrow \begin{cases}
+      4x - 2y - 2z = 0 \\ 
+      2x - y - z = 0 \\ 
+      -2x +y +z = 0
+    \end{cases}
+  \end{align*}
+  On a $\text{rg} S = 1$ donc $\ker S = 2$ donc $\ker (f-3Id_E) = 2$ donc $\dim E_3 = 2$ donc $A$ est diagonalisable de plus on a 
+  \begin{equation*}
+    E_3 = \text{Vect}\left(\begin{pmatrix}
+      -1 \\ 
+      2 \\ 
+      0
+    \end{pmatrix}, \begin{pmatrix}
+      1 \\ 
+      0 \\ 
+      2
+    \end{pmatrix}\right)
+  \end{equation*}
+  Et 
+  \begin{equation*}
+    E_9 = \text{Vect}\left(\begin{pmatrix}
+      2 \\ 
+      1 \\
+      -1
+    \end{pmatrix}\right)
+  \end{equation*}
+  On a donc 
+  \begin{equation*}
+    A = PDP^{-1}
+  \end{equation*}
+  avec 
+  \begin{align*}
+    D &= \begin{bmatrix}
+      3 & 0 & 0 \\ 
+      0 & 3 & 0 \\ 
+      0 & 0 & 9
+    \end{bmatrix} && \text{et} \\ 
+    P &= \begin{bmatrix}
+      -1 & 1 & 2 \\ 
+      2 & 0 & 1 \\ 
+      0 & 2 & -1
+    \end{bmatrix}
+  \end{align*}
+\end{ex}
+\begin{rmq}
+  La méthode pour savoir si $A$ est diagonalisable est la suivante 
+  \begin{itemize}
+    \item Calculer le polynome caractéristique 
+    \item Comparer les multiplicités des racines avec les dimensions des espaces propres associées
+  \end{itemize}
+\end{rmq}
+\begin{ex}
+  Exemple avec 
+  \begin{equation*}
+    A = \begin{bmatrix}
+      0 & 0 & 1 \\ 
+      1 & 0 & 0 \\ 
+      7 & -6 & 0 
+    \end{bmatrix}
+  \end{equation*}
+  On cherche à calculer $A^k$ pour $k \in \bN$ alors on a 
+  \begin{align*}
+    A^k &= (PDP^{-1})^k \\ 
+    &= PDP^{-1} \cdot PDP^{-1} \cdots PDP^{-1} \\ 
+    &= PD^kP^{-1} \\ 
+    &= P\begin{bmatrix}
+      1^k & 0 & 0 \\ 
+      0 & 2^k & 0 \\ 
+      0 & 0 & (-3)^k
+    \end{bmatrix}P^{-1}
+  \end{align*}
+\end{ex}
+\section{Application à des polynomes à indéterminées dans un anneau  (HP)}
+\begin{rmq}
+  Rappelons que vu que $\dim \mfc{M}_n(\bK) = \dim \mfc{L}(E)$ pour $E$ un espace vectoriel de dimension $n$ on travaille ici à un isomorphisme près
+\end{rmq}
+\begin{rmq}
+  Ici $\mfc{A} = \mfc{M}_n(\bK)$ ou $\mfc{L}(E)$ indiscernement.
+\end{rmq}
+\begin{definition}
+  Soit $A \in \mfc{A}$, et soit $P \in \mfc{A}[X]$ tel que $\deg P = p$ alors on note 
+  \begin{equation*}
+    P(A) = \sum_{k=0}^p a_k A^k
+  \end{equation*}
+  le polynome à coefficient dans $\bK$ à indéterminée matricielle (resp endomorphique).
+\end{definition}
+\begin{theorem}[Théorème de Cayley-Hamilton, cas diagonalisable]
+  Soit $P \in \mfc{A}[X]$, soit $A \in \mfc{A}$ diagonalisable alors on a 
+  \begin{equation*}
+    P_A(A) = 0_{\mfc{A}}
+  \end{equation*}
+  \begin{proof}
+    La démonstration est ici réduite au cas où $A$ est diagonalisable.
+    Soit $P \in \mfc{A}[X]$ soit $A \in \mfc{A}$ diagonalisable, soit $f$ l'endomorphisme associé. Alors
+    \begin{equation*}
+      P_A(A) = (\lambda_1I - A)(\lambda_2I-A)\cdots(\lambda_pI-A)
+    \end{equation*}
+    d'où
+    \begin{equation*}
+      \forall i, \exists \lambda_1, | f(v_i) = \lambda_i v_i
+    \end{equation*}
+    d'où
+    \begin{equation*}
+      (\lambda Id_E-f)(v_i) = 0_E
+    \end{equation*}
+    d'où
+    \begin{equation*}
+      P_A(f) = 0_{\mfc{A}}
+    \end{equation*}
+    d'où
+    \begin{equation*}
+      P_A(A) = 0_{\mfc{A}}
+    \end{equation*}
+  \end{proof}
+\end{theorem}
+\section{Séries exponentielles à valeurs dans un espace vectoriel, cas des matrices exponentielles, (HP)}
+\begin{definition}
+  Soit $A \in \mfc{M}_n(\bK)$ on définie
+  \begin{equation*}
+    \sum_{k=0}^{\infty} \frac{A^k}{k!} = e^A
+  \end{equation*}
+\end{definition}
+\subsection{Application en physique}
+\begin{definition}
+  Soit une équation différentielle linéaire homogène d'ordre 1 
+  \begin{equation*}
+    x' - ax = 0
+  \end{equation*}
+  on a alors 
+  \begin{align*}
+    &\frac{x'}{x} = a \\ 
+    &(\log x)(t) = at + c \\ 
+    &x(t) = e^{at+c} = e^{at} \cdot e^c \\ 
+    &x(t) = e^{at} \cdot x(0)
+  \end{align*}
+\end{definition}
+\subsection{Application à l'ordre n}
+\begin{definition}
+  Soit une équation différentielle linéaire homogène d'ordre n,
+  \begin{equation*}
+    x^{(n)} + a_{n-1}x^{(n-1)} + \cdots + a_0 x = 0
+  \end{equation*}
+  Peut être transformé matriciellement en 
+  \begin{equation*}
+    \underbrace{\begin{bmatrix}
+      x^(n) \\ 
+      x^(n-1) \\
+      \vdots \\ 
+      x'
+    \end{bmatrix}}_{X'} = 
+    \underbrace{\begin{bmatrix}
+      -a_{n-1} & -a_{n-2} & \cdots & - a \\ 
+      1 & 0 & 0 & 0 \\ 
+      \vdots & \vdots & \vdots & \vdots \\ 
+      0 & 0 & 1 & 0
+    \end{bmatrix}}_{A}
+    \underbrace{\begin{bmatrix}
+      x^(n-1) \\ 
+      x^(n-2) \\ 
+      \vdots \\ 
+      x
+    \end{bmatrix}}_{X}
+  \end{equation*}
+  d'où 
+  \begin{equation*}
+    X' = AX
+  \end{equation*}
+  d'où par analogie à l'ordre 1 on a la solution 
+  \begin{equation*}
+    X(t) = e^{At}X(0)
+  \end{equation*}
+  Ainsi si $A$ est diagonale on a 
+  \begin{equation*}
+    e^A = P(e^D)P{-1}
+  \end{equation*}
+  et enfin 
+  \begin{align*}
+    e^D &= \begin{bmatrix}
+      \sum_{k=0}^{\infty} \frac{\lambda_1^k}{k!} & 0 & 0 & 0 \\ 
+      \vdots & \vdots & \vdots & \vdots \\ 
+      0 & 0 & 0 & \sum_{k=0}^{\infty} \frac{\lambda_n^k}{k!}
+    \end{bmatrix} \\ 
+    &= \begin{bmatrix}
+      e^{\lambda_1} & 0 & 0 & 0 \\ 
+      \vdots & \vdots & \vdots & \vdots \\ 
+      0 & 0 & 0 & e^{\lambda_n}
+    \end{bmatrix}
+  \end{align*}
+  d'où
+  \begin{equation*}
+    e^{At} = P\begin{bmatrix}
+      e^{\lambda_1 t} & 0 & 0 & 0 \\ 
+      \vdots & \vdots & \vdots & \vdots \\ 
+      0 & 0 & 0 & e^{\lambda_n t}
+    \end{bmatrix}P^{-1}
+  \end{equation*}
 \end{definition}
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
