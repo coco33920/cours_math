@@ -45,7 +45,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{mytheoremstyle}
+  {3pt}{3pt}
+  {\normalfont}{0cm}
+  {\rmfamily\bfseries}{}
+  {\newline }{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+
 \newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
 \theoremstyle{mytheoremstyle}
 \newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt]{theorem}{Théorème}[section]
@@ -841,18 +846,19 @@
     \end{prop}
     \newpage
 \end{adjustwidth}
+
 \chapter{Séries entières : premier contact}
 \section{Séries entières de la variable complexe}
 \begin{definition}
-    Soit $(f_a)$ une suite d'application de $\bC$ dans $\bC$ 
-    On dit que la série d'application $\sum f_a$ est une série 
-    entière de la variable complexe si et seulement si il existe une suite 
-    complexe $(a_n)$ telle que $\fn, \forall z \in \bC, f_n(z) = a_n z^n$
+    Soit $(f_a) \in \left(\bC^{\bC}\right)^{\bN}$, on dit que la série d'application $\sum f_a$ est une série 
+    entière de la variable complexe $z$ si et seulement si il existe une suite 
+    complexe $(a_n) \in \bC^{\bN}$ telle que $\fn, \forall z \in \bC, f_n(z) = a_n z^n$
 \end{definition}
 \begin{rmq}
+    Soit $(a_n) \in \bC^{\bN}$ 
     \begin{itemize}
         \item Une série entière est donc une série d'application d'un type particulier 
-        \item Soit $(a_n)$ une suite complexe. On lui associe la série d'application $\sum f_n$ 
+        \item On associe la série d'application $\sum f_n$ 
         définie par $\fn, \forall z \in \bC, f_n(z) = a_n z^n$. La série 
         d'application $\sum f_n$ est une série de la variable complexe est 
         dite associée à la suite $(a_n)$. Elle est abusivement notée $\sum a_n z^n$
@@ -967,26 +973,23 @@
     \item $0 \in E_a$ et en particulier $E_a \not= \emptyset$  
     \item $D_a \subset E_a \subset \parenth{D_a \cup C_a}$ 
     \end{enumerate}
-    \begin{proof}
-        \begin{itemize}[label=$\cdot$]
-        \item $E_a = \{z \in \bC, \se \text{CV}\} = \{z \in \bC
-        , \sum_{k=0}^{\infty} a_n z^n \text{existe dans $\bC$}\}$
+    \begin{proof}$ $\newline
+        Soit $E_a = \left\{z \in \bC, \se \text{CV}\right\} = \left\{z \in \bC , \sum_{k=0}^{\infty} a_n z^n \text{existe dans $\bC$}\right\}$
+        \begin{itemize}         
+        \item On dispose de $R_a \in \overline{\bR^+}$, si $z \in D_a$ alors $\se$ est ACV donc CV donc $z \in E_a$, d'où $D_a \subset E_a$
          
-        \item On dispose de $R_a \in \overline{\bR^+}$
-        Si $z \in D_a$ alors $\se$ est ACV donc CV donc $z \in E_a$
-        d'où $D_a \subset E_a$
-         
-        \item \begin{equation*}
+        \item Il suit que, 
+        \begin{equation*}
             D_a \cup C_a = \{z \in \bC, \abs{z} \leq R_a\} = \mfc{D}(0, R_a) = \mfc{B}(0, R_a)
         \end{equation*}
          
         \item Soit $z \in \bC \setminus (D_a \cup C_a)$ alors $\abs{z} > R_a$ 
         et $\se$ GDV donc DV et $z \not \in E_a$. 
-        \item $z \not \in (D_a \cup C_a) \Rightarrow z \not \in E_a$ d'où 
-        $z \in E_a \Rightarrow z \in (D_a \cup C_a)$ par contraposition 
+        \item On a par le point précédent, $z \not \in (D_a \cup C_a) \Rightarrow z \not \in E_a$ d'où 
+        $z \in E_a \Rightarrow z \in (D_a \cup C_a)$ par contraposée 
         d'où $E_a \subset (D_a \cup C_a)$ et donc 
         $D_a \subset E_a \subset (D_a \cup C_a)$
-        puis $\sum a^n O^n$ CV donc $O \in E_a$ 
+        puis $\sum a^n 0^n$ CV donc nefin $0 \in E_a$ 
     \end{itemize}
     \end{proof}
 \end{prop}
@@ -1023,24 +1026,30 @@
         Autrement dit la SE $\se$ CV normalement et donc uniformément sur tout 
         disque fermé contenu dans son disque ouvert de convergence $D_a$
         \end{enumerate}
-        \begin{proof}
-            \begin{enumerate}
-            \item Acquis
-             
-            \item Soit $r \in [0,R_a[$ , $\forall z \in D_r, 
-            \abs{f_n(z)} = \abs{a_n z^n} = \abs{a_n} \abs{z}^n \leq \abs{a_n} r^n$
-            or $0 \leq \norm{f_n}^{D_r}_{\infty} \leq \abs{a_n} r^n$ par propriété des BN
-            et $\abs{a_n}r^n = \abs{a^n r^n}$ et $\sum a_n r^n$ est ACV par $r = \abs{r} \leq R_a$
-            d'où $\sum \abs{a_n r^n}$ CV puis $\sum \norm{f_n}^{D_r}_{\infty}$ CV donc enfin 
-            $\sum f_n$ converge normalement (CVN) sur $D_r$
-            ainsi $\forall r \in [0,R_a[, \sum f_n$ CVU sur $D_r$ 
-            cependant $\sum f_n$ n'est pas nécessairement CVU sur $\bigcup_{r \in [0,R_a[} D_r = D_a$
-            \end{enumerate}
+        \begin{proof}$ $\newline
+            Le 1 est acquis. \newline             
+            Soit $r \in [0,R_a[$ on a 
+            \begin{equation*}
+            \forall z \in D_r, 
+            \abs{f_n(z)} = \abs{a_n z^n} = \abs{a_n} \abs{z}^n \leq \abs{a_n} r^n
+            \end{equation*}
+            or 
+            \begin{equation*}
+                0 \leq \norm{f_n}^{D_r}_{\infty} \leq \abs{a_n} r^n \text{ par propriété des BN}
+            \end{equation*}
+            et $\abs{a_n}r^n, \sum a_n r^n$ sont $ACV$ car $r = \abs{r} \leq R_a$
+
+            d'où $\sum \abs{a_n r^n}$ CV puis $\sum \norm{f_n}^{D_r}_{\infty}$ CV donc enfin
+            \begin{equation*}
+                \sum f_n  \text{ (CVN) sur } D_r
+            \end{equation*}
+
+            ainsi $\forall r \in [0,R_a[, \sum f_n$ CVU sur $D_r$, cependant $\sum f_n$ n'est pas nécessairement CVU sur $\bigcup_{r \in [0,R_a[} D_r = D_a$
         \end{proof}
     \end{theorem}
     \begin{rmq}
         La SE $\se$ n'est pas nécessairement CVU sur $D_a$
-        \begin{proof}
+        \begin{proof}$ $\newline
             Soit $a = (1)$ la suite unité, on a $R_a = 1$ 
             \begin{itemize}[label=$\circ$] 
             \item $R\parenth{\sum z^n} = R_a = 1, \func{f_n}{\bC}{\bC}, f_n(z) = z^n$ \newline 
@@ -1048,10 +1057,24 @@
              
             \item Ainsi $(R_n)$ CVU sur $D_a$ vers $0$, 
             pour $z \in D_a, \sum f_n$ CVU sur $D_a$ donc CVS sur $D_a$ et $R_n(z)$ existe.
-            On a $R_n(z) = \sum_{k=n+1}^{\infty} z^k = z^{n+1} \sum_{k=0}^{\infty} z^k = z^{n+1} \frac{1}{1-z}$ car $\abs{z} < 1$
-            on pose $\alpha_n = 1 - \frac{1}{n+1}$ on a $R_n(\alpha_n) = \parenth{1 - \frac{1}{n+1}}^{n+1} (n+1)$
-            donc $\lim R_n(\alpha_n) = \infty$
-            et $R_n(\alpha_n) = \abs{R_n(\alpha_n)} \leq \norm{R_n}_{\infty}$ puis $\ln \norm{R_n}_{\infty} = \infty$ 
+
+
+            On a \begin{equation*}
+                R_n(z) = \sum_{k=n+1}^{\infty} z^k = z^{n+1} \sum_{k=0}^{\infty} z^k = z^{n+1} \frac{1}{1-z} \text{ car } \abs{z} < 1
+            \end{equation*}
+
+            on pose $\alpha_n = 1 - \frac{1}{n+1}$ on a 
+            \begin{equation*}
+                R_n(\alpha_n) = \parenth{1 - \frac{1}{n+1}}^{n+1} (n+1)
+            \end{equation*}
+            donc 
+            \begin{equation*}
+                \lim R_n(\alpha_n) = \infty
+            \end{equation*}
+            et $R_n(\alpha_n) = \abs{R_n(\alpha_n)} \leq \norm{R_n}_{\infty}$ puis 
+            \begin{equation*}
+                \ln \norm{R_n}_{\infty} = \infty
+            \end{equation*}
             \item et il y a contradiction car par hypothèse $\ln \norm{R_n}_{\infty}^{D_a} = 0$
             \end{itemize}
         \end{proof}
@@ -1071,11 +1094,20 @@
         \newline 
         \begin{enumerate}
             \item $R_{\alpha a} = \infty$ si $\alpha = 0$ et $R_{\alpha a} \not= R_a$ si $\alpha \not= 0$
-            et $\forall z \in \bC$ vérifiant $\abs{z} < R_a$ on a $\sum_{n=0}^{\infty} \alpha a_n z^n = \alpha \sum_{n=0}^{\infty} a_n z^n$
+            et $\forall z \in \bC$ vérifiant $\abs{z} < R_a$ on a 
+            \begin{equation*}
+                \sum_{n=0}^{\infty} \alpha a_n z^n = \alpha \sum_{n=0}^{\infty} a_n z^n
+            \end{equation*}
             \item $R_{a+b} \leq \min(R_a,R_b)$ et $R_{a+b} = min(R_a, R_b)$ si $R_a \not= R_b$
-            et $\forall z \in \bC$ vérifiant $\abs{z} < \min(R_a,R_b)$ on a $\sum_{n=0}^{\infty} (a_n+b_n) z^n = \sum_{n=0}^{\infty} a_n z^n + \sum_{n=0}^{\infty} b_n z^n$
+            et $\forall z \in \bC$ vérifiant $\abs{z} < \min(R_a,R_b)$ on a 
+            \begin{equation*}
+                \sum_{n=0}^{\infty} (a_n+b_n) z^n = \sum_{n=0}^{\infty} a_n z^n + \sum_{n=0}^{\infty} b_n z^n
+            \end{equation*}
             \item $R_{c} \geq \min(R_a,R_b)$ 
-            et $\forall z \in \bC$ vérifiant $\abs{z} < \min(R_a,R_b)$ on a $\sum_{n=0}^{\infty} (c_n) z^n = \parenth{\sum_{n=0}^{\infty} a_n z^n} \cdot \parenth{\sum_{n=0}^{\infty} b_n z^n}$
+            et $\forall z \in \bC$ vérifiant $\abs{z} < \min(R_a,R_b)$ on a 
+            \begin{equation*}
+                \sum_{n=0}^{\infty} (c_n) z^n = \parenth{\sum_{n=0}^{\infty} a_n z^n} \cdot \parenth{\sum_{n=0}^{\infty} b_n z^n}
+            \end{equation*}
         \end{enumerate}
         \begin{proof}
             Déjà prouvée cf chap précédent
@@ -1091,40 +1123,90 @@
         \item Si $\abs{z} < 1$ alors $\iss{p}{n(n-1)\cdots (n-(p-1))z^{n-p}} = \frac{p!}{(1-z)^{p+1}}$ 
         \item Si $\abs{z} < 1$ alors $\is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}$
         \end{enumerate}
-        \begin{proof}
+        \begin{proof}$ $\newline
             \begin{itemize}[label=$\cdot$]
-            \item 3. Soit $z \in \bC, \abs{z} < 1$ on a $\mfc{P}(p) \Leftrightarrow \is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}$
-            et  
-            $\binom{n}{0} = 1$ et $\is{z^n} = \frac{1}{1-z} = \frac{1}{(1-z)^(0+1)}$ donc $\mfc{P}(0)$ est vrai 
+            \item 3. Soit $z \in \bC, \abs{z} < 1$ on a 
+            \begin{equation*}
+                \mfc{P}(p) \Leftrightarrow \is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}
+            \end{equation*}
+            et $\binom{n}{0} = 1$ et $\is{z^n} = \frac{1}{1-z} = \frac{1}{(1-z)^(0+1)}$ donc $\mfc{P}(0)$ est vrai 
              
 
-            \item On suppose $P(n-1)$ 
-            $z \not= 1$ donc $(1-z)\is{\binom{n+p}{p}z^n} = \parenth{\is{a_nz^n}} \cdot \parenth{\is{b_nz^n}}$
+            \item On suppose $P(n-1)$\newline
+            $z \not= 1$ donc 
+            \begin{equation*}
+                (1-z)\is{\binom{n+p}{p}z^n} = \parenth{\is{a_nz^n}} \cdot \parenth{\is{b_nz^n}}
+            \end{equation*}
             avec $a_0 = 1, a_1 = 1, et \forall n \geq 2, a_n = 0$ et $b_n = \binom{n+p}{p}$
 
             \item \begin{rmq}
-                $b_n = \frac{(n+p)!}{n!p!} = F(n)$ avec \newline $F = \frac{(X+p)\cdots(X+1)}{p!}$ on a $R_b = 1$ et $\abs{z} < R_b$ donc $\seb{b}$ est ACV
+                $b_n = \frac{(n+p)!}{n!p!} = F(n)$ avec
+                \begin{equation*}
+                F = \frac{(X+p)\cdots(X+1)}{p!}
+                \end{equation*}
+                on a $R_b = 1$ et $\abs{z} < R_b$ donc $\seb{b}$ est ACV
             \end{rmq}
             
-            \item $\se$ et $\seb{b}$ sont ACV donc $(1-z)\is{\binom{n+p}{p}z^n} = \is{c_nz^n}$ avec $c_n = \sum_{k=0}^n a_k b_{n-k} = a_0 b_n + a_1 b_{n-1} + b_n - b_{n-1}$
-            donc $c_n = \binom{n+p}{p} - \binom{n+p-1}{p} = \binom{n+p-1}{p-1}$ 
-            donc $(1-z)\is{\binom{n+p}{p}z^n} = \is{\binom{n+p-1}{p-1}z^n} = \frac{1}{((1-z)^p)}$ par (HR)
-            puis donc $\is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}$ 
+            \item $\se$ et $\seb{b}$ sont ACV donc 
+            \begin{equation*}
+                (1-z)\is{\binom{n+p}{p}z^n} = \is{c_nz^n}
+            \end{equation*}
+            avec 
+            \begin{equation*}
+                c_n = \sum_{k=0}^n a_k b_{n-k} = a_0 b_n + a_1 b_{n-1} + b_n - b_{n-1}
+            \end{equation*}
+            donc 
+            \begin{equation*}
+                c_n = \binom{n+p}{p} - \binom{n+p-1}{p} = \binom{n+p-1}{p-1}
+            \end{equation*}
+            donc 
+            \begin{equation*}
+                (1-z)\is{\binom{n+p}{p}z^n} = \is{\binom{n+p-1}{p-1}z^n} = \frac{1}{((1-z)^p)} (HR)
+            \end{equation*}
+            puis enfin 
+            \begin{equation*}
+                \is{\binom{n+p}{p}z^n} = \frac{1}{(1-z)^{p+1}}
+            \end{equation*}
 
-            \item 2. $\binom{n+p}{p} = \frac{(n+p)\cdots (n+1)}{p!}$ et 
-            on a $\frac{1}{(1-z)^{p+1}} = \is{\binom{n+p}{p}z^n} = \is{\frac{(n+p)\cdots (n+1)}{p!}z^n} = \iss{p}{\frac{n(n-1)\cdots (n-(p-1))}{p!}z^{n-p}}$
+            \item 2. 
+            \begin{equation*}
+                \binom{n+p}{p} = \frac{(n+p)\cdots (n+1)}{p!}
+            \end{equation*}
+            et on a 
+            \begin{align*}
+                \frac{1}{(1-z)^{p+1}} &= \is{\binom{n+p}{p}z^n} \\ 
+                &= \is{\frac{(n+p)\cdots (n+1)}{p!}z^n} \\ 
+                &= \iss{p}{\frac{n(n-1)\cdots (n-(p-1))}{p!}z^{n-p}}
+            \end{align*}
             d'où 
             \begin{equation*}
             \iss{p}{n(n-1)\cdots (n-(p-1))z^n} = \frac{p!}{(1-z)^{p+1}}
             \end{equation*}
         \end{itemize}
-            \begin{rmq}[Moyen mnémotechnique de dérivation]
-                $\frac{1}{1-z} = \is{z^n}$ et $\frac{1}{(1-z)^2} = \iss{1}{nz^{n-1}}$
-                donc $\frac{2}{(1-z)^3} = \iss{2}{n(n-1)z^{n-2}}$ puis $\frac{3 \cdot 2}{(1-z)^4} = \iss{3}{n(n-1)(n-2)z^{n-2}}
-                $ et enfin $\frac{p!}{(1-z)^(p+1)} = \iss{p}{n(n-1)\cdots (n-(p-1))z^{n-p}}$
-            \end{rmq}
         \end{proof}
     \end{prop}
+    \begin{rmq}[Moyen mnémotechnique de dérivation]
+        On a
+        \begin{equation*}
+        \frac{1}{1-z} = \is{z^n}
+        \end{equation*} 
+        et
+        \begin{equation*}
+            \frac{1}{(1-z)^2} = \iss{1}{nz^{n-1}}
+        \end{equation*}
+        donc 
+        \begin{equation*}
+            \frac{2}{(1-z)^3} = \iss{2}{n(n-1)z^{n-2}}
+        \end{equation*}
+        puis 
+        \begin{equation*}
+            \frac{3 \cdot 2}{(1-z)^4} = \iss{3}{n(n-1)(n-2)z^{n-2}}
+        \end{equation*}
+        et enfin 
+        \begin{equation*}
+            \frac{p!}{(1-z)^(p+1)} = \iss{p}{n(n-1)\cdots (n-(p-1))z^{n-p}}
+        \end{equation*}
+    \end{rmq}
     \begin{prop}
         Pour tout $z \in \bC$ on a 
         \begin{enumerate}
@@ -1160,7 +1242,7 @@ On appelle $]-R_a, R_a[$ l'intervalle ouvert de convergence de la SER $\ser$
 \begin{adjustwidth}{-2em}{-1em}
     \begin{prop}
         On a $]-R_a, R_a[ \subset E_a \subset [-R_a, R_a]$
-        \begin{proof}
+        \begin{proof}$ $\newline
             $\forall r \in ]-R_a, R_a[ = D_a, \seb{r}$ CV donc $D_a \in E_a$ , et $\forall r \in \bR, \abs{r} > R_a \Rightarrow \seb{r}$ GDV
             donc $E_a \in [-R_a, R_a]$. 
             donc $D_a \in E_a \in [-R_a, R_a]$
@@ -1195,21 +1277,37 @@ On appelle $]-R_a, R_a[$ l'intervalle ouvert de convergence de la SER $\ser$
         \item $S_a$ est $C^0$ sur $]-R_a, R_a[$
         \end{enumerate}
         \begin{proof}
+            Soit $\sum f_n$ une SER de rayon $R_a > 0$ et de somme $S_a$
             \begin{enumerate}
-            1. $\sum f_n$ CVA en tout point de $]-R_a, R_a[$ car 
-            $\forall t \in ]-R_a, R_a[, \abs{t} < R_a$
+            \item $\sum f_n$ CVA en tout point de $]-R_a, R_a[$ car 
+            \begin{equation*}
+                \forall t \in ]-R_a, R_a[, \abs{t} < R_a
+            \end{equation*}
             et $\sum f_n(t)$ est ACV. 
 
-            2. Soit $S$ un segment de $]-R_a, R_a[$ 
-            On a $\exists r \in [0,R_a[, S \subset [-r,r]$, 
-            $\forall t \in [-r,r], \fn, \abs{f_n(t)} = \abs{a_nt^n} = \abs{a_n} \abs{t^n} \leq \abs{a_n} r^n$
-            donc $0 \leq \norm{f_n}^{[-r,r]}_{\infty} \leq \abs{a_nr^n}$ or $r < R_a$ donc $\sum a_n r^n$ est ACV 
-            donc $\sum \norm{f_n}^{[-r,r]}_{\infty} CV$
-            donc $\sum f_n$ CVN ( donc CVU ) sur S. 
+            \item Soit $S$ un segment de $]-R_a, R_a[$, on a 
+            \begin{equation*}
+                \exists r \in [0,R_a[, S \subset [-r,r]
+            \end{equation*} 
+            et 
+            \begin{align*}
+                \forall t \in [-r,r], \fn, \abs{f_n(t)} &= \abs{a_nt^n} \\
+                &= \abs{a_n} \abs{t^n} \leq \abs{a_n} r^n
+            \end{align*}
+            donc 
+            \begin{equation*}
+                0 \leq \norm{f_n}^{[-r,r]}_{\infty} \leq \abs{a_nr^n}
+            \end{equation*}
+            or $r < R_a$ donc $\sum a_n r^n$ est ACV 
+            donc 
+            \begin{equation}
+                \sum \norm{f_n}^{[-r,r]}_{\infty} CV
+            \end{equation}
+            et enfin $\sum f_n$ CVN ( donc CVU ) sur S. 
 
-            3. $S_a = \is{f_n}$ 
-            $\fn f_n$ est $C^0$ sur $]-R_a, R_a[$, on a 
-            $\sum f_n$ CVU sur tout segment S de $]-R_a, R_a[$ donc par le (TC) 
+            \item $S_a = \is{f_n}$\newline
+            $\fn f_n$ est $C^0$ sur $]-R_a, R_a[$, on a\newline
+            $\sum f_n$ CVU sur tout segment S de $]-R_a, R_a[$ donc par le (TC)\newline
             $S_a = \is{f_n}$ est $C^0$ sur $]-R_a, R_a[$
             \end{enumerate}
         \end{proof}
