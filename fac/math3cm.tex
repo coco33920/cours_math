@@ -163,6 +163,7 @@
 \def\mor{\mfc{L}(E,F)}
 \def\endo{\mfc{L}(E)}
 \def\apcr{à partir d'un certain rang}
+\def\dom{\text{dom }}
 % Sometimes helpful macros
 \newcommand{\func}[3]{#1\colon#2\to#3}
 \newcommand{\cvs}[2]{converge simplement sur $#1$ vers $#2$}
@@ -4504,3 +4505,64 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
   \end{proof}
 \end{theorem}
 \end{document}
+\section{Polynomes à coefficients dans un corps et à une indéterminées dans un anneaux commutatif}
+\begin{rmq}
+  Ici le corps utilisé $\bK = \bR$ ou $\bC$
+\end{rmq}
+\subsection{Définition}
+\begin{definition}
+  Soit $(a_n)_{n \in \bN} \in \bK^{\bN}$ telle que
+  \begin{equation*}
+    \exists N \in \bN, \forall n \geq N, a_n = 0
+  \end{equation*}
+  dites "nulle \apcr" alors en notant $X$ dites "l'indéterminée" du polynome, dans un anneaux commutatif (par exemple $\bK$) on appelle l'objet
+  \begin{equation*}
+    P = \sum_{n=0}^{\infty} a_n X^n
+  \end{equation*}
+  polynome à coefficient dans $\bK$ à une indéterminée (la somme est finie car $(a_n)$ est nulle \apcr)
+\end{definition}
+\begin{rmq}
+  Les notations $P$ ou encore $P(X)$ sont confondues.
+\end{rmq}
+\begin{definition}
+  On note $\bK[X]$ l'ensemble des polynômes à coefficients dans $\bK$ à une indéterminée
+\end{definition}
+\subsection{Degrés}
+\begin{definition}
+  Soit $P \in \bK[X]$ tel que $P \not= 0_{\bK[X]}$ 
+  \begin{equation*}
+    P = \sum_{n=0}^{\infty} a_n X^n
+  \end{equation*}
+  Soit 
+  \begin{equation*}
+    \varepsilon = \left\{n \in \bN, a_n \not= 0\right\}
+  \end{equation*}
+  $\varepsilon$ est non-vide car $P$ n'est pas le polynome nul, et comme $(a_n)$ est nulle \apcr alors d'après la propriété fondamentale de $\bN$ 
+  $\max \varepsilon$ existe. On note alors 
+  \begin{equation*}
+    \deg P = \max \varepsilon
+  \end{equation*}
+  Le coefficient $a_{\deg P}$ associé au degrès de $P$ est nommé \textit{coefficient dominant de $P$} ou $a_n = \text{dom }P$
+\end{definition}
+\subsection{Opération sur les polynomes}
+\begin{definition}
+  Soit $(P,Q) \in \bK[X]^2$ tels que 
+  \begin{equation*}
+    P = \sum_{n=0}^{\infty} a_n X^n
+  \end{equation*} et 
+  \begin{equation*}
+    Q = \sum_{n=0}^{\infty} b_n X^n
+  \end{equation*}, alors l'objet 
+  \begin{equation*}
+    P+Q \in \bK[X]
+  \end{equation*}
+  et on le calcule 
+  \begin{equation*}
+    (P+Q) = \sum_{n=0}^{\infty} (a_n+b_n) X^n
+  \end{equation*}
+  \begin{itemize}
+    \item Si $\deg P \not= \deg Q$ alors $\deg (P+Q) = \max (\deg P) (\deg Q)$
+    \item Si $\deg P = \deg Q$ alors si $\text{dom }P = -\text{dom }Q$ on a $\deg (P+Q) \leq \deg P$
+    \item Si $\deg P = \deg Q$ alors si $\dom P \not= -\dom Q$ on a $\deg (P+Q) = \deg P$
+  \end{itemize}
+\end{definition}
