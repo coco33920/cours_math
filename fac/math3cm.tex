@@ -2314,7 +2314,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   Avec des lettres on a $\det A = aei + dhc + gbf - gec - ahf - dbi$
 \end{rmq}
 \begin{theorem}[Règle de Sarrus]
-  Une façon plus simple pour se souvenir de cette formule est de prendre la matrice $5$ par $5$ 
+  Une façon plus simple pour se souvenir de cette formule est de prendre la matrice $5$ par $3$ 
   \begin{equation*}
     \begin{bmatrix}
       a & b & c \\ 
@@ -2367,6 +2367,18 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
       Par récurrence sur $n$ et par définition.
     \end{proof}
   \end{theorem}
+  \begin{prop}
+    Soit $T \in \mathcal{T}^{+}_n$ alors 
+    \begin{equation*}
+      T \in \mfc{GL}_n(\bK) \Leftrightarrow \forall i \in [\![1,n]\!] [T]_{i,i} \not= 0
+    \end{equation*}
+    \begin{proof}
+      Conséquence du théorème précédent
+    \end{proof}
+  \end{prop}
+  \begin{rmq}
+    Comme $\mfc{D}_n(\bK) \subset \mfc{T}^{+}_n$ le résultat s'applique aux matrices diagonales aussi
+  \end{rmq}
 \subsection{Propriété du déterminant}
 \begin{theorem}
   Le déterminant est invariant par combinaison linéaire de colonnes et de lignes de la matrice (Gauss)
@@ -2398,7 +2410,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \begin{itemize}
       \item Supposons que $\det A \not= 0$ alors selon la partie précédente la famille de ses vecteurs colonnes est libre, on a donc $\text{rg}(A) = n$ donc $A$ est inversible
       \item Supposons que $A$ est inversible, supposons que $\det A = 0$ alors il existe $(i,j) \in [\![1,n]\!]^2$ tels que $C_i \equiv C_j$ donc la famille 
-      des vecteurs colonnes n'est pas libre donc $\dim \ker A \leq 1$ donc $\text{rg} A < n$ donc $A$ n'est pas inversible, ce qui est absurde, donc $\det A \not= 0$   
+      des vecteurs colonnes n'est pas libre donc $\dim \ker A \geq 1$ donc $\text{rg} A < n$ donc $A$ n'est pas inversible, ce qui est absurde, donc $\det A \not= 0$   
     \end{itemize}
   \end{proof}
 \end{prop}
@@ -2622,11 +2634,11 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \begin{align*}
     x \in E_{\lambda} &\Leftrightarrow f(x) = \lambda x \\ 
     &\Leftrightarrow f(x) - \lambda x = 0 \\ 
-    &\Leftrightarrow x \in \ker (f - Id_E)
+    &\Leftrightarrow x \in \ker (f - \lambda Id_E)
   \end{align*}
   donc 
   \begin{equation*}
-    E_\lambda = \ker (f - Id_E)
+    E_\lambda = \ker (f - \lambda Id_E)
   \end{equation*}
 \end{prop}
 \begin{rmq}
@@ -3074,7 +3086,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \end{equation*}
   \end{proof}
 \end{theorem}
-\section{Séries exponentielles à valeurs dans un espace vectoriel, cas des matrices exponentielles, (HP)}
+\section{Séries d'applications à valeurs dans un espace vectoriel, cas des matrices exponentielles, (HP)}
 \begin{definition}
   Soit $A \in \mfc{M}_n(\bK)$ on définie
   \begin{equation*}
@@ -3156,6 +3168,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \end{bmatrix}P^{-1}
   \end{equation*}
 \end{definition}
+
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
@@ -3881,6 +3894,10 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \item $\int_I f = \int_a^b f = \int_a^b f(x) \text{d}x$
   \end{itemize}
 \end{rmq}
+
+
+
+
 \chapter{Hors Programme - Supplément}
 \section{Application}
 \subsection{Définitions}
