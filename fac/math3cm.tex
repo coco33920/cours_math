@@ -60,27 +60,27 @@
   {\newline }{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
 \newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt]{theorem}{Théorème}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt]{theorem}{Théorème}[subsection]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowRed,linecolor=deepRed,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{prop}{Proposition}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowRed,linecolor=deepRed,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{prop}{Proposition}[subsection]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=lilac,linecolor=deepPurple,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Définition}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=lilac,linecolor=deepPurple,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Définition}[subsection]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ef}{EF}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ef}{EF}[subsection]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue, linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt, innerleftmargin=10pt, innerrightmargin=10pt,]{st}{S}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue, linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt, innerleftmargin=10pt, innerrightmargin=10pt,]{st}{S}[subsection]
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,leftmargin=1pt,innertopmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ex}{}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,leftmargin=1pt,innertopmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{ex}{}[subsection]
 
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{rmq}{Remarque}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{rmq}{Remarque}[subsection]
 
 \theoremstyle{mytheoremstyle}
-\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{exe}{Exercice}[section]
+\newmdtheoremenv[everyline=true,linewidth=1pt,backgroundcolor=mygray,linecolor=black,innertopmargin=1pt,leftmargin=1pt,innerleftmargin=20pt,innerrightmargin=20pt,]{exe}{Exercice}[subsection]
 
 
 \theoremstyle{myproblemstyle}
-\newmdtheoremenv[everyline=true,linecolor=black,leftmargin=1pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+\newmdtheoremenv[everyline=true,linecolor=black,leftmargin=1pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[subsection]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -4677,4 +4677,14 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
       &\deg P\times 0 = n \cdot (-\infty) = -\infty
     \end{align*}
   \end{rmq}
+\subsection{Polynomes de degrès inférieur à n}
+\begin{definition}
+  On note $\bK_n[X]$ l'ensemble des polynomes de degrès inférieur ou égal à $n$, par les définitions précédentes, on a une somme interne et 
+  un produit externe mais pas de produit interne, ce qui exclus le rôle d'anneaux, en fait la structure la plus utilisé de $\bK_n[X]$ est comme 
+  sous espace vectoriel de $\bK[X]$.
+\end{definition}
+\subsection{Polynômes réels}
+\begin{rmq}
+  Dans cette section $\bK = \bR$
+\end{rmq}
 \end{document}
