@@ -4504,7 +4504,6 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
     Les premiers étants premier deux à deux, conséquences du théorème des restes chinois.
   \end{proof}
 \end{theorem}
-\end{document}
 \section{Polynomes à coefficients dans un corps et à une indéterminées dans un anneaux commutatif}
 \begin{rmq}
   Ici le corps utilisé $\bK = \bR$ ou $\bC$
@@ -4527,6 +4526,23 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
 \begin{definition}
   On note $\bK[X]$ l'ensemble des polynômes à coefficients dans $\bK$ à une indéterminée
 \end{definition}
+\subsection{Premières propriétés}
+\begin{definition}[Égalité]
+  Soit $(P,Q) \in \bK[X]^2$ tel que 
+  \begin{equation*}
+    P = \sum_{n=0}^{\infty} a_n X^n
+  \end{equation*} et 
+  \begin{equation*}
+    Q = \sum_{n=0}^{\infty} b_n X^n
+  \end{equation*} alors 
+  \begin{equation*}
+    P = Q \Leftrightarrow \forall n \in \bN a_n = b_n
+  \end{equation*}
+  Autrement dit deux polynomes sont égaux si et seulement si leur coefficients sont égaux.
+\end{definition}
+\begin{definition}
+  Le polynome nul $0_{\bK[X]}$ est le polynome associé à la suite nulle de $\bK^{\bN}$.
+\end{definition}
 \subsection{Degrés}
 \begin{definition}
   Soit $P \in \bK[X]$ tel que $P \not= 0_{\bK[X]}$ 
@@ -4537,15 +4553,18 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
   \begin{equation*}
     \varepsilon = \left\{n \in \bN, a_n \not= 0\right\}
   \end{equation*}
-  $\varepsilon$ est non-vide car $P$ n'est pas le polynome nul, et comme $(a_n)$ est nulle \apcr alors d'après la propriété fondamentale de $\bN$ 
+  $\varepsilon$ est non-vide car $P$ n'est pas le polynome nul, et comme $(a_n)$ est nulle \apcr alors d'après la propriété fondamentale de $\bN$, 
   $\max \varepsilon$ existe. On note alors 
   \begin{equation*}
     \deg P = \max \varepsilon
   \end{equation*}
   Le coefficient $a_{\deg P}$ associé au degrès de $P$ est nommé \textit{coefficient dominant de $P$} ou $a_n = \text{dom }P$
 \end{definition}
-\subsection{Opération sur les polynomes}
 \begin{definition}
+  Par convention $\deg 0 = -\infty$
+\end{definition}
+\subsection{Opération sur les polynomes}
+\begin{prop}[Somme]
   Soit $(P,Q) \in \bK[X]^2$ tels que 
   \begin{equation*}
     P = \sum_{n=0}^{\infty} a_n X^n
@@ -4560,9 +4579,102 @@ Pour cette section $n \geq 2$ en effet $\bZ/1\bZ$ est juste le corps trivial ré
   \begin{equation*}
     (P+Q) = \sum_{n=0}^{\infty} (a_n+b_n) X^n
   \end{equation*}
-  \begin{itemize}
-    \item Si $\deg P \not= \deg Q$ alors $\deg (P+Q) = \max (\deg P) (\deg Q)$
-    \item Si $\deg P = \deg Q$ alors si $\text{dom }P = -\text{dom }Q$ on a $\deg (P+Q) \leq \deg P$
-    \item Si $\deg P = \deg Q$ alors si $\dom P \not= -\dom Q$ on a $\deg (P+Q) = \deg P$
-  \end{itemize}
-\end{definition}
+\end{prop}
+\begin{rmq}
+  Par commutatitivité et associativité de la somme sur $\bK$ la somme dans $\bK[X]$ est commutative et associative, le polynome nul est l'élement neutre de cette somme
+  donc 
+  \begin{equation*}
+    \mfc{G} = (\bK[X],+)
+  \end{equation*}
+  est un groupe abélien
+\end{rmq}
+\begin{rmq}
+  Soit $P \in \bK[X]$ soit $\lambda \in \bK$ alors 
+  \begin{align*}
+    \lambda \cdot P &= \lambda \sum_{n=0}^{\infty} a_n X^n \\ 
+    &= \sum_{n=0}^{\infty} \lambda \cdot (a_n X^n) \\
+    &= \sum_{n=0}^{\infty} (\lambda \cdot_{\bK} a_n) X^n && \in \bK[X]
+  \end{align*}
+  donc $(\bK[X],+,\cdot)$ est un $\bK$-\ev
+\end{rmq}
+\begin{prop}[Produit]
+  Soit $(P,Q) \in \bK[X]^2$ tel que 
+  \begin{equation*}
+    P = \sum_{n=0}^{\infty} a_n X^n
+  \end{equation*} et 
+  \begin{equation*}
+    Q = \sum_{n=0}^{\infty} b_n X^n
+  \end{equation*}
+  alors on définie le produit de polynome
+  \begin{equation*}
+    P\times Q = \sum_{n=0}^{\infty} \left(\sum_{i+j=n} a_i b_j\right) X^k \in \bK[X]
+  \end{equation*}
+  cette opération n'est pas commutative
+\end{prop}
+\begin{rmq}
+  On a donc que la donnée de
+  \begin{equation*}
+    \mfc A = (\bK[X],+,\times)
+  \end{equation*}
+  est un anneaux, en particulier il est non-commutatif et intègre, en effet soit $(P,Q) \in \bK[X]^2$
+  \begin{align*}
+    PQ &= 0 \\ 
+    &\Leftrightarrow \sum_{n=0}^{\infty} \left(\sum_{i+j=n} a_i b_j\right) X^k = 0_{\bK[X]} \\ 
+    &\Leftrightarrow \forall n \in \bN, \sum_{i+j=n} a_i b_j = 0_{\bK} \\ 
+    &\Leftrightarrow \forall n \in \bN, (a_n=0) \vee (b_n=0) \\
+    &\Leftrightarrow P=0 \vee Q=0 && \text{par intégrité de } \bK
+  \end{align*}
+\end{rmq}
+\subsubsection{Degrès des opérations}
+  \begin{prop}{Somme}
+    Soit $(P,Q) \in \bK[X]^2$ 
+    \begin{itemize}
+      \item Si $\deg P \not= \deg Q$ alors $\deg P+Q = \max \deg P \deg Q$
+      \item Si $\deg P = \deg Q$ alors si $\text{dom }P = -\text{dom }Q$ on a $\deg (P+Q) \leq \deg P$
+      \item Si $\deg P = \deg Q$ alors si $\dom P \not= -\dom Q$ on a $\deg (P+Q) = \deg P$
+    \end{itemize}
+  \end{prop}
+  \begin{prop}{Produit}
+    Soit $(P,Q) \in \bK[X]^2$ 
+    \begin{equation*}
+      \deg PQ = \deg P \cdot \deg Q
+    \end{equation*}
+    \begin{proof}
+      Soit $(P,Q) \in \bK[X]^2$, on a 
+      \begin{equation*}
+        P\times Q = \sum_{n=0}^{\infty} \left(\sum_{i+j=n} a_i b_j\right) X^k
+      \end{equation*}
+      Soit $\deg P = n$ et $\deg Q = m$ alors démontrons
+      \begin{equation*}
+        \forall \mu \geq mn + 1, \sum_{i+j=\mu} a_i b_j = 0
+      \end{equation*}
+      en particulier en $\mu = mn + 1$ 
+      \begin{equation*}
+        \sum_{i+j=mn+1} a_i b_j
+      \end{equation*}
+      Si $i \leq n$ alors on a nécessairement $j > m$ donc 
+      \begin{equation*}
+        \sum_{i+j=mn+1} a_i \cdot 0 = 0
+      \end{equation*}
+      Si $i > n$ alors on a 
+      \begin{equation*}
+        \sum_{i+j=mn+1} 0 \cdot b_j = 0
+      \end{equation*}
+      par récurrence on établie le résultat pour tous les nombres supérieurs à $mn+1$ aussi, d'où 
+      \begin{equation*}
+        \max \varepsilon = mn
+      \end{equation*}
+      d'où
+      \begin{equation*}
+        \deg PQ = mn
+      \end{equation*}
+    \end{proof}
+    \end{prop}
+  \begin{rmq}
+    C'est la raison pour laquelle on définie $\deg 0 = -\infty$ en effet 
+    \begin{align*}
+      &\forall P \in \bK[X], P\times 0 = 0 \\ 
+      &\deg P\times 0 = n \cdot (-\infty) = -\infty
+    \end{align*}
+  \end{rmq}
+\end{document}
