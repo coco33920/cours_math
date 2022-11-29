@@ -3170,6 +3170,127 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{equation*}
 \end{definition}
 
+
+\chapter{Orthogonalité dans $\bR^n$}
+\section{Produit scalaire}
+\begin{definition}[Produit Scalaire Canonique de $\bR^n$]
+  Soit $(x,y) \in \left(\bR^n\right)^2$, soit $X,Y$ tels que 
+  \begin{align*}
+    &X = \text{Mat}_{\mfc B} x \\ 
+    &Y = \text{Mat}_{\mfc B} y
+  \end{align*}
+  alors on défini le produit scalaire canonique de $\bR^n$ comme 
+  \begin{align*}
+    x \cdot y &= ~^tXY \\ 
+    &= \sum_{i=1}^n [X]_{i,i} [Y]_{i,i} 
+  \end{align*}
+\end{definition}
+\begin{rmq}
+  Il est parfois noté $<x,y>$ ou encore $(x|y)$
+\end{rmq}
+\begin{rmq}
+  Le produit scalaire est une forme bilinéaire sur $\bR^n$, en particulier
+  \begin{align*}
+    &\forall (x,y) \in \left(\bR^n\right)^2, \lambda \in \bR, (\lambda x) \cdot y = x \cdot (\lambda y) = \lambda (x \cdot y) \\ 
+    &\forall (x,y,z) \in \left(\bR^n\right)^3, (x+z) \cdot y = (x \cdot y) + (z \cdot y) 
+    &\forall (x,y) \in \left(\bR^n\right)^2, x \cdot y = y \cdot x 
+  \end{align*}
+  \begin{proof}
+    Par définition d'un produit scalaire (voir \hyperref[subsubsec:h1]{ici}), un produit scalaire est une forme bilineaire, symétrique, définie, positive
+  \end{proof}
+\end{rmq}
+\begin{ex}
+  Soit $x,y$ tels que 
+  \begin{align*}
+    x = \begin{pmatrix}
+      4 \\ 
+      1 \\ 
+      5
+    \end{pmatrix} \\ 
+    y = \begin{pmatrix}
+      -1 \\ 
+      2 \\ 
+      1
+    \end{pmatrix}
+  \end{align*}
+  alors on a 
+  \begin{equation*}
+    x \cdot y = 4 \cdot -1 + 1 \cdot 2 + 5 \cdot 1 = 3
+  \end{equation*}
+\end{ex}
+\subsection{Norme}
+\begin{definition}[Norme euclidienne de $\bR^n$]
+  Soit $x \in \bR^n$, on appelle norme euclidienne de $x$ le réel 
+  \begin{equation*}
+    \norm{x} = \sqrt{x \cdot x}
+  \end{equation*}
+  Qui existe par positivité d'un produit scalaire.
+\end{definition}
+\begin{rmq}
+  Une norme est une forme, définie, positive, homogène voir \hyperref[subsubsec:h2]{ici}, en particulier
+  \begin{equation*}
+    \norm{x} = 0 \Leftrightarrow x = 0_E
+  \end{equation*}
+\end{rmq}
+\begin{rmq}
+  On dit d'un vecteur dont la norme est $1$ qu'il est \textit{unitaire} ou \textit{normé}
+\end{rmq}
+\begin{ex}
+  Soit $x$ définie par 
+  \begin{equation*}
+    x = \begin{pmatrix}
+      3 \\ 
+      -1 \\ 
+      2
+    \end{pmatrix}
+  \end{equation*}
+  On a 
+  \begin{align*}
+    \norm{x} &= \sqrt{x \cdot x} \\ 
+    &= \sqrt{3 \cdot 3 + (-1)^2 + 2^2} \\ 
+    &= \sqrt{14}
+  \end{align*}
+\end{ex}
+\subsection{Cauchy-Swartz}
+\begin{theorem}[Inégalité de Cauchy-Swartz]
+  Soit $(x,y) \in \left(\bR^n\right)^2$ alors on a 
+  \begin{equation*}
+    \abs{x \cdot y} \leq \norm{x} \norm{y}
+  \end{equation*}
+  \begin{proof}
+    Soit $(x,y) \in \left(\bR^n\right)^2$, soit $\lambda \in \bR$, on note alors l'expression
+    \begin{align*}
+      T(\lambda) &= \norm{\lambda x + y}^2 \\ 
+      &=\left(\lambda x + y\right) \cdot \left(\lambda x + y\right) \\ 
+      &=\lambda^2\norm{x}^2 + 2\lambda (x \cdot y) + \norm{y}^2
+    \end{align*}
+  Ce qui est l'équation d'une parabole, on a aussi 
+  \begin{align*}
+    &\norm{x}^2 \geq 0 \\ 
+    &T(\lambda) \geq 0
+  \end{align*}
+  ce qui mène nécessairement à ce que 
+  \begin{equation*}
+    \Delta \leq 0
+  \end{equation*}
+  Donc 
+  \begin{align*}
+    (2(x \cdot y))^2 - 4(\norm{x}^2\norm{y}^2) &\leq 0 \\ 
+    4(x\cdot y)^2 &\leq 4(\norm{x}\norm{y})^2 \\ 
+    \abs{x \cdot y} &\leq \norm{x}\norm{y}
+  \end{align*}
+  \end{proof}
+\end{theorem}
+\begin{prop}{Cas d'égalité}
+  On a égalité si 
+  \begin{align*}
+    &\exists! \lambda_1 \in \bR, T(\lambda_1) = 0 \\ 
+    &\lambda_1 x + y = 0_E \\ 
+    &-\lambda_1 x = y
+  \end{align*}
+  donc que $x$ soit colinéaire à $y$
+\end{prop}
+
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
@@ -3849,6 +3970,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   En particulier tout \ev de dimension $n$ est isomorphe à $R^n$ appelé \textit{espace canonique de dimension n}
 \end{rmq}
 \subsubsection{Espace pré-hilbertien, euclidien}
+\label{subsubsec:h1}
 \begin{definition}
   Soit $E$ un $\bR$-ev, on dit que $f = (\cdot | \cdot)$ est un produit scalaire sur $E$ si c'est une forme bilinéaire, définie, positive, symétrique
   \begin{itemize}
@@ -3865,10 +3987,11 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   Un \textit{espace euclidien} est un espace pré-hilbertien de dimension finie.
 \end{definition}
 \subsubsection{Espace vectoriel normés}
+\label{subsubsec:h2}
 \begin{definition}
   Soit $E$ un $\bK$-ev on dit que $f = \norm{\cdot}$ est une norme sur $E$ si 
   \begin{itemize}
-    \item forme linéaire (positive) : $f : E \to \bR^+$
+    \item forme (positive) : $f : E \to \bR^+$
     \item positivité : $\forall x \in E, f(x) \geq 0$ 
     \item définie : $\forall x \in E, f(x)=0 \Rightarrow x=0_E$
     \item homogène : $\forall x \in E, \forall \lambda \in \bK, f(\lambda x) = \abs{\lambda} f(x)$
