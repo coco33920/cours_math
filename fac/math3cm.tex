@@ -3362,7 +3362,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
 
     On pose $v_2 = u_2 + \alpha v_1$ on a tout de suite que 
     \begin{equation*}
-      \text{Vect}(u_1,u_2) = \Vect{v_1,v_2}
+      \text{Vect}(u_1,u_2) = \text{Vect}(v_1,v_2)
     \end{equation*}
     ensuite 
     \begin{align*}
@@ -3377,7 +3377,86 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     \end{equation*}
   \end{proof}
 \end{theorem}
-
+\section{Théorème de Pythagore}
+\begin{theorem}{Théorème de Pythagore - Version généralisée}
+  Soit $(u_1,\cdots,u_p)$ orthogonale alors 
+  \begin{equation*}
+    \norm{u_1 + \cdots + u_p}^2 = \sum_{i=1}^p \norm{u_i}^2
+  \end{equation*}
+  \begin{proof}
+    Cas où n=2, 
+    \begin{align*}
+     \norm{u_1 + u_2}^2 &= (u_1 + u_2)\cdot (u_1 + u_2) \\ 
+      &= \norm{u_1}^2 + 2 (u_1 \cdot u_2) + \norm{u_2}^2 && \text{or la famille est orthogonale} \\ 
+      &= \norm{u_1}^2 + \norm{u_2}^2
+    \end{align*}
+    Cas où n=3,
+    \begin{align*}
+      \norm{u_1 + u_2 + u_3}^2 &= \norm{(u_1+u_2) + u_3}^2 \\ 
+      &= \norm{u_1+u_2}^2 + \norm{u_3}^2 && \text{cas n=2} \\ 
+      &= \norm{u_1}^2 + \norm{u_2}^2 + \norm{u_3}^2 && \text{cas n=2}
+    \end{align*}
+    Cas où n=p, on se ramène par récurrence à l'ordre 2.
+  \end{proof}
+\end{theorem}
+\section{Projection orthogonale sur une droite}
+\begin{definition}
+  Soit $\Delta$ une droite de coefficient directeur $u$ normé, soit $V \in E$ on appelle projection orthogonale sur $\Delta$ de $V$ le vecteur 
+  \begin{equation*}
+   p = (V \cdot u) u
+  \end{equation*}
+  \begin{proof}
+    On cherche p la projection orthogonale de $V$ sur $\Delta$, on a $V = \alpha u + V_1$
+    \begin{align*}
+      V \cdot u &= \alpha u \cdot u + v_1 \cdot u \\ 
+      &= \alpha \norm{u}^2 + V_1 \cdot u \\ 
+      &= \alpha && \text{car V_1 est orthogonale à u}
+    \end{align*}
+    On a donc 
+    \begin{equation*}
+       p = (V \cdot u) u
+    \end{equation*}
+  \end{proof}
+\end{definition}
+\begin{ex}
+  Soit $\Delta$ de coefficient directeur $u = \begin{pmatrix}
+    2 \\ 
+    1
+  \end{pmatrix}$ et $v = \begin{pmatrix}
+    4 \\
+    7
+  \end{pmatrix}$
+  On normalise d'abord $u$.
+  \begin{align*}
+    u_1 &= \frac{u}{\norm{u}} \\ 
+    &= \frac{u}{\sqrt{5}} \\ 
+    &= \begin{pmatrix}
+      \frac{2}{\sqrt{5}} \\ 
+      \frac{1}{\sqrt{5}}
+    \end{pmatrix}
+  \end{align*}
+  On a alors 
+  \begin{align*}
+    v \cdot u_1 &= 4 \cdot \frac{2}{\sqrt{5}} + 7 \cdot \frac{1}{\sqrt{5}}
+    &= \frac{15}{\sqrt{5}}
+  \end{align*}
+  Donc enfin on a 
+  \begin{align*}
+    p &= \frac{15}{\sqrt{5}} u_1 \\ 
+    &= \begin{pmatrix}
+      6 \\ 
+      3
+    \end{pmatrix}
+  \end{align*}
+\end{ex}
+\section{Changement de bases orthogonales}
+\begin{definition}
+  On définie les matrices orthogonales comme étant les matrices telles que 
+  \begin{equation*}
+    P^{-1} = ~^tP
+  \end{equation*}
+  cela découle des matrices de changement de bases orthogonales.
+\end{definition}
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
 \begin{rmq}
