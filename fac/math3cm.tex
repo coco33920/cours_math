@@ -3218,7 +3218,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     x \cdot y = 4 \cdot -1 + 1 \cdot 2 + 5 \cdot 1 = 3
   \end{equation*}
 \end{ex}
-\subsection{Norme}
+\section{Norme}
 \begin{definition}[Norme euclidienne de $\bR^n$]
   Soit $x \in \bR^n$, on appelle norme euclidienne de $x$ le réel 
   \begin{equation*}
@@ -3251,7 +3251,7 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
     &= \sqrt{14}
   \end{align*}
 \end{ex}
-\subsection{Cauchy-Swartz}
+\section{Cauchy-Swartz}
 \begin{theorem}[Inégalité de Cauchy-Swartz]
   Soit $(x,y) \in \left(\bR^n\right)^2$ alors on a 
   \begin{equation*}
@@ -3290,6 +3290,93 @@ On peut utiliser la règle d'Alembert (ou de la même manière la règle de cauc
   \end{align*}
   donc que $x$ soit colinéaire à $y$
 \end{prop}
+\subsection{Angle entre vecteurs}
+\begin{definition}
+  D'après Cauchy-Swartz on a 
+  \begin{equation*}
+    \frac{\abs{x \cdot y}}{\norm{x}\norm{y}} < 1
+  \end{equation*}
+  donc 
+  \begin{equation*}
+    -1 < \frac{x \cdot y}{\norm{x}\norm{y}} < 1
+  \end{equation*}
+  d'où
+  \begin{equation*}
+    \exists! \theta \in [0,\pi], \cos \theta = \frac{x \cdot y}{\norm{x}\norm{y}}
+  \end{equation*}
+  on appelle cet angle, l'angle entre les vecteurs $x$ et $y$
+\end{definition}
+\subsubsection{Définitions}
+\begin{definition}
+  Deux vecteurs $x$ et $y$ sont orthogonaux si et seulement si leur angle et $\frac{\pi}{2}$ donc 
+  \begin{equation*}
+    x \cdot y = 0
+  \end{equation*}
+\end{definition}
+\begin{prop}
+  Si $x \in E$ est orthogonal à une famille $(v_1,\cdots,v_p)$ de vecteurs alors $x$ est orthogonal à toute combinaison linéaire de cette famille 
+  \begin{proof}
+    directe par définition
+  \end{proof}
+\end{prop}
+\begin{definition}
+  Deux vecteurs $x$ et $y$ sont orthonormés si 
+  \begin{align*}
+    x \cdot y = 0 \\ 
+    \norm{x} = 1 \\ 
+    \norm{y} = 1
+  \end{align*}
+\end{definition}
+\begin{definition}
+  Une famille $(v_1,\cdots,v_p)$ de vecteurs est orthogonale si et les vecteurs sont deux à deux orthogonaux
+\end{definition}
+\begin{definition}
+  Une famille $(v_1,\cdots,v_p)$ est orthonormée si elle est orthogonale et que chaque vecteur est normé.
+\end{definition}
+\begin{prop}
+  Une famille orthonormée est libre.
+  \begin{proof}
+    Soit $(v_1,\cdots,v_p)$ une famille orthonormée, alors soit $(\alpha_1,\cdots,\alpha_p)$ telle que 
+    $\sum_{i=1}^n \alpha_i v_i = 0_E$
+    \begin{align*}
+      v_1 \cdot (\sum_{i=1}^p \alpha_i v_i) &= \alpha_1 v_1 \cdot v_1 + \sum_{i=2}^p \alpha_i v_1 \cdot v_i \\ 
+      &= \alpha_1 \norm{v_1}^2 + 0 = 0 && \text{car la famille est orthogonale} \\ 
+      &= \alpha_1 = 0 && \text{car la famille est normée}
+    \end{align*}
+    de la même manière on prouve que $(\alpha_1,\cdots,\alpha_p) = (0,\cdots,0)$ 
+  \end{proof}
+\end{prop}
+\begin{rmq}
+  Si la famille $(v_1,\cdots,v_p)$ est orthogonale alors la famille $(\frac{v_1}{\norm{v_1}},\cdots,\frac{v_p}{\norm{v_p}})$ est orthonormée
+\end{rmq}
+\subsection{Orthogonalisation}
+\begin{theorem}[Algorithme de Gram-Schmidt]
+  Soit $(u_1,\cdots,u_p)$ libre alors il existe $(v_1,\cdots,v_p)$ orthogonale telle que 
+  \begin{align*}
+    \text{Vect}(u_1) &= \text{Vect}(v_1) \\ 
+    \vdots &= \vdots \\ 
+    \text{Vext}(u_1,\cdots,u_p) &= \text{Vect}(v_1,\cdots,v_p)
+  \end{align*}
+  \begin{proof}
+    À l'état initial on prend $v_1 = u_1$.\newline
+
+    On pose $v_2 = u_2 + \alpha v_1$ on a tout de suite que 
+    \begin{equation*}
+      \text{Vect}(u_1,u_2) = \Vect{v_1,v_2}
+    \end{equation*}
+    ensuite 
+    \begin{align*}
+      v_2 \cdot v_1 &= (u_2 + \alpha v_1) \cdot v_1 \\ 
+      &= u_2 \cdot v_1 + \alpha \norm{v_1}^2
+    \end{align*}
+    On prend donc $\alpha = \frac{-u_2\cdot v_1}{\norm{v_1}^2}$ et on a bien l'orthogonalité\newline
+
+    On itère jusqu'à $p$, on a comme formule générale à la fin que 
+    \begin{equation*}
+      \alpha_i = - \frac{u_p\cdot v_i}{\norm{v_i}^2}
+    \end{equation*}
+  \end{proof}
+\end{theorem}
 
 \chapter{Notations, rappels, et Hors Programme (HP)}
 \section{Ensembles}
